@@ -1,4 +1,4 @@
-# SIS_RADOC
+<h1 align="center"> SIS_RADOC </h1> 
 O SIS_RADOC é um sistema de automação para preenchimento do RADOC.
 Este projeto visa simplificar e automatizar o processo de preenchimento do Relatório de Atividades Docentes (RADOC). O RADOC é uma ferramenta essencial para professores universitários documentarem suas atividades acadêmicas e administrativas, sendo crucial para avaliação institucional.
 
