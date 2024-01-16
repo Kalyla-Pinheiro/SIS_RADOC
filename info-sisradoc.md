@@ -1,11 +1,11 @@
 # Projeto SIS RADOC
 ## Índice
-* [Informações Básicas](#informacoes-basicas)
-* [Divisão da Equipe](#divisao-da-equipe)
+* [Informações Básicas](#informações-básicas)
+* [Divisão da Equipe](#divisão-da-equipe)
 * [Prazos](#prazos)
 * [Tecnologias](#tecnologias)
 * [Cronograma](#cronograma)
-* [Observações](#observacoes)
+* [Observações](#observações)
 
 ## Informações Básicas
 **Nome do Projeto:** SIS RADOC (Sistema de Gerenciamento do Relatório Anual de Atividades do Docente).
@@ -19,7 +19,7 @@
 **Líder Técnico:** Larissa Moraes Dias. 
 
 
-## Divisão Da Equipe
+## Divisão da Equipe
 
 **Front-End (3 Pessoas):**
 - Gleydson Santos Rabelo.
