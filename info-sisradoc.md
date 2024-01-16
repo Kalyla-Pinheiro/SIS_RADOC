@@ -2,7 +2,10 @@
 ## Índice
 * [Informações Básicas](#informacoes-basicas)
 * [Divisão da Equipe](#divisao-da-equipe)
-
+* [Prazos](#prazos)
+* [Tecnologias](#tecnologias)
+* [Cronograma](#cronograma)
+* [Observações](#observacoes)
 
 ## Informações Básicas
 **Nome do Projeto:** SIS RADOC (Sistema de Gerenciamento do Relatório Anual de Atividades do Docente).
@@ -31,10 +34,9 @@
 - João Henrique Barroso De Araujo.
 - Ilana Karine Valente Souto.
 
-### Documentação (2 Pessoas)
+**Documentação (2 Pessoas):**
 - Kalyla Lobato Da Costa Pinheiro.
 - Larissa Moraes Dias.
-
 
 ## Prazos
 
@@ -44,15 +46,12 @@ Inicia em 09/01/2024 às 0h 0 e finaliza em 04/03/2024 às 23h 59.
 **Final do Projeto:**
 Inicia em 08/03/2024 às 0h 0 e finaliza em 15/04/2024 às 23h 59.
 
-
 ## Tecnologias 
 
 - Front-End: [A ser decidido]
 - Back-End: [A ser decidido]
 - Banco de Dados: PostgreSQL
 - Documentação: GITBOOK
-
-
 
 ## Cronograma
 
