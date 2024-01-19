@@ -76,7 +76,7 @@ body * {
     align-items: center;
     flex-direction: column;
     padding: 30px 35px;
-    background: #015958;
+    background-color: rgb(212, 212, 212, 0.5);
     border-radius: 20px;
     box-shadow: 0px 10px 40px #00000055;
 }
@@ -157,6 +157,7 @@ body * {
     .left-login > h1 {
         display: none;
     }
+    
 
     .left-login {
         width: 100%;
