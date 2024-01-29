@@ -1,0 +1,216 @@
+:root{
+    --color-A: #0fc2c0;
+    --color-B: #0caba8;
+    --color-C: #008f8c;
+    --color-D: #015958;
+    --color-E: #023535;
+  
+
+    --color-back-B: #0caba88c;
+    --color-back-C: #008f8c;
+    --color-back-E: #023535e7;
+  
+}
+
+*{
+    margin: 0;
+}
+
+.principalForm{
+    background: linear-gradient(var(--color-back-E), var(--color-back-E)), url('https://images.freeimages.com/vhq/images/previews/d0a/dots-square-grid-01-pattern-clip-art-83859.png');
+    width: 100%;
+    height: 100vh;
+}
+  
+.geralForm{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    background: transparent;
+    backdrop-filter: blur(1px);
+    width: 100%;
+    height: max-content;
+    
+
+}
+
+.geralHeader{
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.geralHeader h2{
+    color: var(--color-A);
+    cursor: pointer;
+}
+
+.geralHeader ul{
+    color: white;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.geralHeader ul:hover{
+    color: var(--color-A);
+    transform: scale(1.2);
+}
+
+li{
+    display: flex;
+}
+
+
+.menuEsquerda{
+    height: 100%;
+    width: 20em;
+    background: var(--color-E)
+}
+
+.optMenuEsquerda{
+    border-bottom: 1px solid rgb(255, 255, 255);
+    /* border: 2px solid white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+    color: white;
+    transition: all 0.2s;
+}
+
+.optMenuEsquerda:hover{
+    background: var(--color-A);
+}
+
+.formAtividadeEnsino{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxForm{
+    width: 80%;
+    height: 80%;
+    backdrop-filter: blur(1px);
+    background-color: rgba(255, 255, 255, 0.397);
+    border-radius: 20px;
+    box-shadow:  10px 10px 15px #00000065;
+}
+
+form{
+    max-width: 100%;
+    height: 100%;
+}
+
+.formGeral{
+    margin: 1em;
+}
+
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 2em;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    border: none;
+}
+input::placeholder{
+    color: #ffffff83;
+}
+
+.optsClasseReferencia{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.optsClasseReferencia div{
+    display: flex;
+}
+
+.optsClasseReferencia div label{
+    width: 5em;
+    display: flex;
+    margin-top: 0px;
+    font-size: 16px;
+    font-weight: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.optsClasseReferencia div input{
+    width: 1em;
+}
+
+
+
+
+.divPassarForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 3em;
+}
+
+.geralPassarForm{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+.geralPassarForm button{
+    width: 3em;
+    height: 2em;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.05s;
+}
+
+.geralPassarForm button:hover{
+    transform: scale(1.2);
+}
+
+.geralPassarForm button:hover img{
+    filter: drop-shadow(2px 1px 2px red) invert();
+}
+
+.geralPassarForm button img{
+    width: 100%;
+    height: 100%;
+    filter: invert();
+}
+
+
+.divNumeroForm{
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: white;
+}
+
+.divNumeroForm span{
+    cursor: default;
+}
