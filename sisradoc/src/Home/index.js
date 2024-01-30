@@ -5,7 +5,7 @@ import './style.css';
 
 import Home from '../Home';
 
-function Cadastro() {
+export default function Cadastro() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [buttonImage, setButtonImage] = useState('/imagens/olho-Fechado.png');
@@ -100,5 +100,3 @@ function Cadastro() {
     </section>
   );
 }
-
-export default Cadastro;

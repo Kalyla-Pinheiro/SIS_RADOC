@@ -5,7 +5,7 @@ import './style.css';
 
 import Home from '../Home';
 
-function Form() {
+export default function Form() {
   
 
 
@@ -232,5 +232,3 @@ function Form() {
     </section>
   );
 }
-
-export default Form;

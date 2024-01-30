@@ -5,7 +5,7 @@ import './style.css';
 
 import Home from '../Home';
 
-function Login() {
+export default function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [buttonImage, setButtonImage] = useState('/imagens/olho-Fechado.png');
@@ -92,5 +92,3 @@ function Login() {
     </section>
   );
 }
-
-export default Login;
