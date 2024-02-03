@@ -4,9 +4,8 @@
 
 - 🏠 [Tela Inicial](#)
 - 🔐 [Login](#)
-- 📝 Cadastro
-      -[Formulário de Cadastro - LARISSA](https://5d3adaf1-ffc1-4cfb-b1e0-7a1e475c3bba-00-39igtdddxl5t2.riker.replit.dev/assets/pages/cadastro.html)
-- 🖥️ [Tela de Cadastro](#)
+- 📝 [Cadastro](#)
+- 🖥️ Tela de Cadastro-[Formulário de Cadastro - LARISSA](https://5d3adaf1-ffc1-4cfb-b1e0-7a1e475c3bba-00-39igtdddxl5t2.riker.replit.dev/assets/pages/cadastro.html)
 - 🔑 [Recuperação de Senha](#)
 - ⚙️ [Painel Administrativo](#)
 - 👤 [Perfil do Usuário](#)
