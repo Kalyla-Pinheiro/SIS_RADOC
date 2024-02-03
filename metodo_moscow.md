@@ -51,5 +51,5 @@
 - 🎓 [Qualificação do Docente Acadêmica...](#)
 - 📊 [Distribuição da Carga Horária Semanal](#)
 
-## WON'T HAVE (NÃO TERÁ): ❌
+## WON'T HAVE (NÃO TERÁ) ❌
 
