@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Link, Navigate, Route, Routes} from 'react-router-dom';
 import './style.css';
+import AnimacaoDocumento from '../imagens/animacaoDocumento.svg';
+
 
 import Home from '../Home';
 
@@ -17,21 +19,18 @@ export default function Login() {
   };
 
 
-
   return (
     <section className='principal'>
       <main className='geral'>
 
         <div className='divImgLogin'>
-          <img src='/imagens/imagem-documento.svg'></img>
+           <img src=''/>
         </div>
 
-        
 
         <div className='caixaLogin'>
 
           <h1>SISRADOC</h1>
-
 
           <div className="inputsLogin">
             <div className="inputUsername">
@@ -63,14 +62,12 @@ export default function Login() {
 
           </div>
 
-          <button className="btnLogar" >Login</button>
+          <button className="btnLogar">Login</button>
 
           <div className="linksAlternativos">
             
             <div className="criarConta link">
-              
               <Link to="/home">Criar Conta</Link>
-
             </div>
 
             <div className='senhaEsquecida link'>  

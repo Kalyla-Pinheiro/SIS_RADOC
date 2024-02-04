@@ -133,15 +133,6 @@ export default function Form() {
         </section>
 
 
-
-
-
-
-
-
-
-
-
         <section className='formAtividadeExtensao'>
 
 
@@ -179,27 +170,6 @@ export default function Form() {
         </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div className='divPassarForm'>
 
           <div className='geralPassarForm'>
@@ -225,9 +195,6 @@ export default function Form() {
         </div>
 
 
-
-
-        
       </main>
     </section>
   );
