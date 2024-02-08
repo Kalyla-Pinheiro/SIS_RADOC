@@ -4,8 +4,16 @@ import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Cadastro = () => {
+
+  const navigate = useNavigate();
+
+  const backClick = () => {
+    navigate("/login");
+  }
+
   return (
     <div className="cadastro-conteiner">
       <div className="wrapper-cadastro">
@@ -51,6 +59,10 @@ const Cadastro = () => {
 
           <button type="submit" className="button">
             Cadastre-se
+          </button>
+
+          <button onClick={backClick} className="button" id="voltar">
+            Voltar
           </button>
         </form>
       </div>
