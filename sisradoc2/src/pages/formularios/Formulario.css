@@ -1,6 +1,47 @@
 .formulario-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
+    margin-top: 0;
+}
+
+.campos {
+    display: flex;
+}
+
+.item-campos {
+    margin-right: 20px;
+    width: 27vh;
+    height: 50px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(50px);
+    text-align: center;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-campos h1 {
+    color: #fff;
+    font-size: 20px;
+}
+
+#ultimo-campo {
+    margin-right: 0;
+}
+
+.campo-preenchimento {
+    height: 80vh;
+    margin-top: 40px;
+    border-radius: 6px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(50px);
+    display: grid;
+    align-items: center;
+    justify-content: center;
 }
