@@ -63,6 +63,11 @@
   margin: -15px 0 15px;
 }
 
+.remember-forgot label {
+  display: flex;
+  align-items: center;
+}
+
 .remember-forgot label input {
   accent-color: #fff;
   margin-right: 4px;
@@ -105,4 +110,15 @@
 
 .register-link p a:hover {
   text-decoration: underline;
+}
+
+.options-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin-bottom: 1rem;
+  }
 }

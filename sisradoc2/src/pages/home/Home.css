@@ -15,8 +15,10 @@
   color: #fff;
   padding: 40px 35px 55px;
   margin: 0 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .wrapper-home h1 {
@@ -29,9 +31,21 @@
 .wrapper-home button {
   font-size: 14px;
   padding: 8px;
-  margin: 20px 60px 0px;
+  margin-top: 2rem;
   border-radius: 4px;
   grid-column: 1;
   text-transform: uppercase;
   cursor: pointer;
+  border: 1px solid;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: transparent;
+}
+
+.wrapper-home button:hover {
+  color: black;
+  background: white;
 }
