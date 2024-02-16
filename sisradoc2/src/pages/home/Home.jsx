@@ -3,21 +3,31 @@ import "./Home.css";
 
 const Home = () => {
   return (
-    <main className="home-container">
+    <div className="home-container">
       <div className="wrapper-home">
-        <h1>RADOC</h1>
-        <p>
-          O Relatório de Atividades Docente (RADOC) é um documento
-          institucional, utilizado não somente para compor os processos de
-          progressão/promoção funcional, mas para registrar todas as atividades
-          (ensino, pesquisa, extensão e administração) que são realizadas pelos
-          docentes da UFRA, além de subsidiar a administração superior na
-          aplicação do modelo de alocação de vagas e recursos.
-        </p>
-        <button>Saiba Mais</button>
+        <div className="campos">
+            <div className="item-campos" id="primeiro-campo">
+                <h1>Ensino</h1>
+            </div>
+            <div className="item-campos">
+                <h1>Pesquisa</h1>
+            </div>
+            <div className="item-campos">
+                <h1>Extensão</h1>
+            </div>
+            <div className="item-campos">
+                <h1>Gestão</h1>
+            </div>
+            <div className="item-campos" id="ultimo-campo">
+                <h1>Outros</h1>
+            </div>
+        </div>
+
+        <div className="campo-preenchimento">
+            <h1>Campo de preenchimento</h1>
+        </div>
       </div>
-      <div></div>
-    </main>
+    </div>
   );
 };
 

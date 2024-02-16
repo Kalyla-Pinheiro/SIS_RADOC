@@ -1,51 +1,53 @@
 .home-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
+  margin-top: 0;
+  align-items: center;
 }
 
 .wrapper-home {
-  width: 900px;
+  height: 700px;
+  flex-direction: column;
+}
+
+.campos {
+  display: flex;
+}
+
+.item-campos {
+  margin-right: 20px;
+  width: 23vh;
+  height: 50px;
+  border-radius: 6px;
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(50px);
-  border-radius: 10px;
-  color: #fff;
-  padding: 40px 35px 55px;
-  margin: 0 10px;
-  display: flex;
-  flex-direction: column;
+  text-align: center;
+  display: grid;
   align-items: center;
   justify-content: center;
 }
 
-.wrapper-home h1 {
-  font-size: 36px;
-  text-align: center;
-  margin-bottom: 20px;
-  grid-column: 1/-1;
+.item-campos h1 {
+  color: #fff;
+  font-size: 17px;
 }
 
-.wrapper-home button {
-  font-size: 14px;
-  padding: 8px;
-  margin-top: 2rem;
-  border-radius: 4px;
-  grid-column: 1;
-  text-transform: uppercase;
-  cursor: pointer;
-  border: 1px solid;
-  border-radius: 1rem;
-  padding: 1rem;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  background: transparent;
+#ultimo-campo {
+  margin-right: 0;
 }
 
-.wrapper-home button:hover {
-  color: black;
-  background: white;
+.wrapper-home .campo-preenchimento {
+  height: 610px;
+  margin-top: 40px;
+  border-radius: 6px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(50px);
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
