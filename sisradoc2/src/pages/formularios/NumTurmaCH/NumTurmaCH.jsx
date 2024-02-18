@@ -1,27 +1,7 @@
 import React from "react";
-//import { useState, useEffect } from 'react';
-//import api from '../../Api.js'
-// import { FaUser } from "react-icons/fa";
-// import { FaLock } from "react-icons/fa";
-// import { MdEmail } from "react-icons/md";
-// import { FaPhoneAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { HiOutlineIdentification } from "react-icons/hi";
-import { HiOutlineLibrary } from "react-icons/hi";
-import { HiAcademicCap } from "react-icons/hi";
-import { HiBriefcase } from "react-icons/hi";
-import { HiOutlineLink } from "react-icons/hi";
-import { MdOutlinePin } from "react-icons/md";
-import { MdOutlinePeopleAlt } from "react-icons/md";
-import { MdOutlinePermIdentity } from "react-icons/md";
-// import { MdOutlineSip } from "react-icons/md"; //siap testar
-import { MdPhone } from "react-icons/md";
-import { LiaEnvelope } from "react-icons/lia";
-import { LiaUnlockSolid } from "react-icons/lia";
-import classes from '../../css-modules/Cadastro.module.css';
+//import classes from '../../css-modules/Cadastro.module.css';
 
-
-const Cadastro = () => {
+const NumTurmaCH = () => {
 
   const navigate = useNavigate();
 
@@ -32,9 +12,9 @@ const Cadastro = () => {
   // }, []);
 
 
-  const backClick = () => {
+  /*const backClick = () => {
     navigate("/login");
-  }
+  }*/
 
   return (
     <div className={classes.cadastroContainer}>
@@ -139,4 +119,4 @@ const Cadastro = () => {
   );
 };
 
-export default Cadastro;
+export default NumTurmaCH;

@@ -7,6 +7,7 @@ import Home from "./pages/home/Home";
 import Perfil from "./pages/perfil/Perfil";
 import Cadastro from "./pages/cadastro/Cadastro";
 import Formulario from "./pages/formularios/Formulario"
+//import NumTurmaCH from "./pages/formularios/NumTurmaCH"
 import Documento from "./pages/documentos/Documento";
 import Configuracao from "./pages/configuracoes/Configuracao";
 import Ensino from "./pages/ensino/Ensino";
