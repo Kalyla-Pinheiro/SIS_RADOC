@@ -8,7 +8,7 @@ const Formulario = () => {
       <Navegacao />
       
       <div className="conteudo-item">
-        Conteúdo a ser preenchidoasdasd
+        Bem vindo, já pode preencher seus formulários!
       </div>
     </div>
   );

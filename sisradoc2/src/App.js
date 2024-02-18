@@ -11,11 +11,18 @@ import Formulario from "./pages/formularios/Formulario";
 import Documento from "./pages/documentos/Documento";
 import Configuracao from "./pages/configuracoes/Configuracao";
 import Ensino from "./pages/ensino/Ensino";
+import DisciplinasMinistradas from "./pages/disciplinas-ministradas/DisciplinasMinistradas";
 import DocentesEnvolvidos from "./pages/formularios/DocentesEnvolvidos/DocentesEnvolvidos";
 
 const MainLayout = ({ children }) => (
   <div>
     <Sidebar />
+    <div>{children}</div>
+  </div>
+);
+
+const EnsinoLayout = ({ children }) => (
+  <div>
     <div>{children}</div>
   </div>
 );
@@ -37,7 +44,21 @@ function App() {
                 <Route path="formularios" element={<Formulario />} />
                 <Route path="documentos" element={<Documento />} />
                 <Route path="configuracao" element={<Configuracao />} />
+                <Route path="ensino" element={<Ensino />} />
+                <Route
+                  path="disciplinas"
+                  element={<DisciplinasMinistradas />}
+                />
+                <Route path="home" element={<Home />} />
+                <Route path="perfil" element={<Perfil />} />
+                <Route path="formularios" element={<Formulario />} />
+                <Route path="documentos" element={<Documento />} />
+                <Route path="configuracao" element={<Configuracao />} />
                 <Route path="/ensino" element={<Ensino />} />
+                <Route
+                  path="disciplinas"
+                  element={<DisciplinasMinistradas />}
+                />
                 <Route
                   path="/formularios/DocentesEnvolvidos"
                   element={<DocentesEnvolvidos />}
