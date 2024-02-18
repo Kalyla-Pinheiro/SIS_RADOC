@@ -1,12 +1,12 @@
 import React from "react";
-import { useState, useEffect } from 'react';
-import api from '../../Api.js'
+// import { useState, useEffect } from 'react';
+// import api from '../../Api.js'
 import "./Login.css";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+// import clientID from '../../utils/client-id';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,8 +18,9 @@ const Login = () => {
   }, []); */
 
   const onSuccess = (credentialResponse) => {
-    const decoded = jwtDecode(credentialResponse.credential);
-    console.log(decoded);
+    const jwt = credentialResponse;
+    console.log(jwt);
+
     navigate("/home");
   };
 
@@ -46,13 +47,13 @@ const Login = () => {
               <input type="checkbox" />
               Lembre de mim
             </label>
-            <a href="#">Esqueceu a senha?</a>
+            <a href="/">Esqueceu a senha?</a>
           </div>
 
           <div className="options-login">
             <button type="submit">Login</button>
 
-            <GoogleOAuthProvider clientId="381659571656-9pknbk9qfofg71optmff34r57d6l09me.apps.googleusercontent.com">
+            <GoogleOAuthProvider clientId='381659571656-9pknbk9qfofg71optmff34r57d6l09me.apps.googleusercontent.com'>
               <GoogleLogin onSuccess={onSuccess} onError={onFailure} />
             </GoogleOAuthProvider>
           </div>
