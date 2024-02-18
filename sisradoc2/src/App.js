@@ -9,6 +9,7 @@ import Cadastro from "./pages/cadastro/Cadastro";
 import Formulario from "./pages/formularios/Formulario"
 import Documento from "./pages/documentos/Documento";
 import Configuracao from "./pages/configuracoes/Configuracao";
+import Ensino from "./pages/ensino/Ensino";
 
 const MainLayout = ({ children }) => (
   <div>
@@ -34,6 +35,7 @@ function App() {
                 <Route path='formularios' element={<Formulario />} />
                 <Route path='documentos' element={<Documento />} />
                 <Route path='configuracao' element={<Configuracao />} />
+                <Route path='/ensino' element={<Ensino />} />
               </Routes>
             </MainLayout>
           }

@@ -1,0 +1,54 @@
+.homeContainer {
+    display: flex;
+    min-height: 100vh;
+    margin-top: 0;
+    align-items: center;
+  }
+  
+  .wrapperHome {
+    height: 700px;
+    flex-direction: column;
+  }
+  
+  .campos {
+    display: flex;
+  }
+  
+  .itemCampos {
+    margin-right: 20px;
+    width: 23vh;
+    height: 50px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(50px);
+    text-align: center;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .itemCampos h1 {
+    color: #fff;
+    font-size: 17px;
+  }
+  
+  #ultimoCampo {
+    margin-right: 0;
+  }
+  
+  .wrapperHome .campoPreenchimento {
+    height: 610px;
+    margin-top: 40px;
+    border-radius: 6px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(50px);
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+  

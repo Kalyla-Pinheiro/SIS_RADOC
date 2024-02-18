@@ -1,11 +1,14 @@
 import React from "react";
 import "./Formulario.css";
+import Navegacao from "../../components/Navegação/Navegacao";
 
 const Formulario = () => {
   return (
     <div className="formulario-container">
-      <div className="wrapper-formulario">
-        <h1>Tela de formulários</h1>
+      <Navegacao />
+      
+      <div className="conteudo-item">
+        Conteúdo a ser preenchidoasdasd
       </div>
     </div>
   );

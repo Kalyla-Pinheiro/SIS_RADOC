@@ -1,0 +1,11 @@
+.formulario-container {
+    margin-top: 0;
+    flex-direction: column;
+    /* background: palevioletred; */
+}
+
+.conteudo-item {
+    background: slateblue;
+    margin-top: 40px;
+    height: 75vh;
+}

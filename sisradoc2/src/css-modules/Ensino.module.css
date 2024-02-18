@@ -1,0 +1,13 @@
+.ensinoContainer {
+    background: slateblue;
+    margin-top: 40px;
+    height: 75vh;
+}
+
+.opcoesEnsino {
+    background: purple;
+}
+
+opcaoEnsino {
+    background: orange;
+}

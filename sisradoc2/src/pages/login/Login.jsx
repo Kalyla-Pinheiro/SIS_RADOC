@@ -1,4 +1,6 @@
 import React from "react";
+import { useState, useEffect } from 'react';
+import api from '../../Api.js'
 import "./Login.css";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
@@ -8,6 +10,12 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
+
+/*  useEffect(() => {
+    api.get('login').then(res=>{
+      console.log(res);
+    })
+  }, []); */
 
   const onSuccess = (credentialResponse) => {
     const decoded = jwtDecode(credentialResponse.credential);
