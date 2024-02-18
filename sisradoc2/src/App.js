@@ -1,16 +1,17 @@
-import React from 'react';
+import React from "react";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Sidebar from "./components/sidebar/Sidebar";
 import Home from "./pages/home/Home";
 import Perfil from "./pages/perfil/Perfil";
 import Cadastro from "./pages/cadastro/Cadastro";
-import Formulario from "./pages/formularios/Formulario"
+import Formulario from "./pages/formularios/Formulario";
 //import NumTurmaCH from "./pages/formularios/NumTurmaCH"
 import Documento from "./pages/documentos/Documento";
 import Configuracao from "./pages/configuracoes/Configuracao";
 import Ensino from "./pages/ensino/Ensino";
+import DocentesEnvolvidos from "./pages/formularios/DocentesEnvolvidos/DocentesEnvolvidos";
 
 const MainLayout = ({ children }) => (
   <div>
@@ -23,25 +24,28 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/login' element={<Login />} />
-        <Route path='/cadastro' element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
 
         <Route
-          path='/*'
+          path="/*"
           element={
             <MainLayout>
               <Routes>
-                <Route path='home' element={<Home />} />
-                <Route path='perfil' element={<Perfil />} />
-                <Route path='formularios' element={<Formulario />} />
-                <Route path='documentos' element={<Documento />} />
-                <Route path='configuracao' element={<Configuracao />} />
-                <Route path='/ensino' element={<Ensino />} />
+                <Route path="home" element={<Home />} />
+                <Route path="perfil" element={<Perfil />} />
+                <Route path="formularios" element={<Formulario />} />
+                <Route path="documentos" element={<Documento />} />
+                <Route path="configuracao" element={<Configuracao />} />
+                <Route path="/ensino" element={<Ensino />} />
+                <Route
+                  path="/formularios/DocentesEnvolvidos"
+                  element={<DocentesEnvolvidos />}
+                />
               </Routes>
             </MainLayout>
           }
         />
-
       </Routes>
     </BrowserRouter>
   );
