@@ -2,7 +2,7 @@ const TokenFunctions = {
     setToken: (token) => {
         document.cookie = `jwt=${token}`;
     },
-    
+
     getToken: () => {
         const token = document.cookie;
         if (token) {
@@ -11,3 +11,5 @@ const TokenFunctions = {
         return null;
     }
 }
+
+export default TokenFunctions;
