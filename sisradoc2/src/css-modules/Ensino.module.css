@@ -1,13 +1,176 @@
+/*Tela Inicial de Ensino*/
+
 .ensinoContainer {
     background: slateblue;
     margin-top: 40px;
-    height: 75vh;
+    height: 700px;
+    width: 65vw;
+    border-radius: 0.375rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo {
+    margin-top: 40px;
+    color: #fff;
 }
 
 .opcoesEnsino {
-    background: purple;
+    margin: 50px;
+    width: 700px;
 }
 
-opcaoEnsino {
-    background: orange;
+.opcaoEnsino {
+    height: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+    border: 2px solid;
+    border-color: #fff;
+    transition: all 0.5s;
+}
+
+#ultimaOpcao {
+    margin-bottom: 0px;
+}
+
+.opcaoEnsino a {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    color: #fff;
+    transition: all 0.5s;
+}
+
+.opcaoEnsino:hover {
+    background: #fff;
+}
+
+.opcaoEnsino:hover a {
+    color: black;
+}
+
+
+/*Disciplinas Ministradas*/
+
+.disciplinasMinistradasConteiner {
+    background: slateblue;
+    margin-top: 40px;
+    height: 700px;
+    width: 65vw;
+    border-radius: 0.375rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.anexarPdfs {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+}
+
+.anexarPdfs input {
+    width: 500px;
+    font-size: 16px;
+    background: #fff;
+    border-radius: 30px;
+    outline: none;
+}
+
+::-webkit-file-upload-button {
+    color: #fff;
+    background: purple;
+    padding: 6px 25px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    cursor: pointer;
+}
+
+::-webkit-file-upload-button:hover {
+    background: #d640a9;
+}
+
+.inputsPdfs {
+  display: flex;  
+  align-items: center;
+}
+
+.inputsPdfs p {
+    font-size: 14px;
+    color: #fff;
+    margin-left: 10px;
+}
+
+#primeiroInput {
+    margin-top: 20px;
+}
+
+#segundoInput {
+    margin-top: 10px;
+}
+
+.semestre {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.tituloSemestre {
+    display: flex;
+    justify-content: center;
+}
+
+.tituloSemestre p {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.camposTabela {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.camposTabela input {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: #fff;
+    border-radius: 0.375rem;
+    outline: none;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.ultimoCampoInput {
+    margin-left: 53px;
+}
+
+.icon {
+    font-size: 23px;
+    margin-left: 10px;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 70px;
+    padding-right: 60px;
+}
+
+.buttons button {
+    width: 130px;
+    height: 40px;
+    background: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 16px;
 }
