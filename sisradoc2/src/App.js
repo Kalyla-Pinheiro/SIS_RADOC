@@ -12,6 +12,7 @@ import Documento from "./pages/documentos/Documento";
 import Configuracao from "./pages/configuracoes/Configuracao";
 import Ensino from "./pages/ensino/Ensino";
 import DisciplinasMinistradas from './pages/disciplinas-ministradas/DisciplinasMinistradas';
+import PedagogicasComplementares from './pages/pedagogicas-complementares/PedagogicasComplementares';
 
 const MainLayout = ({ children }) => (
   <div>
@@ -45,6 +46,7 @@ function App() {
                 <Route path='configuracao' element={<Configuracao />} />
                 <Route path='ensino' element={<Ensino />} />
                 <Route path='disciplinas' element={<DisciplinasMinistradas />} />
+                <Route path='pedagogicasComplementares' element={<PedagogicasComplementares />} />
               </Routes>
             </MainLayout>
           }

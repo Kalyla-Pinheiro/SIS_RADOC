@@ -19,7 +19,7 @@ const Ensino = () => {
           </div>
 
           <div className={classes.opcaoEnsino}>
-            <a href="">Pedagógicas Complementares</a>
+            <a href="/pedagogicasComplementares">Pedagógicas Complementares</a>
           </div>
 
           <div className={classes.opcaoEnsino}>
