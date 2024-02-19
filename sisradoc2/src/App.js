@@ -12,8 +12,8 @@ import Documento from "./pages/documentos/Documento";
 import Configuracao from "./pages/configuracoes/Configuracao";
 import Ensino from "./pages/ensino/Ensino";
 import DisciplinasMinistradas from "./pages/disciplinas-ministradas/DisciplinasMinistradas";
+import PedagogicasComplementares from "./pages/pedagogicas-complementares/PedagogicasComplementares";
 import DocentesEnvolvidos from "./pages/formularios/DocentesEnvolvidos/DocentesEnvolvidos";
-
 const MainLayout = ({ children }) => (
   <div>
     <Sidebar />
@@ -49,15 +49,9 @@ function App() {
                   path="disciplinas"
                   element={<DisciplinasMinistradas />}
                 />
-                <Route path="home" element={<Home />} />
-                <Route path="perfil" element={<Perfil />} />
-                <Route path="formularios" element={<Formulario />} />
-                <Route path="documentos" element={<Documento />} />
-                <Route path="configuracao" element={<Configuracao />} />
-                <Route path="/ensino" element={<Ensino />} />
                 <Route
-                  path="disciplinas"
-                  element={<DisciplinasMinistradas />}
+                  path="pedagogicasComplementares"
+                  element={<PedagogicasComplementares />}
                 />
                 <Route
                   path="/formularios/DocentesEnvolvidos"
