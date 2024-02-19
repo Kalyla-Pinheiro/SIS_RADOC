@@ -1,0 +1,126 @@
+* {
+    margin: 0
+}
+
+
+
+.boxPopPrimeiro, .boxPopSegundo {
+    background: rgb(147, 157, 166);
+    margin-top: 40px;
+    height: 400px;
+    width: 35vw;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 3em;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.boxPopSegundo{
+    height: 600px;
+}
+
+.boxPopPrimeiro p{
+    margin-top: 2em;
+    font-size: 1.3em;
+}
+
+.boxPopPrimeiro span{
+    font-weight: bold;
+}
+
+.btnsPopPrimeiro{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.boxPopPrimeiro button{
+    padding: 1em;
+    margin-top: 3em;
+    font-weight: bold;
+}
+
+.boxPopPrimeiro button {
+    background: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 16px;
+}
+
+.boxPopPrimeiro button:hover {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+.boxPopSegundo .icon {
+    font-size: 23px;
+    margin-left: 10px;
+}
+
+
+.semestres{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.semestres div{
+    text-align: center;
+}
+
+.divInput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxPopSegundo input {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: #fff;
+    border-radius: 0.375rem;
+    outline: none;
+    text-align: center;
+    margin-left: 30px;
+    margin: 0.5em;
+}
+
+.boxPopSegundo p{
+    font-size: 1.4em;
+    margin-top: 1em;
+}
+
+.boxPopSegundo button{
+    padding: 1em;
+    margin-top: 3em;
+    font-weight: bold;
+}
+
+.boxPopSegundo button {
+    background: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 16px;
+}
+
+.boxPopSegundo button:hover {
+    cursor: pointer;
+}
+
+.boxPopSegundo .inputAno{
+    margin: 1em;
+}
