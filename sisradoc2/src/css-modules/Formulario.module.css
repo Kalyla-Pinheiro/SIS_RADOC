@@ -1,0 +1,14 @@
+.formularioContainer {
+    background: slateblue;
+    margin-top: 40px;
+    height: 700px;
+    width: 65vw;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .titulo {
+    color: #fff;
+  }
