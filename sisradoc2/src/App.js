@@ -13,7 +13,8 @@ import Configuracao from "./pages/configuracoes/Configuracao";
 import Ensino from "./pages/ensino/Ensino";
 import DisciplinasMinistradas from "./pages/disciplinas-ministradas/DisciplinasMinistradas";
 import PedagogicasComplementares from "./pages/pedagogicas-complementares/PedagogicasComplementares";
-import DocentesEnvolvidos from "./pages/formularios/DocentesEnvolvidos/DocentesEnvolvidos";
+import DocentesEnvolvidos from "./pages/ensino/DocentesEnvolvidos/DocentesEnvolvidos";
+import ChSemanalAulas from "./pages/ensino/ChSemanalAulas/ChSemanalAulas";
 const MainLayout = ({ children }) => (
   <div>
     <Sidebar />
@@ -54,8 +55,12 @@ function App() {
                   element={<PedagogicasComplementares />}
                 />
                 <Route
-                  path="/formularios/DocentesEnvolvidos"
+                  path="/ensino/DocentesEnvolvidos"
                   element={<DocentesEnvolvidos />}
+                />
+                <Route
+                  path="/ensino/ChSemanalAulas"
+                  element={<ChSemanalAulas />}
                 />
               </Routes>
             </MainLayout>
