@@ -1,19 +1,20 @@
-import React from 'react';
+import React from "react";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Sidebar from "./components/sidebar/Sidebar";
 import Home from "./pages/home/Home";
 import Perfil from "./pages/perfil/Perfil";
 import Cadastro from "./pages/cadastro/Cadastro";
-import Formulario from "./pages/formularios/Formulario"
+import Formulario from "./pages/formularios/Formulario";
 //import NumTurmaCH from "./pages/formularios/NumTurmaCH"
 import Documento from "./pages/documentos/Documento";
 import Configuracao from "./pages/configuracoes/Configuracao";
 import Ensino from "./pages/ensino/Ensino";
-import DisciplinasMinistradas from './pages/disciplinas-ministradas/DisciplinasMinistradas';
-import PedagogicasComplementares from './pages/pedagogicas-complementares/PedagogicasComplementares';
-
+import DisciplinasMinistradas from "./pages/disciplinas-ministradas/DisciplinasMinistradas";
+import PedagogicasComplementares from "./pages/pedagogicas-complementares/PedagogicasComplementares";
+import DocentesEnvolvidos from "./pages/ensino/DocentesEnvolvidos/DocentesEnvolvidos";
+import ChSemanalAulas from "./pages/ensino/ChSemanalAulas/ChSemanalAulas";
 const MainLayout = ({ children }) => (
   <div>
     <Sidebar />
@@ -31,22 +32,36 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/login' element={<Login />} />
-        <Route path='/cadastro' element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
 
         <Route
-          path='/*'
+          path="/*"
           element={
             <MainLayout>
               <Routes>
-                <Route path='home' element={<Home />} />
-                <Route path='perfil' element={<Perfil />} />
-                <Route path='formularios' element={<Formulario />} />
-                <Route path='documentos' element={<Documento />} />
-                <Route path='configuracao' element={<Configuracao />} />
-                <Route path='ensino' element={<Ensino />} />
-                <Route path='disciplinas' element={<DisciplinasMinistradas />} />
-                <Route path='pedagogicasComplementares' element={<PedagogicasComplementares />} />
+                <Route path="home" element={<Home />} />
+                <Route path="perfil" element={<Perfil />} />
+                <Route path="formularios" element={<Formulario />} />
+                <Route path="documentos" element={<Documento />} />
+                <Route path="configuracao" element={<Configuracao />} />
+                <Route path="ensino" element={<Ensino />} />
+                <Route
+                  path="disciplinas"
+                  element={<DisciplinasMinistradas />}
+                />
+                <Route
+                  path="pedagogicasComplementares"
+                  element={<PedagogicasComplementares />}
+                />
+                <Route
+                  path="/ensino/DocentesEnvolvidos"
+                  element={<DocentesEnvolvidos />}
+                />
+                <Route
+                  path="/ensino/ChSemanalAulas"
+                  element={<ChSemanalAulas />}
+                />
               </Routes>
             </MainLayout>
           }
