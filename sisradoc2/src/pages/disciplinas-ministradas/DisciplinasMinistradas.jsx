@@ -3,8 +3,12 @@ import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import PopUp from "../../components/popUp/popUp"
 import { BsQuestionCircleFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const DisciplinasMinistradas = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div>
       <Navegacao/>
@@ -63,7 +67,9 @@ const DisciplinasMinistradas = () => {
         </div>
 
         <div className={classes.buttons}>
-          <button>Próximo</button>
+          <a href="/numeroDeTurmasCHporTurma">
+            <button>Próximo</button>
+          </a>
         </div>
       </div>
     </div>

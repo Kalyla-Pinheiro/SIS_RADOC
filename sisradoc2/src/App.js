@@ -15,6 +15,9 @@ import DisciplinasMinistradas from "./pages/disciplinas-ministradas/DisciplinasM
 import PedagogicasComplementares from "./pages/pedagogicas-complementares/PedagogicasComplementares";
 import DocentesEnvolvidos from "./pages/ensino/DocentesEnvolvidos/DocentesEnvolvidos";
 import ChSemanalAulas from "./pages/ensino/ChSemanalAulas/ChSemanalAulas";
+import NumeroDeTurmasCHporTurmas from "./pages/numero-de-turmas-e-ch-por-turmas/NumeroDeTurmasCHporTurmas";
+
+
 const MainLayout = ({ children }) => (
   <div>
     <Sidebar />
@@ -49,6 +52,10 @@ function App() {
                 <Route
                   path="disciplinas"
                   element={<DisciplinasMinistradas />}
+                />
+                <Route
+                  path="numeroDeTurmasCHporTurma"
+                  element={<NumeroDeTurmasCHporTurmas />}
                 />
                 <Route
                   path="pedagogicasComplementares"
