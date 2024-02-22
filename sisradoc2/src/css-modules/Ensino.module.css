@@ -1,14 +1,12 @@
 /*Tela Inicial de Ensino*/
 
 .ensinoContainer {
-  background: slateblue;
-  margin-top: 40px;
-  height: 700px;
-  width: 65vw;
-  border-radius: 0.375rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: slateblue;
+  margin-top: 2.5rem;
+  border-radius: 0.375rem;
 }
 
 .titulo {
@@ -52,7 +50,6 @@
 .opcaoEnsino:hover a {
   color: black;
 }
-
 
 /*Disciplinas Ministradas*/
 
@@ -176,7 +173,6 @@
   cursor: pointer;
 }
 
-
 /*Número de turmas e Ch por turmas*/
 
 .areaTituloSemestresNCH {
@@ -241,7 +237,6 @@
 #buttonProximo {
   margin-left: 15px;
 }
-
 
 /*Pedagógicas Complementares*/
 
