@@ -19,9 +19,31 @@ import { MdPhone } from "react-icons/md";
 import { LiaEnvelope } from "react-icons/lia";
 import { LiaUnlockSolid } from "react-icons/lia";
 import classes from '../../css-modules/Cadastro.module.css';
+import IconButton from "@material-ui/core/IconButton";
+import InputLabel from "@material-ui/core/InputLabel";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Input from "@material-ui/core/Input";
 
 
 const Cadastro = () => {
+  const [values, setValues] = React.useState({
+    password: "",
+    showPassword: false,
+  });
+  
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+  
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  
+  const handlePasswordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
 
   const navigate = useNavigate();
 
@@ -79,11 +101,28 @@ const Cadastro = () => {
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <HiOutlineIdentification className="icon" />
-              <input type="text" placeholder="Classe e Referência" required />
+
+              <div className={classes.inputFieldClasseReferencia}>
+                  <select className={classes.selectClasseReferencia}  id="classeReferencia" name="ClasseReferencia" placeholder="Classe e Referencia" required>
+                    <option value="">Selecione a Classe</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                  </select>
+                </div>
             </div>
+
             <div className={classes.inputField}>
               <HiOutlineLink className="icon" />
-              <input type="text" placeholder="Vinculo" required />
+              {/*<input type="text" placeholder="Vinculo" required />*/}
+              <div className={classes.inputFieldVinculo}>
+                  <select className={classes.selectVinculo}  id="vinculo" name="Vinculo" placeholder="Vinculo" required>
+                    <option value="">Selecione o Vinculo</option>
+                    <option value="Estatuario">Estatúario</option>
+                  </select>
+              </div>
             </div>
           </div>
           <div className={classes.inputBox}>
