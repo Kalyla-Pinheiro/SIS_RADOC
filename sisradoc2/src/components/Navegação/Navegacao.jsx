@@ -5,23 +5,23 @@ import classes from "../../css-modules/Navegacao.module.css";
 const Navegacao = () => {
   return (
     <div className={classes.navegacaoContainer}>
-      <ul className={classes.listaNavegacao}>
-        <li className={classes.itemNavegacao}>
-          <a href="/ensino">Ensino</a>
-        </li>
-        <li className={classes.itemNavegacao}>
-          <a href="/pesquisa">Pesquisa</a>
-        </li>
-        <li className={classes.itemNavegacao}>
-          <a href="/extensao">Extensão</a>
-        </li>
-        <li className={classes.itemNavegacao}>
-          <a href="/gestao">Gestão</a>
-        </li>
-        <li className={classes.itemNavegacao}>
-          <a href="/outros">Outros</a>
-        </li>
-      </ul>
+      <nav className={classes.listaNavegacao}>
+        <a className={classes.itemNavegacao} href="/ensino">
+          Ensino
+        </a>
+        <a className={classes.itemNavegacao} href="/pesquisa">
+          Pesquisa
+        </a>
+        <a className={classes.itemNavegacao} href="/extensao">
+          Extensão
+        </a>
+        <a className={classes.itemNavegacao} href="/gestao">
+          Gestão
+        </a>
+        <a className={classes.itemNavegacao} href="/outros">
+          Outros
+        </a>
+      </nav>
     </div>
   );
 };
