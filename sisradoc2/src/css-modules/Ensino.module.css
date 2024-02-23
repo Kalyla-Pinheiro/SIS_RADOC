@@ -244,11 +244,7 @@
 /*Pedagógicas Complementares*/
 
 .buttonSalvarPC {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-top: 150px;
-  padding-right: 60px;
+  margin-top: 17rem;
 }
 
 .buttonSalvarPC button {

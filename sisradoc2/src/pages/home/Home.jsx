@@ -1,31 +1,13 @@
 import React from "react";
-import "./Home.css";
+import classes from "../../css-modules/Home.module.css";
+import Navegacao from "../../components/Navegação/Navegacao";
 
 const Home = () => {
   return (
-    <div className="homeContainer">
-      <div className="wrapper-home">
-        <div className="campos">
-            <div className="item-campos" id="primeiro-campo">
-                <h1>Ensino</h1>
-            </div>
-            <div className="item-campos">
-                <h1>Pesquisa</h1>
-            </div>
-            <div className="item-campos">
-                <h1>Extensão</h1>
-            </div>
-            <div className="item-campos">
-                <h1>Gestão</h1>
-            </div>
-            <div className="item-campos" id="ultimo-campo">
-                <h1>Outros</h1>
-            </div>
-        </div>
-
-        <div className="campo-preenchimento">
-            <h1>Campo de preenchimento</h1>
-        </div>
+    <div>
+      <Navegacao />
+      <div className={classes.homeContainer}>
+        <h1>Campo de preenchimento</h1>
       </div>
     </div>
   );
