@@ -19,7 +19,7 @@ const DisciplinasMinistradas = () => {
           <h1>Disciplinas Ministradas</h1>
         </div>
 
-        <div className={classes.anexarPdfs}>
+        <form className={classes.anexarPdfs} action="" method="post" enctype="multipart/form-data">
           <div className={classes.inputsPdfs} id={classes.primeiroInput}>
             <input type="file" accept=".pdf"/>
             <p>Declaração de disciplinas ministradas (PDF)</p>
@@ -28,7 +28,7 @@ const DisciplinasMinistradas = () => {
             <input type="file" accept=".pdf"/>
             <p>Diarios de turma (PDF)</p>
           </div>
-        </div>
+        </form>
         
         <div className={classes.semestre} id={classes.primeiroSemestre}>
           <div className={classes.tituloSemestre}>
