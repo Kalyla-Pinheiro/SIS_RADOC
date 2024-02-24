@@ -18,11 +18,9 @@ import { MdOutlinePermIdentity } from "react-icons/md";
 import { MdPhone } from "react-icons/md";
 import { LiaEnvelope } from "react-icons/lia";
 import { LiaUnlockSolid } from "react-icons/lia";
-import classes from '../../css-modules/Cadastro.module.css';
-
+import classes from "../../css-modules/Cadastro.module.css";
 
 const Cadastro = () => {
-
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -31,10 +29,9 @@ const Cadastro = () => {
   //   })
   // }, []);
 
-
   const backClick = () => {
     navigate("/login");
-  }
+  };
 
   return (
     <div className={classes.cadastroContainer}>
@@ -52,27 +49,33 @@ const Cadastro = () => {
               <input type="text" placeholder="Nome de Usuário" required />
             </div>
           </div>
-          
+
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
-              <MdOutlinePin  className="icon"/>
+              <MdOutlinePin className="icon" />
               <input type="text" placeholder="SIAP " required />
             </div>
             <div className={classes.inputField}>
               <HiOutlineLibrary className="icon" />
               <div className={classes.inputFieldCampus}>
-                  <select className={classes.selectCampus}  id="campus" name="Campus" placeholder="CAMPUS/INSTITUTO" required>
-                    <option value="">Selecione o campus</option>
-                    <option value="ICA">ICA</option>
-                    <option value="ICIBE">ICIBE</option>
-                    <option value="ISARH">ISARH</option>
-                    <option value="CAPANEMA">CAPANEMA</option>
-                    <option value="CAPITÃO-POÇO">CAPITÃO-POÇO</option>
-                    <option value="PARAGOMINAS">PARAGOMINAS</option>
-                    <option value="PARAUAPEBAS">PARAUAPEBAS</option>
-                    <option value="TOMÉ-AÇU">TOMÉ-AÇU</option>
-                  </select>
-                </div>
+                <select
+                  className={classes.selectCampus}
+                  id="campus"
+                  name="Campus"
+                  placeholder="CAMPUS/INSTITUTO"
+                  required
+                >
+                  <option value="">Selecione o campus</option>
+                  <option value="ICA">ICA</option>
+                  <option value="ICIBE">ICIBE</option>
+                  <option value="ISARH">ISARH</option>
+                  <option value="CAPANEMA">CAPANEMA</option>
+                  <option value="CAPITÃO-POÇO">CAPITÃO-POÇO</option>
+                  <option value="PARAGOMINAS">PARAGOMINAS</option>
+                  <option value="PARAUAPEBAS">PARAUAPEBAS</option>
+                  <option value="TOMÉ-AÇU">TOMÉ-AÇU</option>
+                </select>
+              </div>
             </div>
           </div>
 
@@ -92,7 +95,7 @@ const Cadastro = () => {
               <input type="text" placeholder="Regime de Trabalho" required />
             </div>
             <div className={classes.inputField}>
-              < HiAcademicCap className="icon" />
+              <HiAcademicCap className="icon" />
               <input type="text" placeholder="Titulação" required />
             </div>
           </div>
@@ -106,7 +109,7 @@ const Cadastro = () => {
               <input type="phone" placeholder="Número de Telefone" required />
             </div>
           </div>
-        
+
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <LiaUnlockSolid className="icon" />
@@ -119,7 +122,7 @@ const Cadastro = () => {
           </div>
 
           <div className={classes.checkboxWrapper}>
-            <input type="checkbox" className={classes.concordar}/>
+            <input type="checkbox" className={classes.concordar} />
             Eu declaro que toda informação inserida é correta e verdadeira.
           </div>
 
@@ -132,7 +135,6 @@ const Cadastro = () => {
               Voltar
             </button>
           </div>
-
         </form>
       </div>
     </div>
