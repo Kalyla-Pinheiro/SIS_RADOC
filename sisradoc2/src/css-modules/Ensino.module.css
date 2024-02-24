@@ -39,16 +39,21 @@
   font-weight: 400;
   font-size: 16px;
   color: #fff;
+  transition: all 0.5s;
 }
-
-#ultimaOpcao {
-  margin-bottom: 0px;
+.opcaoEnsino:active{
+  transform: scale(0.80);
 }
 
 .opcaoEnsino:hover {
   color: black;
   background: #fff;
 }
+
+#ultimaOpcao {
+  margin-bottom: 0px;
+}
+
 
 /*Disciplinas Ministradas*/
 
@@ -174,6 +179,11 @@
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.5s;
+}
+
+.buttons button:active {
+  transform: scale(0.80);
 }
 
 /*Número de turmas e Ch por turmas*/
@@ -239,7 +249,13 @@
 
 #buttonProximo {
   margin-left: 15px;
+  transition: all o.5s;
 }
+
+#buttonProximo:active {
+  transform: scale(0.80);
+}
+
 
 /*Pedagógicas Complementares*/
 
@@ -255,6 +271,10 @@
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.5s;
+}
+.buttonSalvarPc button:active {
+  transform: scale(0.80);
 }
 
 /*DocentesEnvolvidos*/
@@ -366,6 +386,11 @@
   border: none;
   border-radius: 0.375rem;
   font-size: 16px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.buttonsD button:active {
+  transform: scale(0.80);
 }
 
 .buttonsDV {
@@ -386,6 +411,11 @@
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.5s;
+}
+
+.buttonsDV button:active {
+  transform: scale(0.80);
 }
 
 /* Ch semanal de aulas*/
@@ -408,4 +438,10 @@
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.5s;
 }
+
+.buttonCh button:active {
+  transform: scale(0.80);
+}
+

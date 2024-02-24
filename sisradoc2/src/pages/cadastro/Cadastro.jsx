@@ -19,12 +19,7 @@ import { MdPhone } from "react-icons/md";
 import { LiaEnvelope } from "react-icons/lia";
 import { LiaUnlockSolid } from "react-icons/lia";
 import classes from '../../css-modules/Cadastro.module.css';
-import IconButton from "@material-ui/core/IconButton";
-import InputLabel from "@material-ui/core/InputLabel";
-import Visibility from "@material-ui/icons/Visibility";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import Input from "@material-ui/core/Input";
+
 
 
 const Cadastro = () => {
@@ -81,7 +76,7 @@ const Cadastro = () => {
               <input type="text" placeholder="SIAP " required />
             </div>
             <div className={classes.inputField}>
-              <HiOutlineLibrary className="icon" />
+              <HiOutlineLibrary className={''} />
               <div className={classes.inputFieldCampus}>
                   <select className={classes.selectCampus}  id="campus" name="Campus" placeholder="CAMPUS/INSTITUTO" required>
                     <option value="">Selecione o campus</option>
