@@ -28,6 +28,10 @@ const DisciplinasMinistradas = () => {
             <input type="file" accept=".pdf"/>
             <p>Diarios de turma (PDF)</p>
           </div>
+
+          <button className={classes.buttons}>
+            Submeter
+          </button>
         </form>
         
         <div className={classes.semestre} id={classes.primeiroSemestre}>
