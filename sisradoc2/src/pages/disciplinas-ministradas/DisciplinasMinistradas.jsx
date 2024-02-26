@@ -48,25 +48,20 @@ const DisciplinasMinistradas = () => {
           <h1>Disciplinas Ministradas</h1>
         </div>
 
-        <form
-          className={classes.anexarPdfs}
-          action=""
-          method="post"
-          enctype="multipart/form-data"
-          onSubmit={handleSubmit}
-        >
-          <div className={classes.inputsPdfs} id={classes.primeiroInput}>
-            <input type="file" accept=".pdf" />
-            <p>Declaração de disciplinas ministradas (PDF)</p>
+        <form className={classes.campoSubmissaoPDF} action="" method="post" enctype="multipart/form-data">
+          <div className={classes.anexarPdfs}>
+            <div className={classes.inputsPdfs} id={classes.primeiroInput}>
+              <input type="file" accept=".pdf"/>
+              <p>Declaração de disciplinas ministradas (PDF)</p>
+            </div>
+            <div className={classes.inputsPdfs} id={classes.segundoInput}>
+              <input type="file" accept=".pdf"/>
+              <p>Diarios de turma (PDF)</p>
+            </div>
           </div>
-          <div className={classes.inputsPdfs} id={classes.segundoInput}>
-            <input type="file" accept=".pdf" />
-            <p>Diarios de turma (PDF)</p>
+          <div className={classes.buttonSubmeterPDF}>
+            <button>Submeter PDF</button>
           </div>
-
-          <button type="submit" className={classes.buttons}>
-            Enviar
-          </button>
         </form>
 
         <div className={classes.semestre} id={classes.primeiroSemestre}>

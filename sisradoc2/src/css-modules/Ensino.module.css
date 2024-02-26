@@ -469,3 +469,20 @@
   cursor: pointer;
 }
 
+
+/*campo de submissão dos pdfs*/
+.campoSubmissaoPDF {
+  display: flex;
+  align-items: center;
+}
+
+.buttonSubmeterPDF button {
+  margin-left: 30px;
+  width: 130px;
+  height: 40px;
+  background: #fff;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 16px;
+  cursor: pointer;
+}
