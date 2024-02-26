@@ -42,7 +42,7 @@
 }
 
 .opcaoEnsino:active {
-  transform: scale(0.80);
+  transform: scale(0.8);
 }
 
 #ultimaOpcao {
@@ -63,17 +63,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 0.375rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(50px);
-}
-
-.anexarPdfs {
-  width: 100%;
-  display: grid;
-  justify-content: center;
 }
 
 .anexarPdfs input {
@@ -178,6 +173,20 @@
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+}
+
+.secondButton{
+  padding-left: 153px;
+}
+
+.formulariosPDF {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  padding-left: 120px;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
 }
 
 /*Número de turmas e Ch por turmas*/
@@ -414,7 +423,6 @@
   cursor: pointer;
 }
 
-
 /*Orientacão, supervisão e outros*/
 
 /*Orientacão Acadêmica*/
@@ -469,15 +477,17 @@
   cursor: pointer;
 }
 
-
-/*campo de submissão dos pdfs*/
 .campoSubmissaoPDF {
+  /* width: 50vw; */
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 .buttonSubmeterPDF button {
-  margin-left: 30px;
+  /* margin-left: 30px; */
   width: 130px;
   height: 40px;
   background: #fff;
