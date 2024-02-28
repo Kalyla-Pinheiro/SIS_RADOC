@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import PopUp from "../../components/popUp/popUp";
@@ -6,17 +7,23 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import apiUrls from "../../apis/apiUrls";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {ToastifyMessages} from "../../utils/ToastifyMessages";
 
 const DisciplinasMinistradas = () => {
   const [pdfDisciplinas, setPdfDisciplinas] = useState(null);
+  // Variável de estado para armazenar o arquivo PDF de diários de turma
   const [pdfDiarios, setPdfDiarios] = useState(null);
-  const notifySuccess = () => toast.success("Arquivo enviado com sucesso!");
-  const notifyError = () => toast.error("Arquivo não foi enviado.");
+  const [nome, setNome] = useState("");
+  const [sigla, setSigla] = useState("");
+  
 
   const handlepdfDisciplinasChange = (event) => {
     setPdfDisciplinas(event.target.files[0]);
   };
+
+  const handlepdfDiariosChange = (event) => {
+    setPdfDiarios(event.target.files[0]);
+  }
 
   const handleDisciplinasMinistradas = async (event) => {
     event.preventDefault();
@@ -28,42 +35,57 @@ const DisciplinasMinistradas = () => {
     try {
       const response = await fetch(apiUrls.disc_ministradas, {
         method: "POST",
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
         body: formData,
       });
 
       if (response.ok) {
-        notifySuccess();
+        ToastifyMessages.sucess("PDF submetido com sucesso");
         console.log(response.json());
       }
     } catch (error) {
-      notifyError();
+      ToastifyMessages.error("Erro ao submeter PDF");
     }
   };
 
   const handleDiarioDeTurma = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Evitar que a página recarregue durante a submissão do formulário
 
-    const formData = new FormData();
+    const formData = new FormData(); // Criação de um objeto FormData para enviar um arquivo PDF
 
-    formData.append("file", pdfDiarios);
+    formData.append("file", pdfDiarios); // Adicionando o arquivo PDF ao objeto FormData
 
+    // Validação de campos vazios
+    if (pdfDiarios === null){
+      ToastifyMessages.warning("Campo vazio, por favor selecione um PDF para submeter!")
+    }
+
+    // Requisição POST para a submissão do PDF para a API
     try {
-      const response = await fetch(apiUrls.diario_turma, {
+      const response = 
+      await fetch(apiUrls.diario_de_turma, {
         method: "POST",
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
         body: formData,
-      });
+      })
 
+      // Se a resposta da requisição for bem sucedida (200)
       if (response.ok) {
-        notifySuccess();
+        ToastifyMessages.sucess("PDF submetido com sucesso");
+
+        // Converte a resposta da requisição para JSON para que possamos manipular as chaves e valores do objeto de resposta
+        response.json()
+        // Then é uma função que é executada após a promessa ser resolvida
+        .then(data => {
+          // Atribuir o valor da chave do objeto de resposta no estado "nome"
+          console.log(data) // Consolando o objeto de resposta
+          console.log(data.wordsFound) // Consolando a chave "wordsFound" do objeto de resposta
+          console.log(data.wordsFound.Centro[0]) // Consolando o valor da chave "Centro" do objeto de resposta "wordsFound"
+          setNome(data.wordsFound.Disciplina[0])
+          setSigla(data.wordsFound.Código[0])
+        })
       }
+
     } catch (error) {
-      notifyError();
+      ToastifyMessages.error("Erro ao submeter PDF");
     }
   };
 
@@ -78,12 +100,12 @@ const DisciplinasMinistradas = () => {
         </div>
 
         <div className={classes.formulariosPDF}>
-          <form
-            className={classes.campoSubmissaoPDF}
-            action=""
-            method="post"
-            encType="multipart/form-data"
-            onSubmit={handleDisciplinasMinistradas}>
+          <form className={classes.campoSubmissaoPDF} 
+          action="" 
+          method="post" 
+          encType="multipart/form-data" 
+          onSubmit={handleDisciplinasMinistradas}
+          >
             <div className={classes.anexarPdfs}>
               <div className={classes.inputsPdfs} id={classes.primeiroInput}>
                 <input 
@@ -99,16 +121,18 @@ const DisciplinasMinistradas = () => {
             </div>
           </form>
 
-          <form
-            action=""
-            method="post"
-            encType="multipart/form-data"
-            onSubmit={handleDiarioDeTurma}
-            className={classes.campoSubmissaoPDF}
-            >
+          <form action="" 
+          method="post" 
+          encType="multipart/form-data" 
+          onSubmit={handleDiarioDeTurma} 
+          className={classes.campoSubmissaoPDF}>
             <div className={classes.anexarPdfs}>
               <div className={classes.inputsPdfs} id={classes.segundoInput}>
-                <input type="file" accept=".pdf" value={pdfDiarios} />
+                <input 
+                type="file" 
+                accept=".pdf" 
+                onChange={handlepdfDiariosChange}
+                />
                 <p>Diarios de turma (PDF)</p>
               </div>
             </div>
@@ -125,11 +149,26 @@ const DisciplinasMinistradas = () => {
             <p>1º Semestre</p>
           </div>
           <div className={classes.camposTabela}>
-            <input type="text" placeholder="Nome" required />{" "}
+            <input 
+            className="nomePrimeiroSemestre" 
+            type="text" 
+            placeholder="Nome"
+            value={nome}
+            readOnly
+            />{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input type="text" placeholder="Sigla do curso" required />{" "}
+            <input 
+            className="siglaPrimeiroSemestre" 
+            type="text"
+            value={sigla} 
+            placeholder="Sigla do curso" 
+            readOnly />{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input type="text" placeholder="Nível" required />{" "}
+            <input 
+              className="chPrimeiroSemestre" 
+              type="text" 
+              placeholder="CH" 
+              required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
             <input
               type="text"
