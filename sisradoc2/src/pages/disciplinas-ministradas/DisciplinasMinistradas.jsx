@@ -167,7 +167,7 @@ const DisciplinasMinistradas = () => {
             <input 
               className="chPrimeiroSemestre" 
               type="text" 
-              placeholder="CH" 
+              placeholder="Nível" 
               required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
             <input
