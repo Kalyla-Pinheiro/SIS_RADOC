@@ -1,14 +1,18 @@
 /*Tela Inicial de Ensino*/
 
 .ensinoContainer {
-  background: slateblue;
   margin-top: 40px;
   height: 700px;
-  width: 65vw;
-  border-radius: 0.375rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.375rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(50px);
 }
 
 .titulo {
@@ -31,39 +35,39 @@
   border: 2px solid;
   border-color: #fff;
   transition: all 0.5s;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 16px;
+  color: #fff;
+}
+
+.opcaoEnsino:active {
+  transform: scale(0.80);
 }
 
 #ultimaOpcao {
   margin-bottom: 0px;
 }
 
-.opcaoEnsino a {
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 16px;
-  color: #fff;
-  transition: all 0.5s;
-}
-
 .opcaoEnsino:hover {
-  background: #fff;
-}
-
-.opcaoEnsino:hover a {
   color: black;
+  background: #fff;
 }
 
 /*Disciplinas Ministradas*/
 
 .disciplinasMinistradasConteiner {
-  background: slateblue;
   margin-top: 40px;
   height: 700px;
-  width: 65vw;
-  border-radius: 0.375rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.375rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(50px);
 }
 
 .anexarPdfs {
@@ -121,6 +125,7 @@
 .tituloSemestre {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .tituloSemestre p {
@@ -155,14 +160,14 @@
 .icon {
   font-size: 23px;
   margin-left: 10px;
+  color: black;
 }
 
 .buttons {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding-top: 70px;
-  padding-right: 60px;
 }
 
 .buttons button {
@@ -175,14 +180,75 @@
   cursor: pointer;
 }
 
-/*Pedagógicas Complementares*/
+/*Número de turmas e Ch por turmas*/
 
-.buttonSalvarPC {
+.areaTituloSemestresNCH {
+  width: 100%;
+}
+
+.tituloSemestreNCH {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.semestresInlineNCH {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 150px;
-  padding-right: 60px;
+  padding-top: 20px;
+}
+
+.semestreNCH {
+  margin-top: 40px;
+}
+
+#primeiroSemestreNCH {
+  margin-top: 0px;
+}
+
+#segundoSemestreNCH {
+  margin-top: 0px;
+  margin-left: 70px;
+}
+
+.campoTeoricasPraticas {
+  display: flex;
+}
+
+.camposTabelaNCH {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#camposTabelaPraticaNCH {
+  margin-left: 20px;
+}
+
+.camposTabelaNCH input {
+  width: 200px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: #fff;
+  border-radius: 0.375rem;
+  outline: none;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#buttonProximo {
+  margin-left: 15px;
+}
+
+/*Pedagógicas Complementares*/
+
+.buttonSalvarPC {
+  margin-top: 17rem;
 }
 
 .buttonSalvarPC button {
@@ -323,6 +389,7 @@
   border: none;
   border-radius: 0.375rem;
   font-size: 16px;
+  cursor: pointer;
 }
 
 /* Ch semanal de aulas*/
@@ -346,3 +413,59 @@
   font-size: 16px;
   cursor: pointer;
 }
+
+
+/*Orientacão, supervisão e outros*/
+
+/*Orientacão Acadêmica*/
+
+.orientacaoAcademicaContainer {
+  margin-top: 40px;
+  height: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.375rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(50px);
+}
+
+.camposInlineOA {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
+
+.tituloCampoOA {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tituloCampoOA p {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.buttonOA {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.buttonOA button {
+  width: 130px;
+  height: 40px;
+  background: #fff;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 16px;
+  cursor: pointer;
+}
+

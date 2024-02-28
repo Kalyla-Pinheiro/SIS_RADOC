@@ -1,14 +1,16 @@
 import React from "react";
-import "./Formulario.css";
+import classes from "../../css-modules/Formulario.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 
 const Formulario = () => {
   return (
-    <div className="formulario-container">
+    <div>
       <Navegacao />
-      
-      <div className="conteudo-item">
-        Bem vindo, já pode preencher seus formulários!
+
+      <div className={classes.formularioContainer}>
+        <div className={classes.titulo}>
+          <h1>Bem vindo, preencha seus formulários!</h1>
+        </div>
       </div>
     </div>
   );

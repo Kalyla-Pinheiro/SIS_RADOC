@@ -69,10 +69,14 @@ const DocentesEnvolvidos = () => {
           <input type="text" placeholder="Nome do outro docente" required />{" "}
         </div>
         <div className={classes.buttonsDV}>
-          <button>Voltar</button>
+          <a href="/numeroDeTurmasCHporTurma">
+            <button>Voltar</button>
+          </a>
         </div>
         <div className={classes.buttonsD}>
-          <button>Próximo</button>
+          <a href="/ensino/ChSemanalAulas">
+            <button>Próximo</button>
+          </a>
         </div>
       </div>
     </div>

@@ -5,36 +5,30 @@ import Navegacao from "../../components/Navegação/Navegacao";
 const Ensino = () => {
   return (
     <div>
-      <Navegacao/>
+      <Navegacao />
 
       <div className={classes.ensinoContainer}>
-
         <div className={classes.titulo}>
           <h1>Ensino</h1>
         </div>
 
-        <div className={classes.opcoesEnsino}>
-          <div className={classes.opcaoEnsino}>
-            <a href="/disciplinas">Aulas Letivas</a>
-          </div>
-
-          <div className={classes.opcaoEnsino}>
-            <a href="/pedagogicasComplementares">Pedagógicas Complementares</a>
-          </div>
-
-          <div className={classes.opcaoEnsino}>
-            <a href="">Orientação, Supervisão e Outros</a>
-          </div>
-
-          <div className={classes.opcaoEnsino}>
-            <a href="">Bancas Examinadoras</a>
-          </div>
-
-          <div className={classes.opcaoEnsino} id={classes.ultimaOpcao}>
-            <a href="">Avaliação Discente</a>
-          </div>
-        </div>
-
+        <nav className={classes.opcoesEnsino}>
+          <a className={classes.opcaoEnsino} type="button" href="/disciplinas">
+            Aulas Letivas
+          </a>
+          <a className={classes.opcaoEnsino} type="button" href="/pedagogicasComplementares">
+            Pedagógicas Complementares
+          </a>
+          <a className={classes.opcaoEnsino} type="button" href="/OrientacaoAcademica">
+            Orientação, Supervisão e Outros
+          </a>
+          <a className={classes.opcaoEnsino} type="button" href="/MonografiaQualificacaoDIssertacaoTese">
+            Bancas Examinadoras
+          </a>
+          <a className={classes.opcaoEnsino} type="button" href="">
+            Avaliação Discente
+          </a>
+        </nav>
       </div>
     </div>
   );

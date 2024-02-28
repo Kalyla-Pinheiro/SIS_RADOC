@@ -52,7 +52,9 @@ const ChSemanalAulas = () => {
         </div>
 
         <div className={classes.buttonCh}>
-          <button>Voltar</button>
+          <a href="/ensino/DocentesEnvolvidos">
+            <button>Voltar</button>
+          </a>
           <button>Salvar</button>
         </div>
       </div>
