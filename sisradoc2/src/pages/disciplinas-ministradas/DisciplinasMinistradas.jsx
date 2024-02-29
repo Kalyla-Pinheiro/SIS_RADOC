@@ -15,6 +15,7 @@ const DisciplinasMinistradas = () => {
   const [pdfDiarios, setPdfDiarios] = useState(null);
   const [nome, setNome] = useState("");
   const [sigla, setSigla] = useState("");
+  const [ch, setCH] = useState("");
   
 
   const handlepdfDisciplinasChange = (event) => {
@@ -40,7 +41,7 @@ const DisciplinasMinistradas = () => {
 
       if (response.ok) {
         ToastifyMessages.sucess("PDF submetido com sucesso");
-        console.log(response.json());
+        
       }
     } catch (error) {
       ToastifyMessages.error("Erro ao submeter PDF");
@@ -78,9 +79,9 @@ const DisciplinasMinistradas = () => {
           // Atribuir o valor da chave do objeto de resposta no estado "nome"
           console.log(data) // Consolando o objeto de resposta
           console.log(data.wordsFound) // Consolando a chave "wordsFound" do objeto de resposta
-          console.log(data.wordsFound.Centro[0]) // Consolando o valor da chave "Centro" do objeto de resposta "wordsFound"
           setNome(data.wordsFound.Disciplina[0])
           setSigla(data.wordsFound.Código[0])
+          setCH(data.wordsFound['Carga Horária'][0])
         })
       }
 
@@ -171,10 +172,11 @@ const DisciplinasMinistradas = () => {
               required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
             <input
-              type="text"
               className={classes.ultimoCampoInput}
+              type="text"
+              value={ch}
               placeholder="CH total"
-              required
+              readOnly
             />{" "}
             <BsQuestionCircleFill className={classes.icon} />
           </div>
@@ -185,12 +187,7 @@ const DisciplinasMinistradas = () => {
             <BsQuestionCircleFill className={classes.icon} />
             <input type="text" placeholder="Nível" required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input
-              type="text"
-              className={classes.ultimoCampoInput}
-              placeholder="CH total"
-              required
-            />{" "}
+            <input type="text" placeholder="CH total" required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
           </div>
         </div>
@@ -206,12 +203,7 @@ const DisciplinasMinistradas = () => {
             <BsQuestionCircleFill className={classes.icon} />
             <input type="text" placeholder="Nível" required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input
-              type="text"
-              className={classes.ultimoCampoInput}
-              placeholder="CH total"
-              required
-            />{" "}
+            <input type="text" placeholder="CH total" required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
           </div>
           <div className={classes.camposTabela}>
@@ -221,12 +213,7 @@ const DisciplinasMinistradas = () => {
             <BsQuestionCircleFill className={classes.icon} />
             <input type="text" placeholder="Nível" required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input
-              type="text"
-              className={classes.ultimoCampoInput}
-              placeholder="CH total"
-              required
-            />{" "}
+            <input type="text" placeholder="CH total" required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
           </div>
         </div>
