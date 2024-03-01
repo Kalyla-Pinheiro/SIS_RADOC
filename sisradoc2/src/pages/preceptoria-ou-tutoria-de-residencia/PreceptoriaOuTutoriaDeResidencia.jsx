@@ -13,7 +13,12 @@ const PreceptoriaOuTutoriaDeResidencia = () => {
           <h1>Preceptoria e/ou Tutoria de Residência</h1>
         </div>
 
-        <form className={classes.anexarPdfs} action="" method="post" enctype="multipart/form-data">
+        <form
+          className={classes.anexarPdfs}
+          action=""
+          method="post"
+          enctype="multipart/form-data"
+        >
           <div className={classes.inputsPdfs} id={classes.primeiroInput}>
             <input type="file" accept=".pdf" />
             <p>Campo para submissão (PDF)</p>
@@ -24,7 +29,6 @@ const PreceptoriaOuTutoriaDeResidencia = () => {
           </div>
         </form>
 
-        
         <div className={classes.camposInlineOA}>
           <div className={classes.semestreNCH} id={classes.primeiroSemestreNCH}>
             <div className={classes.tituloCampoOA}>
@@ -40,7 +44,10 @@ const PreceptoriaOuTutoriaDeResidencia = () => {
                 <input type="text" placeholder="Nome" required />
               </div>
 
-              <div className={classes.camposTabelaNCH} id={classes.camposTabelaPraticaNCH}>
+              <div
+                className={classes.camposTabelaNCH}
+                id={classes.camposTabelaPraticaNCH}
+              >
                 <div className={classes.tituloSemestre}>
                   <p>Matrícula</p>{" "}
                   <BsQuestionCircleFill className={classes.icon} />
@@ -49,28 +56,34 @@ const PreceptoriaOuTutoriaDeResidencia = () => {
                 <input type="text" placeholder="Matrícula" required />
               </div>
 
-              <div className={classes.camposTabelaNCH} id={classes.camposTabelaPraticaNCH}>
+              <div
+                className={classes.camposTabelaNCH}
+                id={classes.camposTabelaPraticaNCH}
+              >
                 <div className={classes.tituloSemestre}>
-                  <p>Curso</p>{" "}
-                  <BsQuestionCircleFill className={classes.icon} />
+                  <p>Curso</p> <BsQuestionCircleFill className={classes.icon} />
                 </div>
                 <input type="text" placeholder="Curso" required />
                 <input type="text" placeholder="Curso" required />
               </div>
 
-              <div className={classes.camposTabelaNCH} id={classes.camposTabelaPraticaNCH}>
+              <div
+                className={classes.camposTabelaNCH}
+                id={classes.camposTabelaPraticaNCH}
+              >
                 <div className={classes.tituloSemestre}>
-                  <p>Tipo</p>{" "}
-                  <BsQuestionCircleFill className={classes.icon} />
+                  <p>Tipo</p> <BsQuestionCircleFill className={classes.icon} />
                 </div>
                 <input type="text" placeholder="Tipo" required />
                 <input type="text" placeholder="Tipo" required />
               </div>
 
-              <div className={classes.camposTabelaNCH} id={classes.camposTabelaPraticaNCH}>
+              <div
+                className={classes.camposTabelaNCH}
+                id={classes.camposTabelaPraticaNCH}
+              >
                 <div className={classes.tituloSemestre}>
-                  <p>Nível</p>{" "}
-                  <BsQuestionCircleFill className={classes.icon} />
+                  <p>Nível</p> <BsQuestionCircleFill className={classes.icon} />
                 </div>
                 <input type="text" placeholder="Nível" required />
                 <input type="text" placeholder="Nível" required />
@@ -94,7 +107,10 @@ const PreceptoriaOuTutoriaDeResidencia = () => {
                 <input type="text" placeholder="CH" required />
               </div>
 
-              <div className={classes.camposTabelaNCH} id={classes.camposTabelaPraticaNCH}>
+              <div
+                className={classes.camposTabelaNCH}
+                id={classes.camposTabelaPraticaNCH}
+              >
                 <div className={classes.tituloSemestre}>
                   <p>2º Semestre</p>{" "}
                   <BsQuestionCircleFill className={classes.icon} />
@@ -105,16 +121,15 @@ const PreceptoriaOuTutoriaDeResidencia = () => {
             </div>
           </div>
         </div>
-        
-        <div className={classes.buttonOA}>
-            <a href="/SupervisaoAcademica">
-                <button>Voltar</button>
-            </a>
-            <a href="#">
-                <button id={classes.buttonProximo}>Próximo</button>
-            </a>
-        </div>
 
+        <div className={classes.buttonOA}>
+          <a href="/SupervisaoAcademica">
+            <button>Voltar</button>
+          </a>
+          <a href="/ChSemanalOrientacao">
+            <button id={classes.buttonProximo}>Próximo</button>
+          </a>
+        </div>
       </div>
     </div>
   );
