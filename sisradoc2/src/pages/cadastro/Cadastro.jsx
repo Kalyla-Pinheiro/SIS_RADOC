@@ -1,33 +1,80 @@
-import React from "react";
-//import { useState, useEffect } from 'react';
-//import api from '../../Api.js'
-// import { FaUser } from "react-icons/fa";
-// import { FaLock } from "react-icons/fa";
-// import { MdEmail } from "react-icons/md";
-// import { FaPhoneAlt } from "react-icons/fa";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { HiOutlineIdentification } from "react-icons/hi";
-import { HiOutlineLibrary } from "react-icons/hi";
-import { HiAcademicCap } from "react-icons/hi";
-import { HiBriefcase } from "react-icons/hi";
-import { HiOutlineLink } from "react-icons/hi";
-import { MdOutlinePin } from "react-icons/md";
-import { MdOutlinePeopleAlt } from "react-icons/md";
-import { MdOutlinePermIdentity } from "react-icons/md";
-// import { MdOutlineSip } from "react-icons/md"; //siap testar
+import {
+  HiOutlineIdentification,
+  HiOutlineLibrary,
+  HiAcademicCap,
+  HiBriefcase,
+  HiOutlineLink,
+} from "react-icons/hi";
+import {
+  MdOutlinePin,
+  MdOutlinePeopleAlt,
+  MdOutlinePermIdentity,
+} from "react-icons/md";
 import { MdPhone } from "react-icons/md";
-import { LiaEnvelope } from "react-icons/lia";
-import { LiaUnlockSolid } from "react-icons/lia";
+import { LiaEnvelope, LiaUnlockSolid } from "react-icons/lia";
 import classes from "../../css-modules/Cadastro.module.css";
+//import AuthFunctions from "../../utils/Auth";
+import { ToastContainer, toast } from "react-toastify";
+import { ToastifyMessages } from "../../utils/ToastifyMessages";
+import apiurls from "../../apis/apiUrls";
 
 const Cadastro = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    nome: "",
+    nomeUsuario: "",
+    siap: "",
+    campus: "",
+    classeReferencia: "",
+    vinculo: "",
+    regimeTrabalho: "",
+    titulacao: "",
+    email: "",
+    telefone: "",
+    senha: "",
+    confirmarSenha: "",
+  });
+  const [error, setError] = useState("");
 
-  // useEffect(() => {
-  //   api.get('cadastro').then(res =>{
-  //     console.log(res);
-  //   })
-  // }, []);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (formData.senha !== formData.confirmarSenha) {
+      ToastifyMessages.warning("Senhas não coincidem!");
+      return;
+    }
+
+    try {
+      const response = await fetch(apiurls.cadastro, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.status === 201) {
+        ToastifyMessages.sucess("Usuário cadastrado com sucesso!");
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      } else if (response.status === 409) {
+        ToastifyMessages.error("Usuário já cadastrado!");
+      }
+    } catch (error) {
+      ToastifyMessages.error(
+        "Erro ao cadastrar usuário. Por favor, tente novamente."
+      );
+    }
+  };
 
   const backClick = () => {
     navigate("/login");
@@ -36,32 +83,55 @@ const Cadastro = () => {
   return (
     <div className={classes.cadastroContainer}>
       <div className={classes.wrapperCadastro}>
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <h1>Cadastro</h1>
 
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <MdOutlinePermIdentity className="icon" />
-              <input type="text" placeholder="Nome Completo" required />
+              <input
+                type="text"
+                placeholder="Nome Completo"
+                name="nome"
+                value={formData.nome}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className={classes.inputField}>
               <MdOutlinePeopleAlt className="icon" />
-              <input type="text" placeholder="Nome de Usuário" required />
+              <input
+                type="text"
+                placeholder="Nome de Usuário"
+                name="nomeUsuario"
+                value={formData.nomeUsuario}
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
 
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <MdOutlinePin className="icon" />
-              <input type="text" placeholder="SIAP " required />
+              <input
+                type="text"
+                placeholder="SIAP"
+                name="siap"
+                value={formData.siap}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className={classes.inputField}>
               <HiOutlineLibrary className="icon" />
               <div className={classes.inputFieldCampus}>
                 <select
                   className={classes.selectCampus}
+                  value={formData.campus}
+                  onChange={handleChange}
                   id="campus"
-                  name="Campus"
+                  name="campus"
                   placeholder="CAMPUS/INSTITUTO"
                   required
                 >
@@ -82,42 +152,100 @@ const Cadastro = () => {
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <HiOutlineIdentification className="icon" />
-              <input type="text" placeholder="Classe e Referência" required />
+              <input
+                type="text"
+                placeholder="Classe e Referência"
+                name="classeReferencia"
+                value={formData.classeReferencia}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className={classes.inputField}>
               <HiOutlineLink className="icon" />
-              <input type="text" placeholder="Vinculo" required />
+              <input
+                type="text"
+                placeholder="Vínculo"
+                name="vinculo"
+                value={formData.vinculo}
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
+
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <HiBriefcase className="icon" />
-              <input type="text" placeholder="Regime de Trabalho" required />
+              <input
+                type="text"
+                placeholder="Regime de Trabalho"
+                name="regimeTrabalho"
+                value={formData.regimeTrabalho}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className={classes.inputField}>
               <HiAcademicCap className="icon" />
-              <input type="text" placeholder="Titulação" required />
+              <input
+                type="text"
+                placeholder="Titulação"
+                name="titulacao"
+                value={formData.titulacao}
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
+
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <LiaEnvelope className="icon" />
-              <input type="email" placeholder="Email" required />
+              <input
+                type="email"
+                placeholder="Email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className={classes.inputField}>
               <MdPhone className="icon" />
-              <input type="phone" placeholder="Número de Telefone" required />
+              <input
+                type="phone"
+                placeholder="Número de Telefone"
+                name="telefone"
+                value={formData.telefone}
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
 
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <LiaUnlockSolid className="icon" />
-              <input type="password" placeholder="Senha" required />
+              <input
+                type="password"
+                placeholder="Senha"
+                name="senha"
+                value={formData.senha}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className={classes.inputField}>
               <LiaUnlockSolid className="icon" />
-              <input type="password" placeholder="Confirme a Senha" required />
+              <input
+                type="password"
+                placeholder="Confirme a Senha"
+                name="confirmarSenha"
+                value={formData.confirmarSenha}
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
 
@@ -137,6 +265,7 @@ const Cadastro = () => {
           </div>
         </form>
       </div>
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };
