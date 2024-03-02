@@ -20,7 +20,7 @@ import OrientacaoAcademica from "./pages/OrientacaoAcademica/OrientacaoAcademica
 import SupervisaoAcademica from "./pages/SupervisaoAcademica/SupervisaoAcademica";
 import PreceptoriaOuTutoriaDeResidencia from "./pages/preceptoria-ou-tutoria-de-residencia/PreceptoriaOuTutoriaDeResidencia";
 import MonografiaQualificacaoDIssertacaoTese from "./pages/monografia-qualificacao-dissertacao-e-tese/MonografiaQualificacaoDIssertacaoTese";
-
+import "react-toastify/dist/ReactToastify.css";
 
 const MainLayout = ({ children }) => (
   <div>
