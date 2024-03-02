@@ -35,6 +35,6 @@
   background: #fff;
 }
 
-.itemNavegacao:active{
+.itemNavegacao:active {
   transform: scale(0.80);
 }

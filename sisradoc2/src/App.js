@@ -16,6 +16,10 @@ import PedagogicasComplementares from "./pages/pedagogicas-complementares/Pedago
 import DocentesEnvolvidos from "./pages/ensino/DocentesEnvolvidos/DocentesEnvolvidos";
 import ChSemanalAulas from "./pages/ensino/ChSemanalAulas/ChSemanalAulas";
 import NumeroDeTurmasCHporTurmas from "./pages/numero-de-turmas-e-ch-por-turmas/NumeroDeTurmasCHporTurmas";
+import OrientacaoAcademica from "./pages/OrientacaoAcademica/OrientacaoAcademica";
+import SupervisaoAcademica from "./pages/SupervisaoAcademica/SupervisaoAcademica";
+import PreceptoriaOuTutoriaDeResidencia from "./pages/preceptoria-ou-tutoria-de-residencia/PreceptoriaOuTutoriaDeResidencia";
+import MonografiaQualificacaoDIssertacaoTese from "./pages/monografia-qualificacao-dissertacao-e-tese/MonografiaQualificacaoDIssertacaoTese";
 
 
 const MainLayout = ({ children }) => (
@@ -49,26 +53,15 @@ function App() {
                 <Route path="documentos" element={<Documento />} />
                 <Route path="configuracao" element={<Configuracao />} />
                 <Route path="ensino" element={<Ensino />} />
-                <Route
-                  path="disciplinas"
-                  element={<DisciplinasMinistradas />}
-                />
-                <Route
-                  path="numeroDeTurmasCHporTurma"
-                  element={<NumeroDeTurmasCHporTurmas />}
-                />
-                <Route
-                  path="pedagogicasComplementares"
-                  element={<PedagogicasComplementares />}
-                />
-                <Route
-                  path="/ensino/DocentesEnvolvidos"
-                  element={<DocentesEnvolvidos />}
-                />
-                <Route
-                  path="/ensino/ChSemanalAulas"
-                  element={<ChSemanalAulas />}
-                />
+                <Route path="disciplinas" element={<DisciplinasMinistradas />} />
+                <Route path="numeroDeTurmasCHporTurma" element={<NumeroDeTurmasCHporTurmas />} />
+                <Route path="pedagogicasComplementares" element={<PedagogicasComplementares />} />
+                <Route path="/ensino/DocentesEnvolvidos" element={<DocentesEnvolvidos />} />
+                <Route path="/ensino/ChSemanalAulas" element={<ChSemanalAulas />} />
+                <Route path="OrientacaoAcademica" element={<OrientacaoAcademica/>} />
+                <Route path="SupervisaoAcademica" element={<SupervisaoAcademica/>} />
+                <Route path="PreceptoriaOuTutoriaDeResidencia" element={<PreceptoriaOuTutoriaDeResidencia />} />
+                <Route path="MonografiaQualificacaoDIssertacaoTese" element={<MonografiaQualificacaoDIssertacaoTese />} />
               </Routes>
             </MainLayout>
           }
