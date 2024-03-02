@@ -13,18 +13,34 @@ const OrientacaoAcademica = () => {
           <h1>Orientação/Coorientação Acadêmica</h1>
         </div>
 
-        <form className={classes.anexarPdfs} action="" method="post" enctype="multipart/form-data">
-          <div className={classes.inputsPdfs} id={classes.primeiroInput}>
-            <input type="file" accept=".pdf" />
-            <p>Campo para submissão (PDF)</p>
-          </div>
-          <div className={classes.inputsPdfs} id={classes.segundoInput}>
-            <input type="file" accept=".pdf" />
-            <p>Campo para submissão (PDF)</p>
-          </div>
-        </form>
+        <div className={classes.formulariosPDF}>
+          <form className={classes.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data">
+            <div className={classes.anexarPdfs}>
+              <div className={classes.inputsPdfs} id={classes.primeiroInput}>
+                <input type="file" accept=".pdf"/>
+                <p>Campo de submissão (PDF)</p>
+              </div>
+            </div>
 
-        
+            <div className={classes.buttonSubmeterPDF}>
+              <button type="submit">Submeter PDF</button>
+            </div>
+          </form>
+
+          <form className={classes.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data">
+            <div className={classes.anexarPdfs}>
+              <div className={classes.inputsPdfs} id={classes.segundoInput}>
+                <input type="file" accept=".pdf"/>
+                <p>Campo de submissão (PDF)</p>
+              </div>
+            </div>
+
+            <div className={`${classes.buttonSubmeterPDF} ${classes.secondButton}`}>
+              <button>Submeter PDF</button>
+            </div>
+          </form>
+        </div>
+
         <div className={classes.camposInlineOA}>
           <div className={classes.semestreNCH} id={classes.primeiroSemestreNCH}>
             <div className={classes.tituloCampoOA}>

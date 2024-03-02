@@ -17,6 +17,9 @@ const DisciplinasMinistradas = () => {
   const [sigla, setSigla] = useState("");
   const [ch, setCH] = useState("");
   
+  // funcões referentes as operacões no localStorage
+  const armazenarNaSessionStorage = (chave, valor) => { sessionStorage.setItem(chave, valor) };
+  const apagarNaSessionStorage=(chave) => { sessionStorage.removeItem(chave) };
 
   const handlepdfDisciplinasChange = (event) => {
     setPdfDisciplinas(event.target.files[0]);
@@ -79,9 +82,13 @@ const DisciplinasMinistradas = () => {
           // Atribuir o valor da chave do objeto de resposta no estado "nome"
           console.log(data) // Consolando o objeto de resposta
           console.log(data.wordsFound) // Consolando a chave "wordsFound" do objeto de resposta
+          armazenarNaSessionStorage("json_diarios_de_turma", data.wordsFound)
           setNome(data.wordsFound.Disciplina[0])
+          armazenarNaSessionStorage("nome", data.wordsFound.Disciplina[0]) // inserindo o nome no localStorage
           setSigla(data.wordsFound.Código[0])
+          armazenarNaSessionStorage("sigla", data.wordsFound.Código[0])
           setCH(data.wordsFound['Carga Horária'][0])
+          armazenarNaSessionStorage("ch", data.wordsFound["Carga Horária"][0]);
         })
       }
 
@@ -101,19 +108,10 @@ const DisciplinasMinistradas = () => {
         </div>
 
         <div className={classes.formulariosPDF}>
-          <form className={classes.campoSubmissaoPDF} 
-          action="" 
-          method="post" 
-          encType="multipart/form-data" 
-          onSubmit={handleDisciplinasMinistradas}
-          >
+          <form className={classes.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data" onSubmit={handleDisciplinasMinistradas}>
             <div className={classes.anexarPdfs}>
               <div className={classes.inputsPdfs} id={classes.primeiroInput}>
-                <input 
-                type="file" 
-                accept=".pdf" 
-                onChange={handlepdfDisciplinasChange}
-                />
+                <input type="file" accept=".pdf" onChange={handlepdfDisciplinasChange}/>
                 <p>Declaração de disciplinas ministradas (PDF)</p>
               </div>
             </div>
@@ -122,18 +120,10 @@ const DisciplinasMinistradas = () => {
             </div>
           </form>
 
-          <form action="" 
-          method="post" 
-          encType="multipart/form-data" 
-          onSubmit={handleDiarioDeTurma} 
-          className={classes.campoSubmissaoPDF}>
+          <form action="" method="post" encType="multipart/form-data" onSubmit={handleDiarioDeTurma} className={classes.campoSubmissaoPDF}>
             <div className={classes.anexarPdfs}>
               <div className={classes.inputsPdfs} id={classes.segundoInput}>
-                <input 
-                type="file" 
-                accept=".pdf" 
-                onChange={handlepdfDiariosChange}
-                />
+                <input type="file" accept=".pdf" onChange={handlepdfDiariosChange}/>
                 <p>Diarios de turma (PDF)</p>
               </div>
             </div>
@@ -150,34 +140,13 @@ const DisciplinasMinistradas = () => {
             <p>1º Semestre</p>
           </div>
           <div className={classes.camposTabela}>
-            <input 
-            className="nomePrimeiroSemestre" 
-            type="text" 
-            placeholder="Nome"
-            value={nome}
-            readOnly
-            />{" "}
+            <input className="nomePrimeiroSemestre" type="text" placeholder="Nome" value={sessionStorage.getItem("nome")} readOnly/>{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input 
-            className="siglaPrimeiroSemestre" 
-            type="text"
-            value={sigla} 
-            placeholder="Sigla do curso" 
-            readOnly />{" "}
+            <input className="siglaPrimeiroSemestre" type="text" value={sessionStorage.getItem("sigla")} placeholder="Sigla do curso" readOnly />{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input 
-              className="chPrimeiroSemestre" 
-              type="text" 
-              placeholder="Nível" 
-              required />{" "}
+            <input className="chPrimeiroSemestre" type="text" placeholder="Nível" required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input
-              className={classes.ultimoCampoInput}
-              type="text"
-              value={ch}
-              placeholder="CH total"
-              readOnly
-            />{" "}
+            <input className={classes.ultimoCampoInput} type="text" value={sessionStorage.getItem("ch")} placeholder="CH total" readOnly/>{" "}
             <BsQuestionCircleFill className={classes.icon} />
           </div>
           <div className={classes.camposTabela}>
