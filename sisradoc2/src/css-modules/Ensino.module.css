@@ -41,14 +41,8 @@
   color: #fff;
   transition: all 0.5s;
 }
-<<<<<<< HEAD
 .opcaoEnsino:active{
   transform: scale(0.80);
-=======
-
-.opcaoEnsino:active {
-  transform: scale(0.8);
->>>>>>> a3ec2efb7953be944fd1e5f968766c9814ae7d27
 }
 
 .opcaoEnsino:hover {
@@ -455,13 +449,10 @@
   transition: all 0.5s;
 }
 
-<<<<<<< HEAD
 .buttonCh button:active {
   transform: scale(0.80);
 }
 
-=======
->>>>>>> a3ec2efb7953be944fd1e5f968766c9814ae7d27
 /*Orientacão, supervisão e outros*/
 
 /*Orientacão Acadêmica*/
