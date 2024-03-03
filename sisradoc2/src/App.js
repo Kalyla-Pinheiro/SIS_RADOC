@@ -16,6 +16,7 @@ import PedagogicasComplementares from "./pages/pedagogicas-complementares/Pedago
 import DocentesEnvolvidos from "./pages/ensino/DocentesEnvolvidos/DocentesEnvolvidos";
 import ChSemanalAulas from "./pages/ensino/ChSemanalAulas/ChSemanalAulas";
 import NumeroDeTurmasCHporTurmas from "./pages/numero-de-turmas-e-ch-por-turmas/NumeroDeTurmasCHporTurmas";
+import AvaliacaoDocente from "./pages/ensino/AvaliacaoDocente/AvaliacaoDocente";
 import OrientacaoAcademica from "./pages/OrientacaoAcademica/OrientacaoAcademica";
 import SupervisaoAcademica from "./pages/SupervisaoAcademica/SupervisaoAcademica";
 import PreceptoriaOuTutoriaDeResidencia from "./pages/preceptoria-ou-tutoria-de-residencia/PreceptoriaOuTutoriaDeResidencia";
@@ -23,6 +24,8 @@ import MonografiaQualificacaoDIssertacaoTese from "./pages/monografia-qualificac
 import "react-toastify/dist/ReactToastify.css";
 import ChSemanalOrientacao from "./pages/ChSemanalOrientacao/ChSemanalOrientacao";
 import Pesquisa from "./pages/pesquisa/Pesquisa";
+import Projetos from "./pages/pesquisa/Projetos/Projetos";
+import Trabalhos from "./pages/pesquisa/Trabalhos/Trabalhos";
 import LivrosVerbetesPublicados from "./pages/pesquisa/livros-e-verbetes-publicados/LivrosVerbetesPublicados";
 import TrabalhosResumosPublicadosApresentados from "./pages/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados/TrabalhosResumosPublicadosApresentados";
 
@@ -78,6 +81,10 @@ function App() {
                   element={<ChSemanalAulas />}
                 />
                 <Route
+                  path="/ensino/AvaliacaoDocente"
+                  element={<AvaliacaoDocente />}
+                />
+                <Route
                   path="OrientacaoAcademica"
                   element={<OrientacaoAcademica />}
                 />
@@ -100,9 +107,10 @@ function App() {
                   element={<MonografiaQualificacaoDIssertacaoTese />}
                 />
                 <Route path="pesquisa" element={<Pesquisa />} />
+                <Route path="pesquisa/Projetos" element={<Projetos />} />
+                <Route path="pesquisa/Trabalhos" element={<Trabalhos />} />
                 <Route path="/pesquisa/livros-e-verbetes-publicados" element={<LivrosVerbetesPublicados />}/>
                 <Route path="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados" element={<TrabalhosResumosPublicadosApresentados />}/>
-
               </Routes>
             </MainLayout>
           }

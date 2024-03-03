@@ -16,16 +16,32 @@ const Ensino = () => {
           <a className={classes.opcaoEnsino} type="button" href="/disciplinas">
             Aulas Letivas
           </a>
-          <a className={classes.opcaoEnsino} type="button" href="/pedagogicasComplementares">
+          <a
+            className={classes.opcaoEnsino}
+            type="button"
+            href="/pedagogicasComplementares"
+          >
             Pedagógicas Complementares
           </a>
-          <a className={classes.opcaoEnsino} type="button" href="/OrientacaoAcademica">
+          <a
+            className={classes.opcaoEnsino}
+            type="button"
+            href="/OrientacaoAcademica"
+          >
             Orientação, Supervisão e Outros
           </a>
-          <a className={classes.opcaoEnsino} type="button" href="/MonografiaQualificacaoDIssertacaoTese">
+          <a
+            className={classes.opcaoEnsino}
+            type="button"
+            href="/MonografiaQualificacaoDIssertacaoTese"
+          >
             Bancas Examinadoras
           </a>
-          <a className={classes.opcaoEnsino} type="button" href="">
+          <a
+            className={classes.opcaoEnsino}
+            type="button"
+            href="/ensino/AvaliacaoDocente"
+          >
             Avaliação Discente
           </a>
         </nav>
