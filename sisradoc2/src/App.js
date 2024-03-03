@@ -16,6 +16,7 @@ import PedagogicasComplementares from "./pages/pedagogicas-complementares/Pedago
 import DocentesEnvolvidos from "./pages/ensino/DocentesEnvolvidos/DocentesEnvolvidos";
 import ChSemanalAulas from "./pages/ensino/ChSemanalAulas/ChSemanalAulas";
 import NumeroDeTurmasCHporTurmas from "./pages/numero-de-turmas-e-ch-por-turmas/NumeroDeTurmasCHporTurmas";
+import AvaliacaoDocente from "./pages/ensino/AvaliacaoDocente/AvaliacaoDocente";
 import OrientacaoAcademica from "./pages/OrientacaoAcademica/OrientacaoAcademica";
 import SupervisaoAcademica from "./pages/SupervisaoAcademica/SupervisaoAcademica";
 import PreceptoriaOuTutoriaDeResidencia from "./pages/preceptoria-ou-tutoria-de-residencia/PreceptoriaOuTutoriaDeResidencia";
@@ -74,6 +75,10 @@ function App() {
                 <Route
                   path="/ensino/ChSemanalAulas"
                   element={<ChSemanalAulas />}
+                />
+                <Route
+                  path="/ensino/AvaliacaoDocente"
+                  element={<AvaliacaoDocente />}
                 />
                 <Route
                   path="OrientacaoAcademica"

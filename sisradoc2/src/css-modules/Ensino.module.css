@@ -448,3 +448,28 @@
   outline: none;
   text-align: center;
 }
+
+/* Avaliação Docente*/
+.AvaliacaoD {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 3rem;
+  gap: 3rem;
+}
+
+.buttonAD {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 12rem;
+}
+
+.buttonAD button {
+  width: 130px;
+  height: 40px;
+  background: #fff;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 16px;
+  cursor: pointer;
+}
