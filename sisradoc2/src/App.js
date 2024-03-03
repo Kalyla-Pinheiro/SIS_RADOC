@@ -21,6 +21,8 @@ import SupervisaoAcademica from "./pages/SupervisaoAcademica/SupervisaoAcademica
 import PreceptoriaOuTutoriaDeResidencia from "./pages/preceptoria-ou-tutoria-de-residencia/PreceptoriaOuTutoriaDeResidencia";
 import MonografiaQualificacaoDIssertacaoTese from "./pages/monografia-qualificacao-dissertacao-e-tese/MonografiaQualificacaoDIssertacaoTese";
 import "react-toastify/dist/ReactToastify.css";
+import ChSemanalOrientacao from "./pages/ChSemanalOrientacao/ChSemanalOrientacao";
+import Pesquisa from "./pages/pesquisa/Pesquisa";
 
 const MainLayout = ({ children }) => (
   <div>
@@ -53,15 +55,49 @@ function App() {
                 <Route path="documentos" element={<Documento />} />
                 <Route path="configuracao" element={<Configuracao />} />
                 <Route path="ensino" element={<Ensino />} />
-                <Route path="disciplinas" element={<DisciplinasMinistradas />} />
-                <Route path="numeroDeTurmasCHporTurma" element={<NumeroDeTurmasCHporTurmas />} />
-                <Route path="pedagogicasComplementares" element={<PedagogicasComplementares />} />
-                <Route path="/ensino/DocentesEnvolvidos" element={<DocentesEnvolvidos />} />
-                <Route path="/ensino/ChSemanalAulas" element={<ChSemanalAulas />} />
-                <Route path="OrientacaoAcademica" element={<OrientacaoAcademica/>} />
-                <Route path="SupervisaoAcademica" element={<SupervisaoAcademica/>} />
-                <Route path="PreceptoriaOuTutoriaDeResidencia" element={<PreceptoriaOuTutoriaDeResidencia />} />
-                <Route path="MonografiaQualificacaoDIssertacaoTese" element={<MonografiaQualificacaoDIssertacaoTese />} />
+                <Route
+                  path="disciplinas"
+                  element={<DisciplinasMinistradas />}
+                />
+                <Route
+                  path="numeroDeTurmasCHporTurma"
+                  element={<NumeroDeTurmasCHporTurmas />}
+                />
+                <Route
+                  path="pedagogicasComplementares"
+                  element={<PedagogicasComplementares />}
+                />
+                <Route
+                  path="/ensino/DocentesEnvolvidos"
+                  element={<DocentesEnvolvidos />}
+                />
+                <Route
+                  path="/ensino/ChSemanalAulas"
+                  element={<ChSemanalAulas />}
+                />
+                <Route
+                  path="OrientacaoAcademica"
+                  element={<OrientacaoAcademica />}
+                />
+                <Route
+                  path="SupervisaoAcademica"
+                  element={<SupervisaoAcademica />}
+                />
+
+                <Route
+                  path="ChSemanalOrientacao"
+                  element={<ChSemanalOrientacao />}
+                />
+
+                <Route
+                  path="PreceptoriaOuTutoriaDeResidencia"
+                  element={<PreceptoriaOuTutoriaDeResidencia />}
+                />
+                <Route
+                  path="MonografiaQualificacaoDIssertacaoTese"
+                  element={<MonografiaQualificacaoDIssertacaoTese />}
+                />
+                <Route path="pesquisa" element={<Pesquisa />} />
               </Routes>
             </MainLayout>
           }

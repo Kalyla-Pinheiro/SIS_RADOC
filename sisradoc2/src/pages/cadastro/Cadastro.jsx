@@ -60,17 +60,19 @@ const Cadastro = () => {
         body: JSON.stringify(formData),
       });
 
-      if(response.status === 201){
+      if (response.status === 201) {
         ToastifyMessages.sucess("Usuário cadastrado com sucesso!");
-        
+
         setTimeout(() => {
           navigate("/login");
-        }, 2000)
+        }, 2000);
       } else if (response.status === 409) {
         ToastifyMessages.error("Usuário já cadastrado!");
       }
     } catch (error) {
-      ToastifyMessages.error("Erro ao cadastrar usuário. Por favor, tente novamente.");
+      ToastifyMessages.error(
+        "Erro ao cadastrar usuário. Por favor, tente novamente."
+      );
     }
   };
 
@@ -253,12 +255,12 @@ const Cadastro = () => {
           </div>
 
           <div className={classes.botoesFormulario}>
-            <button type="submit" className={classes.button}>
-              Cadastre-se
-            </button>
-
             <button onClick={backClick} className={classes.button} id="voltar">
               Voltar
+            </button>
+
+            <button type="submit" className={classes.button}>
+              Cadastre-se
             </button>
           </div>
         </form>
