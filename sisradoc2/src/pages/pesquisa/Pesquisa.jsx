@@ -19,14 +19,14 @@ const Pesquisa = () => {
           <a className={classes.opcaoPesquisa} type="button" href="#">
             Trabalhos, Boletins Técnicos e Outros
           </a>
-          <a className={classes.opcaoPesquisa} type="button" href="#">
+          <a className={classes.opcaoPesquisa} type="button" href="/pesquisa/livros-e-verbetes-publicados">
             Livros e Verbetes Publicados
           </a>
           <a className={classes.opcaoPesquisa} type="button" href="#">
-            Trabalhos Publicados E Apresentados
+            Trabalhos Publicados e/ou Apresentados
           </a>
           <a className={classes.opcaoPesquisa} type="button" href="#">
-            Outras Atividades De Produção Intelectual
+            Outras Atividades de Produção Intelectual
           </a>
         </nav>
       </div>
