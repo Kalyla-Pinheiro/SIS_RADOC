@@ -255,12 +255,12 @@ const Cadastro = () => {
           </div>
 
           <div className={classes.botoesFormulario}>
-            <button type="submit" className={classes.button}>
-              Cadastre-se
-            </button>
-
             <button onClick={backClick} className={classes.button} id="voltar">
               Voltar
+            </button>
+
+            <button type="submit" className={classes.button}>
+              Cadastre-se
             </button>
           </div>
         </form>
