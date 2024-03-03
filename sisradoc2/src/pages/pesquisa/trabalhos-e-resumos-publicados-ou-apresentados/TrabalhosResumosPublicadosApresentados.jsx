@@ -94,17 +94,17 @@ const LivrosVerbetesPublicados = () => {
                     <div className={classes.camposPreenchimentoDivFlex} id={classes.checkboxs}>
                         <div className={classes.camposPreenchimentoDivFlex}>
                             <input type="checkbox" id={classes.checkbox}/>
-                            <label for={classes.checkbox}>Resumo</label>
+                            <label>Resumo</label>
                         </div>
 
                         <div className={classes.camposPreenchimentoDivFlex} id={classes.checkboxRight}>
                             <input type="checkbox" id={classes.checkbox}/>
-                            <label for={classes.checkbox}>Resumo Expandido</label>
+                            <label>Resumo Expandido</label>
                         </div>
 
                         <div className={classes.camposPreenchimentoDivFlex} id={classes.checkboxRight}>
                             <input type="checkbox" id={classes.checkbox}/>
-                            <label for={classes.checkbox}>Artigo Completo</label>
+                            <label>Artigo Completo</label>
                         </div>
                     </div>
                 </div>
