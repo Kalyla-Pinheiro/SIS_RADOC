@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import TokenFunctions from "../../utils/Token";
 import { ToastContainer, toast } from "react-toastify";
 import {ToastifyMessages} from "../../utils/ToastifyMessages";
+import {jwtDecode} from "jwt-decode";
 import AuthFunctions from "../../utils/Auth";
 import apiurls from "../../apis/apiUrls";
 
@@ -17,8 +18,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+
   const googleOAuthSuccess = (credentialResponse) => {
+    const decodedToken = jwtDecode(credentialResponse.credential);
     const jwt = credentialResponse.credential;
+
     TokenFunctions.setToken(jwt);
 
     navigate("/home");
@@ -56,7 +60,8 @@ const Login = () => {
         ToastifyMessages.sucess("Login efetuado com sucesso");
   
         response.json().then((data) => {
-          TokenFunctions.setToken(data.token);
+          console.log(JSON.stringify(data));
+          TokenFunctions.setToken(data);
         })
 
         setTimeout(() => {

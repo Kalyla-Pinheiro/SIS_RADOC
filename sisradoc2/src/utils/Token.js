@@ -1,40 +1,16 @@
 const TokenFunctions = {
-    setToken: (token) => {
+    setToken: (data) => {
+        const token = data.token;
+
         document.cookie = `jwt=${token}`;
     },
 
     getToken: () => {
-        const token = document.cookie;
-        if (token) {
-            return token;
-        }
-        return null;
-    },
+        const cookie = document.cookie;
+        const token = cookie.match(/jwt=([^;\n]+)/);
 
-    setUserName: (nomeUsuario) => {
-        document.cookie = `nomeUsuario=${nomeUsuario}`;
+        return token ? token[1] : null;
     },
-
-    /*
-    getNomeUsuario: () => {
-        const cookies = document.cookie.split(';').map(cookie => cookie.trim());
-        for (let cookie of cookies) {
-            const [nome, value] = cookie.split('=');
-            if (nome === 'jwt') {
-                const token = value;
-                const secretKey = "secretkeynotrevealed";
-                try {
-                    const decoded = jwt.verify(token, secretKey);
-                    return decoded;
-                  } catch (error) {
-                    console.error('Erro ao decodificar token:', error);
-                    return null;
-                  }
-            }
-        }
-        return cookies;
-    }
-    */
 }
 
 export default TokenFunctions;
