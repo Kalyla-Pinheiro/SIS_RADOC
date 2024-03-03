@@ -228,7 +228,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 65px;
 }
   
 .buttons button {
@@ -239,4 +238,12 @@
     border-radius: 0.375rem;
     font-size: 16px;
     cursor: pointer;
+}
+
+#buttonSalvarLVP {
+    margin-top: 150px;
+}
+
+#buttonSalvarTRPA {
+    margin-top: 65px;
 }

@@ -96,7 +96,7 @@ const LivrosVerbetesPublicados = () => {
 
         </div>
 
-        <div className={classes.buttons}>
+        <div className={classes.buttons} id={classes.buttonSalvarLVP}>
           <a href="#">
             <button>Salvar</button>
           </a>

@@ -89,7 +89,7 @@ const LivrosVerbetesPublicados = () => {
 
                 <div className={classes.camposPreenchimentoDivColumn} id={classes.checkboxsCampos}>
                     <div className={classes.tituloCheckbox}>
-                        <p>Tipos:</p>
+                        <p>Tipo:</p>
                     </div>
                     <div className={classes.camposPreenchimentoDivFlex} id={classes.checkboxs}>
                         <div className={classes.camposPreenchimentoDivFlex}>
@@ -113,7 +113,7 @@ const LivrosVerbetesPublicados = () => {
 
         </div>
 
-        <div className={classes.buttons}>
+        <div className={classes.buttons} id={classes.buttonSalvarTRPA}>
           <a href="#">
             <button>Salvar</button>
           </a>
