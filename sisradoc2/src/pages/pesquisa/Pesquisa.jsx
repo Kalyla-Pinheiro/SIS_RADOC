@@ -13,10 +13,18 @@ const Pesquisa = () => {
         </div>
 
         <nav className={classes.opcoesPesquisa}>
-          <a className={classes.opcaoPesquisa} type="button" href="#">
+          <a
+            className={classes.opcaoPesquisa}
+            type="button"
+            href="Pesquisa/Projetos"
+          >
             Projetos
           </a>
-          <a className={classes.opcaoPesquisa} type="button" href="#">
+          <a
+            className={classes.opcaoPesquisa}
+            type="button"
+            href="Pesquisa/Trabalhos"
+          >
             Trabalhos, Boletins Técnicos e Outros
           </a>
           <a className={classes.opcaoPesquisa} type="button" href="#">

@@ -24,6 +24,8 @@ import MonografiaQualificacaoDIssertacaoTese from "./pages/monografia-qualificac
 import "react-toastify/dist/ReactToastify.css";
 import ChSemanalOrientacao from "./pages/ChSemanalOrientacao/ChSemanalOrientacao";
 import Pesquisa from "./pages/pesquisa/Pesquisa";
+import Projetos from "./pages/pesquisa/Projetos/Projetos";
+import Trabalhos from "./pages/pesquisa/Trabalhos/Trabalhos";
 
 const MainLayout = ({ children }) => (
   <div>
@@ -103,6 +105,8 @@ function App() {
                   element={<MonografiaQualificacaoDIssertacaoTese />}
                 />
                 <Route path="pesquisa" element={<Pesquisa />} />
+                <Route path="pesquisa/Projetos" element={<Projetos />} />
+                <Route path="pesquisa/Trabalhos" element={<Trabalhos />} />
               </Routes>
             </MainLayout>
           }
