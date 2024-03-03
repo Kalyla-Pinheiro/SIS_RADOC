@@ -28,6 +28,7 @@ import Projetos from "./pages/pesquisa/Projetos/Projetos";
 import Trabalhos from "./pages/pesquisa/Trabalhos/Trabalhos";
 import LivrosVerbetesPublicados from "./pages/pesquisa/livros-e-verbetes-publicados/LivrosVerbetesPublicados";
 import TrabalhosResumosPublicadosApresentados from "./pages/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados/TrabalhosResumosPublicadosApresentados";
+import authMiddleware from "../src/middleware/authMiddleware";
 
 const MainLayout = ({ children }) => (
   <div>
@@ -54,7 +55,7 @@ function App() {
           element={
             <MainLayout>
               <Routes>
-                <Route path="home" element={<Home />} />
+                <Route path="home" element={<Home />} onEnter={authMiddleware}/>
                 <Route path="perfil" element={<Perfil />} />
                 <Route path="formularios" element={<Formulario />} />
                 <Route path="documentos" element={<Documento />} />

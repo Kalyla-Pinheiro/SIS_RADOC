@@ -7,8 +7,8 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import TokenFunctions from "../../utils/Token";
 import { ToastContainer, toast } from "react-toastify";
-import {ToastifyMessages} from "../../utils/ToastifyMessages";
-import {jwtDecode} from "jwt-decode";
+import { ToastifyMessages } from "../../utils/ToastifyMessages";
+import { jwtDecode } from "jwt-decode";
 import AuthFunctions from "../../utils/Auth";
 import apiurls from "../../apis/apiUrls";
 
@@ -18,10 +18,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-
   const googleOAuthSuccess = (credentialResponse) => {
-    const decodedToken = jwtDecode(credentialResponse.credential);
-    const jwt = credentialResponse.credential;
+    const token = TokenFunctions.patternToken(credentialResponse.credential);
+
+    const jwt = jwtDecode(token);
+
+    console.log("TOKEN DO GOOGLE PADRONIZADO: " + JSON.stringify(token));
 
     TokenFunctions.setToken(jwt);
 
@@ -35,11 +37,9 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // const response = await AuthFunctions.apiAuthLogin(user, password);
-
     const bodyArgs = {
       email: user,
-      senha: password
+      senha: password,
     };
 
     if (!user || !password) {
@@ -47,31 +47,30 @@ const Login = () => {
       return;
     }
 
-    try{
+    try {
       const response = await fetch(apiurls.login, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(bodyArgs)
+        body: JSON.stringify(bodyArgs),
       });
 
-      if (response.status === 200){
+      if (response.status === 200) {
         ToastifyMessages.sucess("Login efetuado com sucesso");
-  
+
         response.json().then((data) => {
           console.log(JSON.stringify(data));
           TokenFunctions.setToken(data);
-        })
+        });
 
         setTimeout(() => {
           navigate("/home");
         }, 2000);
       }
-
-    } catch (error){
+    } catch (error) {
       ToastifyMessages.error("Erro ao efetuar login");
-    }    
+    }
   };
 
   return (
@@ -80,18 +79,20 @@ const Login = () => {
         <form action="" onSubmit={handleSubmit} autoComplete="off">
           <h1>Sisradoc</h1>
           <div className="input-box">
-            <input type="text" 
-            placeholder="E-mail" 
-            value={user}
-            onChange={(event) => setUser(event.target.value)}
+            <input
+              type="text"
+              placeholder="E-mail"
+              value={user}
+              onChange={(event) => setUser(event.target.value)}
             />
             <FaUser className="icon" />
           </div>
           <div className="input-box">
-            <input type="password" 
-            placeholder="Senha"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            <input
+              type="password"
+              placeholder="Senha"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
             <FaLock className="icon" />
           </div>
