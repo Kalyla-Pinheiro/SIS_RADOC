@@ -104,7 +104,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 40px;
 }
   
 .tituloCampoLVP p {
@@ -145,6 +145,12 @@
     width: 100%;
 }
 
+#inputLargoD {
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
 #colunaMae1 {
     margin-top: 25px;
 }
@@ -173,11 +179,56 @@
     color: black;
 }
 
+#checkboxsCampos {
+    margin-top: 20px;
+}
+
+#checkboxsCampos label {
+    margin-left: 10px;
+}
+
+.tituloCheckbox {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+  
+.tituloCheckbox p {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#checkboxs {
+    margin-top: 10px;
+}
+
+#checkbox {
+    border-radius: 0.375rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#checkbox:checked {
+    background-color: purple;
+}
+
+#checkboxRight {
+    margin-left: 30px;
+}
+
+
 .buttons {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 130px;
+    padding-top: 65px;
 }
   
 .buttons button {

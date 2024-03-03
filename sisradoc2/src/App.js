@@ -24,6 +24,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ChSemanalOrientacao from "./pages/ChSemanalOrientacao/ChSemanalOrientacao";
 import Pesquisa from "./pages/pesquisa/Pesquisa";
 import LivrosVerbetesPublicados from "./pages/pesquisa/livros-e-verbetes-publicados/LivrosVerbetesPublicados";
+import TrabalhosResumosPublicadosApresentados from "./pages/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados/TrabalhosResumosPublicadosApresentados";
 
 const MainLayout = ({ children }) => (
   <div>
@@ -100,6 +101,7 @@ function App() {
                 />
                 <Route path="pesquisa" element={<Pesquisa />} />
                 <Route path="/pesquisa/livros-e-verbetes-publicados" element={<LivrosVerbetesPublicados />}/>
+                <Route path="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados" element={<TrabalhosResumosPublicadosApresentados />}/>
 
               </Routes>
             </MainLayout>
