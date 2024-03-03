@@ -1,12 +1,14 @@
 import React from "react";
 import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
+import PopUp2 from "../../components/popUp/popUp2"
 import { BsQuestionCircleFill } from "react-icons/bs";
 
 const PedagogicasComplementares = () => {
   return (
     <div>
       <Navegacao/>
+      <PopUp2/>
 
       <div className={classes.ensinoContainer}>
 
