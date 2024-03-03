@@ -22,6 +22,7 @@ import PreceptoriaOuTutoriaDeResidencia from "./pages/preceptoria-ou-tutoria-de-
 import MonografiaQualificacaoDIssertacaoTese from "./pages/monografia-qualificacao-dissertacao-e-tese/MonografiaQualificacaoDIssertacaoTese";
 import "react-toastify/dist/ReactToastify.css";
 import ChSemanalOrientacao from "./pages/ChSemanalOrientacao/ChSemanalOrientacao";
+import Pesquisa from "./pages/pesquisa/Pesquisa";
 
 const MainLayout = ({ children }) => (
   <div>
@@ -96,6 +97,7 @@ function App() {
                   path="MonografiaQualificacaoDIssertacaoTese"
                   element={<MonografiaQualificacaoDIssertacaoTese />}
                 />
+                <Route path="pesquisa" element={<Pesquisa />} />
               </Routes>
             </MainLayout>
           }
