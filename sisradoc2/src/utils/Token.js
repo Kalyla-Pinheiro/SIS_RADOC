@@ -10,7 +10,10 @@ const TokenFunctions = {
         const token = cookie.match(/jwt=([^;\n]+)/);
 
         return token ? token[1] : null;
-    },
+    }
+
+    /*comentário aleatório*/
+
 }
 
 export default TokenFunctions;
