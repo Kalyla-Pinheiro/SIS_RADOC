@@ -1,5 +1,4 @@
 import { jwtDecode } from "jwt-decode";
-const jwt = require("jsonwebtoken"); // Importar JWT
 
 const TokenFunctions = {
     setToken: (data) => {
@@ -18,19 +17,6 @@ const TokenFunctions = {
     patternToken: (credential) =>{
         const tokenToPattern = jwtDecode(credential);
         let token;
-        try {
-            token = jwt.sign(
-            {
-                nomeUsuario: tokenToPattern.name,
-                email: tokenToPattern.email,
-                system: "sisradoc"
-            },
-                "secretkeynotrevealed", // Chave secreta para a criação do token
-            { expiresIn: "24h" }
-            ); // Tempo de expiração do token
-        } catch (err){
-            return err;
-        }
 
         return token;
     }
