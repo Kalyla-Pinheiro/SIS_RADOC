@@ -134,7 +134,7 @@ const ChSemanalOrientacao = () => {
           <input type="text" placeholder="" required />
         </div>
 
-        <div className={classes.buttonOA}>
+        <div className={classes.buttonOA} id={classes.buttonChOA}>
           <a href="/PreceptoriaOuTutoriaDeResidencia">
             <button>Voltar</button>
           </a>

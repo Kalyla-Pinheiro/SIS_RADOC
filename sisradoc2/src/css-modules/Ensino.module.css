@@ -108,13 +108,19 @@
   margin-top: 20px;
 }
 
+/*
 #segundoInput {
   margin-top: 10px;
 }
+*/
 
 .semestre {
   width: 100%;
   margin-top: 40px;
+}
+
+#primeiroSemestre {
+  margin-top: 30px;
 }
 
 .tituloSemestre {
@@ -163,6 +169,11 @@
   display: flex;
   justify-content: center;
   padding-top: 70px;
+}
+
+#buttonDisciplinaMinistrada {
+  padding-top: 60px;
+  padding-bottom: 50px;
 }
 
 .buttons button {
@@ -343,7 +354,7 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 16.5rem;
+  margin-top: 275px;
 }
 
 .buttonCh button {
@@ -397,7 +408,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 40px;
+  padding-top: 25px;
 }
 
 .buttonOA button {
@@ -410,6 +421,10 @@
   cursor: pointer;
 }
 
+#buttonChOA {
+  padding-top: 43px;
+}
+
 .campoSubmissaoPDF {
   /* width: 50vw; */
   display: flex;
@@ -417,6 +432,10 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+}
+
+#segundoCampoSubmissao {
+  margin-top: 10px;
 }
 
 .buttonSubmeterPDF button {
@@ -461,7 +480,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 12rem;
+  padding-top: 170px;
 }
 
 .buttonAD button {

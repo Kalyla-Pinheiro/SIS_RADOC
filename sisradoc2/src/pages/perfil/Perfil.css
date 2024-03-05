@@ -22,3 +22,20 @@
   text-align: center;
   margin-bottom: 20px;
 }
+
+.displayFlex {
+  display: flex;
+}
+
+.displayColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+#efeitoH {
+  width: 100px;
+}
+
+#efeitoH2 {
+  margin-left: 20px;
+}

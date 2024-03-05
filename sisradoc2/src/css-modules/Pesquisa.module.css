@@ -64,6 +64,10 @@
     outline: none;
 }
 
+#segundoAnexarPdfs {
+  margin-top: 10px;
+}
+
 ::-webkit-file-upload-button {
     color: #fff;
     background: purple;

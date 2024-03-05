@@ -2,6 +2,7 @@ import React from "react";
 import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
+import classesPesquisa from "../../css-modules/Pesquisa.module.css";
 
 const OrientacaoAcademica = () => {
   return (
@@ -13,33 +14,31 @@ const OrientacaoAcademica = () => {
           <h1>Orientação/Coorientação Acadêmica</h1>
         </div>
 
-        <div className={classes.formulariosPDF}>
-          <form className={classes.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data">
-            <div className={classes.anexarPdfs}>
-              <div className={classes.inputsPdfs} id={classes.primeiroInput}>
-                <input type="file" accept=".pdf"/>
-                <p>Campo de submissão (PDF)</p>
-              </div>
-            </div>
 
-            <div className={classes.buttonSubmeterPDF}>
+        <form className={classesPesquisa.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data">
+          <div className={classesPesquisa.anexarPdfs}>
+            <div className={classesPesquisa.inputsPdfs}>
+              <input type="file" accept=".pdf"/>
+              <p>Campo de submissão (PDF)</p>
+            </div>
+            <div className={classesPesquisa.buttonSubmeterPDF}>
               <button type="submit">Submeter PDF</button>
             </div>
-          </form>
+          </div>
+        </form>
 
-          <form className={classes.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data">
-            <div className={classes.anexarPdfs}>
-              <div className={classes.inputsPdfs} id={classes.segundoInput}>
-                <input type="file" accept=".pdf"/>
-                <p>Campo de submissão (PDF)</p>
-              </div>
+        <form className={classesPesquisa.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data">
+          <div className={classesPesquisa.anexarPdfs} id={classesPesquisa.segundoAnexarPdfs}>
+            <div className={classesPesquisa.inputsPdfs}>
+              <input type="file" accept=".pdf"/>
+              <p>Campo de submissão (PDF)</p>
             </div>
+            <div className={classesPesquisa.buttonSubmeterPDF}>
+              <button type="submit">Submeter PDF</button>
+            </div>
+          </div>
+        </form> 
 
-            <div className={`${classes.buttonSubmeterPDF} ${classes.secondButton}`}>
-              <button>Submeter PDF</button>
-            </div>
-          </form>
-        </div>
 
         <div className={classes.camposInlineOA}>
           <div className={classes.semestreNCH} id={classes.primeiroSemestreNCH}>
