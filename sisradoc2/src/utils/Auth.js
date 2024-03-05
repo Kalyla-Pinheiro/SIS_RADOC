@@ -7,7 +7,7 @@ const AuthFunctions = {
     googleOAuthFailure:async (credentials) => {
 
     },
-    
+
     apiAuthLogin: async (userEmail, userPassword) => {
         try {
             const bodyArgs = {
@@ -16,7 +16,7 @@ const AuthFunctions = {
             };
 
             console.log(bodyArgs);
-        
+
             const response = await fetch(apiurls.login, {
                 method: 'POST',
                 headers: {
@@ -24,11 +24,11 @@ const AuthFunctions = {
                 },
                 body: JSON.stringify(bodyArgs)
             });
-    
+
             if (!response.ok) {
                 throw new Error(`Erro na requisição: ${response.statusText}`);
             }
-    
+
             return response.json();
         } catch (error) {
             console.error('Erro na requisição:', error);

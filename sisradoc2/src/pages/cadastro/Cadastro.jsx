@@ -61,7 +61,7 @@ const Cadastro = () => {
       });
 
       if (response.status === 201) {
-        ToastifyMessages.sucess("Usuário cadastrado com sucesso!");
+        ToastifyMessages.success("Usuário cadastrado com sucesso!");
 
         setTimeout(() => {
           navigate("/login");

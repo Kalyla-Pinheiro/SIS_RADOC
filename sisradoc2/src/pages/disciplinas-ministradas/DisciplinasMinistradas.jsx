@@ -43,7 +43,7 @@ const DisciplinasMinistradas = () => {
       });
 
       if (response.ok) {
-        ToastifyMessages.sucess("PDF submetido com sucesso");
+        ToastifyMessages.success("PDF submetido com sucesso");
         
       }
     } catch (error) {
@@ -73,7 +73,7 @@ const DisciplinasMinistradas = () => {
 
       // Se a resposta da requisição for bem sucedida (200)
       if (response.ok) {
-        ToastifyMessages.sucess("PDF submetido com sucesso");
+        ToastifyMessages.success("PDF submetido com sucesso");
 
         // Converte a resposta da requisição para JSON para que possamos manipular as chaves e valores do objeto de resposta
         response.json()

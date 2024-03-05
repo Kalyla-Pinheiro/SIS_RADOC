@@ -19,13 +19,13 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const googleOAuthSuccess = (credentialResponse) => {
-    const token = TokenFunctions.patternToken(credentialResponse.credential);
+    //const token = TokenFunctions.patternToken(credentialResponse.credential);
 
-    const jwt = jwtDecode(token);
+    const token = credentialResponse.credential;
 
-    console.log("TOKEN DO GOOGLE PADRONIZADO: " + JSON.stringify(token));
+    // console.log("TOKEN DO GOOGLE PADRONIZADO: " + JSON.stringify(token));
 
-    TokenFunctions.setToken(jwt);
+    TokenFunctions.setToken(token);
 
     navigate("/home");
   };
@@ -57,11 +57,11 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        ToastifyMessages.sucess("Login efetuado com sucesso");
+        ToastifyMessages.success("Login efetuado com sucesso");
 
         response.json().then((data) => {
           console.log(JSON.stringify(data));
-          TokenFunctions.setToken(data);
+          TokenFunctions.setToken(data.token);
         });
 
         setTimeout(() => {

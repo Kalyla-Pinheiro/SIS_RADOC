@@ -1,9 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 
 const TokenFunctions = {
-    setToken: (data) => {
-        const token = data.token;
-
+    setToken: (token) => {
         document.cookie = `jwt=${token}`;
     },
 
@@ -19,6 +17,21 @@ const TokenFunctions = {
         let token;
 
         return token;
+    },
+
+    getName: (token) => {
+        const tokenDecoded = jwtDecode(token);
+        console.log("GET NAME: " + tokenDecoded);
+        const name = tokenDecoded.name;
+
+        return name;
+    },
+
+    getEmail: (token) => {
+        const tokenDecoded = jwtDecode(token);
+        const email = tokenDecoded.email;
+
+        return email;
     }
 }
 
