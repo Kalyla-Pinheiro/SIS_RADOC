@@ -6,8 +6,9 @@ import { FaLock } from "react-icons/fa";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import TokenFunctions from "../../utils/Token";
-import { ToastContainer, toast } from "react-toastify";
+import { tainer, toast } from "react-toastify";
 import { ToastifyMessages } from "../../utils/ToastifyMessages";
+import { ToastContainer } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import AuthFunctions from "../../utils/Auth";
 import apiurls from "../../apis/apiUrls";
@@ -19,15 +20,15 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const googleOAuthSuccess = (credentialResponse) => {
-    //const token = TokenFunctions.patternToken(credentialResponse.credential);
-
     const token = credentialResponse.credential;
-
-    // console.log("TOKEN DO GOOGLE PADRONIZADO: " + JSON.stringify(token));
 
     TokenFunctions.setToken(token);
 
-    navigate("/home");
+    ToastifyMessages.success("Login efetuado com sucesso");
+
+    setTimeout(() => {
+      navigate("/home");
+    }, 2000);
   };
 
   const googleOAuthFailure = (error) => {
