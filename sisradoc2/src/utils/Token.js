@@ -1,14 +1,37 @@
+import { jwtDecode } from "jwt-decode";
+
 const TokenFunctions = {
     setToken: (token) => {
         document.cookie = `jwt=${token}`;
     },
 
     getToken: () => {
-        const token = document.cookie;
-        if (token) {
-            return token;
-        }
-        return null;
+        const cookie = document.cookie;
+        const token = cookie.match(/jwt=([^;\n]+)/);
+
+        return token ? token[1] : null;
+    },
+
+    patternToken: (credential) =>{
+        const tokenToPattern = jwtDecode(credential);
+        let token;
+
+        return token;
+    },
+
+    getName: (token) => {
+        const tokenDecoded = jwtDecode(token);
+        console.log("GET NAME: " + tokenDecoded);
+        const name = tokenDecoded.name;
+
+        return name;
+    },
+
+    getEmail: (token) => {
+        const tokenDecoded = jwtDecode(token);
+        const email = tokenDecoded.email;
+
+        return email;
     }
 }
 

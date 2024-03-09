@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import apiUrls from "../../apis/apiUrls";
 import { ToastContainer, toast } from "react-toastify";
 import {ToastifyMessages} from "../../utils/ToastifyMessages";
+import classesPesquisa from "../../css-modules/Pesquisa.module.css";
 
 const DisciplinasMinistradas = () => {
   const [pdfDisciplinas, setPdfDisciplinas] = useState(null);
@@ -17,6 +18,9 @@ const DisciplinasMinistradas = () => {
   const [sigla, setSigla] = useState("");
   const [ch, setCH] = useState("");
   
+  // funcões referentes as operacões no localStorage
+  const armazenarNaSessionStorage = (chave, valor) => { sessionStorage.setItem(chave, valor) };
+  const apagarNaSessionStorage=(chave) => { sessionStorage.removeItem(chave) };
 
   const handlepdfDisciplinasChange = (event) => {
     setPdfDisciplinas(event.target.files[0]);
@@ -40,7 +44,7 @@ const DisciplinasMinistradas = () => {
       });
 
       if (response.ok) {
-        ToastifyMessages.sucess("PDF submetido com sucesso");
+        ToastifyMessages.success("PDF submetido com sucesso");
         
       }
     } catch (error) {
@@ -70,7 +74,7 @@ const DisciplinasMinistradas = () => {
 
       // Se a resposta da requisição for bem sucedida (200)
       if (response.ok) {
-        ToastifyMessages.sucess("PDF submetido com sucesso");
+        ToastifyMessages.success("PDF submetido com sucesso");
 
         // Converte a resposta da requisição para JSON para que possamos manipular as chaves e valores do objeto de resposta
         response.json()
@@ -79,9 +83,13 @@ const DisciplinasMinistradas = () => {
           // Atribuir o valor da chave do objeto de resposta no estado "nome"
           console.log(data) // Consolando o objeto de resposta
           console.log(data.wordsFound) // Consolando a chave "wordsFound" do objeto de resposta
+          armazenarNaSessionStorage("json_diarios_de_turma", data.wordsFound)
           setNome(data.wordsFound.Disciplina[0])
+          armazenarNaSessionStorage("nome", data.wordsFound.Disciplina[0]) // inserindo o nome no localStorage
           setSigla(data.wordsFound.Código[0])
+          armazenarNaSessionStorage("sigla", data.wordsFound.Código[0])
           setCH(data.wordsFound['Carga Horária'][0])
+          armazenarNaSessionStorage("ch", data.wordsFound["Carga Horária"][0]);
         })
       }
 
@@ -100,84 +108,43 @@ const DisciplinasMinistradas = () => {
           <h1>Disciplinas Ministradas</h1>
         </div>
 
-        <div className={classes.formulariosPDF}>
-          <form className={classes.campoSubmissaoPDF} 
-          action="" 
-          method="post" 
-          encType="multipart/form-data" 
-          onSubmit={handleDisciplinasMinistradas}
-          >
-            <div className={classes.anexarPdfs}>
-              <div className={classes.inputsPdfs} id={classes.primeiroInput}>
-                <input 
-                type="file" 
-                accept=".pdf" 
-                onChange={handlepdfDisciplinasChange}
-                />
-                <p>Declaração de disciplinas ministradas (PDF)</p>
-              </div>
+        <form className={classes.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data" onSubmit={handleDisciplinasMinistradas}>
+          <div className={classes.anexarPdfs}>
+            <div className={classes.inputsPdfs} id={classes.primeiroInput}>
+              <input type="file" accept=".pdf" onChange={handlepdfDisciplinasChange}/>
+              <p>Declaração de disciplinas ministradas (PDF)</p>
             </div>
-            <div className={classes.buttonSubmeterPDF}>
-              <button type="submit">Submeter PDF</button>
-            </div>
-          </form>
+          </div>
+          <div className={classes.buttonSubmeterPDF}>
+            <button type="submit">Submeter PDF</button>
+          </div>
+        </form>
 
-          <form action="" 
-          method="post" 
-          encType="multipart/form-data" 
-          onSubmit={handleDiarioDeTurma} 
-          className={classes.campoSubmissaoPDF}>
-            <div className={classes.anexarPdfs}>
-              <div className={classes.inputsPdfs} id={classes.segundoInput}>
-                <input 
-                type="file" 
-                accept=".pdf" 
-                onChange={handlepdfDiariosChange}
-                />
-                <p>Diarios de turma (PDF)</p>
-              </div>
+        <form action="" method="post" encType="multipart/form-data" onSubmit={handleDiarioDeTurma} className={classes.campoSubmissaoPDF} id={classes.segundoCampoSubmissao}>
+          <div className={classes.anexarPdfs}>
+            <div className={classes.inputsPdfs} id={classes.segundoInput}>
+              <input type="file" accept=".pdf" onChange={handlepdfDiariosChange}/>
+              <p>Diarios de turma (PDF)</p>
             </div>
+          </div>
+          <div className={`${classes.buttonSubmeterPDF} ${classes.secondButton}`}>
+            <button>Submeter PDF</button>
+          </div>
+        </form>
 
-            <div className={`${classes.buttonSubmeterPDF} ${classes.secondButton}`}>
-              <button>Submeter PDF</button>
-            </div>
-
-          </form>
-        </div>
 
         <div className={classes.semestre} id={classes.primeiroSemestre}>
           <div className={classes.tituloSemestre}>
             <p>1º Semestre</p>
           </div>
           <div className={classes.camposTabela}>
-            <input 
-            className="nomePrimeiroSemestre" 
-            type="text" 
-            placeholder="Nome"
-            value={nome}
-            readOnly
-            />{" "}
+            <input className="nomePrimeiroSemestre" type="text" placeholder="Nome" value={sessionStorage.getItem("nome")} readOnly/>{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input 
-            className="siglaPrimeiroSemestre" 
-            type="text"
-            value={sigla} 
-            placeholder="Sigla do curso" 
-            readOnly />{" "}
+            <input className="siglaPrimeiroSemestre" type="text" value={sessionStorage.getItem("sigla")} placeholder="Sigla do curso" readOnly />{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input 
-              className="chPrimeiroSemestre" 
-              type="text" 
-              placeholder="Nível" 
-              required />{" "}
+            <input className="chPrimeiroSemestre" type="text" placeholder="Nível" required />{" "}
             <BsQuestionCircleFill className={classes.icon} />
-            <input
-              className={classes.ultimoCampoInput}
-              type="text"
-              value={ch}
-              placeholder="CH total"
-              readOnly
-            />{" "}
+            <input className={classes.ultimoCampoInput} type="text" value={sessionStorage.getItem("ch")} placeholder="CH total" readOnly/>{" "}
             <BsQuestionCircleFill className={classes.icon} />
           </div>
           <div className={classes.camposTabela}>
@@ -218,7 +185,7 @@ const DisciplinasMinistradas = () => {
           </div>
         </div>
 
-        <div className={classes.buttons}>
+        <div className={classes.buttons} id={classes.buttonDisciplinaMinistrada}>
           <a href="/numeroDeTurmasCHporTurma">
             <button>Próximo</button>
           </a>

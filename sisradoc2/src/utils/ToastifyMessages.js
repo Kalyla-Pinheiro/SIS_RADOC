@@ -1,10 +1,10 @@
-// Arquivo responsável por criar as mensagens de erro, sucesso e aviso que aparecem na tela
+// Arquivo responsável por criar as mensagens de erro, successo e aviso que aparecem na tela
 
 import { toast } from "react-toastify";
 
 export const ToastifyMessages = {
     // Mensagem de sucesso
-    sucess: (message) => {
+    success: (message) => {
         toast.success(message, {
             position: "bottom-left",
         })
