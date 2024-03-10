@@ -10,6 +10,7 @@ import { tainer, toast } from "react-toastify";
 import { ToastifyMessages } from "../../utils/ToastifyMessages";
 import { ToastContainer } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
+import Cookie from "js-cookie";
 import AuthFunctions from "../../utils/Auth";
 import apiurls from "../../apis/apiUrls";
 
@@ -19,6 +20,18 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  // const jwt = Cookie.get("jwt");
+  // const decodedJWT = jwtDecode(jwt);
+
+  // console.log("JWT: " + JSON.stringify(decodedJWT))
+
+  // const system = TokenFunctions.getSystem(jwt);
+  // console.log("SYSTEM LOGIN: " + system)
+
+  // if (jwt && system === "sisradoc"){
+  //   navigate("/");
+  // }
+
   const googleOAuthSuccess = (credentialResponse) => {
     const token = credentialResponse.credential;
 
@@ -27,7 +40,7 @@ const Login = () => {
     ToastifyMessages.success("Login efetuado com sucesso");
 
     setTimeout(() => {
-      navigate("/home");
+      navigate("/");
     }, 2000);
   };
 
@@ -66,7 +79,7 @@ const Login = () => {
         });
 
         setTimeout(() => {
-          navigate("/home");
+          navigate("/");
         }, 2000);
       }
     } catch (error) {

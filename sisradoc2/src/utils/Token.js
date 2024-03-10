@@ -14,9 +14,12 @@ const TokenFunctions = {
 
     patternToken: (credential) =>{
         const tokenToPattern = jwtDecode(credential);
-        let token;
+        
+        const tokenPattern = {
+            
+        }
 
-        return token;
+        return tokenPattern;
     },
 
     getName: (token) => {
@@ -32,6 +35,13 @@ const TokenFunctions = {
         const email = tokenDecoded.email;
 
         return email;
+    },
+
+    getSystem: (token) => {
+        const tokenDecoded = jwtDecode(token);
+        const system = tokenDecoded.system;
+
+        return system;
     }
 }
 
