@@ -1,16 +1,20 @@
 // Midleware responsável por verificar se o usuário está logado na aplicação
 import Cookie from "js-cookie";
+import { Outlet, Navigate } from 'react-router-dom';
+import TokenFunctions from "../utils/Token";
 
-const authMiddleware = (nextState, replace) => {
+const AuthMiddleware = (nextState, replace) => {
   const jwt = Cookie.get("jwt");
-  console.log("MIDDLEWARE JWT: " + jwt);
+  
+  if(jwt){
+    let system;
+    system = TokenFunctions.getSystem(jwt);
 
-  if (!jwt) {
-    replace({
-      pathname: "/login",
-      state: { nextPathname: nextState.location.pathname} // Passando a rota que o usuário tentou acessar
-    });
+    if(system !== "sisradoc") <Navigate to="/login"/>;
+    return <Outlet/>;
   }
+
+  return <Navigate to="/login"/>
 };
 
-export default authMiddleware;
+export default AuthMiddleware;

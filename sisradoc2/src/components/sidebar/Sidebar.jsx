@@ -13,7 +13,7 @@ const Formulario = ({children}) => {
     const toggle = () => setIsOpen (!isOpen);
     const menuitem=[
         {
-            path:"/home",
+            path:"/",
             name:"Home",
             icon: <FaHome />
         },

@@ -10,6 +10,7 @@ import { tainer, toast } from "react-toastify";
 import { ToastifyMessages } from "../../utils/ToastifyMessages";
 import { ToastContainer } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
+import Cookie from "js-cookie";
 import AuthFunctions from "../../utils/Auth";
 import apiurls from "../../apis/apiUrls";
 
@@ -19,16 +20,29 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const googleOAuthSuccess = (credentialResponse) => {
+  const googleOAuthSuccess = async (credentialResponse) => {
     const token = credentialResponse.credential;
+    const decodedToken = jwtDecode(token);
 
-    TokenFunctions.setToken(token);
+    try{
+      const result = await AuthFunctions.verificar_usuario(decodedToken.email);
 
-    ToastifyMessages.success("Login efetuado com sucesso");
+      if(result.message === "User exists"){
+        TokenFunctions.setToken(token);
+        navigate("/formularios");
+        return;
+      } else if (result.message === "User not exists"){
+        TokenFunctions.setToken(token);
 
-    setTimeout(() => {
-      navigate("/home");
-    }, 2000);
+        ToastifyMessages.warning("Realize o cadastro para continuar");
+    
+        setTimeout(() => {
+          navigate("/cadastro");
+        }, 2000);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const googleOAuthFailure = (error) => {
@@ -66,7 +80,7 @@ const Login = () => {
         });
 
         setTimeout(() => {
-          navigate("/home");
+          navigate("/");
         }, 2000);
       }
     } catch (error) {
