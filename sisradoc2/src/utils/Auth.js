@@ -34,7 +34,24 @@ const AuthFunctions = {
             console.error('Erro na requisição:', error);
             throw error;
         }
-    }
+    },
+
+    verificar_usuario: async (email) => {
+
+        try {
+            const response = await fetch(`${apiurls.verificar_usuario}?email=${email}`);
+
+            if (!response.ok) {
+                const error = await response.json();
+                return error;
+            }
+
+            const data = await response.json();
+            return data; 
+        } catch (error) {
+            console.error('Erro na requisição:', error);
+        }
+    },
 }
 
 export default AuthFunctions;

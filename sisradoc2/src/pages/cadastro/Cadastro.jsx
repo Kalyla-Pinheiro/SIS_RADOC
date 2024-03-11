@@ -19,6 +19,8 @@ import classes from "../../css-modules/Cadastro.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { ToastifyMessages } from "../../utils/ToastifyMessages";
 import apiurls from "../../apis/apiUrls";
+import TokenFunctions from "../../utils/Token";
+import {jwtDecode} from "jwt-decode";
 
 const Cadastro = () => {
   const navigate = useNavigate();
@@ -36,6 +38,16 @@ const Cadastro = () => {
     senha: "",
     confirmarSenha: "",
   });
+
+  const token = TokenFunctions.getToken();
+
+  if (token) {
+    const decodedToken = jwtDecode(token);
+    formData.nome = decodedToken.name;
+    formData.email = decodedToken.email;
+    formData.nomeUsuario = decodedToken.given_name;
+  }
+
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
