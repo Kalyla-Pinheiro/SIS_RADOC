@@ -6,6 +6,7 @@ const apiUrls = {
   ensino: `${baseUrl}/ensino`,
   disc_ministradas: `${baseUrl}/pdf/ministradas`,
   diario_de_turma: `${baseUrl}/pdf/diarios`,
+  verificar_usuario: `${baseUrl}/verificar-usuario`,
 };
 
 export default apiUrls;

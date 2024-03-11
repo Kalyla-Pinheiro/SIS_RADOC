@@ -28,7 +28,7 @@ import Projetos from "./pages/pesquisa/Projetos/Projetos";
 import Trabalhos from "./pages/pesquisa/Trabalhos/Trabalhos";
 import LivrosVerbetesPublicados from "./pages/pesquisa/livros-e-verbetes-publicados/LivrosVerbetesPublicados";
 import TrabalhosResumosPublicadosApresentados from "./pages/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados/TrabalhosResumosPublicadosApresentados";
-import authMiddleware from "../src/middleware/authMiddleware";
+import AuthMiddleware from "./middleware/AuthMiddleware";
 
 const MainLayout = ({ children }) => (
   <div>
@@ -55,68 +55,72 @@ function App() {
           element={
             <MainLayout>
               <Routes>
-                <Route path="home" element={<Home />} onEnter={authMiddleware}/>
-                <Route path="perfil" element={<Perfil />} />
-                <Route path="formularios" element={<Formulario />} />
-                <Route path="documentos" element={<Documento />} />
-                <Route path="configuracao" element={<Configuracao />} />
-                <Route path="ensino" element={<Ensino />} />
-                <Route
-                  path="disciplinas"
-                  element={<DisciplinasMinistradas />}
-                />
-                <Route
-                  path="numeroDeTurmasCHporTurma"
-                  element={<NumeroDeTurmasCHporTurmas />}
-                />
-                <Route
-                  path="pedagogicasComplementares"
-                  element={<PedagogicasComplementares />}
-                />
-                <Route
-                  path="/ensino/DocentesEnvolvidos"
-                  element={<DocentesEnvolvidos />}
-                />
-                <Route
-                  path="/ensino/ChSemanalAulas"
-                  element={<ChSemanalAulas />}
-                />
-                <Route
-                  path="/ensino/AvaliacaoDocente"
-                  element={<AvaliacaoDocente />}
-                />
-                <Route
-                  path="OrientacaoAcademica"
-                  element={<OrientacaoAcademica />}
-                />
-                <Route
-                  path="SupervisaoAcademica"
-                  element={<SupervisaoAcademica />}
-                />
+                <Route element={<AuthMiddleware/>}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="perfil" element={<Perfil />} />
+                  <Route path="formularios" element={<Formulario />} />
+                  <Route path="documentos" element={<Documento />} />
+                  <Route path="configuracao" element={<Configuracao />} />
+                  <Route path="ensino" element={<Ensino />} />
+                  <Route
+                    path="disciplinas"
+                    element={<DisciplinasMinistradas />}
+                  />
+                  <Route
+                    path="numeroDeTurmasCHporTurma"
+                    element={<NumeroDeTurmasCHporTurmas />}
+                  />
+                  <Route
+                    path="pedagogicasComplementares"
+                    element={<PedagogicasComplementares />}
+                  />
+                  <Route
+                    path="/ensino/DocentesEnvolvidos"
+                    element={<DocentesEnvolvidos />}
+                  />
+                  <Route
+                    path="/ensino/ChSemanalAulas"
+                    element={<ChSemanalAulas />}
+                  />
+                  <Route
+                    path="/ensino/AvaliacaoDocente"
+                    element={<AvaliacaoDocente />}
+                  />
+                  <Route
+                    path="OrientacaoAcademica"
+                    element={<OrientacaoAcademica />}
+                  />
+                  <Route
+                    path="SupervisaoAcademica"
+                    element={<SupervisaoAcademica />}
+                  />
 
-                <Route
-                  path="ChSemanalOrientacao"
-                  element={<ChSemanalOrientacao />}
-                />
+                  <Route
+                    path="ChSemanalOrientacao"
+                    element={<ChSemanalOrientacao />}
+                  />
 
-                <Route
-                  path="PreceptoriaOuTutoriaDeResidencia"
-                  element={<PreceptoriaOuTutoriaDeResidencia />}
-                />
-                <Route
-                  path="MonografiaQualificacaoDIssertacaoTese"
-                  element={<MonografiaQualificacaoDIssertacaoTese />}
-                />
-                <Route path="pesquisa" element={<Pesquisa />} />
-                <Route path="pesquisa/Projetos" element={<Projetos />} />
-                <Route path="pesquisa/Trabalhos" element={<Trabalhos />} />
-                <Route path="/pesquisa/livros-e-verbetes-publicados" element={<LivrosVerbetesPublicados />}/>
-                <Route path="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados" element={<TrabalhosResumosPublicadosApresentados />}/>
+                  <Route
+                    path="PreceptoriaOuTutoriaDeResidencia"
+                    element={<PreceptoriaOuTutoriaDeResidencia />}
+                  />
+                  <Route
+                    path="MonografiaQualificacaoDIssertacaoTese"
+                    element={<MonografiaQualificacaoDIssertacaoTese />}
+                  />
+                  <Route path="pesquisa" element={<Pesquisa />} />
+                  <Route path="pesquisa/Projetos" element={<Projetos />} />
+                  <Route path="pesquisa/Trabalhos" element={<Trabalhos />} />
+                  <Route path="/pesquisa/livros-e-verbetes-publicados" element={<LivrosVerbetesPublicados />}/>
+                  <Route path="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados" element={<TrabalhosResumosPublicadosApresentados />}/>
+                </Route>
               </Routes>
             </MainLayout>
           }
         />
       </Routes>
+
+      
     </BrowserRouter>
   );
 }
