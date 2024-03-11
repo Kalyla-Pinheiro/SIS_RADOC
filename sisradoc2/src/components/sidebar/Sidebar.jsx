@@ -6,6 +6,7 @@ import { IoDocumentTextSharp } from "react-icons/io5";
 import { FaFolderOpen } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
+import { LuLogOut } from "react-icons/lu";
 import { NavLink } from 'react-router-dom';
 
 const Formulario = ({children}) => {
@@ -36,6 +37,11 @@ const Formulario = ({children}) => {
             path:"/configuracao",
             name:"Configurações",
             icon: <IoIosSettings />
+        },
+        {
+            path:"/login",
+            name:"Log Out",
+            icon: <LuLogOut />
         }
     ]
 
