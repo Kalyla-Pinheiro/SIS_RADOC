@@ -55,7 +55,7 @@ main {
 
 .list .link {
     width: 100%;
-    height: 50px;
+    /* height: 50px; */
     margin: 5px 0;
     line-height: 50px;
     display: flex;
@@ -79,4 +79,126 @@ main {
     line-height: 50px;
 }
 
+.btnGeral{
+    display:flex;
+    gap:30px;
+}
 
+.linkSub{
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.linkSub:hover {
+    background: rgba(255, 255, 255, .2);
+    transition: all 0.5s;
+}
+
+.sub-sub-text{
+    word-spacing: normal;
+    line-height: normal;
+    padding: 10px;
+}
+
+.subLink{
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin-left: 1rem
+}
+
+.subLink:hover {
+    background: rgba(255, 255, 255, .2);
+    transition: all 0.5s;
+}
+
+.submenu{
+    margin-left: 1rem;
+}
+
+.btnGeral:hover{
+    background: rgba(255, 255, 255, .2);
+    transition: all 0.5s;
+    border-radius: 6px;
+}
+
+.linkAlternativo {
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.linkAlternativo .icon {
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.linkAlternativo .icon {
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.linkSubAlternativo{
+    width: max-content;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    cursor: default;
+}
+
+.sub-icon{
+    user-select:none
+}
