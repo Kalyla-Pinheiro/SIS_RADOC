@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   HiOutlineIdentification,
@@ -21,37 +21,23 @@ import { ToastifyMessages } from "../../utils/ToastifyMessages";
 import apiurls from "../../apis/apiUrls";
 import TokenFunctions from "../../utils/Token";
 import {jwtDecode} from "jwt-decode";
-
+//botão Ocutlta/Mostrar Senha
+import { TbEye, TbEyeClosed} from "react-icons/tb";
 
 const Cadastro = () => {
-  const [values, setValues] = React.useState({
-    password: "",
-    showPassword: false,
-  });
-  
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
-  
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-  
-  const handlePasswordChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     nome: "",
     nomeUsuario: "",
-    siap: "",
+    siape: "",
     campus: "",
     classeReferencia: "",
     vinculo: "",
     regimeTrabalho: "",
     titulacao: "",
     email: "",
+    confirmarEmail: "",
     telefone: "",
     senha: "",
     confirmarSenha: "",
@@ -80,7 +66,10 @@ const Cadastro = () => {
       ToastifyMessages.warning("Senhas não coincidem!");
       return;
     }
-
+    if (formData.email !== formData.confirmarEmail) {
+      ToastifyMessages.warning("Emails não coincidem!");
+      return;
+    }
     try {
       const response = await fetch(apiurls.cadastro, {
         method: "POST",
@@ -109,6 +98,30 @@ const Cadastro = () => {
   const backClick = () => {
     navigate("/login");
   };
+
+//botão Mostra/Oculta senha
+const inputRef = useRef(null);
+const inputRef2 = useRef(null);
+
+const [eyeIsClosed, setEyeState] = useState(false);
+
+const toggleShow = () => {
+  if (inputRef.current.type === "password") {
+    setEyeState(true)
+    inputRef.current.type = "text";
+  } else {
+    setEyeState(false)
+    inputRef.current.type = "password";
+  }
+
+  if (inputRef2.current.type === "password") {
+    setEyeState(true)
+    inputRef2.current.type = "text";
+  } else {
+    setEyeState(false)
+    inputRef2.current.type = "password";
+  }
+}
 
   return (
     <div className={classes.cadastroContainer}>
@@ -146,9 +159,9 @@ const Cadastro = () => {
               <MdOutlinePin className="icon" />
               <input
                 type="text"
-                placeholder="SIAP"
-                name="siap"
-                value={formData.siap}
+                placeholder="SIAPE"
+                name="siape"
+                value={formData.siape}
                 onChange={handleChange}
                 required
               />
@@ -162,10 +175,10 @@ const Cadastro = () => {
                   onChange={handleChange}
                   id="campus"
                   name="campus"
-                  placeholder="CAMPUS/INSTITUTO"
+                  placeholder="INSTITUTO/CAMPUS"
                   required
                 >
-                  <option value="">Selecione o campus</option>
+                  <option value="">Selecione o Instituto/Campus</option>
                   <option value="ICA">ICA</option>
                   <option value="ICIBE">ICIBE</option>
                   <option value="ISARH">ISARH</option>
@@ -182,9 +195,14 @@ const Cadastro = () => {
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <HiOutlineIdentification className="icon" />
-
               <div className={classes.inputFieldClasseReferencia}>
-                  <select className={classes.selectClasseReferencia}  id="classeReferencia" name="ClasseReferencia" placeholder="Classe e Referencia" required>
+                  <select className={classes.selectClasseReferencia}
+                  id="classeReferencia" 
+                  name="classeReferencia" 
+                  placeholder="Classe e Referencia"
+                  value={formData.classeReferencia}
+                  onChange={handleChange} 
+                  required>
                     <option value="">Selecione a Classe</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -196,36 +214,47 @@ const Cadastro = () => {
             </div>
 
             <div className={classes.inputField}>
-              <HiOutlineLink className="icon" />
-              {/*<input type="text" placeholder="Vinculo" required />*/}
-              <div className={classes.inputFieldVinculo}>
-                  <select className={classes.selectVinculo}  id="vinculo" name="Vinculo" placeholder="Vinculo" required>
-                    <option value="">Selecione o Vinculo</option>
-                    <option value="Estatuario">Estatúario</option>
-                  </select>
-              </div>
+              <HiAcademicCap className="icon" />
+              <select className={classes.selectCampos}
+              id = "titulacao"
+              name = "titulacao"
+              placeholder = "Titulação"
+              value={formData.titulacao}
+              onChange={handleChange}
+              required>
+                <option value="">Selecione a Titulação</option>
+                <option value="Graduacao">Gradução</option>
+                <option value="Especializacao">Especialização</option>
+                <option value="Mestre">Mestre</option>
+                <option value="Doutor">Doutor</option>
+              </select>
             </div>
           </div>
 
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <HiBriefcase className="icon" />
-              <input
-                type="text"
-                placeholder="Regime de Trabalho"
-                name="regimeTrabalho"
-                value={formData.regimeTrabalho}
-                onChange={handleChange}
-                required
-              />
+              <select className={classes.selectCampos}
+              id = "regimeTrabalho"
+              name = "regimeTrabalho"
+              placeholder = "Regime de Trabalho"
+              value={formData.regimeTrabalho}
+              onChange={handleChange}
+              required>
+                <option value="">Selecione o Regime de Trabalho</option>
+                <option value="DE">DE</option>
+                <option value="20h">20h</option>
+                <option value="40h">40h</option>
+              </select>
             </div>
+
             <div className={classes.inputField}>
-              <HiAcademicCap className="icon" />
+              <MdPhone className="icon" />
               <input
-                type="text"
-                placeholder="Titulação"
-                name="titulacao"
-                value={formData.titulacao}
+                type="phone"
+                placeholder="Número de Telefone"
+                name="telefone"
+                value={formData.telefone}
                 onChange={handleChange}
                 required
               />
@@ -245,12 +274,12 @@ const Cadastro = () => {
               />
             </div>
             <div className={classes.inputField}>
-              <MdPhone className="icon" />
+              <LiaEnvelope className="icon" />
               <input
-                type="phone"
-                placeholder="Número de Telefone"
-                name="telefone"
-                value={formData.telefone}
+                type="email"
+                placeholder="Confirmar Email"
+                name="confirmarEmail"
+                value={formData.confirmarEmail}
                 onChange={handleChange}
                 required
               />
@@ -261,6 +290,7 @@ const Cadastro = () => {
             <div className={classes.inputField}>
               <LiaUnlockSolid className="icon" />
               <input
+                ref={inputRef}
                 type="password"
                 placeholder="Senha"
                 name="senha"
@@ -268,10 +298,13 @@ const Cadastro = () => {
                 onChange={handleChange}
                 required
               />
+              <button on onClick={toggleShow}>{eyeIsClosed ? <TbEye /> : <TbEyeClosed/>}</button>
             </div>
+
             <div className={classes.inputField}>
               <LiaUnlockSolid className="icon" />
               <input
+                ref={inputRef2}
                 type="password"
                 placeholder="Confirme a Senha"
                 name="confirmarSenha"
@@ -279,6 +312,7 @@ const Cadastro = () => {
                 onChange={handleChange}
                 required
               />
+              <button on onClick={toggleShow}>{eyeIsClosed ? <TbEye className="icon"/> : <TbEyeClosed className="icon"/>}</button>
             </div>
           </div>
 

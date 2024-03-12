@@ -48,6 +48,27 @@ body {
   padding: 10px 15px 10px 40px;
   color: #fff;
 }
+.selectCampos {
+  width: 100%;
+  height: 55px;
+  background: transparent;
+  border: 2px solid rgba(250, 244, 244, 0.2);
+  outline: none;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 10px 15px 10px 40px;
+  color: #fff;
+}
+.selectCampos > option {
+  background-color: white;
+  color: black;
+}
+
+.inputFieldCampos{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 
 .checkboxWrapper {
   display: flex;
@@ -207,4 +228,10 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
+}
+
+/*Botão Oculta/Mostra senha*/
+
+.buttonEye{
+  color: #fff;
 }
