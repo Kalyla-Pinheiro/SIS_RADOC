@@ -80,7 +80,7 @@ const Login = () => {
         });
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/home");
         }, 2000);
       }
     } catch (error) {

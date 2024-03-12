@@ -172,8 +172,8 @@
 }
 
 #buttonDisciplinaMinistrada {
-  padding-top: 60px;
-  padding-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 30px;
 }
 
 .buttons button {
@@ -199,6 +199,44 @@
   align-items: start;
   justify-content: center;
 }
+
+.areaPreenchimento {
+  margin-top: 20px;
+}
+
+.campoTabelasSemestre {
+  background: transparent;
+  width: 68.75rem;
+  height: 390px;
+  border-radius: 0.375rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.campoTabelasSemestre::-webkit-scrollbar {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  width: 6px;
+}
+
+.buttonsCampoTabelasSemestre {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonsCampoTabelasSemestre button {
+  width: 80px;
+  color: #fff;
+  background: none;
+  border-radius: 0.375rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top: none;
+  cursor: pointer;
+}
+
 
 /*Número de turmas e Ch por turmas*/
 

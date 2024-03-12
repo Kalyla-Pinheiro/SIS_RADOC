@@ -14,7 +14,7 @@ const Formulario = ({children}) => {
     const toggle = () => setIsOpen (!isOpen);
     const menuitem=[
         {
-            path:"/",
+            path:"/home",
             name:"Home",
             icon: <FaHome />
         },
@@ -39,7 +39,7 @@ const Formulario = ({children}) => {
             icon: <IoIosSettings />
         },
         {
-            path:"/login",
+            path:"/",
             name:"Log Out",
             icon: <LuLogOut />
         }

@@ -9,6 +9,9 @@ import apiUrls from "../../apis/apiUrls";
 import { ToastContainer, toast } from "react-toastify";
 import {ToastifyMessages} from "../../utils/ToastifyMessages";
 import classesPesquisa from "../../css-modules/Pesquisa.module.css";
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 
 const DisciplinasMinistradas = () => {
   const [pdfDisciplinas, setPdfDisciplinas] = useState(null);
@@ -132,7 +135,26 @@ const DisciplinasMinistradas = () => {
           </div>
         </form>
 
+        <div className={classes.areaPreenchimento}>
+          <div className={classes.tituloSemestre}>
+            <p>1º Semestre</p>
+          </div>
 
+          <div className={classes.campoTabelasSemestre}>
+            <div className={classes.buttonsCampoTabelasSemestre}>
+              <div>
+                <button><FaPlus /></button>
+                <button><FaMinus /></button>
+              </div>
+              <button><FaTrashAlt /></button>
+            </div>
+          
+            
+          </div>
+        </div>
+        
+
+        {/*
         <div className={classes.semestre} id={classes.primeiroSemestre}>
           <div className={classes.tituloSemestre}>
             <p>1º Semestre</p>
@@ -158,7 +180,7 @@ const DisciplinasMinistradas = () => {
             <BsQuestionCircleFill className={classes.icon} />
           </div>
         </div>
-
+        
         <div className={classes.semestre}>
           <div className={classes.tituloSemestre}>
             <p>2º Semestre</p>
@@ -184,6 +206,7 @@ const DisciplinasMinistradas = () => {
             <BsQuestionCircleFill className={classes.icon} />
           </div>
         </div>
+        */}
 
         <div className={classes.buttons} id={classes.buttonDisciplinaMinistrada}>
           <a href="/numeroDeTurmasCHporTurma">

@@ -29,6 +29,7 @@ import Trabalhos from "./pages/pesquisa/Trabalhos/Trabalhos";
 import LivrosVerbetesPublicados from "./pages/pesquisa/livros-e-verbetes-publicados/LivrosVerbetesPublicados";
 import TrabalhosResumosPublicadosApresentados from "./pages/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados/TrabalhosResumosPublicadosApresentados";
 import AuthMiddleware from "./middleware/AuthMiddleware";
+import { Navigate } from "react-router-dom";
 
 const MainLayout = ({ children }) => (
   <div>
@@ -43,20 +44,22 @@ const EnsinoLayout = ({ children }) => (
   </div>
 );
 
+const NotFound = () => <Navigate to="/404" />;
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
-
+        
         <Route
           path="/*"
           element={
             <MainLayout>
               <Routes>
                 <Route element={<AuthMiddleware/>}>
-                  <Route path="/" element={<Home />} />
+                  <Route path="home" element={<Home />} />
                   <Route path="perfil" element={<Perfil />} />
                   <Route path="formularios" element={<Formulario />} />
                   <Route path="documentos" element={<Documento />} />

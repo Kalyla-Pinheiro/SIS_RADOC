@@ -89,7 +89,7 @@ const Cadastro = () => {
   };
 
   const backClick = () => {
-    navigate("/login");
+    navigate("/");
   };
 
   return (

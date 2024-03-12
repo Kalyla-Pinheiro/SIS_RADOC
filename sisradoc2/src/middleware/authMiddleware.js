@@ -10,11 +10,11 @@ const AuthMiddleware = (nextState, replace) => {
     let system;
     system = TokenFunctions.getSystem(jwt);
 
-    if(system !== "sisradoc") <Navigate to="/login"/>;
+    if(system !== "sisradoc") <Navigate to="/"/>;
     return <Outlet/>;
   }
 
-  return <Navigate to="/login"/>
+  return <Navigate to="/"/>
 };
 
 export default AuthMiddleware;
