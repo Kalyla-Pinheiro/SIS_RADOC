@@ -15,6 +15,7 @@ const AuthMiddleware = (nextState, replace) => {
   }
 
   return <Navigate to="/"/>
+
 };
 
 export default AuthMiddleware;
