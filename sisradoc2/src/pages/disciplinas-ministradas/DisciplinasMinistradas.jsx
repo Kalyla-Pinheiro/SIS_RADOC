@@ -12,6 +12,11 @@ import classesPesquisa from "../../css-modules/Pesquisa.module.css";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
+import { ChakraProvider, Box} from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react';
+import ReactDOM from "react-dom";
+import TabelasDisciplinasMinistradas from "../../formularios/TabelasDisciplinasMinistradas";
+import paisagem3 from "../imagens/paisagem3.png";
 
 const DisciplinasMinistradas = () => {
   const [pdfDisciplinas, setPdfDisciplinas] = useState(null);
@@ -101,8 +106,27 @@ const DisciplinasMinistradas = () => {
     }
   };
 
+  const backgroundImage = "url(../imagens/paisagem3.png)";
+
+  const theme = extendTheme({
+    styles: {
+      global: {
+        body: {
+          backgroundImage: `url(${paisagem3})`,
+          fontFamily: "Poppins, sans-serif",
+          minHeight: "100vh",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          overflow: "hidden"
+        },
+      },
+    },
+  });
+  
   return (
     <div>
+    
       <Navegacao />
       <PopUp />
 
@@ -141,16 +165,11 @@ const DisciplinasMinistradas = () => {
           </div>
 
           <div className={classes.campoTabelasSemestre}>
-            <div className={classes.buttonsCampoTabelasSemestre}>
-              <div>
-                <button><FaPlus /></button>
-                <button><FaMinus /></button>
-              </div>
-              <button><FaTrashAlt /></button>
-            </div>
-          
-            
+            <ChakraProvider theme={theme} resetCSS={false}>
+              <TabelasDisciplinasMinistradas/>
+            </ChakraProvider>
           </div>
+
         </div>
         
 
