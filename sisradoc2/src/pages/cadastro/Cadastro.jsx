@@ -181,10 +181,17 @@ const Cadastro = () => {
 
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
-              <HiOutlineIdentification className="icon" />
-
+              <HiOutlineLibrary className={''} />
               <div className={classes.inputFieldClasseReferencia}>
-                  <select className={classes.selectClasseReferencia}  id="classeReferencia" name="ClasseReferencia" placeholder="Classe e Referencia" required>
+                <select 
+                  className={classes.selectClasseReferencia}  
+                  value={formData.classeReferencia}
+                  onChange={handleChange}
+                  id="classeReferencia" 
+                  name="classeReferencia" 
+                  placeholder="Classe e Referencia" 
+                  required
+                  >
                     <option value="">Selecione a Classe</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -196,10 +203,18 @@ const Cadastro = () => {
             </div>
 
             <div className={classes.inputField}>
-              <HiOutlineLink className="icon" />
+              <HiOutlineLibrary className={''} />
               {/*<input type="text" placeholder="Vinculo" required />*/}
               <div className={classes.inputFieldVinculo}>
-                  <select className={classes.selectVinculo}  id="vinculo" name="Vinculo" placeholder="Vinculo" required>
+                <select 
+                  className={classes.selectVinculo}  
+                  value={formData.vinculo}
+                  onChange={handleChange}
+                  id="vinculo" 
+                  name="vinculo" 
+                  placeholder="Vinculo" 
+                  required
+                  >
                     <option value="">Selecione o Vinculo</option>
                     <option value="Estatuario">Estatúario</option>
                   </select>
