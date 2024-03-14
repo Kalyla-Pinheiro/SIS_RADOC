@@ -100,6 +100,7 @@
   font-size: 14.5px;
   text-align: center;
   margin: 20px 0 15px;
+  transition: all 0.5s;
 }
 
 .register-link p a {
@@ -112,13 +113,22 @@
   text-decoration: underline;
 }
 
+.register-link:active{
+  transform: scale(0.80);
+}
+
 .options-login {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 0.5s;
 
   button {
     margin-bottom: 1rem;
   }
 }
+.options-login button:active{
+  transform: scale(0.80);
+}
+

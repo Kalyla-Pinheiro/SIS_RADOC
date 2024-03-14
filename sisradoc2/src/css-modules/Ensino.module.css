@@ -39,19 +39,19 @@
   font-weight: 400;
   font-size: 16px;
   color: #fff;
+  transition: all 0.5s;
 }
-
-.opcaoEnsino:active {
-  transform: scale(0.8);
-}
-
-#ultimaOpcao {
-  margin-bottom: 0px;
+.opcaoEnsino:active{
+  transform: scale(0.80);
 }
 
 .opcaoEnsino:hover {
   color: black;
   background: #fff;
+}
+
+#ultimaOpcao {
+  margin-bottom: 0px;
 }
 
 /*Disciplinas Ministradas*/
@@ -184,6 +184,11 @@
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.5s;
+}
+
+.buttons button:active {
+  transform: scale(0.80);
 }
 
 .secondButton {
@@ -301,7 +306,13 @@
 
 #buttonProximo {
   margin-left: 15px;
+  transition: all o.5s;
 }
+
+#buttonProximo:active {
+  transform: scale(0.80);
+}
+
 
 /*Pedagógicas Complementares*/
 
@@ -317,6 +328,10 @@
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.5s;
+}
+.buttonSalvarPc button:active {
+  transform: scale(0.80);
 }
 
 /*DocentesEnvolvidos*/
@@ -383,6 +398,36 @@
   border: none;
   border-radius: 0.375rem;
   font-size: 16px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.buttonsD button:active {
+  transform: scale(0.80);
+}
+
+.buttonsDV {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: end;
+  padding-left: 60px;
+  padding-bottom: 40px;
+  grid-row: 4;
+}
+
+.buttonsDV button {
+  width: 130px;
+  height: 40px;
+  background: #fff;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.buttonsDV button:active {
+  transform: scale(0.80);
 }
 
 /* Ch semanal de aulas*/
@@ -403,12 +448,16 @@
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.5s;
+}
+
+.buttonCh button:active {
+  transform: scale(0.80);
 }
 
 /*Orientacão, supervisão e outros*/
 
 /*Orientacão Acadêmica*/
-
 .orientacaoAcademicaContainer {
   margin-top: 40px;
   height: 700px;
@@ -457,6 +506,15 @@
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.5s;
+}
+
+.buttonOA button:active{
+  transform: scale(0.80);
+}
+
+#buttonChOA {
+  padding-top: 43px;
 }
 
 #buttonChOA {

@@ -22,7 +22,25 @@ import apiurls from "../../apis/apiUrls";
 import TokenFunctions from "../../utils/Token";
 import {jwtDecode} from "jwt-decode";
 
+
 const Cadastro = () => {
+  const [values, setValues] = React.useState({
+    password: "",
+    showPassword: false,
+  });
+  
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+  
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  
+  const handlePasswordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nome: "",
@@ -136,7 +154,7 @@ const Cadastro = () => {
               />
             </div>
             <div className={classes.inputField}>
-              <HiOutlineLibrary className="icon" />
+              <HiOutlineLibrary className={''} />
               <div className={classes.inputFieldCampus}>
                 <select
                   className={classes.selectCampus}
@@ -164,25 +182,28 @@ const Cadastro = () => {
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
               <HiOutlineIdentification className="icon" />
-              <input
-                type="text"
-                placeholder="Classe e Referência"
-                name="classeReferencia"
-                value={formData.classeReferencia}
-                onChange={handleChange}
-                required
-              />
+
+              <div className={classes.inputFieldClasseReferencia}>
+                  <select className={classes.selectClasseReferencia}  id="classeReferencia" name="ClasseReferencia" placeholder="Classe e Referencia" required>
+                    <option value="">Selecione a Classe</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                  </select>
+                </div>
             </div>
+
             <div className={classes.inputField}>
               <HiOutlineLink className="icon" />
-              <input
-                type="text"
-                placeholder="Vínculo"
-                name="vinculo"
-                value={formData.vinculo}
-                onChange={handleChange}
-                required
-              />
+              {/*<input type="text" placeholder="Vinculo" required />*/}
+              <div className={classes.inputFieldVinculo}>
+                  <select className={classes.selectVinculo}  id="vinculo" name="Vinculo" placeholder="Vinculo" required>
+                    <option value="">Selecione o Vinculo</option>
+                    <option value="Estatuario">Estatúario</option>
+                  </select>
+              </div>
             </div>
           </div>
 
