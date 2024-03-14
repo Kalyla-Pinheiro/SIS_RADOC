@@ -20,26 +20,25 @@ const TabelasDisciplinasMinistradas = () => {
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
-  const isMobile = useBreakpointValue({
-    base: true,
-    lg: false,
-  });
-
   useEffect(() => {
-    const db_costumer = localStorage.getItem("cad_cliente")
-      ? JSON.parse(localStorage.getItem("cad_cliente"))
+    const db_costumer = localStorage.getItem("disciplinas_ministradas_semestre_1")
+      ? JSON.parse(localStorage.getItem("disciplinas_ministradas_semestre_1"))
       : [];
 
     setData(db_costumer);
   }, [setData]);
 
-  const handleRemove = (email) => {
-    const newArray = data.filter((item) => item.email !== email);
+  const handleRemove = (codigo) => {
+    //const newArray = data.filter((item) => item.email !== email);
+    const newArray = data.filter(
+      (item) => item.codigo !== codigo);
 
     setData(newArray);
 
-    localStorage.setItem("cad_cliente", JSON.stringify(newArray));
+    localStorage.setItem("disciplinas_ministradas_semestre_1", JSON.stringify(newArray));
   };
+
+  //maxW={1000}               BOX
 
   return (
     <Flex
@@ -49,9 +48,8 @@ const TabelasDisciplinasMinistradas = () => {
       justify="center"
       fontSize="15px"
       fontFamily="poppins"
-      
     >
-      <Box  maxW={800} w="100%" h="100%" py={10} px={2}>
+      <Box  maxW={1200} w="100%" h="100%" py={10} px={2}>
         
         <Button 
           colorScheme="blue" 
@@ -64,47 +62,66 @@ const TabelasDisciplinasMinistradas = () => {
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" height="100%">
-          <Table mt="6">
+        <Box overflowY="auto" overflowX="auto" height="100%">
+          <Table mt="0">
             <Thead>
               <Tr>
-                <Th maxW={isMobile ? 5 : 100} fontSize="15px" color="#fff">
+                <Th maxW="200px" fontSize="15px" color="#fff">
                   Nome
                 </Th>
-                <Th maxW={isMobile ? 5 : 100} fontSize="15px" color="#fff">
+                <Th maxW="200px" fontSize="15px" color="#fff">
                   Código
                 </Th>
-                <Th maxW={isMobile ? 5 : 100} fontSize="15px" color="#fff">
+                <Th maxW="200px" fontSize="15px" color="#fff">
                   Curso
                 </Th>
-                <Th maxW={isMobile ? 5 : 100} fontSize="15px" color="#fff">
+                <Th maxW="200px" fontSize="15px" color="#fff">
                   Nível
                 </Th>
-                <Th maxW={isMobile ? 5 : 100} fontSize="15px" color="#fff">
+                <Th maxW="200px" fontSize="15px" color="#fff">
                   CH Total
+                </Th>
+                <Th maxW="200px" fontSize="15px" color="#fff">
+                  Nº De Turmas (Teóricas)
+                </Th>
+                <Th maxW="200px" fontSize="15px" color="#fff">
+                  Nº De Turmas (Práticas)
+                </Th>
+                <Th maxW="200px" fontSize="15px" color="#fff">
+                  CH Por Turma (Teóricas)
+                </Th>
+                <Th maxW="200px" fontSize="15px" color="#fff">
+                  CH Por Turma (Práticas)
                 </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({ name, email }, index) => (
-                <Tr key={index} cursor="pointer " _hover={{ bg: "gray.100" }}>
-                  <Td maxW={isMobile ? 5 : 100}>{name}</Td>
-                  <Td maxW={isMobile ? 5 : 100}>{email}</Td>
+              {data.map(({nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP}, index) => (
+                <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
+                  <Td maxW="200px">{nome}</Td>
+                  <Td maxW="200px">{codigo}</Td>
+                  <Td maxW="200px">{curso}</Td>
+                  <Td maxW="200px">{nivel}</Td>
+                  <Td maxW="200px">{chTotal}</Td>
+                  <Td maxW="200px">{numTurmasT}</Td>
+                  <Td maxW="200px">{numTurmasP}</Td>
+                  <Td maxW="200px">{chPorTurmaT}</Td>
+                  <Td maxW="200px">{chPorTurmaP}</Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({ name, email, index }),
+                        setDataEdit({nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, index }),
                         onOpen(),
                       ]}
                     />
                   </Td>
-                  <Td p={0}>
+                  <Td >
                     <DeleteIcon
                       fontSize={20}
-                      onClick={() => handleRemove(email)}
+                      onClick={() => handleRemove(codigo)}
                     />
                   </Td>
                 </Tr>

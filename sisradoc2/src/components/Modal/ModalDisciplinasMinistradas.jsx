@@ -19,45 +19,47 @@ const ModalDisciplinasMinistradas = ({
   setData,
   dataEdit,
   isOpen,
-  onClose,
+  onClose
 }) => {
-  const [name, setName] = useState(dataEdit.name || "");
-  const [email, setEmail] = useState(dataEdit.email || "");
   const [nome, setNome] = useState(dataEdit.nome || "");
   const [codigo, setCodigo] = useState(dataEdit.codigo || "");
   const [curso, setCurso] = useState(dataEdit.curso || "");
   const [nivel, setNivel] = useState(dataEdit.nivel || "");
   const [chTotal, setChTotal] = useState(dataEdit.chTotal || "");
+  const [numTurmasT, setNumTurmasT] = useState(dataEdit.numTurmasT || "");
+  const [numTurmasP, setNumTurmasP] = useState(dataEdit.numTurmasP || "");
+  const [chPorTurmaT, setChPorTurmaT] = useState(dataEdit.chPorTurmaT || "");
+  const [chPorTurmaP, setChPorTurmaP] = useState(dataEdit.chPorTurmaP || "");
 
   const handleSave = () => {
-    if (!name || !email || !nome || !codigo || !curso || !nivel || !chTotal) return;
+    if (!nome || !codigo || !curso || !nivel || !chTotal || !numTurmasT || !numTurmasP || !chPorTurmaT || !chPorTurmaP) return;
 
-    if (emailAlreadyExists()) {
-      return alert("E-mail já cadastrado!");
+    if (codigoJaExiste()) {
+      return alert("O código já existe!");
     }
 
     if (Object.keys(dataEdit).length) {
-      data[dataEdit.index] = { name, email };
+      data[dataEdit.index] = { nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP};
     }
 
     const newDataArray = !Object.keys(dataEdit).length
-      ? [...(data ? data : []), { name, email }]
+      ? [...(data ? data : []), { nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP }]
       : [...(data ? data : [])];
 
-    localStorage.setItem("cad_cliente", JSON.stringify(newDataArray));
+    localStorage.setItem("disciplinas_ministradas_semestre_1", JSON.stringify(newDataArray));
 
     setData(newDataArray);
 
     onClose();
   };
 
-  const emailAlreadyExists = () => {
-    if (dataEdit.email !== email && data?.length) {
-      return data.find((item) => item.email === email);
+  const codigoJaExiste = () => {
+    if (dataEdit.codigo !== codigo && data?.length) {
+      return data.find((item) => item.codigo === codigo);
     }
-
     return false;
   };
+
 
   return (
     <>
@@ -68,22 +70,6 @@ const ModalDisciplinasMinistradas = ({
           <ModalCloseButton />
           <ModalBody>
             <FormControl display="flex" flexDir="column" gap={4}>
-              <Box>
-                <FormLabel>Nome</FormLabel>
-                <Input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Box>
-              <Box>
-                <FormLabel>E-mail</FormLabel>
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Box>
               <Box>
                 <FormLabel>Nome</FormLabel>
                 <Input
@@ -122,6 +108,38 @@ const ModalDisciplinasMinistradas = ({
                   type="text"
                   value={chTotal}
                   onChange={(e) => setChTotal(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>Nº De Turmas (Teóricas)</FormLabel>
+                <Input
+                  type="text"
+                  value={numTurmasT}
+                  onChange={(e) => setNumTurmasT(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>Nº De Turmas (Práticas)</FormLabel>
+                <Input
+                  type="text"
+                  value={numTurmasP}
+                  onChange={(e) => setNumTurmasP(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>CH Por Turma (Teóricas)</FormLabel> 
+                <Input
+                  type="text"
+                  value={chPorTurmaT}
+                  onChange={(e) => setChPorTurmaT(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>CH Por Turma (Práticas)</FormLabel> 
+                <Input
+                  type="text"
+                  value={chPorTurmaP}
+                  onChange={(e) => setChPorTurmaP(e.target.value)}
                 />
               </Box>
             </FormControl>
