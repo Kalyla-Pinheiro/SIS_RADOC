@@ -53,14 +53,14 @@ const TabelasDisciplinasMinistradas = () => {
     >
       <Box  maxW={800} w="100%" h="100%" py={10} px={2}>
         
-      <Button 
-        colorScheme="blue" 
-        variant="outline" 
-        borderColor="#fff" 
-        color="#fff" 
-        _hover={{ color: "black", bg: "white" }} // Define a cor do texto como preta no estado de hover
-        onClick={() => [setDataEdit({}), onOpen()]}
-      >
+        <Button 
+          colorScheme="blue" 
+          variant="outline" 
+          borderColor="#fff" 
+          color="#fff" 
+          _hover={{ color: "black", bg: "white" }} 
+          onClick={() => [setDataEdit({}), onOpen()]}
+        >
           NOVO CADASTRO
         </Button>
 
@@ -72,7 +72,10 @@ const TabelasDisciplinasMinistradas = () => {
                   Nome
                 </Th>
                 <Th maxW={isMobile ? 5 : 100} fontSize="15px" color="#fff">
-                  Sigla
+                  Código
+                </Th>
+                <Th maxW={isMobile ? 5 : 100} fontSize="15px" color="#fff">
+                  Curso
                 </Th>
                 <Th maxW={isMobile ? 5 : 100} fontSize="15px" color="#fff">
                   Nível

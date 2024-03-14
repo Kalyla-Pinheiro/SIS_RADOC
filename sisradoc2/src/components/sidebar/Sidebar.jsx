@@ -40,7 +40,7 @@ const Formulario = ({children}) => {
         },
         {
             path:"/",
-            name:"Log Out",
+            name:"Sair",
             icon: <LuLogOut />
         }
     ]

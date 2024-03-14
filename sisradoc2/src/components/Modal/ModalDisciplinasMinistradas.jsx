@@ -23,9 +23,14 @@ const ModalDisciplinasMinistradas = ({
 }) => {
   const [name, setName] = useState(dataEdit.name || "");
   const [email, setEmail] = useState(dataEdit.email || "");
+  const [nome, setNome] = useState(dataEdit.nome || "");
+  const [codigo, setCodigo] = useState(dataEdit.codigo || "");
+  const [curso, setCurso] = useState(dataEdit.curso || "");
+  const [nivel, setNivel] = useState(dataEdit.nivel || "");
+  const [chTotal, setChTotal] = useState(dataEdit.chTotal || "");
 
   const handleSave = () => {
-    if (!name || !email) return;
+    if (!name || !email || !nome || !codigo || !curso || !nivel || !chTotal) return;
 
     if (emailAlreadyExists()) {
       return alert("E-mail já cadastrado!");
@@ -77,6 +82,46 @@ const ModalDisciplinasMinistradas = ({
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>Nome</FormLabel>
+                <Input
+                  type="text"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>Código</FormLabel>
+                <Input
+                  type="text"
+                  value={codigo}
+                  onChange={(e) => setCodigo(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>Curso</FormLabel>
+                <Input
+                  type="text"
+                  value={curso}
+                  onChange={(e) => setCurso(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>Nível</FormLabel>
+                <Input
+                  type="text"
+                  value={nivel}
+                  onChange={(e) => setNivel(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>CH Total</FormLabel>
+                <Input
+                  type="text"
+                  value={chTotal}
+                  onChange={(e) => setChTotal(e.target.value)}
                 />
               </Box>
             </FormControl>
