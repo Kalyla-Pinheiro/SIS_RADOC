@@ -45,7 +45,7 @@ const Cadastro = () => {
   const [formData, setFormData] = useState({
     nome: "",
     nomeUsuario: "",
-    siap: "",
+    siape: "",
     campus: "",
     classeReferencia: "",
     vinculo: "",
@@ -146,7 +146,7 @@ const Cadastro = () => {
               <MdOutlinePin className="icon" />
               <input
                 type="text"
-                placeholder="SIAP"
+                placeholder="SIAPE"
                 name="siap"
                 value={formData.siap}
                 onChange={handleChange}
@@ -165,7 +165,7 @@ const Cadastro = () => {
                   placeholder="CAMPUS/INSTITUTO"
                   required
                 >
-                  <option value="">Selecione o campus</option>
+                  <option value="">Selecione o Instituto/Campus</option>
                   <option value="ICA">ICA</option>
                   <option value="ICIBE">ICIBE</option>
                   <option value="ISARH">ISARH</option>
@@ -181,7 +181,7 @@ const Cadastro = () => {
 
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
-              <HiOutlineLibrary className={''} />
+              <HiOutlineIdentification className={''} />
               <div className={classes.inputFieldClasseReferencia}>
                 <select 
                   className={classes.selectClasseReferencia}  
@@ -203,7 +203,7 @@ const Cadastro = () => {
             </div>
 
             <div className={classes.inputField}>
-              <HiOutlineLibrary className={''} />
+              <HiOutlineLink className={''} />
               {/*<input type="text" placeholder="Vinculo" required />*/}
               <div className={classes.inputFieldVinculo}>
                 <select 
@@ -224,26 +224,42 @@ const Cadastro = () => {
 
           <div className={classes.inputBox}>
             <div className={classes.inputField}>
-              <HiBriefcase className="icon" />
-              <input
-                type="text"
-                placeholder="Regime de Trabalho"
-                name="regimeTrabalho"
-                value={formData.regimeTrabalho}
-                onChange={handleChange}
-                required
-              />
+              <HiBriefcase className={''} />
+              <select 
+              className={classes.selectRegimeTrabalho}
+              value={formData.regimeTrabalho}
+              onChange={handleChange}
+              id = "regimeTrabalho"
+              name = "regimeTrabalho"
+              placeholder = "Regime de Trabalho"
+              required
+              >
+                <option value="">Selecione o Regime de Trabalho</option>
+                <option value="DE">DE</option>
+                <option value="20h">20h</option>
+                <option value="40h">40h</option>
+              </select>
             </div>
-            <div className={classes.inputField}>
-              <HiAcademicCap className="icon" />
-              <input
-                type="text"
-                placeholder="Titulação"
-                name="titulacao"
-                value={formData.titulacao}
-                onChange={handleChange}
-                required
-              />
+
+          <div className={classes.inputField}>
+            <HiAcademicCap className={''} />
+            <div className={classes.inputFieldTitulacao}>
+              <select 
+              className={classes.selectTitulacao}
+              value={formData.titulacao}
+              onChange={handleChange}
+              id = "titulacao"
+              name = "titulacao"
+              placeholder = "Titulação"
+              required
+              >
+                <option value="">Selecione a Titulação</option>
+                <option value="Graduacao">Gradução</option>
+                <option value="Especializacao">Especialização</option>
+                <option value="Mestre">Mestre</option>
+                <option value="Doutor">Doutor</option>
+              </select>
+              </div>
             </div>
           </div>
 
