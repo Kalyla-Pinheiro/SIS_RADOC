@@ -21,7 +21,7 @@ import { ToastifyMessages } from "../../utils/ToastifyMessages";
 import apiurls from "../../apis/apiUrls";
 import TokenFunctions from "../../utils/Token";
 import {jwtDecode} from "jwt-decode";
-
+import { useEffect } from "react";
 
 const Cadastro = () => {
   const [values, setValues] = React.useState({
@@ -57,20 +57,29 @@ const Cadastro = () => {
     confirmarSenha: "",
   });
 
-  const token = TokenFunctions.getToken();
+  useEffect(() => {
+    const token = TokenFunctions.getToken();
 
-  if (token) {
-    const decodedToken = jwtDecode(token);
-    formData.nome = decodedToken.name;
-    formData.email = decodedToken.email;
-    formData.nomeUsuario = decodedToken.given_name;
-  }
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const { name, email, given_name } = decodedToken;
 
-  const [error, setError] = useState("");
+      // Inicializar o estado formData com os dados do Google
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        nome: name,
+        email: email,
+        nomeUsuario: given_name
+      }));
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value
+    }));
   };
 
   const handleSubmit = async (event) => {
@@ -94,7 +103,7 @@ const Cadastro = () => {
         ToastifyMessages.success("Usuário cadastrado com sucesso!");
 
         setTimeout(() => {
-          navigate("/login");
+          navigate("/");
         }, 2000);
       } else if (response.status === 409) {
         ToastifyMessages.error("Usuário já cadastrado!");

@@ -30,23 +30,25 @@ const ModalDisciplinasMinistradas = ({
   const [numTurmasP, setNumTurmasP] = useState(dataEdit.numTurmasP || "");
   const [chPorTurmaT, setChPorTurmaT] = useState(dataEdit.chPorTurmaT || "");
   const [chPorTurmaP, setChPorTurmaP] = useState(dataEdit.chPorTurmaP || "");
+  const [nomeDocenteEnvolvido, setNomeDocenteEnvolvido] = useState(dataEdit.nomeDocenteEnvolvido || "");
+  const [chDocenteEnvolvido, setChDocenteEnvolvido] = useState(dataEdit.chDocenteEnvolvido || "");
 
   const handleSave = () => {
-    if (!nome || !codigo || !curso || !nivel || !chTotal || !numTurmasT || !numTurmasP || !chPorTurmaT || !chPorTurmaP) return;
+    if (!nome || !codigo || !curso || !nivel || !chTotal || !numTurmasT || !numTurmasP || !chPorTurmaT || !chPorTurmaP || !nomeDocenteEnvolvido || !chDocenteEnvolvido) return;
 
     if (codigoJaExiste()) {
       return alert("O código já existe!");
     }
 
     if (Object.keys(dataEdit).length) {
-      data[dataEdit.index] = { nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP};
+      data[dataEdit.index] = { nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido};
     }
 
     const newDataArray = !Object.keys(dataEdit).length
-      ? [...(data ? data : []), { nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP }]
+      ? [...(data ? data : []), { nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido }]
       : [...(data ? data : [])];
 
-    localStorage.setItem("disciplinas_ministradas_semestre_1", JSON.stringify(newDataArray));
+    localStorage.setItem("disciplinas_ministradas", JSON.stringify(newDataArray));
 
     setData(newDataArray);
 
@@ -66,7 +68,7 @@ const ModalDisciplinasMinistradas = ({
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Cadastro de Clientes</ModalHeader>
+          <ModalHeader>Cadastro dos dados</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl display="flex" flexDir="column" gap={4}>
@@ -140,6 +142,22 @@ const ModalDisciplinasMinistradas = ({
                   type="text"
                   value={chPorTurmaP}
                   onChange={(e) => setChPorTurmaP(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>Nome Docente Envolvido</FormLabel> 
+                <Input
+                  type="text"
+                  value={nomeDocenteEnvolvido}
+                  onChange={(e) => setNomeDocenteEnvolvido(e.target.value)}
+                />
+              </Box>
+              <Box>
+                <FormLabel>CH Docente Envolvido</FormLabel> 
+                <Input
+                  type="text"
+                  value={chDocenteEnvolvido}
+                  onChange={(e) => setChDocenteEnvolvido(e.target.value)}
                 />
               </Box>
             </FormControl>

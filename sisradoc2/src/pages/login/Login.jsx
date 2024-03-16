@@ -27,11 +27,13 @@ const Login = () => {
     try{
       const result = await AuthFunctions.verificar_usuario(decodedToken.email);
 
-      if(result.message === "User exists"){
+      console.log("RESULTADO: ", result.status)
+
+      if(result.status === 200){
         TokenFunctions.setToken(token);
         navigate("/formularios");
         return;
-      } else if (result.message === "User not exists"){
+      } else if(result.status === 400){
         TokenFunctions.setToken(token);
 
         ToastifyMessages.warning("Realize o cadastro para continuar");

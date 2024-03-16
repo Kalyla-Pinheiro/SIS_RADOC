@@ -13,29 +13,29 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import ModalDisciplinasMinistradas from "../components/Modal/ModalDisciplinasMinistradas";
+import ModalPedagogicasComplementares from "../../../components/Modal/ensino/pedagogicas-complementares/ModalPedagogicasComplementares";
 
-const TabelasDisciplinasMinistradas = () => {
+const TabelasPedagogicasComplementares = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("disciplinas_ministradas_semestre_1")
-      ? JSON.parse(localStorage.getItem("disciplinas_ministradas_semestre_1"))
+    const db_costumer = localStorage.getItem("pedagogicas_complementares")
+      ? JSON.parse(localStorage.getItem("pedagogicas_complementares"))
       : [];
 
     setData(db_costumer);
   }, [setData]);
 
-  const handleRemove = (codigo) => {
+  const handleRemove = (chGraduacaoSemestre1) => {
     //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
-      (item) => item.codigo !== codigo);
+      (item) => item.chGraduacaoSemestre1 !== chGraduacaoSemestre1);
 
     setData(newArray);
 
-    localStorage.setItem("disciplinas_ministradas_semestre_1", JSON.stringify(newArray));
+    localStorage.setItem("pedagogicas_complementares", JSON.stringify(newArray));
   };
 
   //maxW={1000}               BOX
@@ -63,57 +63,45 @@ const TabelasDisciplinasMinistradas = () => {
         </Button>
 
         <Box overflowY="auto" overflowX="auto" height="100%">
-          <Table mt="0">
+          <Table mt="5">
             <Thead>
               <Tr>
                 <Th maxW="200px" fontSize="15px" color="#fff">
-                  Nome
+                    CH Graduação (1º Semestre)
                 </Th>
                 <Th maxW="200px" fontSize="15px" color="#fff">
-                  Código
+                    CH Pós-graduação (1º Semestre)
                 </Th>
                 <Th maxW="200px" fontSize="15px" color="#fff">
-                  Curso
+                    CH Total (1º Semestre)
                 </Th>
                 <Th maxW="200px" fontSize="15px" color="#fff">
-                  Nível
+                    CH Graduação (2º Semestre)
                 </Th>
                 <Th maxW="200px" fontSize="15px" color="#fff">
-                  CH Total
+                    CH Pós-graduação (2º Semestre)
                 </Th>
                 <Th maxW="200px" fontSize="15px" color="#fff">
-                  Nº De Turmas (Teóricas)
-                </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
-                  Nº De Turmas (Práticas)
-                </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
-                  CH Por Turma (Teóricas)
-                </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
-                  CH Por Turma (Práticas)
+                    CH Total (2º Semestre)
                 </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP}, index) => (
+              {data.map(({chGraduacaoSemestre1, chGraduacaoSemestre2, chPosGraduacaoSemestre1, chPosGraduacaoSemestre2, chTotalSemestre1, chTotalSemestre2}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
-                  <Td maxW="200px">{nome}</Td>
-                  <Td maxW="200px">{codigo}</Td>
-                  <Td maxW="200px">{curso}</Td>
-                  <Td maxW="200px">{nivel}</Td>
-                  <Td maxW="200px">{chTotal}</Td>
-                  <Td maxW="200px">{numTurmasT}</Td>
-                  <Td maxW="200px">{numTurmasP}</Td>
-                  <Td maxW="200px">{chPorTurmaT}</Td>
-                  <Td maxW="200px">{chPorTurmaP}</Td>
+                  <Td maxW="200px">{chGraduacaoSemestre1}</Td>
+                  <Td maxW="200px">{chPosGraduacaoSemestre1}</Td>
+                  <Td maxW="200px">{chTotalSemestre1}</Td>
+                  <Td maxW="200px">{chGraduacaoSemestre2}</Td>
+                  <Td maxW="200px">{chPosGraduacaoSemestre2}</Td>
+                  <Td maxW="200px">{chTotalSemestre2}</Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, index }),
+                        setDataEdit({chGraduacaoSemestre1, chGraduacaoSemestre2, chPosGraduacaoSemestre1, chPosGraduacaoSemestre2, chTotalSemestre1, chTotalSemestre2, index }),
                         onOpen(),
                       ]}
                     />
@@ -121,7 +109,7 @@ const TabelasDisciplinasMinistradas = () => {
                   <Td >
                     <DeleteIcon
                       fontSize={20}
-                      onClick={() => handleRemove(codigo)}
+                      onClick={() => handleRemove(chGraduacaoSemestre1)}
                     />
                   </Td>
                 </Tr>
@@ -131,7 +119,7 @@ const TabelasDisciplinasMinistradas = () => {
         </Box>
       </Box>
       {isOpen && (
-        <ModalDisciplinasMinistradas
+        <ModalPedagogicasComplementares
           isOpen={isOpen}
           onClose={onClose}
           data={data}
@@ -144,4 +132,4 @@ const TabelasDisciplinasMinistradas = () => {
   );
 };
 
-export default TabelasDisciplinasMinistradas;
+export default TabelasPedagogicasComplementares;

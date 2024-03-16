@@ -172,7 +172,7 @@
 }
 
 #buttonDisciplinaMinistrada {
-  padding-top: 20px;
+  padding-top: 30px;
   padding-bottom: 30px;
 }
 
@@ -211,8 +211,6 @@
 
 .campoTabelasSemestre {
   background: transparent;
-  width: 68.75rem;
-  height: 390px;
   border-radius: 0.375rem;
   border: 2px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
@@ -222,6 +220,11 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   width: 6px;
+}
+
+#tabelasDisciplinasMinistradas {
+  width: 68.75rem;
+  height: 390px;
 }
 
 .buttonsCampoTabelasSemestre {
@@ -315,11 +318,11 @@
 /*Pedagógicas Complementares*/
 
 .buttonSalvarPC {
-  margin-top: 17rem;
+  margin-top: 30px;
 }
 
 .buttonSalvarPC button {
-  width: 200px;
+  width: 130px;
   height: 40px;
   background: #fff;
   border: none;
@@ -331,6 +334,15 @@
 .buttonSalvarPc button:active {
   transform: scale(0.80);
 }
+
+
+/*MonografiaQualificacaoDissertacaoTese*/
+
+#tabelasQualificacaoDissertacaoTese {
+  width: 68.75rem;
+  height: 390px;
+}
+
 
 /*DocentesEnvolvidos*/
 
@@ -435,7 +447,7 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 275px;
+  margin-top: 30px;
 }
 
 .buttonCh button {
@@ -451,6 +463,11 @@
 
 .buttonCh button:active {
   transform: scale(0.80);
+}
+
+#tabelasChSemanalAulas {
+  width: 68.75rem;
+  height: 490px;
 }
 
 /*Orientacão, supervisão e outros*/
@@ -574,7 +591,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 170px;
+  margin-top: 30px;
 }
 
 .buttonAD button {
@@ -585,4 +602,9 @@
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+}
+
+#tabelasAvaliacaoDiscente {
+  width: 68.75rem;
+  height: 430px;
 }

@@ -15,7 +15,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { ChakraProvider, Box} from "@chakra-ui/react";
 import { extendTheme } from '@chakra-ui/react';
 import ReactDOM from "react-dom";
-import TabelasDisciplinasMinistradas from "../../formularios/TabelasDisciplinasMinistradas";
+import TabelasDisciplinasMinistradas from "../../formularios/ensino/aulas-letivas/TabelasDisciplinasMinistradas";
 import paisagem3 from "../imagens/paisagem3.png";
 
 const DisciplinasMinistradas = () => {
@@ -106,8 +106,6 @@ const DisciplinasMinistradas = () => {
     }
   };
 
-  const backgroundImage = "url(../imagens/paisagem3.png)";
-
   const theme = extendTheme({
     styles: {
       global: {
@@ -160,11 +158,8 @@ const DisciplinasMinistradas = () => {
         </form>
 
         <div className={classes.areaPreenchimento}>
-          <div className={classes.tituloSemestre}>
-            <p>1º Semestre</p>
-          </div>
 
-          <div className={classes.campoTabelasSemestre}>
+          <div className={classes.campoTabelasSemestre} id={classes.tabelasDisciplinasMinistradas}>
             <ChakraProvider theme={theme} resetCSS={false}>
               <TabelasDisciplinasMinistradas/>
             </ChakraProvider>
@@ -228,7 +223,7 @@ const DisciplinasMinistradas = () => {
         */}
 
         <div className={classes.buttons} id={classes.buttonDisciplinaMinistrada}>
-          <a href="/numeroDeTurmasCHporTurma">
+          <a href="/ensino/ChSemanalAulas">
             <button>Próximo</button>
           </a>
         </div>
