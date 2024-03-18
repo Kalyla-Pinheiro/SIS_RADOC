@@ -24,6 +24,7 @@
     "react-toastify": "^10.0.4",
     "redux": "^5.0.1",
     "tesseract.js": "^5.0.4",
+    "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

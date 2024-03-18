@@ -28,6 +28,7 @@ import Projetos from "./pages/pesquisa/Projetos/Projetos";
 import Trabalhos from "./pages/pesquisa/Trabalhos/Trabalhos";
 import LivrosVerbetesPublicados from "./pages/pesquisa/livros-e-verbetes-publicados/LivrosVerbetesPublicados";
 import TrabalhosResumosPublicadosApresentados from "./pages/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados/TrabalhosResumosPublicadosApresentados";
+import OutrasAtividadesPesquisaProducaoIntelectual from "./pages/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual/OutrasAtividadesPesquisaProducaoIntelectual";
 import AuthMiddleware from "./middleware/AuthMiddleware";
 import { Navigate } from "react-router-dom";
 import Erro404 from "./pages/404/Erro404";
@@ -78,6 +79,7 @@ function App() {
           <Route path="/pesquisa/Trabalhos" element={<MainLayout> <Trabalhos /> </MainLayout>} />
           <Route path="/pesquisa/livros-e-verbetes-publicados" element={<MainLayout> <LivrosVerbetesPublicados /> </MainLayout>} />
           <Route path="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados" element={<MainLayout> <TrabalhosResumosPublicadosApresentados /> </MainLayout>} />
+          <Route path="/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual" element={<MainLayout> <OutrasAtividadesPesquisaProducaoIntelectual /> </MainLayout>} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

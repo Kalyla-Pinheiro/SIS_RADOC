@@ -256,11 +256,11 @@
 }
 
 #buttonSalvarLVP {
-    margin-top: 150px;
+    margin-top: 30px;
 }
 
 #buttonSalvarTRPA {
-    margin-top: 65px;
+    margin-top: 30px;
 }
 
 
@@ -409,6 +409,25 @@
     height: 430px;
   }
 
+  #tabelasTrabalhosBoletinsOutros {
+    width: 68.75rem;
+    height: 430px;
+  }
+
+  #tabelasLivrosVerbetesPublicados {
+    width: 68.75rem;
+    height: 430px;
+  }
+
+  #tabelasResumosPublicadosApresentados {
+    width: 68.75rem;
+    height: 430px;
+  }
+
   #buttonProjetos {
+    margin-top: 30px;
+  }
+
+  #buttonTrabalhosBoletinsOutros {
     margin-top: 30px;
   }
