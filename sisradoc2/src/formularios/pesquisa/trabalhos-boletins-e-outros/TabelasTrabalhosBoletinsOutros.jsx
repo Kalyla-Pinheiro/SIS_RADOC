@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ModalTrabalhosBoletinsOutros from "../../../components/Modal/pesquisa/trabalhos-boletins-e-outros/ModalTrabalhosBoletinsOutros";
+import "../../styleFormularios.css";
 
 const TabelasTrabalhosBoletinsOutros = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,10 +29,10 @@ const TabelasTrabalhosBoletinsOutros = () => {
     setData(db_costumer);
   }, [setData]);
 
-  const handleRemove = (tipo) => {
+  const handleRemove = (id) => {
     //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
-      (item) => item.tipo !== tipo);
+      (item) => item.id !== id);
 
     setData(newArray);
 
@@ -49,7 +50,7 @@ const TabelasTrabalhosBoletinsOutros = () => {
       fontSize="15px"
       fontFamily="poppins"
     >
-      <Box  maxW={1200} w="100%" h="100%" py={10} px={2}>
+      <Box  maxW={1200} w="100%" h="100%" py={10} px={2} paddingTop={5}>
         
         <Button 
           colorScheme="blue" 
@@ -62,10 +63,13 @@ const TabelasTrabalhosBoletinsOutros = () => {
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%">
+        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
           <Table mt="5">
             <Thead>
               <Tr>
+                <Th minW="150px" fontSize="15px" color="#fff">
+                    ID
+                </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
                     Tipo
                 </Th>
@@ -80,8 +84,9 @@ const TabelasTrabalhosBoletinsOutros = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({tipo, link, descricao}, index) => (
+              {data.map(({id, tipo, link, descricao}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
+                  <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{tipo}</Td>
                   <Td minW="300px" style={{ wordWrap: 'break-word', maxWidth: 300 }}>{link}</Td>
                   <Td minW="600px" style={{ wordWrap: 'break-word', maxWidth: 600 }}>{descricao}</Td>
@@ -89,7 +94,7 @@ const TabelasTrabalhosBoletinsOutros = () => {
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({tipo, link, descricao, index }),
+                        setDataEdit({id, tipo, link, descricao, index }),
                         onOpen(),
                       ]}
                     />
@@ -97,7 +102,7 @@ const TabelasTrabalhosBoletinsOutros = () => {
                   <Td >
                     <DeleteIcon
                       fontSize={20}
-                      onClick={() => handleRemove(tipo)}
+                      onClick={() => handleRemove(id)}
                     />
                   </Td>
                 </Tr>

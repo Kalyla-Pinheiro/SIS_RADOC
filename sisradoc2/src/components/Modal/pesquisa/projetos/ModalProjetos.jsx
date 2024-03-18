@@ -13,6 +13,7 @@ import {
     Box,
   } from "@chakra-ui/react";
   import { useState } from "react";
+  import { v4 as uuidv4 } from "uuid";
   
   const ModalProjetos = ({
     data,
@@ -28,14 +29,24 @@ import {
     
     const handleSave = () => {
       if (!titulo || !codigoProped || !situacaoAtual || !funcao) return;
-  
+      
+      /*
       if (Object.keys(dataEdit).length) {
         data[dataEdit.index] = { titulo, codigoProped, situacaoAtual, funcao };
       }
+      */
+
+      const newItem = {
+        id: uuidv4(), // Gerando um ID único para o novo item
+        titulo,
+        codigoProped,
+        situacaoAtual,
+        funcao
+      };
   
-      const newDataArray = !Object.keys(dataEdit).length
-        ? [...(data ? data : []), { titulo, codigoProped, situacaoAtual, funcao }]
-        : [...(data ? data : [])];
+      const newDataArray = Object.keys(dataEdit).length
+        ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
+        : [...data, newItem];
   
       localStorage.setItem("projetos", JSON.stringify(newDataArray));
   

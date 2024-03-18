@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ModalProjetos from "../../../components/Modal/pesquisa/projetos/ModalProjetos";
+import "../../styleFormularios.css";
 
 const TabelasProjetos = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,10 +29,10 @@ const TabelasProjetos = () => {
     setData(db_costumer);
   }, [setData]);
 
-  const handleRemove = (titulo) => {
+  const handleRemove = (id) => {
     //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
-      (item) => item.titulo !== titulo);
+      (item) => item.id !== id);
 
     setData(newArray);
 
@@ -49,7 +50,7 @@ const TabelasProjetos = () => {
       fontSize="15px"
       fontFamily="poppins"
     >
-      <Box  maxW={1200} w="100%" h="100%" py={10} px={2}>
+      <Box  maxW={1200} w="100%" h="100%" py={10} px={2} paddingTop={5}>
         
         <Button 
           colorScheme="blue" 
@@ -62,20 +63,23 @@ const TabelasProjetos = () => {
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%">
+        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
           <Table mt="5">
             <Thead>
               <Tr>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+              <Th minW="150px" fontSize="15px" color="#fff">
+                    ID
+                </Th>
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Título
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Código PROPED
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Situação Atual
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Função
                 </Th>
                 <Th p={0}></Th>
@@ -83,17 +87,18 @@ const TabelasProjetos = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({titulo, codigoProped, situacaoAtual, funcao}, index) => (
+              {data.map(({id, titulo, codigoProped, situacaoAtual, funcao}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
-                  <Td maxW="200px">{titulo}</Td>
-                  <Td maxW="200px">{codigoProped}</Td>
-                  <Td maxW="200px">{situacaoAtual}</Td>
-                  <Td maxW="200px">{funcao}</Td>
+                  <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{titulo}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{codigoProped}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{situacaoAtual}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{funcao}</Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({titulo, codigoProped, situacaoAtual, funcao, index }),
+                        setDataEdit({id, titulo, codigoProped, situacaoAtual, funcao, index }),
                         onOpen(),
                       ]}
                     />
@@ -101,7 +106,7 @@ const TabelasProjetos = () => {
                   <Td >
                     <DeleteIcon
                       fontSize={20}
-                      onClick={() => handleRemove(titulo)}
+                      onClick={() => handleRemove(id)}
                     />
                   </Td>
                 </Tr>

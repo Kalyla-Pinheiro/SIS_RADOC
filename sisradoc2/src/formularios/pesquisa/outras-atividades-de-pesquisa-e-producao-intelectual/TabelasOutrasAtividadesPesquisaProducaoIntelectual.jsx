@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ModalOutrasAtividadesProducaoIntelectual from "../../../components/Modal/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual/ModalOutrasAtividadesPesquisaProducaoIntelectual";
+import "../../styleFormularios.css";
 
 const TabelasOutrasAtividadesProducaoIntelectual = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -62,7 +63,7 @@ const TabelasOutrasAtividadesProducaoIntelectual = () => {
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%">
+        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
           <Table mt="5">
             <Thead>
               <Tr>

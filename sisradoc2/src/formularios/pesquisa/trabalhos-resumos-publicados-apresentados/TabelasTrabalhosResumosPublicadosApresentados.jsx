@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ModalTrabalhosResumosPublicadosApresentados from "../../../components/Modal/pesquisa/trabalhos-resumos-publicados-apresentados/ModalResumosPublicadosApresentados";
+import "../../styleFormularios.css";
 
 const TabelasTrabalhosResumosPublicadosApresentados = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -62,7 +63,7 @@ const TabelasTrabalhosResumosPublicadosApresentados = () => {
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%">
+        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
           <Table mt="5">
             <Thead>
               <Tr>
