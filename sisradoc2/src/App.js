@@ -29,6 +29,11 @@ import Trabalhos from "./pages/pesquisa/Trabalhos/Trabalhos";
 import LivrosVerbetesPublicados from "./pages/pesquisa/livros-e-verbetes-publicados/LivrosVerbetesPublicados";
 import TrabalhosResumosPublicadosApresentados from "./pages/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados/TrabalhosResumosPublicadosApresentados";
 import OutrasAtividadesPesquisaProducaoIntelectual from "./pages/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual/OutrasAtividadesPesquisaProducaoIntelectual";
+import Extensao from "./pages/extensao/Extensao";
+import ProjetosExtensao from "./pages/extensao/projetos-de-extensao/ProjetosDeExtensao";
+import EstagioDeExtensao from "./pages/extensao/estagio-de-extensao/EstagioDeExtensao";
+import AtividadeDeEnsinoNaoFormal from "./pages/extensao/atividade-de-ensino-nao-formal/AtividadeDeEnsinoNaoFormal";
+import OutrasAtividadesDeExtensao from "./pages/extensao/outras-atividades-de-extensao/OutrasAtividadesDeExtensao";
 import AuthMiddleware from "./middleware/AuthMiddleware";
 import { Navigate } from "react-router-dom";
 import Erro404 from "./pages/404/Erro404";
@@ -80,6 +85,13 @@ function App() {
           <Route path="/pesquisa/livros-e-verbetes-publicados" element={<MainLayout> <LivrosVerbetesPublicados /> </MainLayout>} />
           <Route path="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados" element={<MainLayout> <TrabalhosResumosPublicadosApresentados /> </MainLayout>} />
           <Route path="/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual" element={<MainLayout> <OutrasAtividadesPesquisaProducaoIntelectual /> </MainLayout>} />
+
+          <Route path="/extensao" element={<MainLayout> <Extensao /> </MainLayout>} />
+          <Route path="/extensao/projetos-de-extensao" element={<MainLayout> <ProjetosExtensao /> </MainLayout>} />
+          <Route path="/extensao/estagio-de-extensao" element={<MainLayout> <EstagioDeExtensao /> </MainLayout>} />
+          <Route path="/extensao/atividades-de-ensino-nao-formais" element={<MainLayout> <AtividadeDeEnsinoNaoFormal /> </MainLayout>} />
+          <Route path="/extensao/outras-atividades-de-extensao" element={<MainLayout> <OutrasAtividadesDeExtensao /> </MainLayout>} />
+
         </Route>
 
         <Route path="*" element={<NotFound />} />
