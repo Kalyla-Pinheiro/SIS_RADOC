@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ModalPedagogicasComplementares from "../../../components/Modal/ensino/pedagogicas-complementares/ModalPedagogicasComplementares";
+import "../../styleFormularios.css";
 
 const TabelasPedagogicasComplementares = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,10 +29,10 @@ const TabelasPedagogicasComplementares = () => {
     setData(db_costumer);
   }, [setData]);
 
-  const handleRemove = (chGraduacaoSemestre1) => {
+  const handleRemove = (id) => {
     //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
-      (item) => item.chGraduacaoSemestre1 !== chGraduacaoSemestre1);
+      (item) => item.id !== id);
 
     setData(newArray);
 
@@ -49,7 +50,7 @@ const TabelasPedagogicasComplementares = () => {
       fontSize="15px"
       fontFamily="poppins"
     >
-      <Box  maxW={1200} w="100%" h="100%" py={10} px={2}>
+      <Box  maxW={1200} w="100%" h="100%" py={10} px={2} paddingTop={5}>
         
         <Button 
           colorScheme="blue" 
@@ -62,26 +63,29 @@ const TabelasPedagogicasComplementares = () => {
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%">
+        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
           <Table mt="5">
             <Thead>
               <Tr>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="150px" fontSize="15px" color="#fff">
+                    ID
+                </Th>
+                <Th minW="200px" fontSize="15px" color="#fff">
                     CH Graduação (1º Semestre)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="300px" fontSize="15px" color="#fff">
                     CH Pós-graduação (1º Semestre)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     CH Total (1º Semestre)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     CH Graduação (2º Semestre)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="300px" fontSize="15px" color="#fff">
                     CH Pós-graduação (2º Semestre)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     CH Total (2º Semestre)
                 </Th>
                 <Th p={0}></Th>
@@ -89,19 +93,20 @@ const TabelasPedagogicasComplementares = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({chGraduacaoSemestre1, chGraduacaoSemestre2, chPosGraduacaoSemestre1, chPosGraduacaoSemestre2, chTotalSemestre1, chTotalSemestre2}, index) => (
+              {data.map(({id, chGraduacaoSemestre1, chGraduacaoSemestre2, chPosGraduacaoSemestre1, chPosGraduacaoSemestre2, chTotalSemestre1, chTotalSemestre2}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
-                  <Td maxW="200px">{chGraduacaoSemestre1}</Td>
-                  <Td maxW="200px">{chPosGraduacaoSemestre1}</Td>
-                  <Td maxW="200px">{chTotalSemestre1}</Td>
-                  <Td maxW="200px">{chGraduacaoSemestre2}</Td>
-                  <Td maxW="200px">{chPosGraduacaoSemestre2}</Td>
-                  <Td maxW="200px">{chTotalSemestre2}</Td>
+                  <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chGraduacaoSemestre1}</Td>
+                  <Td minW="300px" style={{ wordWrap: 'break-word', maxWidth: 300 }}>{chPosGraduacaoSemestre1}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chTotalSemestre1}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chGraduacaoSemestre2}</Td>
+                  <Td minW="300px" style={{ wordWrap: 'break-word', maxWidth: 300 }}>{chPosGraduacaoSemestre2}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chTotalSemestre2}</Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({chGraduacaoSemestre1, chGraduacaoSemestre2, chPosGraduacaoSemestre1, chPosGraduacaoSemestre2, chTotalSemestre1, chTotalSemestre2, index }),
+                        setDataEdit({id, chGraduacaoSemestre1, chGraduacaoSemestre2, chPosGraduacaoSemestre1, chPosGraduacaoSemestre2, chTotalSemestre1, chTotalSemestre2, index }),
                         onOpen(),
                       ]}
                     />
@@ -109,7 +114,7 @@ const TabelasPedagogicasComplementares = () => {
                   <Td >
                     <DeleteIcon
                       fontSize={20}
-                      onClick={() => handleRemove(chGraduacaoSemestre1)}
+                      onClick={() => handleRemove(id)}
                     />
                   </Td>
                 </Tr>

@@ -13,6 +13,7 @@ import {
     Box,
   } from "@chakra-ui/react";
   import { useState } from "react";
+  import { v4 as uuidv4 } from "uuid";
   
   const ModalCalculoChSemanal = ({
     data,
@@ -35,16 +36,31 @@ import {
     const handleSave = () => {
       if (!chOrientacaoSemestre1 || !chCoorientacaoSemestre1 || !chSupervisaoSemestre1 || !chPreceptoriaSemestre1 || !chTotalSemestre1
         || !chOrientacaoSemestre2 || !chCoorientacaoSemestre2 || !chSupervisaoSemestre2 || !chPreceptoriaSemestre2 || !chTotalSemestre2) return;
-  
+      
+      /*
       if (Object.keys(dataEdit).length) {
         data[dataEdit.index] = { chOrientacaoSemestre1, chCoorientacaoSemestre1, chSupervisaoSemestre1, chPreceptoriaSemestre1, chTotalSemestre1,
                                  chOrientacaoSemestre2, chCoorientacaoSemestre2, chSupervisaoSemestre2, chPreceptoriaSemestre2, chTotalSemestre2 };
       }
-  
-      const newDataArray = !Object.keys(dataEdit).length
-        ? [...(data ? data : []), { chOrientacaoSemestre1, chCoorientacaoSemestre1, chSupervisaoSemestre1, chPreceptoriaSemestre1, chTotalSemestre1,
-                                    chOrientacaoSemestre2, chCoorientacaoSemestre2, chSupervisaoSemestre2, chPreceptoriaSemestre2, chTotalSemestre2 }]
-        : [...(data ? data : [])];
+      */
+
+      const newItem = {
+        id: uuidv4(), 
+        chOrientacaoSemestre1, 
+        chCoorientacaoSemestre1, 
+        chSupervisaoSemestre1, 
+        chPreceptoriaSemestre1, 
+        chTotalSemestre1, 
+        chOrientacaoSemestre2, 
+        chCoorientacaoSemestre2, 
+        chSupervisaoSemestre2, 
+        chPreceptoriaSemestre2, 
+        chTotalSemestre2
+      };
+      
+      const newDataArray = Object.keys(dataEdit).length
+        ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
+        : [...data, newItem];
   
       localStorage.setItem("calculo_do_ch_semanal", JSON.stringify(newDataArray));
   

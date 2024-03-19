@@ -13,6 +13,7 @@ import {
     Box,
   } from "@chakra-ui/react";
   import { useState } from "react";
+  import { v4 as uuidv4 } from "uuid";
   
   const ModalAvaliacaoDiscente = ({
     data,
@@ -27,14 +28,22 @@ import {
   
     const handleSave = () => {
       if (!codigoDaDisciplina || !media) return;
-  
+      
+      /*
       if (Object.keys(dataEdit).length) {
         data[dataEdit.index] = { codigoDaDisciplina, media };
       }
+      */
+
+      const newItem = {
+        id: uuidv4(), 
+        codigoDaDisciplina, 
+        media
+      };
   
-      const newDataArray = !Object.keys(dataEdit).length
-        ? [...(data ? data : []), { codigoDaDisciplina, media }]
-        : [...(data ? data : [])];
+      const newDataArray = Object.keys(dataEdit).length
+        ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
+        : [...data, newItem];
   
       localStorage.setItem("avaliacao_discente", JSON.stringify(newDataArray));
   

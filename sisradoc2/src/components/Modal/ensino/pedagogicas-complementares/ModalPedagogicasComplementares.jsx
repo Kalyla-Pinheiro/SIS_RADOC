@@ -13,6 +13,7 @@ import {
     Box,
   } from "@chakra-ui/react";
   import { useState } from "react";
+  import { v4 as uuidv4 } from "uuid";
   
   const ModalPedagogicasComplementares = ({
     data,
@@ -30,14 +31,26 @@ import {
     
     const handleSave = () => {
       if (!chGraduacaoSemestre1 || !chGraduacaoSemestre2 || !chPosGraduacaoSemestre1 || !chPosGraduacaoSemestre2 || !chTotalSemestre1 || !chTotalSemestre2) return;
-  
+      
+      /*
       if (Object.keys(dataEdit).length) {
         data[dataEdit.index] = { chGraduacaoSemestre1, chGraduacaoSemestre2, chPosGraduacaoSemestre1, chPosGraduacaoSemestre2, chTotalSemestre1, chTotalSemestre2 };
       }
+      */
+
+      const newItem = {
+        id: uuidv4(), 
+        chGraduacaoSemestre1, 
+        chGraduacaoSemestre2, 
+        chPosGraduacaoSemestre1, 
+        chPosGraduacaoSemestre2, 
+        chTotalSemestre1, 
+        chTotalSemestre2
+      };
   
-      const newDataArray = !Object.keys(dataEdit).length
-        ? [...(data ? data : []), { chGraduacaoSemestre1, chGraduacaoSemestre2, chPosGraduacaoSemestre1, chPosGraduacaoSemestre2, chTotalSemestre1, chTotalSemestre2 }]
-        : [...(data ? data : [])];
+      const newDataArray = Object.keys(dataEdit).length
+        ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
+        : [...data, newItem];
   
       localStorage.setItem("pedagogicas_complementares", JSON.stringify(newDataArray));
   

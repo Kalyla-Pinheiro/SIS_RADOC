@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ModalOrientacaoCoorientacaoAcademica from "../../../components/Modal/ensino/orientacao-supervisao-outros/ModalOrientacaoCoorientacaoAcademica";
+import "../../styleFormularios.css";
 
 const TabelasOrientacaoCoorientacaoAcademica = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,10 +29,10 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
     setData(db_costumer);
   }, [setData]);
 
-  const handleRemove = (nome) => {
+  const handleRemove = (id) => {
     //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
-      (item) => item.nome !== nome);
+      (item) => item.id !== id);
 
     setData(newArray);
 
@@ -49,7 +50,7 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
       fontSize="15px"
       fontFamily="poppins"
     >
-      <Box  maxW={1200} w="100%" h="100%" py={10} px={2}>
+      <Box  maxW={1200} w="100%" h="100%" py={10} px={2} paddingTop={5}>
         
         <Button 
           colorScheme="blue" 
@@ -62,29 +63,32 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%">
+        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
           <Table mt="5">
             <Thead>
               <Tr>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="150px" fontSize="15px" color="#fff">
+                    ID
+                </Th>
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Nome
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Matrícula
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Curso
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Tipo
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Nível
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     CH Semanal (1º Semestre)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     CH Semanal (2º Semestre)
                 </Th>
                 <Th p={0}></Th>
@@ -92,20 +96,21 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2}, index) => (
+              {data.map(({id, nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
-                  <Td maxW="200px">{nome}</Td>
-                  <Td maxW="200px">{matricula}</Td>
-                  <Td maxW="200px">{curso}</Td>
-                  <Td maxW="200px">{tipo}</Td>
-                  <Td maxW="200px">{nivel}</Td>
-                  <Td maxW="200px">{chSemanalSemestre1}</Td>
-                  <Td maxW="200px">{chSemanalSemestre2}</Td>
+                  <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nome}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{matricula}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{curso}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{tipo}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nivel}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre1}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre2}</Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2, index }),
+                        setDataEdit({id, nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2, index }),
                         onOpen(),
                       ]}
                     />
@@ -113,7 +118,7 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
                   <Td >
                     <DeleteIcon
                       fontSize={20}
-                      onClick={() => handleRemove(nome)}
+                      onClick={() => handleRemove(id)}
                     />
                   </Td>
                 </Tr>

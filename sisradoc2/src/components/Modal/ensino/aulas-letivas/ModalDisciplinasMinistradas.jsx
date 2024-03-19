@@ -13,6 +13,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const ModalDisciplinasMinistradas = ({
   data,
@@ -40,13 +41,30 @@ const ModalDisciplinasMinistradas = ({
       return alert("O código já existe!");
     }
 
+    /*
     if (Object.keys(dataEdit).length) {
       data[dataEdit.index] = { nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido};
     }
+    */
+    
+    const newItem = {
+      id: uuidv4(), 
+      nome, 
+      codigo, 
+      curso, 
+      nivel, 
+      chTotal, 
+      numTurmasT, 
+      numTurmasP, 
+      chPorTurmaT, 
+      chPorTurmaP, 
+      nomeDocenteEnvolvido, 
+      chDocenteEnvolvido
+    };
 
-    const newDataArray = !Object.keys(dataEdit).length
-      ? [...(data ? data : []), { nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido }]
-      : [...(data ? data : [])];
+    const newDataArray = Object.keys(dataEdit).length
+        ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
+        : [...data, newItem];
 
     localStorage.setItem("disciplinas_ministradas", JSON.stringify(newDataArray));
 

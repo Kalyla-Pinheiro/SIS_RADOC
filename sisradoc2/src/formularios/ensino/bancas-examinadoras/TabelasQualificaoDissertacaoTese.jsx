@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ModalQualificacaoDissertacaoTese from "../../../components/Modal/ensino/bancas-examinadoras/ModalQualificacaoDissertacaoTese";
+import "../../styleFormularios.css";
 
 const TabelasQualificacaoDissertacaoTese = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,10 +29,10 @@ const TabelasQualificacaoDissertacaoTese = () => {
     setData(db_costumer);
   }, [setData]);
 
-  const handleRemove = (nome) => {
+  const handleRemove = (id) => {
     //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
-      (item) => item.nome !== nome);
+      (item) => item.id !== id);
 
     setData(newArray);
 
@@ -49,7 +50,7 @@ const TabelasQualificacaoDissertacaoTese = () => {
       fontSize="15px"
       fontFamily="poppins"
     >
-      <Box  maxW={1200} w="100%" h="100%" py={10} px={2}>
+      <Box  maxW={1200} w="100%" h="100%" py={10} px={2} paddingTop={5}>
         
         <Button 
           colorScheme="blue" 
@@ -62,26 +63,29 @@ const TabelasQualificacaoDissertacaoTese = () => {
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%">
+        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
           <Table mt="5">
             <Thead>
               <Tr>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="150px" fontSize="15px" color="#fff">
+                    ID
+                </Th>
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Nome
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="300px" fontSize="15px" color="#fff">
                     Título do Trabalho
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     IES
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     Tipo
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     CH Semanal (1º Semestre)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                     CH Semanal (2º Semestre)
                 </Th>
                 <Th p={0}></Th>
@@ -89,19 +93,20 @@ const TabelasQualificacaoDissertacaoTese = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({nome, tituloDoTrabalho, ies, tipo, chSemanalSemestre1, chSemanalSemestre2}, index) => (
+              {data.map(({id, nome, tituloDoTrabalho, ies, tipo, chSemanalSemestre1, chSemanalSemestre2}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
-                  <Td maxW="200px">{nome}</Td>
-                  <Td maxW="200px">{tituloDoTrabalho}</Td>
-                  <Td maxW="200px">{ies}</Td>
-                  <Td maxW="200px">{tipo}</Td>
-                  <Td maxW="200px">{chSemanalSemestre1}</Td>
-                  <Td maxW="200px">{chSemanalSemestre2}</Td>
+                  <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nome}</Td>
+                  <Td minW="300px" style={{ wordWrap: 'break-word', maxWidth: 300 }}>{tituloDoTrabalho}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{ies}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{tipo}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre1}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre2}</Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({nome, tituloDoTrabalho, ies, tipo, chSemanalSemestre1, chSemanalSemestre2, index }),
+                        setDataEdit({id, nome, tituloDoTrabalho, ies, tipo, chSemanalSemestre1, chSemanalSemestre2, index }),
                         onOpen(),
                       ]}
                     />
@@ -109,7 +114,7 @@ const TabelasQualificacaoDissertacaoTese = () => {
                   <Td >
                     <DeleteIcon
                       fontSize={20}
-                      onClick={() => handleRemove(nome)}
+                      onClick={() => handleRemove(id)}
                     />
                   </Td>
                 </Tr>

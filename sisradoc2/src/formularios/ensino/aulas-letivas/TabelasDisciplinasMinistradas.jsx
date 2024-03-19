@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ModalDisciplinasMinistradas from "../../../components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
+import "../../styleFormularios.css";
 
 const TabelasDisciplinasMinistradas = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,10 +29,10 @@ const TabelasDisciplinasMinistradas = () => {
     setData(db_costumer);
   }, [setData]);
 
-  const handleRemove = (codigo) => {
+  const handleRemove = (id) => {
     //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
-      (item) => item.codigo !== codigo);
+      (item) => item.id !== id);
 
     setData(newArray);
 
@@ -49,7 +50,7 @@ const TabelasDisciplinasMinistradas = () => {
       fontSize="15px"
       fontFamily="poppins"
     >
-      <Box  maxW={1200} w="100%" h="100%" py={10} px={2}>
+      <Box  maxW={1200} w="100%" h="100%" py={10} px={2} paddingTop={5}>
         
         <Button 
           colorScheme="blue" 
@@ -62,41 +63,44 @@ const TabelasDisciplinasMinistradas = () => {
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%">
+        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
           <Table mt="0">
             <Thead>
               <Tr>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="150px" fontSize="15px" color="#fff">
+                    ID
+                </Th>
+                <Th minW="200px" fontSize="15px" color="#fff">
                   Nome
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                   Código
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                   Curso
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                   Nível
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                   CH Total
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                   Nº De Turmas (Teóricas)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                   Nº De Turmas (Práticas)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                   CH Por Turma (Teóricas)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                   CH Por Turma (Práticas)
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                   Nome Docente Envolvido
                 </Th>
-                <Th maxW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#fff">
                   CH Docente Envolvido
                 </Th>
                 <Th p={0}></Th>
@@ -104,24 +108,25 @@ const TabelasDisciplinasMinistradas = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido}, index) => (
+              {data.map(({id, nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
-                  <Td maxW="200px">{nome}</Td>
-                  <Td maxW="200px">{codigo}</Td>
-                  <Td maxW="200px">{curso}</Td>
-                  <Td maxW="200px">{nivel}</Td>
-                  <Td maxW="200px">{chTotal}</Td>
-                  <Td maxW="200px">{numTurmasT}</Td>
-                  <Td maxW="200px">{numTurmasP}</Td>
-                  <Td maxW="200px">{chPorTurmaT}</Td>
-                  <Td maxW="200px">{chPorTurmaP}</Td>
-                  <Td maxW="200px">{nomeDocenteEnvolvido}</Td>
-                  <Td maxW="200px">{chDocenteEnvolvido}</Td>
+                  <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nome}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{codigo}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{curso}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nivel}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chTotal}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{numTurmasT}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{numTurmasP}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chPorTurmaT}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chPorTurmaP}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nomeDocenteEnvolvido}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chDocenteEnvolvido}</Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido, index }),
+                        setDataEdit({id, nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido, index }),
                         onOpen(),
                       ]}
                     />
@@ -129,7 +134,7 @@ const TabelasDisciplinasMinistradas = () => {
                   <Td >
                     <DeleteIcon
                       fontSize={20}
-                      onClick={() => handleRemove(codigo)}
+                      onClick={() => handleRemove(id)}
                     />
                   </Td>
                 </Tr>

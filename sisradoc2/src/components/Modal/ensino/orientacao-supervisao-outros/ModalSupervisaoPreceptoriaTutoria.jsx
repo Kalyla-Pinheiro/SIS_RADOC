@@ -13,7 +13,8 @@ import {
     Box,
   } from "@chakra-ui/react";
   import { useState } from "react";
-  
+  import { v4 as uuidv4 } from "uuid";
+
   const ModalSupervisaoPreceptoriaTutoria = ({
     data,
     setData,
@@ -31,14 +32,27 @@ import {
     
     const handleSave = () => {
       if (!nome || !matricula || !curso || !tipo || !nivel || !chSemanalSemestre1 || !chSemanalSemestre2) return;
-  
+      
+      /*
       if (Object.keys(dataEdit).length) {
         data[dataEdit.index] = { nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2 };
       }
+      */
+
+      const newItem = {
+        id: uuidv4(), 
+        nome, 
+        matricula, 
+        curso, 
+        tipo, 
+        nivel, 
+        chSemanalSemestre1, 
+        chSemanalSemestre2
+      };
   
-      const newDataArray = !Object.keys(dataEdit).length
-        ? [...(data ? data : []), { nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2 }]
-        : [...(data ? data : [])];
+      const newDataArray = Object.keys(dataEdit).length
+        ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
+        : [...data, newItem];
   
       localStorage.setItem("supervisao_preceptoria_tutoria", JSON.stringify(newDataArray));
   
