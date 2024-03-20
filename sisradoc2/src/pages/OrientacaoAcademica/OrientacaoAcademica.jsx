@@ -3,8 +3,29 @@ import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import classesPesquisa from "../../css-modules/Pesquisa.module.css";
+import { ChakraProvider, Box} from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react';
+import paisagem3 from "../imagens/paisagem3.png";
+import TabelasOrientacaoCoorientacaoAcademica from "../../formularios/ensino/orientacao-supervisao-outros/TabelasOrientacaoCoorientacaoAcademica";
 
 const OrientacaoAcademica = () => {
+
+  const theme = extendTheme({
+    styles: {
+      global: {
+        body: {
+          backgroundImage: `url(${paisagem3})`,
+          fontFamily: "Poppins, sans-serif",
+          minHeight: "100vh",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          overflow: "hidden"
+        },
+      },
+    },
+  });
+
   return (
     <div>
       <Navegacao />
@@ -19,7 +40,7 @@ const OrientacaoAcademica = () => {
           <div className={classesPesquisa.anexarPdfs}>
             <div className={classesPesquisa.inputsPdfs}>
               <input type="file" accept=".pdf"/>
-              <p>Campo de submissão (PDF)</p>
+              <p>Documento Comprobatório (PDF)</p>
             </div>
             <div className={classesPesquisa.buttonSubmeterPDF}>
               <button type="submit">Submeter PDF</button>
@@ -31,7 +52,7 @@ const OrientacaoAcademica = () => {
           <div className={classesPesquisa.anexarPdfs} id={classesPesquisa.segundoAnexarPdfs}>
             <div className={classesPesquisa.inputsPdfs}>
               <input type="file" accept=".pdf"/>
-              <p>Campo de submissão (PDF)</p>
+              <p>Documento Comprobatótio (PDF)</p>
             </div>
             <div className={classesPesquisa.buttonSubmeterPDF}>
               <button type="submit">Submeter PDF</button>
@@ -39,7 +60,15 @@ const OrientacaoAcademica = () => {
           </div>
         </form> 
 
+        <div className={classes.areaPreenchimento}>
+          <div className={classes.campoTabelasSemestre} id={classes.tabelasOrientacaoCoorientacaoAcademica}>
+            <ChakraProvider theme={theme} resetCSS={false}> 
+              <TabelasOrientacaoCoorientacaoAcademica />
+            </ChakraProvider>
+          </div>
+        </div>
 
+        {/*
         <div className={classes.camposInlineOA}>
           <div className={classes.semestreNCH} id={classes.primeiroSemestreNCH}>
             <div className={classes.tituloCampoOA}>
@@ -120,6 +149,7 @@ const OrientacaoAcademica = () => {
             </div>
           </div>
         </div>
+        */}
         
         <div className={classes.buttonOA}>
           <a href="/SupervisaoAcademica">

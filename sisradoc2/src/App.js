@@ -28,7 +28,15 @@ import Projetos from "./pages/pesquisa/Projetos/Projetos";
 import Trabalhos from "./pages/pesquisa/Trabalhos/Trabalhos";
 import LivrosVerbetesPublicados from "./pages/pesquisa/livros-e-verbetes-publicados/LivrosVerbetesPublicados";
 import TrabalhosResumosPublicadosApresentados from "./pages/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados/TrabalhosResumosPublicadosApresentados";
+import OutrasAtividadesPesquisaProducaoIntelectual from "./pages/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual/OutrasAtividadesPesquisaProducaoIntelectual";
+import Extensao from "./pages/extensao/Extensao";
+import ProjetosExtensao from "./pages/extensao/projetos-de-extensao/ProjetosDeExtensao";
+import EstagioDeExtensao from "./pages/extensao/estagio-de-extensao/EstagioDeExtensao";
+import AtividadeDeEnsinoNaoFormal from "./pages/extensao/atividade-de-ensino-nao-formal/AtividadeDeEnsinoNaoFormal";
+import OutrasAtividadesDeExtensao from "./pages/extensao/outras-atividades-de-extensao/OutrasAtividadesDeExtensao";
 import AuthMiddleware from "./middleware/AuthMiddleware";
+import { Navigate } from "react-router-dom";
+import Erro404 from "./pages/404/Erro404";
 
 import TopBar from "./components/topbar/TopBar";
 
@@ -39,27 +47,67 @@ const MainLayout = ({ children }) => (
     <div>{children}</div>
   </div>
 );
-
+//teste
 const EnsinoLayout = ({ children }) => (
   <div>
     <div>{children}</div>
   </div>
 );
 
+const NotFound = () => <Navigate to="/404" />;
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
 
+        <Route element={<AuthMiddleware/>}>
+          <Route path="/home" element={<MainLayout> <Home /> </MainLayout>} />
+          <Route path="/perfil" element={<MainLayout> <Perfil /> </MainLayout>} />
+          <Route path="/formularios" element={<MainLayout> <Formulario /> </MainLayout>} />
+          <Route path="/documentos" element={<MainLayout> <Documento /> </MainLayout>} />
+          <Route path="/configuracao" element={<MainLayout> <Configuracao /> </MainLayout>} />
+          <Route path="/ensino" element={<MainLayout> <Ensino /> </MainLayout>} />
+          <Route path="/disciplinas" element={<MainLayout> <DisciplinasMinistradas /> </MainLayout>} />
+          <Route path="/numeroDeTurmasCHporTurma" element={<MainLayout> <NumeroDeTurmasCHporTurmas /> </MainLayout>} />
+          <Route path="/pedagogicasComplementares" element={<MainLayout> <PedagogicasComplementares /> </MainLayout>} />
+          <Route path="/ensino/DocentesEnvolvidos" element={<MainLayout> <DocentesEnvolvidos /> </MainLayout>} />
+          <Route path="/ensino/ChSemanalAulas" element={<MainLayout> <ChSemanalAulas /> </MainLayout>} />
+          <Route path="/ensino/AvaliacaoDocente" element={<MainLayout> <AvaliacaoDocente /> </MainLayout>} />
+          <Route path="/OrientacaoAcademica" element={<MainLayout> <OrientacaoAcademica /> </MainLayout>} />
+          <Route path="/SupervisaoAcademica" element={<MainLayout> <SupervisaoAcademica /> </MainLayout>} />
+          <Route path="/ChSemanalOrientacao" element={<MainLayout> <ChSemanalOrientacao /> </MainLayout>} />
+          <Route path="/PreceptoriaOuTutoriaDeResidencia" element={<MainLayout> <PreceptoriaOuTutoriaDeResidencia /> </MainLayout>} />
+          <Route path="/MonografiaQualificacaoDIssertacaoTese" element={<MainLayout> <MonografiaQualificacaoDIssertacaoTese /></MainLayout>} />
+
+          <Route path="/pesquisa" element={<MainLayout> <Pesquisa /> </MainLayout>} />
+          <Route path="/pesquisa/Projetos" element={<MainLayout> <Projetos /> </MainLayout>} />
+          <Route path="/pesquisa/Trabalhos" element={<MainLayout> <Trabalhos /> </MainLayout>} />
+          <Route path="/pesquisa/livros-e-verbetes-publicados" element={<MainLayout> <LivrosVerbetesPublicados /> </MainLayout>} />
+          <Route path="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados" element={<MainLayout> <TrabalhosResumosPublicadosApresentados /> </MainLayout>} />
+          <Route path="/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual" element={<MainLayout> <OutrasAtividadesPesquisaProducaoIntelectual /> </MainLayout>} />
+
+          <Route path="/extensao" element={<MainLayout> <Extensao /> </MainLayout>} />
+          <Route path="/extensao/projetos-de-extensao" element={<MainLayout> <ProjetosExtensao /> </MainLayout>} />
+          <Route path="/extensao/estagio-de-extensao" element={<MainLayout> <EstagioDeExtensao /> </MainLayout>} />
+          <Route path="/extensao/atividades-de-ensino-nao-formais" element={<MainLayout> <AtividadeDeEnsinoNaoFormal /> </MainLayout>} />
+          <Route path="/extensao/outras-atividades-de-extensao" element={<MainLayout> <OutrasAtividadesDeExtensao /> </MainLayout>} />
+
+        </Route>
+
+        <Route path="*" element={<NotFound />} />
+        <Route path="/404" element={<Erro404/>}/>
+        
+        {/* 
         <Route
           path="/*"
           element={
             <MainLayout>
               <Routes>
                 <Route element={<AuthMiddleware/>}>
-                  <Route path="/" element={<Home />} />
+                  <Route path="home" element={<Home />} />
                   <Route path="perfil" element={<Perfil />} />
                   <Route path="formularios" element={<Formulario />} />
                   <Route path="documentos" element={<Documento />} />
@@ -121,6 +169,8 @@ function App() {
             </MainLayout>
           }
         />
+        */}
+
       </Routes>
 
       

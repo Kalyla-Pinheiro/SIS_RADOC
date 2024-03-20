@@ -2,8 +2,29 @@ import React from "react";
 import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
+import { ChakraProvider, Box} from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react';
+import paisagem3 from "../imagens/paisagem3.png";
+import TabelasCalculoChSemanal from "../../formularios/ensino/orientacao-supervisao-outros/TabelasCalculoChSemanal";
 
 const ChSemanalOrientacao = () => {
+
+  const theme = extendTheme({
+    styles: {
+      global: {
+        body: {
+          backgroundImage: `url(${paisagem3})`,
+          fontFamily: "Poppins, sans-serif",
+          minHeight: "100vh",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          overflow: "hidden"
+        },
+      },
+    },
+  });
+
   return (
     <div>
       <Navegacao />
@@ -12,6 +33,17 @@ const ChSemanalOrientacao = () => {
           <h1>Calculo do CH Semanal</h1>
         </div>
 
+        <div className={classes.areaPreenchimento}>
+
+          <div className={classes.campoTabelasSemestre} id={classes.tabelasCalculoChSemanalOrientacao}>
+            <ChakraProvider theme={theme} resetCSS={false}> 
+              <TabelasCalculoChSemanal />
+            </ChakraProvider>
+          </div>
+
+        </div>
+
+        {/*
         <div className={classes.camposInlineOA}>
           <div className={classes.semestreNCH} id={classes.primeiroSemestreNCH}>
             <div className={classes.tituloCampoOA}>
@@ -133,12 +165,13 @@ const ChSemanalOrientacao = () => {
           </div>
           <input type="text" placeholder="" required />
         </div>
+        */}
 
-        <div className={classes.buttonOA} id={classes.buttonChOA}>
-          <a href="/PreceptoriaOuTutoriaDeResidencia">
+        <div className={classes.buttonOA}>
+          <a href="/SupervisaoAcademica">
             <button>Voltar</button>
           </a>
-          <a href="/ensino">
+          <a href="#">
             <button id={classes.buttonProximo}>Salvar</button>
           </a>
         </div>

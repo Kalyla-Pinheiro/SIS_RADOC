@@ -3,8 +3,29 @@ import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import classesPesquisa from "../../css-modules/Pesquisa.module.css";
+import { ChakraProvider, Box} from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react';
+import paisagem3 from "../imagens/paisagem3.png";
+import TabelasQualificacaoDissertacaoTese from "../../formularios/ensino/bancas-examinadoras/TabelasQualificaoDissertacaoTese";
 
 const MonografiaQualificacaoDIssertacaoTese = () => {
+
+  const theme = extendTheme({
+    styles: {
+      global: {
+        body: {
+          backgroundImage: `url(${paisagem3})`,
+          fontFamily: "Poppins, sans-serif",
+          minHeight: "100vh",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          overflow: "hidden"
+        },
+      },
+    },
+  });
+
   return (
     <div>
       <Navegacao />
@@ -38,7 +59,17 @@ const MonografiaQualificacaoDIssertacaoTese = () => {
           </div>
         </form> 
 
-        
+        <div className={classes.areaPreenchimento}>
+
+          <div className={classes.campoTabelasSemestre} id={classes.tabelasQualificacaoDissertacaoTese}>
+            <ChakraProvider theme={theme} resetCSS={false}> 
+              <TabelasQualificacaoDissertacaoTese />
+            </ChakraProvider>
+          </div>
+
+        </div>
+
+        {/*
         <div className={classes.camposInlineOA}>
           <div className={classes.semestreNCH} id={classes.primeiroSemestreNCH}>
             <div className={classes.tituloCampoOA}>
@@ -110,6 +141,7 @@ const MonografiaQualificacaoDIssertacaoTese = () => {
             </div>
           </div>
         </div>
+        */}
         
         <div className={classes.buttonOA}>
           <a href="#">
@@ -118,6 +150,7 @@ const MonografiaQualificacaoDIssertacaoTese = () => {
         </div>
 
       </div>
+
     </div>
   );
 };

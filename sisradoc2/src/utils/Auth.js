@@ -41,13 +41,7 @@ const AuthFunctions = {
         try {
             const response = await fetch(`${apiurls.verificar_usuario}?email=${email}`);
 
-            if (!response.ok) {
-                const error = await response.json();
-                return error;
-            }
-
-            const data = await response.json();
-            return data; 
+            return response;
         } catch (error) {
             console.error('Erro na requisição:', error);
         }

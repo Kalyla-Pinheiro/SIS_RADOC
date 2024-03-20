@@ -33,7 +33,7 @@ const Pesquisa = () => {
           <a className={classes.opcaoPesquisa} type="button" href="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados">
             Trabalhos Publicados e/ou Apresentados
           </a>
-          <a className={classes.opcaoPesquisa} type="button" href="#">
+          <a className={classes.opcaoPesquisa} type="button" href="/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual">
             Outras Atividades de Produção Intelectual
           </a>
         </nav>

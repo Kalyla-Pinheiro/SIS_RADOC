@@ -3,8 +3,29 @@ import classes from "../../../css-modules/Ensino.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import classesPesquisa from "../../../css-modules/Pesquisa.module.css";
+import { ChakraProvider, Box} from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react';
+import paisagem3 from "../../imagens/paisagem3.png";
+import TabelasAvaliacaoDiscente from "../../../formularios/ensino/avaliacao-discente/TabelasAvaliacaoDiscente";
 
 const AvaliacaoDocente = () => {
+
+  const theme = extendTheme({
+    styles: {
+      global: {
+        body: {
+          backgroundImage: `url(${paisagem3})`,
+          fontFamily: "Poppins, sans-serif",
+          minHeight: "100vh",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          overflow: "hidden"
+        },
+      },
+    },
+  });
+
   return (
     <div>
       <Navegacao />
@@ -17,7 +38,7 @@ const AvaliacaoDocente = () => {
           <div className={classesPesquisa.anexarPdfs}>
             <div className={classesPesquisa.inputsPdfs}>
               <input type="file" accept=".pdf"/>
-              <p>Campo de submissão (PDF)</p>
+              <p>Relatório de Avaliação Docência (PDF)</p>
             </div>
             <div className={classesPesquisa.buttonSubmeterPDF}>
               <button type="submit">Submeter PDF</button>
@@ -25,18 +46,17 @@ const AvaliacaoDocente = () => {
           </div>
         </form>
 
-        <form className={classesPesquisa.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data">
-          <div className={classesPesquisa.anexarPdfs} id={classesPesquisa.segundoAnexarPdfs}>
-            <div className={classesPesquisa.inputsPdfs}>
-              <input type="file" accept=".pdf"/>
-              <p>Campo de submissão (PDF)</p>
-            </div>
-            <div className={classesPesquisa.buttonSubmeterPDF}>
-              <button type="submit">Submeter PDF</button>
-            </div>
-          </div>
-        </form> 
+        <div className={classes.areaPreenchimento}>
 
+          <div className={classes.campoTabelasSemestre} id={classes.tabelasAvaliacaoDiscente}>
+            <ChakraProvider theme={theme} resetCSS={false}> 
+              <TabelasAvaliacaoDiscente />
+            </ChakraProvider>
+          </div>
+
+        </div>
+
+        {/*
         <div className={classes.AvaliacaoD}>
           <div className={classes.camposInlineOA}>
             <div
@@ -106,9 +126,10 @@ const AvaliacaoDocente = () => {
             </div>
           </div>
         </div>
+        */}
 
         <div className={classes.buttonAD}>
-          <a href="/ensino">
+          <a href="#">
             <button id={classes.buttonProximo}>Salvar</button>
           </a>
         </div>

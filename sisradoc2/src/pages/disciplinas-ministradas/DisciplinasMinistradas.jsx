@@ -9,6 +9,14 @@ import apiUrls from "../../apis/apiUrls";
 import { ToastContainer, toast } from "react-toastify";
 import {ToastifyMessages} from "../../utils/ToastifyMessages";
 import classesPesquisa from "../../css-modules/Pesquisa.module.css";
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
+import { ChakraProvider, Box} from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react';
+import ReactDOM from "react-dom";
+import TabelasDisciplinasMinistradas from "../../formularios/ensino/aulas-letivas/TabelasDisciplinasMinistradas";
+import paisagem3 from "../imagens/paisagem3.png";
 
 const DisciplinasMinistradas = () => {
   const [pdfDisciplinas, setPdfDisciplinas] = useState(null);
@@ -98,8 +106,25 @@ const DisciplinasMinistradas = () => {
     }
   };
 
+  const theme = extendTheme({
+    styles: {
+      global: {
+        body: {
+          backgroundImage: `url(${paisagem3})`,
+          fontFamily: "Poppins, sans-serif",
+          minHeight: "100vh",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          overflow: "hidden"
+        },
+      },
+    },
+  });
+  
   return (
     <div>
+    
       <Navegacao />
       <PopUp />
 
@@ -132,7 +157,18 @@ const DisciplinasMinistradas = () => {
           </div>
         </form>
 
+        <div className={classes.areaPreenchimento}>
 
+          <div className={classes.campoTabelasSemestre} id={classes.tabelasDisciplinasMinistradas}>
+            <ChakraProvider theme={theme} resetCSS={false}>
+              <TabelasDisciplinasMinistradas/>
+            </ChakraProvider>
+          </div>
+
+        </div>
+        
+
+        {/*
         <div className={classes.semestre} id={classes.primeiroSemestre}>
           <div className={classes.tituloSemestre}>
             <p>1º Semestre</p>
@@ -158,7 +194,7 @@ const DisciplinasMinistradas = () => {
             <BsQuestionCircleFill className={classes.icon} />
           </div>
         </div>
-
+        
         <div className={classes.semestre}>
           <div className={classes.tituloSemestre}>
             <p>2º Semestre</p>
@@ -184,9 +220,10 @@ const DisciplinasMinistradas = () => {
             <BsQuestionCircleFill className={classes.icon} />
           </div>
         </div>
+        */}
 
         <div className={classes.buttons} id={classes.buttonDisciplinaMinistrada}>
-          <a href="/numeroDeTurmasCHporTurma">
+          <a href="/ensino/ChSemanalAulas">
             <button>Próximo</button>
           </a>
         </div>
