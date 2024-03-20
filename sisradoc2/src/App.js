@@ -30,9 +30,12 @@ import LivrosVerbetesPublicados from "./pages/pesquisa/livros-e-verbetes-publica
 import TrabalhosResumosPublicadosApresentados from "./pages/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados/TrabalhosResumosPublicadosApresentados";
 import AuthMiddleware from "./middleware/AuthMiddleware";
 
+import TopBar from "./components/topbar/TopBar";
+
 const MainLayout = ({ children }) => (
   <div>
-    <Sidebar />
+    {/* <Sidebar /> */}
+    <TopBar />
     <div>{children}</div>
   </div>
 );

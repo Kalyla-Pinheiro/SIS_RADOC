@@ -1,0 +1,121 @@
+body{
+    display: inline-block;
+    justify-content: flex-start;
+    grid-column: 1/-1;
+    width: 100%;
+}
+
+.containerA {
+    /* height: 0px; */
+    width: 100%;
+    margin-top: 0px;
+}
+
+main {
+    width: 100%;
+    padding: 20px;
+}
+
+.topbar {
+    position: relative;
+    width: 100%;
+    height: 4rem;
+    background: rgba(255, 255, 255, .05);
+    backdrop-filter: blur(40px);
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    color: #fff;
+    padding: 6px 14px;
+    transition: all 0.5s;
+    z-index: 9999999999999999999999999999;
+
+}
+
+.top-section {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.divBtnMenu{
+    width: 4rem;
+    height: 100%;
+}
+
+.btnMenu {
+    width: 100%;
+    height: 100%;
+}
+
+.dropdown-menu{
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    transition: all 1s;
+    overflow: hidden;
+
+    border-radius: 0px 0px 20px 20px;
+
+}
+
+
+.dropdown-item{
+    width: max-content;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    user-select: none;  
+
+}
+
+.icon{
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    user-select: none;  
+    transition: all 1s;
+}
+
+.textItem{
+    cursor: default;
+    transition: all 1s;
+}
+
+.btnGeralItem{
+    display: flex;
+    justify-content: center;
+}
+
+.btnGeralItem .link{
+    width: 95%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* .btnGeral:hover{
+    background: rgba(255, 255, 255, .2);
+    transition: all 0.5s;
+    border-radius: 6px;
+} */
+
