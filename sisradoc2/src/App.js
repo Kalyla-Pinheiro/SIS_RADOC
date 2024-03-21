@@ -34,6 +34,8 @@ import ProjetosExtensao from "./pages/extensao/projetos-de-extensao/ProjetosDeEx
 import EstagioDeExtensao from "./pages/extensao/estagio-de-extensao/EstagioDeExtensao";
 import AtividadeDeEnsinoNaoFormal from "./pages/extensao/atividade-de-ensino-nao-formal/AtividadeDeEnsinoNaoFormal";
 import OutrasAtividadesDeExtensao from "./pages/extensao/outras-atividades-de-extensao/OutrasAtividadesDeExtensao";
+import Gestao from "./pages/gestao/Gestao";
+import AtividadeGestaoRepresentacao from "./pages/gestao/atividade-de-gestao-e-representacao/AtividadeGestaoRepresentacao";
 import AuthMiddleware from "./middleware/AuthMiddleware";
 import { Navigate } from "react-router-dom";
 import Erro404 from "./pages/404/Erro404";
@@ -94,6 +96,9 @@ function App() {
           <Route path="/extensao/estagio-de-extensao" element={<MainLayout> <EstagioDeExtensao /> </MainLayout>} />
           <Route path="/extensao/atividades-de-ensino-nao-formais" element={<MainLayout> <AtividadeDeEnsinoNaoFormal /> </MainLayout>} />
           <Route path="/extensao/outras-atividades-de-extensao" element={<MainLayout> <OutrasAtividadesDeExtensao /> </MainLayout>} />
+
+          <Route path="/gestao" element={<MainLayout> <Gestao /> </MainLayout>} />
+          <Route path="/gestao/atividades-de-gestao-e-representacao" element={<MainLayout> <AtividadeGestaoRepresentacao /> </MainLayout>} />
 
         </Route>
 

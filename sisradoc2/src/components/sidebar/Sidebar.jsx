@@ -52,7 +52,7 @@ const Formulario = ({ children }) => {
             subMenu: [
                 {
                     label: "Ensino",
-                    path: "/Ensino",
+                    path: "/ensino",
                     icon: <TbPointFilled />,
                     // subSubMenu: [
                     //     { label: "Orientacão", path: "/formularios/a/a1" , icon: <VscDebugBreakpointLogUnverified />,},
@@ -62,7 +62,7 @@ const Formulario = ({ children }) => {
                 },
                 {
                     label: "Pesquisa",
-                    path: "/Pesquisa",
+                    path: "/pesquisa",
                     icon: <TbPointFilled />,
                     // subSubMenu: [
                     //     { label: "B1", path: "/formularios/b/b1" },
@@ -71,13 +71,17 @@ const Formulario = ({ children }) => {
                 },
                 {
                     label: "Extensão",
-                    path: "/",
+                    path: "/extensao",
                     icon: <TbPointFilled />
                 },
-
+                {
+                    label: "Gestão",
+                    path: "/gestao",
+                    icon: <TbPointFilled />
+                },
                 {
                     label: "Outros",
-                    path: "/" ,
+                    path: "#" ,
                     icon: <TbPointFilled />,
                 }
             ]
