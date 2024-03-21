@@ -4,8 +4,42 @@ import { ToastContainer, toast } from "react-toastify";
 import { ToastifyMessages } from "../../utils/ToastifyMessages";
 import TokenFunctions from "../../utils/Token";
 import { useEffect, useState } from "react";
+import {
+  Box,
+  Flex,
+  Button,
+  useDisclosure,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+  useBreakpointValue,
+} from "@chakra-ui/react";
+import ModalCrieSeuRadoc from "../../components/Modal/home/ModalCrieSeuRadoc";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import paisagem3 from "../imagens/paisagem3.png";
 
 const Home = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const theme = extendTheme({
+    styles: {
+      global: {
+        body: {
+          backgroundImage: `url(${paisagem3})`,
+          fontFamily: "Poppins, sans-serif",
+          minHeight: "100vh",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          overflow: "hidden"
+        },
+      },
+    },
+  });
+
   return (
     <div className={classes.homeContainer}>
 
@@ -68,9 +102,13 @@ const Home = () => {
         </div>
 
         <div className={classes.buttons}>
-          <button>Crie seu Radoc</button>
+          <button onClick={onOpen}>Crie seu Radoc</button>
         </div>
 
+        <ChakraProvider theme={theme} resetCSS={false}> 
+          <ModalCrieSeuRadoc isOpen={isOpen} onClose={onClose} />
+        </ChakraProvider>
+        
       </div>
       <ToastContainer position="bottom-left" />
     </div>
