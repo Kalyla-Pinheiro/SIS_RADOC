@@ -31,7 +31,7 @@ const Login = () => {
 
       if(result.status === 200){
         TokenFunctions.setToken(token);
-        navigate("/formularios");
+        navigate("/home");
         return;
       } else if(result.status === 400){
         TokenFunctions.setToken(token);
