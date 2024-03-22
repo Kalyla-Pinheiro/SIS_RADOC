@@ -38,18 +38,50 @@ main {
     justify-content: space-between;
 }
 
-.divBtnMenu{
+.divBtnMenu, .divBtnUser{
     width: 4rem;
     height: 100%;
 }
 
-.btnMenu {
+.btnMenu, .btnUser {
     width: 100%;
     height: 100%;
 }
 
+.btnUser{
+    background: rgb(123, 123, 123);
+    border-radius: 100%;
+    border: 4px solid white;
+}
+
+.divBtnUser{
+    width: 3rem;
+    height: 3rem;
+    /* background-color: green; */
+}
+
+.ajusteBtnUser{
+    /* width: 3rem;
+    height: 100%;
+    background: red; */
+    height: 100%;
+    /* margin: 4px; */
+}
+
+.btnUser{
+    width: 100%;
+    height: 100%;
+}
+
+.ladoBtn{
+    display: flex;
+    align-items: center;
+}
+
 .dropdown-menu{
-    background: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
     border: 2px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
@@ -58,13 +90,79 @@ main {
     flex-direction: column;
     justify-content: center;
 
-    transition: all 1s;
+    transition: all 0.7s;
     overflow: hidden;
 
     border-radius: 0px 0px 20px 20px;
+    height: max-content;
 
 }
 
+.dropdown-User {
+    position: absolute;
+    right: 0;
+    /*background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    transform-origin: top right;  Configuração para que o dropdown cresça a partir do canto superior direito */
+
+
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+
+    transition: all 0.7s;
+    overflow: hidden;
+
+    border-radius: 0px 0px 20px 20px;
+    height: max-content;
+
+    margin-top: 9px;
+}
+
+.dropdown-User.open {
+    width: 20rem;
+}
+
+.dropdown-User.open .dropdown-item {
+    opacity: 1;
+}
+
+.dropdown-User.open .dropdown-item .icon,
+.dropdown-User.open .dropdown-item .textItem {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* .btnGeralItem:last-child> .dropdown-item:first-child{
+    background: rgba(253, 0, 0, 0.3);
+    transition: all 0.3s;
+}
+
+.btnGeralItem:last-child> .dropdown-item:first-child:hover{
+    background: rgba(253, 0, 0, 0.7);
+} */
+
+.testeUserContent{
+    margin-top: 0;
+    height: 100px;
+    width: 100%;
+    background: rgba(142, 142, 142, 0.545);
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: end;
+}
 
 .dropdown-item{
     width: max-content;
