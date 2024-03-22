@@ -13,9 +13,28 @@
   backdrop-filter: blur(50px);
 }
 
-.titulo {
+.tituloEbutton {
+  width: 100%;
   margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.titulo {
   color: #fff;
+  justify-self: center;
+}
+
+.tituloEbutton button {
+  width: 8.125rem;
+  height: 2.5rem;
+  background: #fff;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 16px;
+  cursor: pointer;
+  justify-self: end;
+  margin-right: 75px;
 }
 
 .opcoesPesquisa {

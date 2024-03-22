@@ -1,15 +1,41 @@
 import React from "react";
 import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
+import ModalChSemanalEnsino from "../../components/Modal/ensino/ch-semanal/ModalChSemanalEnsino";
+import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
+import paisagem3 from "../imagens/paisagem3.png";
 
 const Ensino = () => {
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const theme = extendTheme({
+    styles: {
+      global: {
+        body: {
+          backgroundImage: `url(${paisagem3})`,
+          fontFamily: "Poppins, sans-serif",
+          minHeight: "100vh",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          overflow: "hidden"
+        },
+      },
+    },
+  });
+
   return (
     <div>
       <Navegacao />
 
       <div className={classes.ensinoContainer}>
-        <div className={classes.titulo}>
-          <h1>Ensino</h1>
+        <div className={classes.tituloEbutton}>
+          <div></div>
+          <div className={classes.titulo}>
+            <h1>Ensino</h1>
+          </div>
+          <button onClick={onOpen}>CH Semanal</button>
         </div>
 
         <nav className={classes.opcoesEnsino}>
@@ -45,6 +71,10 @@ const Ensino = () => {
             Avaliação Discente
           </a>
         </nav>
+
+        <ChakraProvider theme={theme} resetCSS={false}> 
+          <ModalChSemanalEnsino isOpen={isOpen} onClose={onClose} />
+        </ChakraProvider>
       </div>
     </div>
   );
