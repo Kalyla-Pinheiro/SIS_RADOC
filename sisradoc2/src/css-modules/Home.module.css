@@ -19,9 +19,9 @@
   backdrop-filter: blur(50px);
 }
 
-.titulo {
-  /* margin-top: 45px; */
-}
+/*.titulo {
+   margin-top: 45px; 
+}*/
 
 .campoFlex {
   display: flex;
