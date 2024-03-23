@@ -39,6 +39,10 @@
   margin-right: 75px;
 }
 
+#tituloMargin {
+  margin-top: 40px;
+}
+
 .opcoesEnsino {
   margin: 50px;
   width: 700px;
@@ -359,7 +363,7 @@
 
 #tabelasQualificacaoDissertacaoTese {
   width: 68.75rem;
-  height: 390px;
+  height: 430px;
 }
 
 
@@ -592,7 +596,7 @@
 
 #tabelasOrientacaoCoorientacaoAcademica {
   width: 68.75rem;
-  height: 390px;
+  height: 430px;
 }
 
 /*Supervisão Acadêmica*/

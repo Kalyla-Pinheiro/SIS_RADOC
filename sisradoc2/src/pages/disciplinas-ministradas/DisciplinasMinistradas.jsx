@@ -126,10 +126,9 @@ const DisciplinasMinistradas = () => {
     <div>
     
       <Navegacao />
-      <PopUp />
 
       <div className={classes.disciplinasMinistradasConteiner}>
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
           <h1>Disciplinas Ministradas</h1>
         </div>
 

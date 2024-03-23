@@ -30,7 +30,7 @@ const OutrasAtividadesDeExtensao = () => {
       <Navegacao />
 
       <div className={classes.extensaoContainer}>
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
           <h1>Outras Atividades de Extensão</h1>
         </div>
 

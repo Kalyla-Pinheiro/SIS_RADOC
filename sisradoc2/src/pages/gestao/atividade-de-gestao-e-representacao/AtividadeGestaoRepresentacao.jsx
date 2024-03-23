@@ -30,7 +30,7 @@ const AtividadeGestaoRepresentacao = () => {
       <Navegacao />
 
       <div className={classes.gestaoContainer}>
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
           <h1>Atividades de Gestão e Representação</h1>
         </div>
 

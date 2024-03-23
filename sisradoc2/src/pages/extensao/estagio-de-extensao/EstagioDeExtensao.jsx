@@ -30,7 +30,7 @@ const EstagioDeExtensao = () => {
       <Navegacao />
 
       <div className={classes.extensaoContainer}>
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
           <h1>Estágios de Extensão</h1>
         </div>
 

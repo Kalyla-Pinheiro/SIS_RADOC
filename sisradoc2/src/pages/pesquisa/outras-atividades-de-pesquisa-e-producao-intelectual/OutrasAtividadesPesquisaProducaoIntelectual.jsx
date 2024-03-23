@@ -30,7 +30,7 @@ const OutrasAtividadesPesquisaProducaoIntelectual = () => {
       <Navegacao />
 
       <div className={classes.pesquisaContainer}>
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
             <h1>Outras Atividades de Pesquisa e Produção Intelectual</h1>
         </div>
 

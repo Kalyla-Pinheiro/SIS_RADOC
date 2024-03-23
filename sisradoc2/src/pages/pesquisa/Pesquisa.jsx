@@ -57,7 +57,7 @@ const Pesquisa = () => {
             Livros e Verbetes Publicados
           </a>
           <a className={classes.opcaoPesquisa} type="button" href="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados">
-            Trabalhos Publicados e/ou Apresentados
+            Resumos Publicados em Anais de Congressos ou Similares
           </a>
           <a className={classes.opcaoPesquisa} type="button" href="/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual">
             Outras Atividades de Produção Intelectual

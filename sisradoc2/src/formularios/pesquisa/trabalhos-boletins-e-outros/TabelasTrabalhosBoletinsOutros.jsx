@@ -70,9 +70,6 @@ const TabelasTrabalhosBoletinsOutros = () => {
                 <Th minW="150px" fontSize="15px" color="#fff">
                     ID
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                    Tipo
-                </Th>
                 <Th minW="300px" fontSize="15px" color="#fff">
                     Link
                 </Th>
@@ -84,17 +81,16 @@ const TabelasTrabalhosBoletinsOutros = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({id, tipo, link, descricao}, index) => (
+              {data.map(({id, link, descricao}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
                   <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{tipo}</Td>
                   <Td minW="300px" style={{ wordWrap: 'break-word', maxWidth: 300 }}>{link}</Td>
                   <Td minW="600px" style={{ wordWrap: 'break-word', maxWidth: 600 }}>{descricao}</Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({id, tipo, link, descricao, index }),
+                        setDataEdit({id, link, descricao, index }),
                         onOpen(),
                       ]}
                     />

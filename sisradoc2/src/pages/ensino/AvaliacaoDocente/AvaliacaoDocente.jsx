@@ -30,7 +30,7 @@ const AvaliacaoDocente = () => {
     <div>
       <Navegacao />
       <div className={classes.orientacaoAcademicaContainer}>
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
           <h1>Avaliação Discente</h1>
         </div>
 

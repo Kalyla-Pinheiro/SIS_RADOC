@@ -30,7 +30,7 @@ const TrabalhosResumosPublicadosApresentados = () => {
       <Navegacao />
 
       <div className={classes.pesquisaContainer}>
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
             <h1>Trabalhos e Resumos Publicados ou Apresentados</h1>
         </div>
 

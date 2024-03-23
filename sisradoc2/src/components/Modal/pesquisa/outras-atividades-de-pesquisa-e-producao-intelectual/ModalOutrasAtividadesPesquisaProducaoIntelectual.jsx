@@ -22,16 +22,14 @@ import {
     isOpen,
     onClose,
   }) => {
-    const [tipo, setTipo] = useState(dataEdit.tipo || "");
     const [link, setLink] = useState(dataEdit.link || "");
     const [descricao, setDescricao] = useState(dataEdit.descricao || "");
   
     const handleSave = () => {
-      if (!tipo || !link || !descricao) return;
+      if (!link || !descricao) return;
   
       const newItem = {
         id: uuidv4(), // Gerando um ID único para o novo item
-        tipo,
         link,
         descricao,
       };
@@ -59,14 +57,6 @@ import {
             <ModalCloseButton />
             <ModalBody>
               <FormControl display="flex" flexDir="column" gap={4}>
-                <Box>
-                  <FormLabel>Tipo</FormLabel>
-                  <Input
-                    type="text"
-                    value={tipo}
-                    onChange={(e) => setTipo(e.target.value)}
-                  />
-                </Box>
                 <Box>
                   <FormLabel>Link</FormLabel>
                   <Input

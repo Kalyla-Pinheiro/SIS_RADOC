@@ -131,7 +131,7 @@ const ModalDisciplinasMinistradas = ({
                 />
               </Box>
               <Box>
-                <FormLabel>Nº De Turmas (Teóricas)</FormLabel>
+                <FormLabel>Nº Da Turma (Teórica)</FormLabel>
                 <Input
                   type="text"
                   value={numTurmasT}
@@ -139,7 +139,7 @@ const ModalDisciplinasMinistradas = ({
                 />
               </Box>
               <Box>
-                <FormLabel>Nº De Turmas (Práticas)</FormLabel>
+                <FormLabel>Nº Da Turma (Prática)</FormLabel>
                 <Input
                   type="text"
                   value={numTurmasP}
@@ -147,7 +147,7 @@ const ModalDisciplinasMinistradas = ({
                 />
               </Box>
               <Box>
-                <FormLabel>CH Por Turma (Teóricas)</FormLabel> 
+                <FormLabel>CH Por Turma (Teórica)</FormLabel> 
                 <Input
                   type="text"
                   value={chPorTurmaT}
@@ -155,7 +155,7 @@ const ModalDisciplinasMinistradas = ({
                 />
               </Box>
               <Box>
-                <FormLabel>CH Por Turma (Práticas)</FormLabel> 
+                <FormLabel>CH Por Turma (Prática)</FormLabel> 
                 <Input
                   type="text"
                   value={chPorTurmaP}

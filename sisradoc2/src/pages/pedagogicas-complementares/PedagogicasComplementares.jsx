@@ -1,7 +1,6 @@
 import React from "react";
 import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
-import PopUp2 from "../../components/popUp/popUp2"
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { ChakraProvider, Box} from "@chakra-ui/react";
 import { extendTheme } from '@chakra-ui/react';
@@ -29,11 +28,10 @@ const PedagogicasComplementares = () => {
   return (
     <div>
       <Navegacao/>
-      <PopUp2/>
 
       <div className={classes.ensinoContainer}>
 
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
           <h1>Pedagógicas Complementares</h1>
         </div>
 

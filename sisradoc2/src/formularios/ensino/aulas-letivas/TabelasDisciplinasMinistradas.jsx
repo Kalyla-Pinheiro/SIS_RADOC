@@ -86,16 +86,16 @@ const TabelasDisciplinasMinistradas = () => {
                   CH Total
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
-                  Nº De Turmas (Teóricas)
+                  Nº Da Turma (Teórica)
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
-                  Nº De Turmas (Práticas)
+                  Nº Da Turma (Prática)
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
-                  CH Por Turma (Teóricas)
+                  CH Por Turma (Teórica)
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
-                  CH Por Turma (Práticas)
+                  CH Por Turma (Prática)
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
                   Nome Docente Envolvido

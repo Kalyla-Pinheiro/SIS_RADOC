@@ -30,7 +30,7 @@ const LivrosVerbetesPublicados = () => {
       <Navegacao />
 
       <div className={classes.pesquisaContainer}>
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
             <h1>Livros e Verbetes Publicados</h1>
         </div>
 

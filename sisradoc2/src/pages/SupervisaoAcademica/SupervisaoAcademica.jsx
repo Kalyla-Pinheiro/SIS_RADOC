@@ -31,7 +31,7 @@ const SupervisaoAcademica = () => {
       <Navegacao />
 
       <div className={classes.orientacaoAcademicaContainer}>
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
           <h1>Supervisão, Preceptoria e/ou Tutoria</h1>
         </div>
 

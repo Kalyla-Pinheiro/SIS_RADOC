@@ -30,7 +30,7 @@ const AtividadeDeEnsinoNaoFormal = () => {
       <Navegacao />
 
       <div className={classes.extensaoContainer}>
-        <div className={classes.titulo}>
+        <div className={classes.titulo} id={classes.tituloMargin}>
           <h1>Atividades de Ensino Não Formais</h1>
         </div>
 

@@ -41,6 +41,10 @@
     margin-right: 75px;
 }
 
+#tituloMargin {
+    margin-top: 40px;
+}
+
 .opcoesExtensao {
     margin: 50px;
     width: 700px;

@@ -37,6 +37,10 @@
   margin-right: 75px;
 }
 
+#tituloMargin {
+  margin-top: 40px;
+}
+
 .opcoesPesquisa {
   margin: 50px;
   width: 700px;
