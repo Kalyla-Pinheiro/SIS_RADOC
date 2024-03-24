@@ -93,6 +93,8 @@ const ModalDisciplinasMinistradas = ({
     setData(newDataArray);
 
     onClose();
+
+    window.location.reload();
   };
 
   const aulasLetivasData = TokenFunctions.get_diario_turma();
