@@ -54,23 +54,34 @@ const ModalDisciplinasMinistradas = ({
   const handleSave = () => {
     //if (!nome || !codigo || !curso || !nivel || !chTotal || !numTurmasT || !numTurmasP || !chPorTurmaT || !chPorTurmaP || !nomeDocenteEnvolvido || !chDocenteEnvolvido) return;
 
-    if (codigoJaExiste()) {
-      return alert("O código já existe!");
-    }
+    const newAulasLetivas = {
+      id: uuidv4(),
+      Disciplina: aulasLetivas.Disciplina,
+      Curso: aulasLetivas.Curso,
+      Nivel: aulasLetivas.Nivel,
+      Numero_Turmas_Teoricas: aulasLetivas.Numero_Turmas_Teoricas,
+      Numero_Turmas_Praticas: aulasLetivas.Numero_Turmas_Praticas,
+      CH_Por_Turma_Teorica: aulasLetivas.CH_Por_Turma_Teorica,
+      CH_Por_Turma_Pratica: aulasLetivas.CH_Por_Turma_Pratica,
+      Codigo: aulasLetivas.Codigo[0],
+      Carga_Horaria: aulasLetivas.Carga_Horaria[0],
+      Docentes_Envolvidos: aulasLetivas.Docentes_Envolvidos,
+      CH_Docente_Envolvido: aulasLetivas.CH_Docente_Envolvido,
+    };
     
     const newItem = {
-      id: uuidv4(), 
-      nome, 
-      codigo, 
-      curso, 
-      nivel, 
-      chTotal, 
-      numTurmasT, 
-      numTurmasP, 
-      chPorTurmaT, 
-      chPorTurmaP, 
-      nomeDocenteEnvolvido, 
-      chDocenteEnvolvido
+      id: newAulasLetivas.id, 
+      nome: newAulasLetivas.Disciplina, 
+      codigo: newAulasLetivas.Codigo, 
+      curso: newAulasLetivas.Curso, 
+      nivel: newAulasLetivas.Nivel, 
+      chTotal: newAulasLetivas.Carga_Horaria, 
+      numTurmasT: newAulasLetivas.Numero_Turmas_Teoricas, 
+      numTurmasP: newAulasLetivas.Numero_Turmas_Praticas, 
+      chPorTurmaT: newAulasLetivas.CH_Por_Turma_Teorica, 
+      chPorTurmaP: newAulasLetivas.CH_Por_Turma_Pratica, 
+      nomeDocenteEnvolvido: newAulasLetivas.Docentes_Envolvidos, 
+      chDocenteEnvolvido: newAulasLetivas.CH_Docente_Envolvido
     };
 
     const newDataArray = Object.keys(dataEdit).length
@@ -82,13 +93,6 @@ const ModalDisciplinasMinistradas = ({
     setData(newDataArray);
 
     onClose();
-  };
-
-  const codigoJaExiste = () => {
-    if (dataEdit.codigo !== codigo && data?.length) {
-      return data.find((item) => item.codigo === codigo);
-    }
-    return false;
   };
 
   const aulasLetivasData = TokenFunctions.get_diario_turma();

@@ -27,6 +27,16 @@ const DisciplinasMinistradas = () => {
   const [nome, setNome] = useState("");
   const [sigla, setSigla] = useState("");
   const [ch, setCH] = useState("");
+  const [data, setData] = useState([]);
+  const [dataEdit, setDataEdit] = useState({});
+
+  useEffect(() => {
+    const db_costumer = localStorage.getItem("disciplinas_ministradas")
+      ? JSON.parse(localStorage.getItem("disciplinas_ministradas"))
+      : [];
+
+    setData(db_costumer);
+  }, [setData]);
 
   const { isOpen, onOpen, onClose } = useDisclosure(); // useDisclosure
   
@@ -97,7 +107,7 @@ const DisciplinasMinistradas = () => {
         onOpen();
 
         TokenFunctions.set_diario_turma(data);
-        toast.update(id, { render: "PDF submetido com sucesso", type: "success", isLoading: false });
+        toast.update(id, { render: "PDF submetido com sucesso", type: "success", isLoading: false, autoClose: 3000});
       }
     
     } catch (error) {
@@ -231,10 +241,10 @@ const DisciplinasMinistradas = () => {
           <ModalDisciplinasMinistradas
             isOpen={isOpen}
             onClose={onClose}
-            data={"null"}
-            setData={"null"}
-            dataEdit={"null"}
-            setDataEdit={"null"}
+            data={data}
+            setData={setData}
+            dataEdit={dataEdit}
+            setDataEdit={setDataEdit}
           />
         </ChakraProvider>
       )}
