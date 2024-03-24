@@ -6,7 +6,7 @@ const apiUrls = {
   login: `${baseUrl}/login`,
   cadastro: `${baseUrl}/cadastro`,
   ensino: `${baseUrl}/ensino`,
-  disc_ministradas: `${baseUrl}/pdf/ministradas`,
+  aulas_letivas: `${baseUrl}/pdf/aulas_letivas`,
   diario_de_turma: `${baseUrl}/pdf/diarios`,
   verificar_usuario: `${baseUrl}/verificar-usuario`,
 };

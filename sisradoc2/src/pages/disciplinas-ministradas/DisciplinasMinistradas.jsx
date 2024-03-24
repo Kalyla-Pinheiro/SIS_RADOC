@@ -12,11 +12,13 @@ import classesPesquisa from "../../css-modules/Pesquisa.module.css";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
-import { ChakraProvider, Box} from "@chakra-ui/react";
-import { extendTheme } from '@chakra-ui/react';
+import { Box} from "@chakra-ui/react";
 import ReactDOM from "react-dom";
 import TabelasDisciplinasMinistradas from "../../formularios/ensino/aulas-letivas/TabelasDisciplinasMinistradas";
 import paisagem3 from "../imagens/paisagem3.png";
+import TokenFunctions from "../../utils/Token";
+import { useDisclosure, ChakraProvider, extendTheme } from "@chakra-ui/react";
+import ModalDisciplinasMinistradas from "../../components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
 
 const DisciplinasMinistradas = () => {
   const [pdfDisciplinas, setPdfDisciplinas] = useState(null);
@@ -25,6 +27,8 @@ const DisciplinasMinistradas = () => {
   const [nome, setNome] = useState("");
   const [sigla, setSigla] = useState("");
   const [ch, setCH] = useState("");
+
+  const { isOpen, onOpen, onClose } = useDisclosure(); // useDisclosure
   
   // funcões referentes as operacões no localStorage
   const armazenarNaSessionStorage = (chave, valor) => { sessionStorage.setItem(chave, valor) };
@@ -46,6 +50,8 @@ const DisciplinasMinistradas = () => {
     formData.append("file", pdfDisciplinas);
 
     try {
+      ToastifyMessages.loading("Aguarde um momento, estamos processando o PDF...")
+
       const response = await fetch(apiUrls.disc_ministradas, {
         method: "POST",
         body: formData,
@@ -74,37 +80,30 @@ const DisciplinasMinistradas = () => {
 
     // Requisição POST para a submissão do PDF para a API
     try {
-      const response = 
-      await fetch(apiUrls.diario_de_turma, {
+      const id = toast.loading("Aguarde um momento, estamos processando o PDF...")
+    
+      const response = await fetch(apiUrls.aulas_letivas, {
         method: "POST",
         body: formData,
-      })
-
+      });
+    
       // Se a resposta da requisição for bem sucedida (200)
       if (response.ok) {
-        ToastifyMessages.success("PDF submetido com sucesso");
+        // Aguarde a resolução da promessa retornada por response.json()
+        const data = await response.json();
 
-        // Converte a resposta da requisição para JSON para que possamos manipular as chaves e valores do objeto de resposta
-        response.json()
-        // Then é uma função que é executada após a promessa ser resolvida
-        .then(data => {
-          // Atribuir o valor da chave do objeto de resposta no estado "nome"
-          console.log(data) // Consolando o objeto de resposta
-          console.log(data.wordsFound) // Consolando a chave "wordsFound" do objeto de resposta
-          armazenarNaSessionStorage("json_diarios_de_turma", data.wordsFound)
-          setNome(data.wordsFound.Disciplina[0])
-          armazenarNaSessionStorage("nome", data.wordsFound.Disciplina[0]) // inserindo o nome no localStorage
-          setSigla(data.wordsFound.Código[0])
-          armazenarNaSessionStorage("sigla", data.wordsFound.Código[0])
-          setCH(data.wordsFound['Carga Horária'][0])
-          armazenarNaSessionStorage("ch", data.wordsFound["Carga Horária"][0]);
-        })
+        console.log(data);
+
+        onOpen();
+
+        TokenFunctions.set_diario_turma(data);
+        toast.update(id, { render: "PDF submetido com sucesso", type: "success", isLoading: false });
       }
-
+    
     } catch (error) {
       ToastifyMessages.error("Erro ao submeter PDF");
     }
-  };
+  };    
 
   const theme = extendTheme({
     styles: {
@@ -227,6 +226,19 @@ const DisciplinasMinistradas = () => {
           </a>
         </div>
       </div>
+      {isOpen && (
+        <ChakraProvider theme={theme} resetCSS={false}> 
+          <ModalDisciplinasMinistradas
+            isOpen={isOpen}
+            onClose={onClose}
+            data={"null"}
+            setData={"null"}
+            dataEdit={"null"}
+            setDataEdit={"null"}
+          />
+        </ChakraProvider>
+      )}
+
       <ToastContainer position="bottom-left" />
     </div>
   );

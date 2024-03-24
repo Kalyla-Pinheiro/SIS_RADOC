@@ -22,5 +22,23 @@ export const ToastifyMessages = {
         toast.warning(message, {
             position: "bottom-left"
         })
+    },
+
+    loading: (message) => {
+        toast.loading(message, {
+            position: "bottom-left"
+        })
+
+    },
+
+    dismiss: () => {
+        toast.dismiss();
+    },
+
+    update: (message) => {
+        toast.update({
+            render: message,
+            position: "bottom-left"
+        })
     }
 }

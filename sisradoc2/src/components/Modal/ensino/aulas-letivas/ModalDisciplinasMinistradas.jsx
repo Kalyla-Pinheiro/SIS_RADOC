@@ -14,6 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import TokenFunctions from "../../../../utils/Token";
+import { useEffect } from "react";
 
 const ModalDisciplinasMinistradas = ({
   data,
@@ -34,18 +36,27 @@ const ModalDisciplinasMinistradas = ({
   const [nomeDocenteEnvolvido, setNomeDocenteEnvolvido] = useState(dataEdit.nomeDocenteEnvolvido || "");
   const [chDocenteEnvolvido, setChDocenteEnvolvido] = useState(dataEdit.chDocenteEnvolvido || "");
 
+  const [aulasLetivas, setAulasLetivas] = useState({
+    id: uuidv4(),
+    Disciplina: "",
+    Curso: "",
+    Nivel: "",
+    Numero_Turmas_Teoricas: "",
+    Numero_Turmas_Praticas: "",
+    CH_Por_Turma_Teorica: "",
+    CH_Por_Turma_Pratica: "",
+    Codigo: "",
+    Carga_Horaria: "",
+    Docentes_Envolvidos: "",
+    CH_Docente_Envolvido: ""
+  })
+
   const handleSave = () => {
-    if (!nome || !codigo || !curso || !nivel || !chTotal || !numTurmasT || !numTurmasP || !chPorTurmaT || !chPorTurmaP || !nomeDocenteEnvolvido || !chDocenteEnvolvido) return;
+    //if (!nome || !codigo || !curso || !nivel || !chTotal || !numTurmasT || !numTurmasP || !chPorTurmaT || !chPorTurmaP || !nomeDocenteEnvolvido || !chDocenteEnvolvido) return;
 
     if (codigoJaExiste()) {
       return alert("O código já existe!");
     }
-
-    /*
-    if (Object.keys(dataEdit).length) {
-      data[dataEdit.index] = { nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido};
-    }
-    */
     
     const newItem = {
       id: uuidv4(), 
@@ -80,6 +91,30 @@ const ModalDisciplinasMinistradas = ({
     return false;
   };
 
+  const aulasLetivasData = TokenFunctions.get_diario_turma();
+
+  useEffect(() => {
+    if(aulasLetivasData) {
+      setAulasLetivas((prevFormData) => ({
+        ...prevFormData,
+        Disciplina: aulasLetivasData.diario_turma.Disciplina[0],
+        Codigo: aulasLetivasData.diario_turma["Código"],
+        Carga_Horaria: aulasLetivasData.diario_turma["Carga Horária"],
+        Docentes_Envolvidos: aulasLetivasData.docentes_envolvidos[0],
+        CH_Docente_Envolvido: aulasLetivasData.docentes_envolvidos[1]
+      }))
+    }
+
+  }, [])
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setAulasLetivas((prevFormData) => ({
+      ...prevFormData,
+      [name]: value
+    }));
+  };
 
   return (
     <>
@@ -94,88 +129,99 @@ const ModalDisciplinasMinistradas = ({
                 <FormLabel>Nome</FormLabel>
                 <Input
                   type="text"
-                  value={nome}
-                  onChange={(e) => setNome(e.target.value)}
+                  name="Disciplina"
+                  value={aulasLetivas.Disciplina}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>Código</FormLabel>
                 <Input
                   type="text"
-                  value={codigo}
-                  onChange={(e) => setCodigo(e.target.value)}
+                  name="Codigo"
+                  value={aulasLetivas.Codigo}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>Curso</FormLabel>
                 <Input
                   type="text"
-                  value={curso}
-                  onChange={(e) => setCurso(e.target.value)}
+                  name="Curso"
+                  value={aulasLetivas.Curso}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>Nível</FormLabel>
                 <Input
                   type="text"
-                  value={nivel}
-                  onChange={(e) => setNivel(e.target.value)}
+                  name="Nivel"
+                  value={aulasLetivas.Nivel}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>CH Total</FormLabel>
                 <Input
                   type="text"
-                  value={chTotal}
-                  onChange={(e) => setChTotal(e.target.value)}
+                  name="Carga_Horaria"
+                  value={aulasLetivas.Carga_Horaria}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>Nº Da Turma (Teórica)</FormLabel>
                 <Input
                   type="text"
-                  value={numTurmasT}
-                  onChange={(e) => setNumTurmasT(e.target.value)}
+                  name="Numero_Turmas_Teoricas"
+                  value={aulasLetivas.Numero_Turmas_Teoricas}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>Nº Da Turma (Prática)</FormLabel>
                 <Input
                   type="text"
-                  value={numTurmasP}
-                  onChange={(e) => setNumTurmasP(e.target.value)}
+                  name="Numero_Turmas_Praticas"
+                  value={aulasLetivas.Numero_Turmas_Praticas}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>CH Por Turma (Teórica)</FormLabel> 
                 <Input
                   type="text"
-                  value={chPorTurmaT}
-                  onChange={(e) => setChPorTurmaT(e.target.value)}
+                  name="CH_Por_Turma_Teorica"
+                  value={aulasLetivas.CH_Por_Turma_Teorica}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>CH Por Turma (Prática)</FormLabel> 
                 <Input
                   type="text"
-                  value={chPorTurmaP}
-                  onChange={(e) => setChPorTurmaP(e.target.value)}
+                  name="CH_Por_Turma_Pratica"
+                  value={aulasLetivas.CH_Por_Turma_Pratica}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>Nome Docente Envolvido</FormLabel> 
                 <Input
                   type="text"
-                  value={nomeDocenteEnvolvido}
-                  onChange={(e) => setNomeDocenteEnvolvido(e.target.value)}
+                  name="Docentes_Envolvidos"
+                  value={aulasLetivas.Docentes_Envolvidos}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>CH Docente Envolvido</FormLabel> 
                 <Input
                   type="text"
-                  value={chDocenteEnvolvido}
-                  onChange={(e) => setChDocenteEnvolvido(e.target.value)}
+                  name="CH_Docente_Envolvido"
+                  value={aulasLetivas.CH_Docente_Envolvido}
+                  onChange={handleChange}
                 />
               </Box>
             </FormControl>

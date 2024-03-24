@@ -1,4 +1,5 @@
 import { jwtDecode } from "jwt-decode";
+import Cookies from 'js-cookie';
 
 const TokenFunctions = {
     setToken: (token) => {
@@ -42,6 +43,18 @@ const TokenFunctions = {
         const system = tokenDecoded.system;
 
         return system;
+    },
+
+    set_diario_turma: (diario_turma) => {
+
+        const diario = JSON.stringify(diario_turma);
+
+        Cookies.set('diario_turma', diario, { expires: 1, path: '/' })
+    },
+
+    get_diario_turma: () => {
+        const diario = Cookies.get('diario_turma');
+        return JSON.parse(diario);
     }
 }
 
