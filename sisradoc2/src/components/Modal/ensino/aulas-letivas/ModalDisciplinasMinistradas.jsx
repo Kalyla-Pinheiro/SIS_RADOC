@@ -36,6 +36,7 @@ const ModalDisciplinasMinistradas = ({
   const [nomeDocenteEnvolvido, setNomeDocenteEnvolvido] = useState(dataEdit.nomeDocenteEnvolvido || "");
   const [chDocenteEnvolvido, setChDocenteEnvolvido] = useState(dataEdit.chDocenteEnvolvido || "");
 
+  /*
   const [aulasLetivas, setAulasLetivas] = useState({
     id: uuidv4(),
     Disciplina: "",
@@ -50,10 +51,12 @@ const ModalDisciplinasMinistradas = ({
     Docentes_Envolvidos: "",
     CH_Docente_Envolvido: ""
   })
+  */
 
   const handleSave = () => {
     //if (!nome || !codigo || !curso || !nivel || !chTotal || !numTurmasT || !numTurmasP || !chPorTurmaT || !chPorTurmaP || !nomeDocenteEnvolvido || !chDocenteEnvolvido) return;
 
+    /*
     const newAulasLetivas = {
       id: uuidv4(),
       Disciplina: aulasLetivas.Disciplina,
@@ -83,6 +86,22 @@ const ModalDisciplinasMinistradas = ({
       nomeDocenteEnvolvido: newAulasLetivas.Docentes_Envolvidos, 
       chDocenteEnvolvido: newAulasLetivas.CH_Docente_Envolvido
     };
+    */
+
+    const newItem = {
+      id: uuidv4(), 
+      nome, 
+      codigo, 
+      curso, 
+      nivel, 
+      chTotal, 
+      numTurmasT, 
+      numTurmasP, 
+      chPorTurmaT, 
+      chPorTurmaP, 
+      nomeDocenteEnvolvido, 
+      chDocenteEnvolvido
+    };
 
     const newDataArray = Object.keys(dataEdit).length
         ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
@@ -101,6 +120,7 @@ const ModalDisciplinasMinistradas = ({
 
   useEffect(() => {
     if(aulasLetivasData) {
+      /*
       setAulasLetivas((prevFormData) => ({
         ...prevFormData,
         Disciplina: aulasLetivasData.diario_turma.Disciplina[0],
@@ -109,17 +129,71 @@ const ModalDisciplinasMinistradas = ({
         Docentes_Envolvidos: aulasLetivasData.docentes_envolvidos[0],
         CH_Docente_Envolvido: aulasLetivasData.docentes_envolvidos[1]
       }))
+      */
+
+      setNome(aulasLetivasData.diario_turma.Disciplina[0]);
+      setCodigo(aulasLetivasData.diario_turma["Código"]);
+      setChTotal(aulasLetivasData.diario_turma["Carga Horária"]);
+      setNomeDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[0]);
+      setChDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[1]);
     }
 
-  }, [])
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    /*
     setAulasLetivas((prevFormData) => ({
       ...prevFormData,
       [name]: value
     }));
+    */
+
+    if (name === "Disciplina") {
+      setNome(value);
+    }
+
+    if (name === "Codigo") {
+      setCodigo(value);
+    }
+
+    if (name === "Curso") {
+      setCurso(value);
+    }
+
+    if (name === "Nivel") {
+      setNivel(value);
+    }
+
+    if (name === "Carga_Horaria") {
+      setChTotal(value);
+    }
+
+    if (name === "Numero_Turmas_Teoricas") {
+      setNumTurmasT(value);
+    }
+
+    if (name === "Numero_Turmas_Praticas") {
+      setNumTurmasP(value);
+    }
+
+    if (name === "CH_Por_Turma_Teorica") {
+      setChPorTurmaT(value);
+    }
+
+    if (name === "CH_Por_Turma_Pratica") {
+      setChPorTurmaP(value);
+    }
+
+    if (name === "Docentes_Envolvidos") {
+      setNomeDocenteEnvolvido(value);
+    }
+
+    if (name === "CH_Docente_Envolvido") {
+      setChDocenteEnvolvido(value);
+    }
+    
   };
 
   return (
@@ -136,7 +210,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="Disciplina"
-                  value={aulasLetivas.Disciplina}
+                  value={nome}
                   onChange={handleChange}
                 />
               </Box>
@@ -145,7 +219,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="Codigo"
-                  value={aulasLetivas.Codigo}
+                  value={codigo}
                   onChange={handleChange}
                 />
               </Box>
@@ -154,7 +228,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="Curso"
-                  value={aulasLetivas.Curso}
+                  value={curso}
                   onChange={handleChange}
                 />
               </Box>
@@ -163,7 +237,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="Nivel"
-                  value={aulasLetivas.Nivel}
+                  value={nivel}
                   onChange={handleChange}
                 />
               </Box>
@@ -172,7 +246,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="Carga_Horaria"
-                  value={aulasLetivas.Carga_Horaria}
+                  value={chTotal}
                   onChange={handleChange}
                 />
               </Box>
@@ -181,7 +255,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="Numero_Turmas_Teoricas"
-                  value={aulasLetivas.Numero_Turmas_Teoricas}
+                  value={numTurmasT}
                   onChange={handleChange}
                 />
               </Box>
@@ -190,7 +264,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="Numero_Turmas_Praticas"
-                  value={aulasLetivas.Numero_Turmas_Praticas}
+                  value={numTurmasP}
                   onChange={handleChange}
                 />
               </Box>
@@ -199,7 +273,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="CH_Por_Turma_Teorica"
-                  value={aulasLetivas.CH_Por_Turma_Teorica}
+                  value={chPorTurmaT}
                   onChange={handleChange}
                 />
               </Box>
@@ -208,7 +282,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="CH_Por_Turma_Pratica"
-                  value={aulasLetivas.CH_Por_Turma_Pratica}
+                  value={chPorTurmaP}
                   onChange={handleChange}
                 />
               </Box>
@@ -217,7 +291,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="Docentes_Envolvidos"
-                  value={aulasLetivas.Docentes_Envolvidos}
+                  value={nomeDocenteEnvolvido}
                   onChange={handleChange}
                 />
               </Box>
@@ -226,7 +300,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="CH_Docente_Envolvido"
-                  value={aulasLetivas.CH_Docente_Envolvido}
+                  value={chDocenteEnvolvido}
                   onChange={handleChange}
                 />
               </Box>
