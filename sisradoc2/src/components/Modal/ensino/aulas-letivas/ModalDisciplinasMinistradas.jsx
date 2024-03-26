@@ -16,6 +16,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import TokenFunctions from "../../../../utils/Token";
 import { useEffect } from "react";
+import { ToastifyMessages } from "../../../../utils/ToastifyMessages";
 
 const ModalDisciplinasMinistradas = ({
   data,
@@ -36,57 +37,7 @@ const ModalDisciplinasMinistradas = ({
   const [nomeDocenteEnvolvido, setNomeDocenteEnvolvido] = useState(dataEdit.nomeDocenteEnvolvido || "");
   const [chDocenteEnvolvido, setChDocenteEnvolvido] = useState(dataEdit.chDocenteEnvolvido || "");
 
-  /*
-  const [aulasLetivas, setAulasLetivas] = useState({
-    id: uuidv4(),
-    Disciplina: "",
-    Curso: "",
-    Nivel: "",
-    Numero_Turmas_Teoricas: "",
-    Numero_Turmas_Praticas: "",
-    CH_Por_Turma_Teorica: "",
-    CH_Por_Turma_Pratica: "",
-    Codigo: "",
-    Carga_Horaria: "",
-    Docentes_Envolvidos: "",
-    CH_Docente_Envolvido: ""
-  })
-  */
-
   const handleSave = () => {
-    //if (!nome || !codigo || !curso || !nivel || !chTotal || !numTurmasT || !numTurmasP || !chPorTurmaT || !chPorTurmaP || !nomeDocenteEnvolvido || !chDocenteEnvolvido) return;
-
-    /*
-    const newAulasLetivas = {
-      id: uuidv4(),
-      Disciplina: aulasLetivas.Disciplina,
-      Curso: aulasLetivas.Curso,
-      Nivel: aulasLetivas.Nivel,
-      Numero_Turmas_Teoricas: aulasLetivas.Numero_Turmas_Teoricas,
-      Numero_Turmas_Praticas: aulasLetivas.Numero_Turmas_Praticas,
-      CH_Por_Turma_Teorica: aulasLetivas.CH_Por_Turma_Teorica,
-      CH_Por_Turma_Pratica: aulasLetivas.CH_Por_Turma_Pratica,
-      Codigo: aulasLetivas.Codigo[0],
-      Carga_Horaria: aulasLetivas.Carga_Horaria[0],
-      Docentes_Envolvidos: aulasLetivas.Docentes_Envolvidos,
-      CH_Docente_Envolvido: aulasLetivas.CH_Docente_Envolvido,
-    };
-    
-    const newItem = {
-      id: newAulasLetivas.id, 
-      nome: newAulasLetivas.Disciplina, 
-      codigo: newAulasLetivas.Codigo, 
-      curso: newAulasLetivas.Curso, 
-      nivel: newAulasLetivas.Nivel, 
-      chTotal: newAulasLetivas.Carga_Horaria, 
-      numTurmasT: newAulasLetivas.Numero_Turmas_Teoricas, 
-      numTurmasP: newAulasLetivas.Numero_Turmas_Praticas, 
-      chPorTurmaT: newAulasLetivas.CH_Por_Turma_Teorica, 
-      chPorTurmaP: newAulasLetivas.CH_Por_Turma_Pratica, 
-      nomeDocenteEnvolvido: newAulasLetivas.Docentes_Envolvidos, 
-      chDocenteEnvolvido: newAulasLetivas.CH_Docente_Envolvido
-    };
-    */
 
     const newItem = {
       id: uuidv4(), 
@@ -104,9 +55,9 @@ const ModalDisciplinasMinistradas = ({
     };
 
     const newDataArray = Object.keys(dataEdit).length
-        ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
-        : [...data, newItem];
-
+      ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
+      : [...data, newItem];
+    
     localStorage.setItem("disciplinas_ministradas", JSON.stringify(newDataArray));
 
     setData(newDataArray);
@@ -115,22 +66,14 @@ const ModalDisciplinasMinistradas = ({
 
     window.location.reload();
   };
-
-  const aulasLetivasData = TokenFunctions.get_diario_turma();
+  
+  var aulasLetivasData = "";
+  try {
+    aulasLetivasData = TokenFunctions.get_diario_turma();
+  } catch (error) {}
 
   useEffect(() => {
     if(aulasLetivasData) {
-      /*
-      setAulasLetivas((prevFormData) => ({
-        ...prevFormData,
-        Disciplina: aulasLetivasData.diario_turma.Disciplina[0],
-        Codigo: aulasLetivasData.diario_turma["Código"],
-        Carga_Horaria: aulasLetivasData.diario_turma["Carga Horária"],
-        Docentes_Envolvidos: aulasLetivasData.docentes_envolvidos[0],
-        CH_Docente_Envolvido: aulasLetivasData.docentes_envolvidos[1]
-      }))
-      */
-
       setNome(aulasLetivasData.diario_turma.Disciplina[0]);
       setCodigo(aulasLetivasData.diario_turma["Código"]);
       setChTotal(aulasLetivasData.diario_turma["Carga Horária"]);
@@ -143,57 +86,24 @@ const ModalDisciplinasMinistradas = ({
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    /*
-    setAulasLetivas((prevFormData) => ({
-      ...prevFormData,
-      [name]: value
-    }));
-    */
+    const fieldSetters = {
+      Disciplina: setNome,
+      Codigo: setCodigo,
+      Curso: setCurso,
+      Nivel: setNivel,
+      Carga_Horaria: setChTotal,
+      Numero_Turmas_Teoricas: setNumTurmasT,
+      Numero_Turmas_Praticas: setNumTurmasP,
+      CH_Por_Turma_Teorica: setChPorTurmaT,
+      CH_Por_Turma_Pratica: setChPorTurmaP,
+      Docentes_Envolvidos: setNomeDocenteEnvolvido,
+      CH_Docente_Envolvido: setChDocenteEnvolvido,
+    };
 
-    if (name === "Disciplina") {
-      setNome(value);
-    }
-
-    if (name === "Codigo") {
-      setCodigo(value);
-    }
-
-    if (name === "Curso") {
-      setCurso(value);
-    }
-
-    if (name === "Nivel") {
-      setNivel(value);
-    }
-
-    if (name === "Carga_Horaria") {
-      setChTotal(value);
-    }
-
-    if (name === "Numero_Turmas_Teoricas") {
-      setNumTurmasT(value);
-    }
-
-    if (name === "Numero_Turmas_Praticas") {
-      setNumTurmasP(value);
-    }
-
-    if (name === "CH_Por_Turma_Teorica") {
-      setChPorTurmaT(value);
-    }
-
-    if (name === "CH_Por_Turma_Pratica") {
-      setChPorTurmaP(value);
-    }
-
-    if (name === "Docentes_Envolvidos") {
-      setNomeDocenteEnvolvido(value);
-    }
-
-    if (name === "CH_Docente_Envolvido") {
-      setChDocenteEnvolvido(value);
-    }
-    
+    const setter = fieldSetters[name];
+    if (setter) {
+      setter(value);
+    }  
   };
 
   return (
