@@ -74,11 +74,16 @@ const ModalDisciplinasMinistradas = ({
 
   useEffect(() => {
     if(aulasLetivasData) {
-      setNome(aulasLetivasData.diario_turma.Disciplina[0]);
-      setCodigo(aulasLetivasData.diario_turma["Código"]);
-      setChTotal(aulasLetivasData.diario_turma["Carga Horária"]);
-      setNomeDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[0]);
-      setChDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[1]);
+      try {
+        setNome(aulasLetivasData.diario_turma.Disciplina[0]);
+        setCodigo(aulasLetivasData.diario_turma["Código"]);
+        setChTotal(aulasLetivasData.diario_turma["Carga Horária"]);
+        setNomeDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[0]);
+        setChDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[1]);
+      } catch (error) {
+        onClose()
+        ToastifyMessages.error("Este não é um PDF de diários de turma")
+      }
     }
 
   }, []);
@@ -103,7 +108,7 @@ const ModalDisciplinasMinistradas = ({
     const setter = fieldSetters[name];
     if (setter) {
       setter(value);
-    }  
+    }
   };
 
   return (
