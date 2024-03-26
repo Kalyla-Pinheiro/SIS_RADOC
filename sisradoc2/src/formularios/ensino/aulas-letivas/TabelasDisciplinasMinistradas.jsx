@@ -15,19 +15,14 @@ import {
 import { useEffect, useState } from "react";
 import ModalDisciplinasMinistradas from "../../../components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
 import "../../styleFormularios.css";
+import { v4 as uuidv4 } from "uuid";
 
 const TabelasDisciplinasMinistradas = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
-  useEffect(() => {
-    const db_costumer = localStorage.getItem("disciplinas_ministradas")
-      ? JSON.parse(localStorage.getItem("disciplinas_ministradas"))
-      : [];
-
-    setData(db_costumer);
-  }, [setData]);
+  const [aulasLetivas, setAulasLetivas] = useState([])
 
   const handleRemove = (id) => {
     //const newArray = data.filter((item) => item.email !== email);
@@ -38,8 +33,61 @@ const TabelasDisciplinasMinistradas = () => {
 
     localStorage.setItem("disciplinas_ministradas", JSON.stringify(newArray));
   };
+  
+  useEffect(() => {
+    // Função para lidar com a mudança de armazenamento local
+    const manipularMudancaArmazenamento = (event) => {
+      // Verificar se a chave que foi alterada é a chave que estamos monitorando
+      if (event.key === 'disciplinas_ministradas') {
+        // Obter os novos dados do armazenamento local
+        const dadosJson = event.newValue;
 
-  //maxW={1000}               BOX
+        console.log("DADOS CARALHO: " + dadosJson);
+
+        // Converter os dados de volta para um array
+        const dadosParseados = dadosJson ? JSON.parse(dadosJson) : [];
+        
+        // Atualizar o estado com os novos dados
+        const novasAulasLetivas = dadosParseados.map(linha => ({
+          id: linha.id,
+          nome: linha.nome,
+          codigo: linha.codigo,
+          curso: linha.curso,
+          nivel: linha.nivel,
+          chTotal: linha.chTotal,
+          numTurmasT: linha.numTurmasT,
+          numTurmasP: linha.numTurmasP,
+          chPorTurmaT: linha.chPorTurmaT,
+          chPorTurmaP: linha.chPorTurmaP,
+          nomeDocenteEnvolvido: linha.nomeDocenteEnvolvido,
+          chDocenteEnvolvido: linha.chDocenteEnvolvido,
+        }));
+
+        // Atualizar o estado com os novos dados
+        setAulasLetivas(novasAulasLetivas);
+      }
+    };
+
+    // Adicionar um ouvinte para o evento de armazenamento
+    window.addEventListener('storage', manipularMudancaArmazenamento);
+
+    // Obter os dados iniciais do armazenamento local
+    const dadosIniciais = localStorage.getItem('disciplinas_ministradas');
+    
+    // Se houver dados iniciais
+    if (dadosIniciais) {
+      // Converte os dados iniciais de volta para um array
+      const dadosIniciaisParseados = JSON.parse(dadosIniciais);
+
+      // Atualiza o estado com os dados iniciais
+      setAulasLetivas(dadosIniciaisParseados);
+    }
+
+    return () => {
+      // Remove o ouvinte para o evento de armazenamento local
+      window.removeEventListener('storage', manipularMudancaArmazenamento);
+    };
+  }, [localStorage.getItem('disciplinas_ministradas')]);
 
   return (
     <Flex
@@ -108,7 +156,7 @@ const TabelasDisciplinasMinistradas = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({id, nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido}, index) => (
+              {/* {data.map(({id, nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
                   <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nome}</Td>
@@ -135,6 +183,38 @@ const TabelasDisciplinasMinistradas = () => {
                     <DeleteIcon
                       fontSize={20}
                       onClick={() => handleRemove(id)}
+                    />
+                  </Td>
+                </Tr>
+              ))} */}
+
+              { aulasLetivas.map((linha, index) => (
+                <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
+                  <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{linha.id}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.nome}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.codigo}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.curso}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.nivel}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.chTotal}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.numTurmasT}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.numTurmasP}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.chPorTurmaT}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.chPorTurmaP}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.nomeDocenteEnvolvido}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{linha.chDocenteEnvolvido}</Td>
+                  <Td p={0}>
+                    <EditIcon
+                      fontSize={20}
+                      onClick={() => [
+                        setDataEdit(linha),
+                        onOpen(),
+                      ]}
+                    />
+                  </Td>
+                  <Td >
+                    <DeleteIcon
+                      fontSize={20}
+                      onClick={() => handleRemove(linha.id)}
                     />
                   </Td>
                 </Tr>
