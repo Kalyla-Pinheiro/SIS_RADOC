@@ -89,9 +89,7 @@ const DisciplinasMinistradas = () => {
     }
 
     // Requisição POST para a submissão do PDF para a API
-    try {
-      const id = toast.loading("Aguarde um momento, estamos processando o PDF...")
-    
+    try {    
       const response = await fetch(apiUrls.aulas_letivas, {
         method: "POST",
         body: formData,
@@ -102,16 +100,22 @@ const DisciplinasMinistradas = () => {
         // Aguarde a resolução da promessa retornada por response.json()
         const data = await response.json();
 
-        console.log(data);
-
-        onOpen();
+        // Exibir a mensagem de sucesso
+        ToastifyMessages.success("PDF submetido com sucesso");
+        
+        // Aguardar 2 segundos para executar a função onOpen
+        setTimeout(() => {
+          onOpen();
+        }, 2000);
 
         TokenFunctions.set_diario_turma(data);
-        toast.update(id, { render: "PDF submetido com sucesso", type: "success", isLoading: false, autoClose: 3000});
+      } else{
+        const errorMessage = await response.text();
+        const erro = JSON.parse(errorMessage);
+        ToastifyMessages.error(`${erro.erro}`);
       }
-    
     } catch (error) {
-      ToastifyMessages.error("Erro ao submeter PDF");
+      ToastifyMessages.error(`${error.message}`);
     }
   };    
 
