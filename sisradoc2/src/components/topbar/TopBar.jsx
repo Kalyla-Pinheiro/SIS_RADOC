@@ -113,32 +113,21 @@ const Formulario = ({ children }) => {
       <div className="topbar">
         <div className="top-section">
           <div className="ladoBtn">
-            {/* tirar */}
-            <div className="divBtnMenu">
-              <IoMenu onClick={toggle} className="btnMenu" />
-              <div className="dropdown-menu" style={dropdownStyle}>
-                {menuitem.map((item, index) => (
-                  <div className="btnGeralItem">
-                    <NavLink
-                      key={index}
-                      to={item.path}
-                      className="dropdown-item link"
-                    >
-                      <div style={dropdownStyleItem} className="icon">
-                        {item.icon}
-                      </div>
-                      <div style={dropdownStyleItem} className="textItem">
-                        {item.name}
-                      </div>
-                    </NavLink>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* tirar */}
             <h2>Sisradoc</h2>
-            <nav className="t"></nav>
           </div>
+          <nav>
+            <ul className="header-menu">
+              <li>
+                <a href="/home">Home</a>
+              </li>
+              <li>
+                <a href="/documentos">Documentos</a>
+              </li>
+              <li>
+                <a href="/">Relatórios</a>
+              </li>
+            </ul>
+          </nav>
           <div className="divBtnUser">
             <div className="ajusteBtnUser" onClick={toggleUser}>
               <AiOutlineUser className="btnUser" />

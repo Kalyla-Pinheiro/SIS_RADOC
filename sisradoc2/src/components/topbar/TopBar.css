@@ -31,6 +31,7 @@ main {
 
 .top-section {
   display: flex;
+  align-items: center;
   width: 100%;
   height: 100%;
   justify-content: space-between;
@@ -57,20 +58,18 @@ main {
 .divBtnUser {
   width: 3rem;
   height: 3rem;
-  /* background-color: green; */
+  margin-right: 2rem;
 }
 
 .ajusteBtnUser {
-  /* width: 3rem;
-    height: 100%;
-    background: red; */
   height: 100%;
-  /* margin: 4px; */
+  display: flex;
+  align-items: center;
 }
 
 .btnUser {
-  width: 100%;
-  height: 100%;
+  width: 92%;
+  height: 92%;
 }
 
 .ladoBtn {
@@ -162,6 +161,11 @@ main {
   justify-items: end;
 }
 
+.testeUserContent h2,
+h4 {
+  margin-left: 45px;
+}
+
 .dropdown-item {
   width: max-content;
   height: 50px;
@@ -213,3 +217,37 @@ main {
     transition: all 0.5s;
     border-radius: 6px;
 } */
+
+/* Codificação joão */
+ul {
+  padding: 0px;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 70rem;
+}
+
+.header-menu a {
+  display: inline-block;
+  padding: 16px 0px;
+  width: 180px;
+  position: relative;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 1rem 2rem 1rem 2rem;
+  text-align: center;
+}
+.header-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.5s;
+  border-radius: 6px;
+}
