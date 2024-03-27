@@ -10,6 +10,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Select,
   Box,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -26,6 +27,7 @@ const ModalDisciplinasMinistradas = ({
   onClose
 }) => {
   const [nome, setNome] = useState(dataEdit.nome || "");
+  const [semestre, setSemestre] = useState(dataEdit.semestre || "");
   const [codigo, setCodigo] = useState(dataEdit.codigo || "");
   const [curso, setCurso] = useState(dataEdit.curso || "");
   const [nivel, setNivel] = useState(dataEdit.nivel || "");
@@ -38,10 +40,16 @@ const ModalDisciplinasMinistradas = ({
   const [chDocenteEnvolvido, setChDocenteEnvolvido] = useState(dataEdit.chDocenteEnvolvido || "");
 
   const handleSave = () => {
+    // campos obrigatórios
+    if (!nivel || !semestre) {
+      ToastifyMessages.error("Por favor, preencha todos os campos obrigatórios");
+      return;
+    }
 
     const newItem = {
       id: uuidv4(), 
       nome, 
+      semestre,
       codigo, 
       curso, 
       nivel, 
@@ -86,6 +94,7 @@ const ModalDisciplinasMinistradas = ({
     const { name, value } = e.target;
 
     const fieldSetters = {
+      Semestre: setSemestre,
       Disciplina: setNome,
       Codigo: setCodigo,
       Curso: setCurso,
@@ -115,6 +124,20 @@ const ModalDisciplinasMinistradas = ({
           <ModalBody>
             <FormControl display="flex" flexDir="column" gap={4}>
               <Box>
+                <FormLabel>
+                  Semestre <span style={{ color: 'red' }}>*</span>
+                </FormLabel>
+                <Select
+                  name="Semestre"
+                  placeholder="Selecione o semestre"
+                  value={semestre}
+                  onChange={handleChange}
+                >
+                  <option>Primeiro</option>
+                  <option>Segundo</option>
+                </Select>
+              </Box>
+              <Box>
                 <FormLabel>Nome</FormLabel>
                 <Input
                   type="text"
@@ -142,13 +165,18 @@ const ModalDisciplinasMinistradas = ({
                 />
               </Box>
               <Box>
-                <FormLabel>Nível</FormLabel>
-                <Input
-                  type="text"
+                <FormLabel>
+                  Nível <span style={{ color: 'red' }}>*</span>
+                </FormLabel>
+                <Select
                   name="Nivel"
+                  placeholder="Selecione o nível"
                   value={nivel}
                   onChange={handleChange}
-                />
+                >
+                  <option>Graduação</option>
+                  <option>Pós-Graduação</option>
+                </Select>
               </Box>
               <Box>
                 <FormLabel>CH Total</FormLabel>

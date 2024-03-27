@@ -31,7 +31,7 @@ const ChSemanalAulas = () => {
 
       <div className={classes.ensinoContainer}>
         <div className={classes.titulo} id={classes.tituloMargin}>
-          <h1>Calculo do Ch semanal de aulas</h1>
+          <h1>Cálculo do Ch semanal de aulas</h1>
         </div>
 
 
