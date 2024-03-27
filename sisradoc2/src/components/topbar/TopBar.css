@@ -1,0 +1,219 @@
+body{
+    display: inline-block;
+    justify-content: flex-start;
+    grid-column: 1/-1;
+    width: 100%;
+}
+
+.containerA {
+    /* height: 0px; */
+    width: 100%;
+    margin-top: 0px;
+}
+
+main {
+    width: 100%;
+    padding: 20px;
+}
+
+.topbar {
+    position: relative;
+    width: 100%;
+    height: 4rem;
+    background: rgba(255, 255, 255, .05);
+    backdrop-filter: blur(40px);
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    color: #fff;
+    padding: 6px 14px;
+    transition: all 0.5s;
+    z-index: 1;
+
+}
+
+.top-section {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.divBtnMenu, .divBtnUser{
+    width: 4rem;
+    height: 100%;
+}
+
+.btnMenu, .btnUser {
+    width: 100%;
+    height: 100%;
+}
+
+.btnUser{
+    background: rgb(123, 123, 123);
+    border-radius: 100%;
+    border: 4px solid white;
+}
+
+.divBtnUser{
+    width: 3rem;
+    height: 3rem;
+    /* background-color: green; */
+}
+
+.ajusteBtnUser{
+    /* width: 3rem;
+    height: 100%;
+    background: red; */
+    height: 100%;
+    /* margin: 4px; */
+}
+
+.btnUser{
+    width: 100%;
+    height: 100%;
+}
+
+.ladoBtn{
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu{
+    position: absolute;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    transition: all 0.7s;
+    overflow: hidden;
+
+    border-radius: 0px 0px 20px 20px;
+    height: max-content;
+
+}
+
+.dropdown-User {
+    position: absolute;
+    right: 0;
+    /*background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    transform-origin: top right;  Configuração para que o dropdown cresça a partir do canto superior direito */
+
+
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+
+    transition: all 0.7s;
+    overflow: hidden;
+
+    border-radius: 0px 0px 20px 20px;
+    height: max-content;
+
+    margin-top: 9px;
+}
+
+.dropdown-User.open {
+    width: 20rem;
+}
+
+.dropdown-User.open .dropdown-item {
+    opacity: 1;
+}
+
+.dropdown-User.open .dropdown-item .icon,
+.dropdown-User.open .dropdown-item .textItem {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* .btnGeralItem:last-child> .dropdown-item:first-child{
+    background: rgba(253, 0, 0, 0.3);
+    transition: all 0.3s;
+}
+
+.btnGeralItem:last-child> .dropdown-item:first-child:hover{
+    background: rgba(253, 0, 0, 0.7);
+} */
+
+.testeUserContent{
+    margin-top: 0;
+    height: 100px;
+    width: 100%;
+    background: rgba(142, 142, 142, 0.545);
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: end;
+}
+
+.dropdown-item{
+    width: max-content;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    user-select: none;  
+
+}
+
+.icon{
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    user-select: none;  
+    transition: all 1s;
+}
+
+.textItem{
+    cursor: default;
+    transition: all 1s;
+}
+
+.btnGeralItem{
+    display: flex;
+    justify-content: center;
+}
+
+.btnGeralItem .link{
+    width: 95%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* .btnGeral:hover{
+    background: rgba(255, 255, 255, .2);
+    transition: all 0.5s;
+    border-radius: 6px;
+} */
+

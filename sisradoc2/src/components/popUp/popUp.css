@@ -66,6 +66,7 @@
 .boxPopSegundo .icon {
   font-size: 23px;
   margin-left: 10px;
+  min-width: 0px;
 }
 
 .semestres {
