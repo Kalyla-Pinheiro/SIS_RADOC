@@ -49,6 +49,8 @@
 }
 
 .input-box .icon {
+  height: auto;
+  min-width: auto;
   position: absolute;
   right: 20px;
   top: 50%;

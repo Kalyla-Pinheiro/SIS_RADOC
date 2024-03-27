@@ -41,9 +41,12 @@ import { Navigate } from "react-router-dom";
 import Erro404 from "./pages/404/Erro404";
 import EmailConfirmar from "./pages/EmailConfirmar/EmailConfirmar";
 
+import TopBar from "./components/topbar/TopBar";
+
 const MainLayout = ({ children }) => (
   <div>
-    <Sidebar />
+    {/* <Sidebar /> */}
+    <TopBar />
     <div>{children}</div>
   </div>
 );
