@@ -12,16 +12,28 @@ import {
     Input,
     Box,
   } from "@chakra-ui/react";
-  import { useState } from "react";
+  import { useState, useEffect } from "react";
   
   const ModalChSemanalEnsino = ({
     isOpen,
     onClose,
   }) => {
     //const [ano, setAno] = useState(dataEdit.ano || "");
+
+    const [testandoChGraduacaoSemestre1, setTestandoChGraduacaoSemestre1] = useState(null);
+
+    useEffect(() => {
+      const jsonDoLocalStorage = localStorage.getItem("ch_semanal_aulas");
+
+      if (jsonDoLocalStorage) {
+        const objetoJson = JSON.parse(jsonDoLocalStorage);
+        setTestandoChGraduacaoSemestre1(parseInt(objetoJson[0].chGraduacaoSemestre1) + parseInt(objetoJson[0].chGraduacaoSemestre2))
+      }
+
+    }, []);
   
     return (
-      <>
+      <> 
         <Modal isOpen={isOpen} onClose={onClose} isCentered >
         
           <ModalOverlay />
@@ -35,6 +47,7 @@ import {
                   <Input
                     type="text"
                     placeholder="CH"
+                    value={testandoChGraduacaoSemestre1}
                   />
                 </Box>
                 <Box>

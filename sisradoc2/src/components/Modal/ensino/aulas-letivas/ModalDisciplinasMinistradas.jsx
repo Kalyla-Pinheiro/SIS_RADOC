@@ -85,7 +85,6 @@ const ModalDisciplinasMinistradas = ({
         ToastifyMessages.error("Este não é um PDF de diários de turma")
       }
     }
-
   }, []);
 
   const handleChange = (e) => {
