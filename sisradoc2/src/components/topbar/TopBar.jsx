@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './TopBar.css';
+import React, { useState } from "react";
+import "./TopBar.css";
 
 import { IoMenu } from "react-icons/io5";
 import { FaHome } from "react-icons/fa";
@@ -12,162 +12,166 @@ import { AiOutlineUser } from "react-icons/ai";
 import { HiMiniDocumentDuplicate } from "react-icons/hi2";
 
 import { TbPointFilled } from "react-icons/tb";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 import TokenFunctions from "../../utils/Token";
 import { jwtDecode } from "jwt-decode";
 
 const Formulario = ({ children }) => {
+  const token = TokenFunctions.getToken();
 
-    const token = TokenFunctions.getToken();
+  const nomeUsuario = TokenFunctions.getName(token);
+  const emailUsuario = TokenFunctions.getEmail(token);
 
-    const nomeUsuario = TokenFunctions.getName(token);
-    const emailUsuario = TokenFunctions.getEmail(token);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenUser, setIsOpenA] = useState(false);
 
+  const toggle = () => setIsOpen(!isOpen);
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [isOpenUser, setIsOpenA] = useState(false);
+  const toggleUser = () => setIsOpenA(!isOpenUser);
 
-    const toggle = () => setIsOpen(!isOpen);
-
-    const toggleUser = () => setIsOpenA(!isOpenUser);
-
-    const menuitem = [
+  const menuitem = [
+    {
+      path: "/home",
+      name: "Home",
+      icon: <FaHome />,
+    },
+    {
+      path: "/formularios",
+      name: "Formulários",
+      icon: <IoDocumentTextSharp />,
+      subMenu: [
         {
-            path: "/home",
-            name: "Home",
-            icon: <FaHome />
+          label: "Ensino",
+          path: "/Ensino",
+          icon: <TbPointFilled />,
         },
         {
-            path: "/formularios",
-            name: "Formulários",
-            icon: <IoDocumentTextSharp />,
-            subMenu: [
-                {
-                    label: "Ensino",
-                    path: "/Ensino",
-                    icon: <TbPointFilled />,
-                },
-                {
-                    label: "Pesquisa",
-                    path: "/Pesquisa",
-                    icon: <TbPointFilled />,
-                },
-                {
-                    label: "Extensão",
-                    path: "/",
-                    icon: <TbPointFilled />
-                },
-                {
-                    label: "Outros",
-                    path: "/",
-                    icon: <TbPointFilled />,
-                }
-            ]
+          label: "Pesquisa",
+          path: "/Pesquisa",
+          icon: <TbPointFilled />,
         },
         {
-            path: "/documentos",
-            name: "Documentos",
-            icon: <FaFolderOpen />
+          label: "Extensão",
+          path: "/",
+          icon: <TbPointFilled />,
         },
         {
-            path: "#",
-            name: "Relatórios",
-            icon: <HiMiniDocumentDuplicate />
+          label: "Outros",
+          path: "/",
+          icon: <TbPointFilled />,
         },
-    ];
+      ],
+    },
+    {
+      path: "/documentos",
+      name: "Documentos",
+      icon: <FaFolderOpen />,
+    },
+    {
+      path: "#",
+      name: "Relatórios",
+      icon: <HiMiniDocumentDuplicate />,
+    },
+  ];
 
-    const menuUserItem = [
-        {
-            path: "/perfil",
-            name: "Usuário",
-            icon: <FaUser />
-        },
-        {
-            path:"/",
-            name:"Sair",
-            icon: <LuLogOut />
-        },
-    ]
+  const menuUserItem = [
+    {
+      path: "/perfil",
+      name: "Usuário",
+      icon: <FaUser />,
+    },
+    {
+      path: "/",
+      name: "Sair",
+      icon: <LuLogOut />,
+    },
+  ];
 
-    const dropdownStyle = {
-        height: isOpen ? '280px' : '0',
-        border: isOpen ? '2px solid rgba(255,255,255, 0.3)' : '0px',
-        width: isOpen ? '20rem' : '0px',
-    };
+  const dropdownStyle = {
+    height: isOpen ? "280px" : "0",
+    border: isOpen ? "2px solid rgba(255,255,255, 0.3)" : "0px",
+    width: isOpen ? "20rem" : "0px",
+  };
 
-    const dropdownStyleItem = {
-        opacity: isOpen ? '1' : '0'
-    };
+  const dropdownStyleItem = {
+    opacity: isOpen ? "1" : "0",
+  };
 
-    const dropdownUserStyle = {
-        height: isOpenUser ? '240px' : '0',
-        border: isOpenUser ? '2px solid rgba(255,255,255, 0.3)' : '0px',
-        width: isOpenUser ? '20rem' : '0px',
-    };
+  const dropdownUserStyle = {
+    height: isOpenUser ? "240px" : "0",
+    border: isOpenUser ? "2px solid rgba(255,255,255, 0.3)" : "0px",
+    width: isOpenUser ? "20rem" : "0px",
+  };
 
-    const dropdownUserStyleItem = {
-        opacity: isOpenUser ? '1' : '0'
-    };
+  const dropdownUserStyleItem = {
+    opacity: isOpenUser ? "1" : "0",
+  };
 
-    return (
-        <div className="containerA">
-            <div className="topbar">
-                <div className="top-section">
-                    <div className="ladoBtn">
-                        <div className="divBtnMenu">
-                            <IoMenu onClick={toggle} className='btnMenu' />
-                            <div className="dropdown-menu" style={dropdownStyle}>
-                                {menuitem.map((item, index) => (
-                                    <div className="btnGeralItem">
-
-                                        <NavLink key={index} to={item.path} className="dropdown-item link">
-                                            
-                                            <div style={dropdownStyleItem} className="icon">{item.icon}</div>
-                                            <div style={dropdownStyleItem} className="textItem">{item.name}</div>
-                                                                                    
-                                        </NavLink>
-
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        <h2>Sisradoc</h2>
-                    </div>
-                    <div className="divBtnUser">
-
-                        <div className="ajusteBtnUser" onClick={toggleUser}>
-                            <AiOutlineUser className='btnUser' />
-                        </div>
-                        
-
-                        <div className="dropdown-User" style={dropdownUserStyle}>
-                            <div className="testeUserContent">
-                                <h2>{nomeUsuario}</h2>
-                                <h4>{emailUsuario}</h4>
-
-                            </div>
-                            {menuUserItem.map((item, index) => (
-                                <div className="btnGeralItem">
-
-                                    <NavLink key={index} to={item.path} className="dropdown-item link">
-                                        
-                                        <div style={dropdownUserStyleItem} className="icon">{item.icon}</div>
-                                        <div style={dropdownUserStyleItem} className="textItem">{item.name}</div>
-                                                                                
-                                    </NavLink>
-
-                                </div>
-                                
-                            ))}
-                        </div>
-
-                    </div>
-                </div>
+  return (
+    <div className="containerA">
+      <div className="topbar">
+        <div className="top-section">
+          <div className="ladoBtn">
+            {/* tirar */}
+            <div className="divBtnMenu">
+              <IoMenu onClick={toggle} className="btnMenu" />
+              <div className="dropdown-menu" style={dropdownStyle}>
+                {menuitem.map((item, index) => (
+                  <div className="btnGeralItem">
+                    <NavLink
+                      key={index}
+                      to={item.path}
+                      className="dropdown-item link"
+                    >
+                      <div style={dropdownStyleItem} className="icon">
+                        {item.icon}
+                      </div>
+                      <div style={dropdownStyleItem} className="textItem">
+                        {item.name}
+                      </div>
+                    </NavLink>
+                  </div>
+                ))}
+              </div>
             </div>
-            <main>{children}</main>
+            {/* tirar */}
+            <h2>Sisradoc</h2>
+            <nav className="t"></nav>
+          </div>
+          <div className="divBtnUser">
+            <div className="ajusteBtnUser" onClick={toggleUser}>
+              <AiOutlineUser className="btnUser" />
+            </div>
+
+            <div className="dropdown-User" style={dropdownUserStyle}>
+              <div className="testeUserContent">
+                <h2>{nomeUsuario}</h2>
+                <h4>{emailUsuario}</h4>
+              </div>
+              {menuUserItem.map((item, index) => (
+                <div className="btnGeralItem">
+                  <NavLink
+                    key={index}
+                    to={item.path}
+                    className="dropdown-item link"
+                  >
+                    <div style={dropdownUserStyleItem} className="icon">
+                      {item.icon}
+                    </div>
+                    <div style={dropdownUserStyleItem} className="textItem">
+                      {item.name}
+                    </div>
+                  </NavLink>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-    );
+      </div>
+      <main>{children}</main>
+    </div>
+  );
 };
 
 export default Formulario;
