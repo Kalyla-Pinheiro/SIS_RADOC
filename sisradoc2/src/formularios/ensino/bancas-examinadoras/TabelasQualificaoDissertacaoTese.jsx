@@ -71,13 +71,7 @@ const TabelasQualificacaoDissertacaoTese = () => {
                     ID
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
-                    Nome
-                </Th>
-                <Th minW="300px" fontSize="15px" color="#fff">
-                    Título do Trabalho
-                </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                    IES
+                    Descrição
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
                     Tipo
@@ -93,12 +87,10 @@ const TabelasQualificacaoDissertacaoTese = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({id, nome, tituloDoTrabalho, ies, tipo, chSemanalSemestre1, chSemanalSemestre2}, index) => (
+              {data.map(({id, descricao, tipo, chSemanalSemestre1, chSemanalSemestre2}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
                   <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nome}</Td>
-                  <Td minW="300px" style={{ wordWrap: 'break-word', maxWidth: 300 }}>{tituloDoTrabalho}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{ies}</Td>
+                  <Td minW="300px" style={{ wordWrap: 'break-word', maxWidth: 300 }}>{descricao}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{tipo}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre1}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre2}</Td>
@@ -106,7 +98,7 @@ const TabelasQualificacaoDissertacaoTese = () => {
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({id, nome, tituloDoTrabalho, ies, tipo, chSemanalSemestre1, chSemanalSemestre2, index }),
+                        setDataEdit({id, descricao, tipo, chSemanalSemestre1, chSemanalSemestre2, index }),
                         onOpen(),
                       ]}
                     />

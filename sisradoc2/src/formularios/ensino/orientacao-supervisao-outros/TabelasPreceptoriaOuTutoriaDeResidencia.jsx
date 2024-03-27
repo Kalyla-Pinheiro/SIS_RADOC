@@ -13,17 +13,17 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import ModalSupervisaoPreceptoriaTutoria from "../../../components/Modal/ensino/orientacao-supervisao-outros/ModalSupervisaoAcademica";
 import "../../styleFormularios.css";
+import ModalPreceptoriaOuTutoriaDeResidencia from "../../../components/Modal/ensino/orientacao-supervisao-outros/ModalPreceptoriaOuTutoriaDeResidencia";
 
-const TabelasSupervisaoPreceptoriaTutoria = () => {
+const TabelasPreceptoriaOuTutoriaDeResidencia = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("supervisao_academica")
-      ? JSON.parse(localStorage.getItem("supervisao_academica"))
+    const db_costumer = localStorage.getItem("preceptoria_e_ou_tutoria_de_residencia")
+      ? JSON.parse(localStorage.getItem("preceptoria_e_ou_tutoria_de_residencia"))
       : [];
 
     setData(db_costumer);
@@ -36,7 +36,7 @@ const TabelasSupervisaoPreceptoriaTutoria = () => {
 
     setData(newArray);
 
-    localStorage.setItem("supervisao_academica", JSON.stringify(newArray));
+    localStorage.setItem("preceptoria_e_ou_tutoria_de_residencia", JSON.stringify(newArray));
   };
 
   //maxW={1000}               BOX
@@ -71,16 +71,10 @@ const TabelasSupervisaoPreceptoriaTutoria = () => {
                     ID
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
-                    Nome
-                </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                    Curso
+                    Nome - Matrícula
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
                     Tipo
-                </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                    Nível
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
                     CH Semanal (1º Semestre)
@@ -93,20 +87,18 @@ const TabelasSupervisaoPreceptoriaTutoria = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({id, nome, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2}, index) => (
+              {data.map(({id, nomeOuMatricula, tipo, chSemanalSemestre1, chSemanalSemestre2}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
                   <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nome}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{curso}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nomeOuMatricula}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{tipo}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nivel}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre1}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre2}</Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({id, nome, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2, index }),
+                        setDataEdit({id, nomeOuMatricula, tipo, chSemanalSemestre1, chSemanalSemestre2, index }),
                         onOpen(),
                       ]}
                     />
@@ -124,7 +116,7 @@ const TabelasSupervisaoPreceptoriaTutoria = () => {
         </Box>
       </Box>
       {isOpen && (
-        <ModalSupervisaoPreceptoriaTutoria
+        <ModalPreceptoriaOuTutoriaDeResidencia
           isOpen={isOpen}
           onClose={onClose}
           data={data}
@@ -137,4 +129,4 @@ const TabelasSupervisaoPreceptoriaTutoria = () => {
   );
 };
 
-export default TabelasSupervisaoPreceptoriaTutoria;
+export default TabelasPreceptoriaOuTutoriaDeResidencia;

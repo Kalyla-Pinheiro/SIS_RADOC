@@ -10,42 +10,32 @@ import {
     FormControl,
     FormLabel,
     Input,
+    Select,
     Box,
   } from "@chakra-ui/react";
   import { useState } from "react";
   import { v4 as uuidv4 } from "uuid";
 
-  const ModalSupervisaoPreceptoriaTutoria = ({
+  const ModalPreceptoriaOuTutoriaDeResidencia = ({
     data,
     setData,
     dataEdit,
     isOpen,
     onClose
   }) => {
-    const [nome, setNome] = useState(dataEdit.nome || "");
-    const [matricula, setMatricula] = useState(dataEdit.matricula || "");
-    const [curso, setCurso] = useState(dataEdit.curso || "");
+    const [nomeOuMatricula, setNomeOuMatricula] = useState(dataEdit.nomeOuMatricula || "");
     const [tipo, setTipo] = useState(dataEdit.tipo || "");
-    const [nivel, setNivel] = useState(dataEdit.nivel || "");
     const [chSemanalSemestre1, setChSemanalSemestre1] = useState(dataEdit.chSemanalSemestre1 || "");
     const [chSemanalSemestre2, setChSemanalSemestre2] = useState(dataEdit.chSemanalSemestre2 || "");
     
     const handleSave = () => {
-      if (!nome || !matricula || !curso || !tipo || !nivel || !chSemanalSemestre1 || !chSemanalSemestre2) return;
-      
-      /*
-      if (Object.keys(dataEdit).length) {
-        data[dataEdit.index] = { nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2 };
-      }
-      */
+
+      //if (!nome || !curso || !tipo || !nivel || !chSemanalSemestre1 || !chSemanalSemestre2) return;
 
       const newItem = {
         id: uuidv4(), 
-        nome, 
-        matricula, 
-        curso, 
-        tipo, 
-        nivel, 
+        nomeOuMatricula,
+        tipo,
         chSemanalSemestre1, 
         chSemanalSemestre2
       };
@@ -54,7 +44,7 @@ import {
         ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
         : [...data, newItem];
   
-      localStorage.setItem("supervisao_preceptoria_tutoria", JSON.stringify(newDataArray));
+      localStorage.setItem("preceptoria_e_ou_tutoria_de_residencia", JSON.stringify(newDataArray));
   
       setData(newDataArray);
   
@@ -71,44 +61,25 @@ import {
             <ModalBody>
               <FormControl display="flex" flexDir="column" gap={4}>
                 <Box>
-                  <FormLabel>Nome</FormLabel>
+                  <FormLabel>Nome Ou Matrícula</FormLabel>
                   <Input
                     type="text"
-                    value={nome}
-                    onChange={(e) => setNome(e.target.value)}
-                  />
-                </Box>
-                <Box>
-                  <FormLabel>Matrícula</FormLabel>
-                  <Input
-                    type="text"
-                    value={matricula}
-                    onChange={(e) => setMatricula(e.target.value)}
-                  />
-                </Box>
-                <Box>
-                  <FormLabel>Curso</FormLabel>
-                  <Input
-                    type="text"
-                    value={curso}
-                    onChange={(e) => setCurso(e.target.value)}
+                    value={nomeOuMatricula}
+                    onChange={(e) => setNomeOuMatricula(e.target.value)}
                   />
                 </Box>
                 <Box>
                   <FormLabel>Tipo</FormLabel>
-                  <Input
-                    type="text"
+                  <Select
+                    name="Tipo"
+                    placeholder="Selecione o tipo"
                     value={tipo}
                     onChange={(e) => setTipo(e.target.value)}
-                  />
-                </Box>
-                <Box>
-                  <FormLabel>Nivel</FormLabel>
-                  <Input
-                    type="text"
-                    value={nivel}
-                    onChange={(e) => setNivel(e.target.value)}
-                  />
+                  >
+                    <option>NA</option>
+                    <option>RP</option>
+                    <option>VET</option>
+                  </Select>
                 </Box>
                 <Box>
                   <FormLabel>CH Semanal (1º Semestre)</FormLabel>
@@ -144,5 +115,5 @@ import {
     );
   };
   
-  export default ModalSupervisaoPreceptoriaTutoria;
+  export default ModalPreceptoriaOuTutoriaDeResidencia;
   

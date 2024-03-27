@@ -168,7 +168,7 @@ const ChSemanalOrientacao = () => {
         */}
 
         <div className={classes.buttonOA}>
-          <a href="/SupervisaoAcademica">
+          <a href="/PreceptoriaOuTutoriaDeResidencia">
             <button>Voltar</button>
           </a>
           <a href="#">

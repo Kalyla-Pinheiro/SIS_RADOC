@@ -74,10 +74,7 @@ const TabelasDisciplinasMinistradas = () => {
                   Semestre
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
-                  Nome
-                </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                  Código
+                  Nome - Código
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
                   Curso
@@ -111,12 +108,11 @@ const TabelasDisciplinasMinistradas = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({id, semestre, nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido}, index) => (
+              {data.map(({id, semestre, nomeCodigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
                   <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{semestre}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nome}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{codigo}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nomeCodigo}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{curso}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nivel}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chTotal}</Td>
@@ -130,7 +126,7 @@ const TabelasDisciplinasMinistradas = () => {
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({id, semestre, nome, codigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido, index }),
+                        setDataEdit({id, semestre, nomeCodigo, curso, nivel, chTotal, numTurmasT, numTurmasP, chPorTurmaT, chPorTurmaP, nomeDocenteEnvolvido, chDocenteEnvolvido, index }),
                         onOpen(),
                       ]}
                     />

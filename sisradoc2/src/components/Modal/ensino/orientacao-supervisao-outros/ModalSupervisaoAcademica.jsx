@@ -10,36 +10,41 @@ import {
     FormControl,
     FormLabel,
     Input,
+    Select,
     Box,
   } from "@chakra-ui/react";
   import { useState } from "react";
   import { v4 as uuidv4 } from "uuid";
-  
-  const ModalQualificacaoDissertacaoTese = ({
+
+  const ModalSupervisaoPreceptoriaTutoria = ({
     data,
     setData,
     dataEdit,
     isOpen,
     onClose
   }) => {
-    const [descricao, setDescricao] = useState(dataEdit.descricao || "");
+    const [nome, setNome] = useState(dataEdit.nome || "");
+    const [curso, setCurso] = useState(dataEdit.curso || "");
     const [tipo, setTipo] = useState(dataEdit.tipo || "");
-    const [chSemanalSemestre1, setChSemanalSemestre1] = useState(dataEdit.chSemanalSemestre1 || "");  
+    const [nivel, setNivel] = useState(dataEdit.nivel || "");
+    const [chSemanalSemestre1, setChSemanalSemestre1] = useState(dataEdit.chSemanalSemestre1 || "");
     const [chSemanalSemestre2, setChSemanalSemestre2] = useState(dataEdit.chSemanalSemestre2 || "");
-  
+    
     const handleSave = () => {
-      //if (!nome || !tituloDoTrabalho || !ies || !tipo || !chSemanalSemestre1 || !chSemanalSemestre2) return;
+      if (!nome || !curso || !tipo || !nivel || !chSemanalSemestre1 || !chSemanalSemestre2) return;
       
       /*
       if (Object.keys(dataEdit).length) {
-        data[dataEdit.index] = { nome, tituloDoTrabalho, ies, tipo, chSemanalSemestre1, chSemanalSemestre2 };
+        data[dataEdit.index] = { nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2 };
       }
       */
 
       const newItem = {
         id: uuidv4(), 
-        descricao,
+        nome,
+        curso, 
         tipo, 
+        nivel, 
         chSemanalSemestre1, 
         chSemanalSemestre2
       };
@@ -48,7 +53,7 @@ import {
         ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
         : [...data, newItem];
   
-      localStorage.setItem("qualificacao_dissertacao_tese", JSON.stringify(newDataArray));
+      localStorage.setItem("supervisao_academica", JSON.stringify(newDataArray));
   
       setData(newDataArray);
   
@@ -65,20 +70,44 @@ import {
             <ModalBody>
               <FormControl display="flex" flexDir="column" gap={4}>
                 <Box>
-                  <FormLabel>Descrição</FormLabel>
+                  <FormLabel>Nome</FormLabel>
                   <Input
                     type="text"
-                    value={descricao}
-                    onChange={(e) => setDescricao(e.target.value)}
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                  />
+                </Box>
+                <Box>
+                  <FormLabel>Curso</FormLabel>
+                  <Input
+                    type="text"
+                    value={curso}
+                    onChange={(e) => setCurso(e.target.value)}
                   />
                 </Box>
                 <Box>
                   <FormLabel>Tipo</FormLabel>
-                  <Input
-                    type="text"
+                  <Select
+                    name="Tipo"
+                    placeholder="Selecione o tipo"
                     value={tipo}
                     onChange={(e) => setTipo(e.target.value)}
-                  />
+                  >
+                    <option>ESO</option>
+                    <option>PD</option>
+                  </Select>
+                </Box>
+                <Box>
+                  <FormLabel>Nivel</FormLabel>
+                  <Select
+                    name="Nivel"
+                    placeholder="Selecione o nível"
+                    value={nivel}
+                    onChange={(e) => setNivel(e.target.value)}
+                  >
+                    <option>GRADUAÇÃO</option>
+                    <option>PÓS-GRADUAÇÃO</option>
+                  </Select>
                 </Box>
                 <Box>
                   <FormLabel>CH Semanal (1º Semestre)</FormLabel>
@@ -96,6 +125,7 @@ import {
                     onChange={(e) => setChSemanalSemestre2(e.target.value)}
                   />
                 </Box>
+                
               </FormControl>
             </ModalBody>
   
@@ -113,5 +143,5 @@ import {
     );
   };
   
-  export default ModalQualificacaoDissertacaoTese;
+  export default ModalSupervisaoPreceptoriaTutoria;
   

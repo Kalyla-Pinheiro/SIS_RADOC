@@ -32,7 +32,7 @@ const SupervisaoAcademica = () => {
 
       <div className={classes.orientacaoAcademicaContainer}>
         <div className={classes.titulo} id={classes.tituloMargin}>
-          <h1>Supervisão, Preceptoria e/ou Tutoria</h1>
+          <h1>Supervisão Acadêmica</h1>
         </div>
 
         <form className={classesPesquisa.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data">
@@ -144,7 +144,7 @@ const SupervisaoAcademica = () => {
             <a href="/OrientacaoAcademica">
                 <button>Voltar</button>
             </a>
-            <a href="/ChSemanalOrientacao">
+            <a href="/PreceptoriaOuTutoriaDeResidencia">
                 <button id={classes.buttonProximo}>Próximo</button>
             </a>
         </div>

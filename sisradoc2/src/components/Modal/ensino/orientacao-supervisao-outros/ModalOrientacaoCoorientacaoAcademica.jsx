@@ -10,6 +10,7 @@ import {
     FormControl,
     FormLabel,
     Input,
+    Select,
     Box,
   } from "@chakra-ui/react";
   import { useState } from "react";
@@ -23,15 +24,15 @@ import {
     onClose
   }) => {
     const [nome, setNome] = useState(dataEdit.nome || "");
-    const [matricula, setMatricula] = useState(dataEdit.matricula || "");
     const [curso, setCurso] = useState(dataEdit.curso || "");
     const [tipo, setTipo] = useState(dataEdit.tipo || "");
     const [nivel, setNivel] = useState(dataEdit.nivel || "");
+    const [participacao, setParticipacao] = useState(dataEdit.participacao || "");
     const [chSemanalSemestre1, setChSemanalSemestre1] = useState(dataEdit.chSemanalSemestre1 || "");
     const [chSemanalSemestre2, setChSemanalSemestre2] = useState(dataEdit.chSemanalSemestre2 || "");
     
     const handleSave = () => {
-      if (!nome || !matricula || !curso || !tipo || !nivel || !chSemanalSemestre1 || !chSemanalSemestre2) return;
+      if (!nome || !curso || !tipo || !nivel || !participacao || !chSemanalSemestre1 || !chSemanalSemestre2) return;
       
       /*
       if (Object.keys(dataEdit).length) {
@@ -41,11 +42,11 @@ import {
 
       const newItem = {
         id: uuidv4(), 
-        nome, 
-        matricula, 
+        nome,
         curso, 
         tipo, 
         nivel, 
+        participacao,
         chSemanalSemestre1, 
         chSemanalSemestre2
       };
@@ -79,14 +80,6 @@ import {
                   />
                 </Box>
                 <Box>
-                  <FormLabel>Matrícula</FormLabel>
-                  <Input
-                    type="text"
-                    value={matricula}
-                    onChange={(e) => setMatricula(e.target.value)}
-                  />
-                </Box>
-                <Box>
                   <FormLabel>Curso</FormLabel>
                   <Input
                     type="text"
@@ -96,19 +89,50 @@ import {
                 </Box>
                 <Box>
                   <FormLabel>Tipo</FormLabel>
-                  <Input
-                    type="text"
+                  <Select
+                    name="Tipo"
+                    placeholder="Selecione o tipo"
                     value={tipo}
                     onChange={(e) => setTipo(e.target.value)}
-                  />
+                  >
+                    <option>IC</option>
+                    <option>VIC</option>
+                    <option>TDI</option>
+                    <option>PET</option>
+                    <option>ID</option>
+                    <option>MON</option>
+                    <option>BEX</option>
+                    <option>EST/TREI</option>
+                    <option>TCC</option>
+                    <option>ESO</option>
+                    <option>ME</option>
+                    <option>DS</option>
+                    <option>TD</option>
+                  </Select>
                 </Box>
                 <Box>
                   <FormLabel>Nivel</FormLabel>
-                  <Input
-                    type="text"
+                  <Select
+                    name="Nivel"
+                    placeholder="Selecione o nível"
                     value={nivel}
                     onChange={(e) => setNivel(e.target.value)}
-                  />
+                  >
+                    <option>GRADUAÇÃO</option>
+                    <option>PÓS-GRADUAÇÃO</option>
+                  </Select>
+                </Box>
+                <Box>
+                  <FormLabel>Participação</FormLabel>
+                  <Select
+                    name="Participação"
+                    placeholder="Selecione a participação"
+                    value={participacao}
+                    onChange={(e) => setParticipacao(e.target.value)}
+                  >
+                    <option>ORIENTAÇÃO</option>
+                    <option>CO-ORIENTAÇÃO</option>
+                  </Select>
                 </Box>
                 <Box>
                   <FormLabel>CH Semanal (1º Semestre)</FormLabel>

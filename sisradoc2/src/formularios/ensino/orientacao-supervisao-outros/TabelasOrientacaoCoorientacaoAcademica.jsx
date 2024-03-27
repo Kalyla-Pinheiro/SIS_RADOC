@@ -74,9 +74,6 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
                     Nome
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
-                    Matrícula
-                </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
                     Curso
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
@@ -96,11 +93,10 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({id, nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2}, index) => (
+              {data.map(({id, nome, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2}, index) => (
                 <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
                   <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nome}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{matricula}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{curso}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{tipo}</Td>
                   <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{nivel}</Td>
@@ -110,7 +106,7 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({id, nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2, index }),
+                        setDataEdit({id, nome, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2, index }),
                         onOpen(),
                       ]}
                     />

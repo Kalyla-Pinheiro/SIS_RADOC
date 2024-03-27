@@ -26,9 +26,8 @@ const ModalDisciplinasMinistradas = ({
   isOpen,
   onClose
 }) => {
-  const [nome, setNome] = useState(dataEdit.nome || "");
   const [semestre, setSemestre] = useState(dataEdit.semestre || "");
-  const [codigo, setCodigo] = useState(dataEdit.codigo || "");
+  const [nomeCodigo, setNomeCodigo] = useState(dataEdit.nomeCodigo || "");
   const [curso, setCurso] = useState(dataEdit.curso || "");
   const [nivel, setNivel] = useState(dataEdit.nivel || "");
   const [chTotal, setChTotal] = useState(dataEdit.chTotal || "");
@@ -48,9 +47,8 @@ const ModalDisciplinasMinistradas = ({
 
     const newItem = {
       id: uuidv4(), 
-      nome, 
       semestre,
-      codigo, 
+      nomeCodigo, 
       curso, 
       nivel, 
       chTotal, 
@@ -82,8 +80,7 @@ const ModalDisciplinasMinistradas = ({
 
   useEffect(() => {
     if(aulasLetivasData) {
-      setNome(aulasLetivasData.diario_turma.Disciplina[0]);
-      setCodigo(aulasLetivasData.diario_turma["Código"]);
+      setNomeCodigo(aulasLetivasData.diario_turma["Código"] + "-" + aulasLetivasData.diario_turma.Disciplina[0]);
       setChTotal(aulasLetivasData.diario_turma["Carga Horária"]);
       setNomeDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[0]);
       setChDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[1]);
@@ -95,8 +92,7 @@ const ModalDisciplinasMinistradas = ({
 
     const fieldSetters = {
       Semestre: setSemestre,
-      Disciplina: setNome,
-      Codigo: setCodigo,
+      Disciplina: setNomeCodigo,
       Curso: setCurso,
       Nivel: setNivel,
       Carga_Horaria: setChTotal,
@@ -133,25 +129,16 @@ const ModalDisciplinasMinistradas = ({
                   value={semestre}
                   onChange={handleChange}
                 >
-                  <option>Primeiro</option>
-                  <option>Segundo</option>
+                  <option>1º SEMESTRE</option>
+                  <option>2º SEMESTRE</option>
                 </Select>
               </Box>
               <Box>
-                <FormLabel>Nome</FormLabel>
+                <FormLabel>Nome - Código</FormLabel>
                 <Input
                   type="text"
                   name="Disciplina"
-                  value={nome}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box>
-                <FormLabel>Código</FormLabel>
-                <Input
-                  type="text"
-                  name="Codigo"
-                  value={codigo}
+                  value={nomeCodigo}
                   onChange={handleChange}
                 />
               </Box>
@@ -174,8 +161,8 @@ const ModalDisciplinasMinistradas = ({
                   value={nivel}
                   onChange={handleChange}
                 >
-                  <option>Graduação</option>
-                  <option>Pós-Graduação</option>
+                  <option>GRADUAÇÃO</option>
+                  <option>PÓS-GRADUAÇÃO</option>
                 </Select>
               </Box>
               <Box>
