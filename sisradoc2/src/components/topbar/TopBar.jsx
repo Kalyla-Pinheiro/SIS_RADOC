@@ -16,9 +16,16 @@ import { NavLink } from "react-router-dom";
 
 import TokenFunctions from "../../utils/Token";
 import { jwtDecode } from "jwt-decode";
+import Cookies from "js-cookie";
 
 const Formulario = ({ children }) => {
   const token = TokenFunctions.getToken();
+
+  const toSignout = () => {
+    Cookies.remove("jwt");
+    window.location.reload();
+    return true;
+  };
 
   const nomeUsuario = TokenFunctions.getName(token);
   const emailUsuario = TokenFunctions.getEmail(token);
@@ -85,6 +92,7 @@ const Formulario = ({ children }) => {
       path: "/",
       name: "Sair",
       icon: <LuLogOut />,
+      //   onClick: toSignout,
     },
   ];
 
@@ -115,45 +123,48 @@ const Formulario = ({ children }) => {
           <div className="ladoBtn">
             <h2>Sisradoc</h2>
           </div>
-          <nav>
-            <ul className="header-menu">
-              <li>
-                <a href="/home">Home</a>
-              </li>
-              <li>
-                <a href="/documentos">Documentos</a>
-              </li>
-              <li>
-                <a href="/">Relatórios</a>
-              </li>
-            </ul>
-          </nav>
-          <div className="divBtnUser">
-            <div className="ajusteBtnUser" onClick={toggleUser}>
-              <AiOutlineUser className="btnUser" />
-            </div>
 
-            <div className="dropdown-User" style={dropdownUserStyle}>
-              <div className="testeUserContent">
-                <h2>{nomeUsuario}</h2>
-                <h4>{emailUsuario}</h4>
+          <div className="conteiner-menu">
+            <nav>
+              <ul className="header-menu">
+                <li>
+                  <a href="/home">Home</a>
+                </li>
+                <li>
+                  <a href="/documentos">Documentos</a>
+                </li>
+                <li>
+                  <a href="/">Relatórios</a>
+                </li>
+              </ul>
+            </nav>
+            <div className="divBtnUser">
+              <div className="ajusteBtnUser" onClick={toggleUser}>
+                <AiOutlineUser className="btnUser" />
               </div>
-              {menuUserItem.map((item, index) => (
-                <div className="btnGeralItem">
-                  <NavLink
-                    key={index}
-                    to={item.path}
-                    className="dropdown-item link"
-                  >
-                    <div style={dropdownUserStyleItem} className="icon">
-                      {item.icon}
-                    </div>
-                    <div style={dropdownUserStyleItem} className="textItem">
-                      {item.name}
-                    </div>
-                  </NavLink>
+
+              <div className="dropdown-User" style={dropdownUserStyle}>
+                <div className="testeUserContent">
+                  <h2>{nomeUsuario}</h2>
+                  <h4>{emailUsuario}</h4>
                 </div>
-              ))}
+                {menuUserItem.map((item, index) => (
+                  <div className="btnGeralItem">
+                    <NavLink
+                      key={index}
+                      to={item.path}
+                      className="dropdown-item link"
+                    >
+                      <div style={dropdownUserStyleItem} className="icon">
+                        {item.icon}
+                      </div>
+                      <div style={dropdownUserStyleItem} className="textItem">
+                        {item.name}
+                      </div>
+                    </NavLink>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
