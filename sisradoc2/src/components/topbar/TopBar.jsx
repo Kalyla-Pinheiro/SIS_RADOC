@@ -15,17 +15,11 @@ import { TbPointFilled } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 
 import TokenFunctions from "../../utils/Token";
-import { jwtDecode } from "jwt-decode";
+import jwtDecode from "jwt-decode";
 import Cookies from "js-cookie";
 
 const Formulario = ({ children }) => {
   const token = TokenFunctions.getToken();
-
-  const toSignout = () => {
-    Cookies.remove("jwt");
-    window.location.reload();
-    return true;
-  };
 
   const nomeUsuario = TokenFunctions.getName(token);
   const emailUsuario = TokenFunctions.getEmail(token);
@@ -36,6 +30,10 @@ const Formulario = ({ children }) => {
   const toggle = () => setIsOpen(!isOpen);
 
   const toggleUser = () => setIsOpenA(!isOpenUser);
+
+  const toSignout = () => {
+    Cookies.remove("jwt");
+  };
 
   const menuitem = [
     {
@@ -92,7 +90,7 @@ const Formulario = ({ children }) => {
       path: "/",
       name: "Sair",
       icon: <LuLogOut />,
-      //   onClick: toSignout,
+      onClick: toSignout,
     },
   ];
 
@@ -134,7 +132,7 @@ const Formulario = ({ children }) => {
                   <a href="/documentos">Documentos</a>
                 </li>
                 <li>
-                  <a href="/">Relatórios</a>
+                  <a href="/documentos">Relatórios</a>
                 </li>
               </ul>
             </nav>
@@ -154,6 +152,7 @@ const Formulario = ({ children }) => {
                       key={index}
                       to={item.path}
                       className="dropdown-item link"
+                      onClick={item.onClick ? item.onClick : null}
                     >
                       <div style={dropdownUserStyleItem} className="icon">
                         {item.icon}

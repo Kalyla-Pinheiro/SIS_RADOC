@@ -241,11 +241,6 @@ a {
   font-size: 1.1rem;
   text-align: center;
 }
-/* .header-menu a:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transition: all 0.5s;
-  border-radius: 6px;
-} */
 
 .header-menu a:after {
   content: "";
