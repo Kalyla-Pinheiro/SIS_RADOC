@@ -11,10 +11,10 @@
 body {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
-  background: url(./pages/imagens/paisagem3.png) no-repeat;
+  background: #f3ede8;
   background-size: cover;
   background-position: center;
-  overflow: hidden; 
+  overflow: hidden;
   width: 100%;
   height: 100vh;
 }
