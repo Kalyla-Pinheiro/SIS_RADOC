@@ -18,6 +18,7 @@ import { v4 as uuidv4 } from "uuid";
 import TokenFunctions from "../../../../utils/Token";
 import { useEffect } from "react";
 import { ToastifyMessages } from "../../../../utils/ToastifyMessages";
+import { useAnoContext } from "../../../../utils/AnoContext";
 
 const ModalDisciplinasMinistradas = ({
   data,
@@ -26,6 +27,9 @@ const ModalDisciplinasMinistradas = ({
   isOpen,
   onClose
 }) => {
+
+  const [ano, setAno] = useAnoContext();
+
   const [semestre, setSemestre] = useState(dataEdit.semestre || "");
   const [nomeCodigo, setNomeCodigo] = useState(dataEdit.nomeCodigo || "");
   const [curso, setCurso] = useState(dataEdit.curso || "");
@@ -63,8 +67,14 @@ const ModalDisciplinasMinistradas = ({
     const newDataArray = Object.keys(dataEdit).length
       ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
       : [...data, newItem];
+
+    const identificador = localStorage.getItem(ano);
+    const radocEspecifico = identificador ? JSON.parse(identificador) : {};
+
+    radocEspecifico.disciplinas_ministradas = radocEspecifico.disciplinas_ministradas || [];
+    radocEspecifico.disciplinas_ministradas.push(newDataArray);
     
-    localStorage.setItem("disciplinas_ministradas", JSON.stringify(newDataArray));
+    localStorage.setItem("2025", JSON.stringify(radocEspecifico));
 
     setData(newDataArray);
 

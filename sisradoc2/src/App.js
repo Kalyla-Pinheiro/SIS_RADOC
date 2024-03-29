@@ -40,8 +40,8 @@ import AuthMiddleware from "./middleware/AuthMiddleware";
 import { Navigate } from "react-router-dom";
 import Erro404 from "./pages/404/Erro404";
 import EmailConfirmar from "./pages/EmailConfirmar/EmailConfirmar";
-
 import TopBar from "./components/topbar/TopBar";
+import { AnoProvider } from "./utils/AnoContext";
 
 const MainLayout = ({ children }) => (
   <div>
@@ -67,7 +67,7 @@ function App() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/email-confirmar" element={<EmailConfirmar />} />
 
-        <Route element={<AuthMiddleware />}>
+        <Route element={ <AnoProvider> <AuthMiddleware /> </AnoProvider>}>
           <Route
             path="/home"
             element={
