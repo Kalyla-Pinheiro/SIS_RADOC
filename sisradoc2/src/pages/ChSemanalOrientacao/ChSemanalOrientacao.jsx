@@ -86,11 +86,18 @@ const ChSemanalOrientacao = () => {
               </div>
             </div>
 
-            <div className={classes.camposTabelaNCHteste}>
-              <div className={classes.tituloSemestre}>
-                <p>Total:</p>
+            <div className={classes.ConteinerTabelaNCHteste}>
+              <div className={classes.camposTabelaNCHteste}>
+                <div className={classes.tituloSemestre}>
+                  <p>Total:</p>
+                </div>
+                <input type="text" placeholder="" required />
               </div>
-              <input type="text" placeholder="" required />
+              <div className={classes.camposTabelaNCHteste}>
+                <div className={classes.buttonTotal}>
+                  <button type="button">Calcular</button>
+                </div>
+              </div>
             </div>
 
             <div className={classes.camposInlineOA}>
@@ -142,11 +149,18 @@ const ChSemanalOrientacao = () => {
               </div>
             </div>
 
-            <div className={classes.camposTabelaNCHteste}>
-              <div className={classes.tituloSemestre}>
-                <p>Total:</p>
+            <div className={classes.ConteinerTabelaNCHteste}>
+              <div className={classes.camposTabelaNCHteste}>
+                <div className={classes.tituloSemestre}>
+                  <p>Total:</p>
+                </div>
+                <input type="text" placeholder="" required />
               </div>
-              <input type="text" placeholder="" required />
+              <div className={classes.camposTabelaNCHteste}>
+                <div className={classes.buttonTotal}>
+                  <button type="button">Calcular</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
