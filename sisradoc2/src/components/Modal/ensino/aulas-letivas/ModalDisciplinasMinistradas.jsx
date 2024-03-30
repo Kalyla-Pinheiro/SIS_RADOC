@@ -18,7 +18,7 @@ import { v4 as uuidv4 } from "uuid";
 import TokenFunctions from "../../../../utils/Token";
 import { useEffect } from "react";
 import { ToastifyMessages } from "../../../../utils/ToastifyMessages";
-import { useAnoContext } from "../../../../utils/AnoContext";
+import { useAnoContext, AnoProvider } from "../../../../utils/AnoContext";
 
 const ModalDisciplinasMinistradas = ({
   data,
@@ -28,7 +28,10 @@ const ModalDisciplinasMinistradas = ({
   onClose
 }) => {
 
-  const [ano, setAno] = useAnoContext();
+  //const anoContext = useAnoContext();
+  //const ano = anoContext.ano;
+
+  //console.log('Valor de ano:', ano);
 
   const [semestre, setSemestre] = useState(dataEdit.semestre || "");
   const [nomeCodigo, setNomeCodigo] = useState(dataEdit.nomeCodigo || "");
@@ -41,6 +44,51 @@ const ModalDisciplinasMinistradas = ({
   const [chPorTurmaP, setChPorTurmaP] = useState(dataEdit.chPorTurmaP || "");
   const [nomeDocenteEnvolvido, setNomeDocenteEnvolvido] = useState(dataEdit.nomeDocenteEnvolvido || "");
   const [chDocenteEnvolvido, setChDocenteEnvolvido] = useState(dataEdit.chDocenteEnvolvido || "");
+
+
+  // const handleSave = () => {
+  //   // Campos obrigatórios
+  //   if (!nivel || !semestre) {
+  //     ToastifyMessages.error("Por favor, preencha todos os campos obrigatórios");
+  //     return;
+  //   }
+  
+  //   const newItem = {
+  //     id: uuidv4(), 
+  //     semestre,
+  //     nomeCodigo, 
+  //     curso, 
+  //     nivel, 
+  //     chTotal, 
+  //     numTurmasT, 
+  //     numTurmasP, 
+  //     chPorTurmaT, 
+  //     chPorTurmaP, 
+  //     nomeDocenteEnvolvido, 
+  //     chDocenteEnvolvido
+  //   };
+  
+  //   const newDataArray = Object.keys(dataEdit).length
+  //     ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
+  //     : [...data, newItem];
+  
+  //   // Recuperar o objeto JSON do Local Storage
+  //   const localStorageKey = `${ano}`;
+  //   let localStorageData = localStorage.getItem(localStorageKey);
+  //   localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+  
+  //   // Adicionar ou atualizar as disciplinas ministradas no objeto existente
+  //   localStorageData.disciplinas_ministradas = newDataArray;
+  
+  //   // Salvar o objeto atualizado de volta no Local Storage
+  //   localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+  
+  //   setData(newDataArray);
+  //   onClose();
+  //   window.location.reload();
+  // };
+  
+
 
   const handleSave = () => {
     // campos obrigatórios
@@ -67,14 +115,8 @@ const ModalDisciplinasMinistradas = ({
     const newDataArray = Object.keys(dataEdit).length
       ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
       : [...data, newItem];
-
-    const identificador = localStorage.getItem(ano);
-    const radocEspecifico = identificador ? JSON.parse(identificador) : {};
-
-    radocEspecifico.disciplinas_ministradas = radocEspecifico.disciplinas_ministradas || [];
-    radocEspecifico.disciplinas_ministradas.push(newDataArray);
     
-    localStorage.setItem("2025", JSON.stringify(radocEspecifico));
+    localStorage.setItem("disciplinas_ministradas", JSON.stringify(newDataArray));
 
     setData(newDataArray);
 
@@ -122,135 +164,137 @@ const ModalDisciplinasMinistradas = ({
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Cadastro dos dados</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <FormControl display="flex" flexDir="column" gap={4}>
-              <Box>
-                <FormLabel>
-                  Semestre <span style={{ color: 'red' }}>*</span>
-                </FormLabel>
-                <Select
-                  name="Semestre"
-                  placeholder="Selecione o semestre"
-                  value={semestre}
-                  onChange={handleChange}
-                >
-                  <option>1º SEMESTRE</option>
-                  <option>2º SEMESTRE</option>
-                </Select>
-              </Box>
-              <Box>
-                <FormLabel>Nome - Código</FormLabel>
-                <Input
-                  type="text"
-                  name="Disciplina"
-                  value={nomeCodigo}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box>
-                <FormLabel>Curso</FormLabel>
-                <Input
-                  type="text"
-                  name="Curso"
-                  value={curso}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box>
-                <FormLabel>
-                  Nível <span style={{ color: 'red' }}>*</span>
-                </FormLabel>
-                <Select
-                  name="Nivel"
-                  placeholder="Selecione o nível"
-                  value={nivel}
-                  onChange={handleChange}
-                >
-                  <option>GRADUAÇÃO</option>
-                  <option>PÓS-GRADUAÇÃO</option>
-                </Select>
-              </Box>
-              <Box>
-                <FormLabel>CH Total</FormLabel>
-                <Input
-                  type="text"
-                  name="Carga_Horaria"
-                  value={chTotal}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box>
-                <FormLabel>Nº Da Turma (Teórica)</FormLabel>
-                <Input
-                  type="text"
-                  name="Numero_Turmas_Teoricas"
-                  value={numTurmasT}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box>
-                <FormLabel>Nº Da Turma (Prática)</FormLabel>
-                <Input
-                  type="text"
-                  name="Numero_Turmas_Praticas"
-                  value={numTurmasP}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box>
-                <FormLabel>CH Por Turma (Teórica)</FormLabel> 
-                <Input
-                  type="text"
-                  name="CH_Por_Turma_Teorica"
-                  value={chPorTurmaT}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box>
-                <FormLabel>CH Por Turma (Prática)</FormLabel> 
-                <Input
-                  type="text"
-                  name="CH_Por_Turma_Pratica"
-                  value={chPorTurmaP}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box>
-                <FormLabel>Nome Docente Envolvido</FormLabel> 
-                <Input
-                  type="text"
-                  name="Docentes_Envolvidos"
-                  value={nomeDocenteEnvolvido}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box>
-                <FormLabel>CH Docente Envolvido</FormLabel> 
-                <Input
-                  type="text"
-                  name="CH_Docente_Envolvido"
-                  value={chDocenteEnvolvido}
-                  onChange={handleChange}
-                />
-              </Box>
-            </FormControl>
-          </ModalBody>
+      <AnoProvider>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Cadastro dos dados</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <FormControl display="flex" flexDir="column" gap={4}>
+                <Box>
+                  <FormLabel>
+                    Semestre <span style={{ color: 'red' }}>*</span>
+                  </FormLabel>
+                  <Select
+                    name="Semestre"
+                    placeholder="Selecione o semestre"
+                    value={semestre}
+                    onChange={handleChange}
+                  >
+                    <option>1º SEMESTRE</option>
+                    <option>2º SEMESTRE</option>
+                  </Select>
+                </Box>
+                <Box>
+                  <FormLabel>Nome - Código</FormLabel>
+                  <Input
+                    type="text"
+                    name="Disciplina"
+                    value={nomeCodigo}
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Box>
+                  <FormLabel>Curso</FormLabel>
+                  <Input
+                    type="text"
+                    name="Curso"
+                    value={curso}
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Box>
+                  <FormLabel>
+                    Nível <span style={{ color: 'red' }}>*</span>
+                  </FormLabel>
+                  <Select
+                    name="Nivel"
+                    placeholder="Selecione o nível"
+                    value={nivel}
+                    onChange={handleChange}
+                  >
+                    <option>GRADUAÇÃO</option>
+                    <option>PÓS-GRADUAÇÃO</option>
+                  </Select>
+                </Box>
+                <Box>
+                  <FormLabel>CH Total</FormLabel>
+                  <Input
+                    type="text"
+                    name="Carga_Horaria"
+                    value={chTotal}
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Box>
+                  <FormLabel>Nº Da Turma (Teórica)</FormLabel>
+                  <Input
+                    type="text"
+                    name="Numero_Turmas_Teoricas"
+                    value={numTurmasT}
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Box>
+                  <FormLabel>Nº Da Turma (Prática)</FormLabel>
+                  <Input
+                    type="text"
+                    name="Numero_Turmas_Praticas"
+                    value={numTurmasP}
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Box>
+                  <FormLabel>CH Por Turma (Teórica)</FormLabel> 
+                  <Input
+                    type="text"
+                    name="CH_Por_Turma_Teorica"
+                    value={chPorTurmaT}
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Box>
+                  <FormLabel>CH Por Turma (Prática)</FormLabel> 
+                  <Input
+                    type="text"
+                    name="CH_Por_Turma_Pratica"
+                    value={chPorTurmaP}
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Box>
+                  <FormLabel>Nome Docente Envolvido</FormLabel> 
+                  <Input
+                    type="text"
+                    name="Docentes_Envolvidos"
+                    value={nomeDocenteEnvolvido}
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Box>
+                  <FormLabel>CH Docente Envolvido</FormLabel> 
+                  <Input
+                    type="text"
+                    name="CH_Docente_Envolvido"
+                    value={chDocenteEnvolvido}
+                    onChange={handleChange}
+                  />
+                </Box>
+              </FormControl>
+            </ModalBody>
 
-          <ModalFooter justifyContent="start">
-            <Button colorScheme="green" mr={3} onClick={handleSave}>
-              SALVAR
-            </Button>
-            <Button colorScheme="red" onClick={onClose}>
-              CANCELAR
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+            <ModalFooter justifyContent="start">
+              <Button colorScheme="green" mr={3} onClick={handleSave}>
+                SALVAR
+              </Button>
+              <Button colorScheme="red" onClick={onClose}>
+                CANCELAR
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </AnoProvider>
     </>
   );
 };

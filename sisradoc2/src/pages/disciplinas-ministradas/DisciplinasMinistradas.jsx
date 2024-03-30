@@ -19,6 +19,7 @@ import paisagem3 from "../imagens/paisagem3.png";
 import TokenFunctions from "../../utils/Token";
 import { useDisclosure, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import ModalDisciplinasMinistradas from "../../components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
+//import { useAnoContext } from "../../utils/AnoContext";
 
 const DisciplinasMinistradas = () => {
   const [pdfDisciplinas, setPdfDisciplinas] = useState(null);
@@ -29,6 +30,11 @@ const DisciplinasMinistradas = () => {
   const [ch, setCH] = useState("");
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
+
+  //const anoContext = useAnoContext();
+  //const ano = anoContext.ano;
+
+  //console.log("Valor do ano em disciplinas:", ano);
 
   useEffect(() => {
     const db_costumer = localStorage.getItem("disciplinas_ministradas")

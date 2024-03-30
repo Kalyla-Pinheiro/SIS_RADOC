@@ -20,10 +20,10 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import ModalAvaliacaoDiscente from "../../../components/Modal/ensino/avaliacao-discente/ModalAvaliacaoDiscente";
+import ModalQualificacaoDocente from "../../../components/Modal/outros/qualificacao-docente/ModalQualificaoDocente";
 import "../../styleFormularios.css";
 
-const TabelasAvaliacaoDiscente = () => {
+const TabelasQualificacaoDocente = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
@@ -31,8 +31,8 @@ const TabelasAvaliacaoDiscente = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("avaliacao_discente")
-      ? JSON.parse(localStorage.getItem("avaliacao_discente"))
+    const db_costumer = localStorage.getItem("qualificacao_docente")
+      ? JSON.parse(localStorage.getItem("qualificacao_docente"))
       : [];
 
     setData(db_costumer);
@@ -43,7 +43,7 @@ const TabelasAvaliacaoDiscente = () => {
 
     setData(newArray);
 
-    localStorage.setItem("avaliacao_discente", JSON.stringify(newArray));
+    localStorage.setItem("qualificacao_docente", JSON.stringify(newArray));
   };
 
   return (
@@ -75,17 +75,17 @@ const TabelasAvaliacaoDiscente = () => {
                   ID
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
-                  Código da Disciplina
+                  Descrição
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#fff">
-                  Média
+                  Portaria
                 </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({ id, codigoDaDisciplina, media }, index) => (
+              {data.map(({ id, descricao, portaria }, index) => (
                 <Tr
                   key={index}
                   cursor="pointer "
@@ -96,16 +96,16 @@ const TabelasAvaliacaoDiscente = () => {
                     {id}
                   </Td>
                   <Td minW="200px" style={{ wordWrap: "break-word", maxWidth: 200 }}>
-                    {codigoDaDisciplina}
+                    {descricao}
                   </Td>
                   <Td minW="200px" style={{ wordWrap: "break-word", maxWidth: 200 }}>
-                    {media}
+                    {portaria}
                   </Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({ id, codigoDaDisciplina, media, index }),
+                        setDataEdit({ id, descricao, portaria, index }),
                         onOpen(),
                       ]}
                     />
@@ -126,7 +126,7 @@ const TabelasAvaliacaoDiscente = () => {
         </Box>
       </Box>
       {isOpen && (
-        <ModalAvaliacaoDiscente
+        <ModalQualificacaoDocente
           isOpen={isOpen}
           onClose={onClose}
           data={data}
@@ -166,4 +166,4 @@ const TabelasAvaliacaoDiscente = () => {
   );
 };
 
-export default TabelasAvaliacaoDiscente;
+export default TabelasQualificacaoDocente;

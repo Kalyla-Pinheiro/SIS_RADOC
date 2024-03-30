@@ -36,12 +36,20 @@ import AtividadeDeEnsinoNaoFormal from "./pages/extensao/atividade-de-ensino-nao
 import OutrasAtividadesDeExtensao from "./pages/extensao/outras-atividades-de-extensao/OutrasAtividadesDeExtensao";
 import Gestao from "./pages/gestao/Gestao";
 import AtividadeGestaoRepresentacao from "./pages/gestao/atividade-de-gestao-e-representacao/AtividadeGestaoRepresentacao";
+import Outros from "./pages/outros/Outros";
+import QualificacaoDocente from "./pages/outros/qualificacao-docente/QualificacaoDocente";
+import OutrasInformacoes from "./pages/outros/outras-informacoes/OutrasInformacoes";
+import Afastamentos from "./pages/outros/afastamentos/Afastamentos";
 import AuthMiddleware from "./middleware/AuthMiddleware";
 import { Navigate } from "react-router-dom";
 import Erro404 from "./pages/404/Erro404";
 import EmailConfirmar from "./pages/EmailConfirmar/EmailConfirmar";
 import TopBar from "./components/topbar/TopBar";
+
 import { AnoProvider } from "./utils/AnoContext";
+
+import ModalDisciplinasMinistradas from "./components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
+
 
 const MainLayout = ({ children }) => (
   <div>
@@ -338,6 +346,42 @@ function App() {
               <MainLayout>
                 {" "}
                 <AtividadeGestaoRepresentacao />{" "}
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/outros"
+            element={
+              <MainLayout>
+                {" "}
+                <Outros />{" "}
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/outros/qualificacao-docente"
+            element={
+              <MainLayout>
+                {" "}
+                <QualificacaoDocente />{" "}
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/outros/outras-informacoes"
+            element={
+              <MainLayout>
+                {" "}
+                <OutrasInformacoes />{" "}
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/outros/afastamentos"
+            element={
+              <MainLayout>
+                {" "}
+                <Afastamentos />{" "}
               </MainLayout>
             }
           />
