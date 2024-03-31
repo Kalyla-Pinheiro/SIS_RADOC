@@ -14,6 +14,8 @@ import {
   } from "@chakra-ui/react";
   import { useState } from "react";
   import { v4 as uuidv4 } from "uuid";
+  import TokenFunctions from "../../../../utils/Token";
+  import { useEffect } from "react";
   
   const ModalAvaliacaoDiscente = ({
     data,
@@ -27,13 +29,13 @@ import {
     
   
     const handleSave = () => {
-      if (!codigoDaDisciplina || !media) return;
+//      if (!codigoDaDisciplina || !media) return;
       
-      /*
+
       if (Object.keys(dataEdit).length) {
         data[dataEdit.index] = { codigoDaDisciplina, media };
       }
-      */
+      
 
       const newItem = {
         id: uuidv4(), 
@@ -50,7 +52,34 @@ import {
       setData(newDataArray);
   
       onClose();
-    };  
+
+      window.location.reload();
+    };
+    
+    var avaliacaoDiscenteData = "";
+    try {
+      avaliacaoDiscenteData = TokenFunctions.get_avaliacao_discente_codigo();
+    } catch (error) {}
+  
+    useEffect(() => {
+      if(avaliacaoDiscenteData) {
+        setCodigoDaDisciplina(avaliacaoDiscenteData.avaliacao_discente_codigo[0]);
+      }
+    }, []);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+  
+      const fieldSetters = {
+        Código_da_Disciplina: setCodigoDaDisciplina,
+        Média: setMedia,
+      };
+  
+      const setter = fieldSetters[name];
+      if (setter) {
+        setter(value);
+      }
+    };
   
     return (
       <>
@@ -65,8 +94,9 @@ import {
                   <FormLabel>Código da Disciplina</FormLabel>
                   <Input
                     type="text"
+                    name="Código da Disciplina"
                     value={codigoDaDisciplina}
-                    onChange={(e) => setCodigoDaDisciplina(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 <Box>
