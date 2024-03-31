@@ -13,12 +13,12 @@ import {
   Select,
   Box,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import TokenFunctions from "../../../../utils/Token";
 import { useEffect } from "react";
 import { ToastifyMessages } from "../../../../utils/ToastifyMessages";
-import { useAnoContext, AnoProvider } from "../../../../utils/AnoContext";
+import { AnoContext } from "../../../../utils/AnoContext";
 
 const ModalDisciplinasMinistradas = ({
   data,
@@ -28,10 +28,8 @@ const ModalDisciplinasMinistradas = ({
   onClose
 }) => {
 
-  //const anoContext = useAnoContext();
-  //const ano = anoContext.ano;
-
-  //console.log('Valor de ano:', ano);
+  const { ano } = useContext(AnoContext);
+  console.log("O valor do ano é: ", ano);
 
   const [semestre, setSemestre] = useState(dataEdit.semestre || "");
   const [nomeCodigo, setNomeCodigo] = useState(dataEdit.nomeCodigo || "");
@@ -46,57 +44,13 @@ const ModalDisciplinasMinistradas = ({
   const [chDocenteEnvolvido, setChDocenteEnvolvido] = useState(dataEdit.chDocenteEnvolvido || "");
 
 
-  // const handleSave = () => {
-  //   // Campos obrigatórios
-  //   if (!nivel || !semestre) {
-  //     ToastifyMessages.error("Por favor, preencha todos os campos obrigatórios");
-  //     return;
-  //   }
-  
-  //   const newItem = {
-  //     id: uuidv4(), 
-  //     semestre,
-  //     nomeCodigo, 
-  //     curso, 
-  //     nivel, 
-  //     chTotal, 
-  //     numTurmasT, 
-  //     numTurmasP, 
-  //     chPorTurmaT, 
-  //     chPorTurmaP, 
-  //     nomeDocenteEnvolvido, 
-  //     chDocenteEnvolvido
-  //   };
-  
-  //   const newDataArray = Object.keys(dataEdit).length
-  //     ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
-  //     : [...data, newItem];
-  
-  //   // Recuperar o objeto JSON do Local Storage
-  //   const localStorageKey = `${ano}`;
-  //   let localStorageData = localStorage.getItem(localStorageKey);
-  //   localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
-  
-  //   // Adicionar ou atualizar as disciplinas ministradas no objeto existente
-  //   localStorageData.disciplinas_ministradas = newDataArray;
-  
-  //   // Salvar o objeto atualizado de volta no Local Storage
-  //   localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
-  
-  //   setData(newDataArray);
-  //   onClose();
-  //   window.location.reload();
-  // };
-  
-
-
   const handleSave = () => {
-    // campos obrigatórios
+    // Campos obrigatórios
     if (!nivel || !semestre) {
       ToastifyMessages.error("Por favor, preencha todos os campos obrigatórios");
       return;
     }
-
+  
     const newItem = {
       id: uuidv4(), 
       semestre,
@@ -111,18 +65,20 @@ const ModalDisciplinasMinistradas = ({
       nomeDocenteEnvolvido, 
       chDocenteEnvolvido
     };
-
+  
     const newDataArray = Object.keys(dataEdit).length
       ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
       : [...data, newItem];
-    
-    localStorage.setItem("disciplinas_ministradas", JSON.stringify(newDataArray));
-
+  
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.disciplinas_ministradas = newDataArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+  
     setData(newDataArray);
-
     onClose();
-
-    window.location.reload();
+    //window.location.reload();
   };
   
   var aulasLetivasData = "";
@@ -164,7 +120,6 @@ const ModalDisciplinasMinistradas = ({
 
   return (
     <>
-      <AnoProvider>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
@@ -294,7 +249,6 @@ const ModalDisciplinasMinistradas = ({
             </ModalFooter>
           </ModalContent>
         </Modal>
-      </AnoProvider>
     </>
   );
 };
