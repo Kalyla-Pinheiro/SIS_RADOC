@@ -58,6 +58,7 @@ const TokenFunctions = {
     },
 
     set_avaliacao_discente_codigo: (avaliacao_discente_codigo) => {
+        
         const avaliacao = JSON.stringify(avaliacao_discente_codigo);
 
         Cookies.set('avaliacao_discente_codigo', avaliacao, { expires: 1, path: '/'})

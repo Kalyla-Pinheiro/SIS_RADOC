@@ -24,6 +24,7 @@ import {
     isOpen,
     onClose
   }) => {
+    
     const [codigoDaDisciplina, setCodigoDaDisciplina] = useState(dataEdit.codigoDaDisciplina || "");
     const [media, setMedia] = useState(dataEdit.media || "");
     
@@ -32,9 +33,9 @@ import {
 //      if (!codigoDaDisciplina || !media) return;
       
 
-      if (Object.keys(dataEdit).length) {
+/*      if (Object.keys(dataEdit).length) {
         data[dataEdit.index] = { codigoDaDisciplina, media };
-      }
+      } */ // COISA INÚTIL
       
 
       const newItem = {
@@ -103,6 +104,7 @@ import {
                   <FormLabel>Média</FormLabel>
                   <Input
                     type="text"
+                    name="Média"
                     value={media}
                     onChange={(e) => setMedia(e.target.value)}
                   />

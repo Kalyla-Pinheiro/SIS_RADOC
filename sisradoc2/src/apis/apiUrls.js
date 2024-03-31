@@ -1,6 +1,6 @@
-//const baseUrl = "http://localhost:5000";
-const baseUrl =
-  "https://8a01-2804-14c-5984-871a-814e-f7f8-2a95-6d96.ngrok-free.app";
+const baseUrl = "http://localhost:5000";
+/*const baseUrl =
+  "https://8a01-2804-14c-5984-871a-814e-f7f8-2a95-6d96.ngrok-free.app";*/
 
 const apiUrls = {
   login: `${baseUrl}/login`,
