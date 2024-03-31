@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
@@ -19,9 +19,12 @@ import paisagem3 from "../imagens/paisagem3.png";
 import TokenFunctions from "../../utils/Token";
 import { useDisclosure, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import ModalDisciplinasMinistradas from "../../components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
-//import { useAnoContext } from "../../utils/AnoContext";
+import { AnoContext } from "../../utils/AnoContext";
 
 const DisciplinasMinistradas = () => {
+
+  const { ano } = useContext(AnoContext);
+
   const [pdfDisciplinas, setPdfDisciplinas] = useState(null);
   // Variável de estado para armazenar o arquivo PDF de diários de turma
   const [pdfDiarios, setPdfDiarios] = useState(null);
@@ -37,9 +40,11 @@ const DisciplinasMinistradas = () => {
   //console.log("Valor do ano em disciplinas:", ano);
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("disciplinas_ministradas")
-      ? JSON.parse(localStorage.getItem("disciplinas_ministradas"))
-      : [];
+    // const db_costumer = localStorage.getItem("disciplinas_ministradas")
+    //   ? JSON.parse(localStorage.getItem("disciplinas_ministradas"))
+    //   : [];
+
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.disciplinas_ministradas || [];
 
     setData(db_costumer);
   }, [setData]);

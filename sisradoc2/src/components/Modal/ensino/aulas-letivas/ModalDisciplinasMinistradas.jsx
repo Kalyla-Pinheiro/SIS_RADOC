@@ -29,7 +29,6 @@ const ModalDisciplinasMinistradas = ({
 }) => {
 
   const { ano } = useContext(AnoContext);
-  console.log("O valor do ano é: ", ano);
 
   const [semestre, setSemestre] = useState(dataEdit.semestre || "");
   const [nomeCodigo, setNomeCodigo] = useState(dataEdit.nomeCodigo || "");
@@ -78,7 +77,7 @@ const ModalDisciplinasMinistradas = ({
   
     setData(newDataArray);
     onClose();
-    //window.location.reload();
+    window.location.reload();
   };
   
   var aulasLetivasData = "";

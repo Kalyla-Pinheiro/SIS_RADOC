@@ -13,8 +13,9 @@ import {
     Select,
     Box,
   } from "@chakra-ui/react";
-  import { useState } from "react";
+  import { useState, useContext } from "react";
   import { v4 as uuidv4 } from "uuid";
+  import { AnoContext } from "../../../../utils/AnoContext";
 
   const ModalSupervisaoPreceptoriaTutoria = ({
     data,
@@ -23,6 +24,9 @@ import {
     isOpen,
     onClose
   }) => {
+
+    const { ano } = useContext(AnoContext);
+
     const [nome, setNome] = useState(dataEdit.nome || "");
     const [curso, setCurso] = useState(dataEdit.curso || "");
     const [tipo, setTipo] = useState(dataEdit.tipo || "");
@@ -31,13 +35,7 @@ import {
     const [chSemanalSemestre2, setChSemanalSemestre2] = useState(dataEdit.chSemanalSemestre2 || "");
     
     const handleSave = () => {
-      if (!nome || !curso || !tipo || !nivel || !chSemanalSemestre1 || !chSemanalSemestre2) return;
-      
-      /*
-      if (Object.keys(dataEdit).length) {
-        data[dataEdit.index] = { nome, matricula, curso, tipo, nivel, chSemanalSemestre1, chSemanalSemestre2 };
-      }
-      */
+      // if (!nome || !curso || !tipo || !nivel || !chSemanalSemestre1 || !chSemanalSemestre2) return;
 
       const newItem = {
         id: uuidv4(), 
@@ -52,8 +50,14 @@ import {
       const newDataArray = Object.keys(dataEdit).length
         ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
         : [...data, newItem];
+
+      const localStorageKey = `${ano}`;
+      let localStorageData = localStorage.getItem(localStorageKey);
+      localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+      localStorageData.supervisao_academica = newDataArray;
+      localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   
-      localStorage.setItem("supervisao_academica", JSON.stringify(newDataArray));
+      //localStorage.setItem("supervisao_academica", JSON.stringify(newDataArray));
   
       setData(newDataArray);
   

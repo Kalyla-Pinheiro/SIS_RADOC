@@ -12,8 +12,10 @@ import {
     Input,
     Box,
   } from "@chakra-ui/react";
-  import { useState } from "react";
+  import { useState, useContext, useEffect } from "react";
   import { v4 as uuidv4 } from "uuid";
+  import TokenFunctions from "../../../../utils/Token";
+  import { AnoContext } from "../../../../utils/AnoContext";
   
   const ModalAvaliacaoDiscente = ({
     data,
@@ -22,12 +24,15 @@ import {
     isOpen,
     onClose
   }) => {
+
+    const { ano } = useContext(AnoContext);
+    
     const [codigoDaDisciplina, setCodigoDaDisciplina] = useState(dataEdit.codigoDaDisciplina || "");
     const [media, setMedia] = useState(dataEdit.media || "");
     
   
     const handleSave = () => {
-      if (!codigoDaDisciplina || !media) return;
+      //if (!codigoDaDisciplina || !media) return;
       
       /*
       if (Object.keys(dataEdit).length) {
@@ -44,13 +49,44 @@ import {
       const newDataArray = Object.keys(dataEdit).length
         ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
         : [...data, newItem];
+
+      const localStorageKey = `${ano}`;
+      let localStorageData = localStorage.getItem(localStorageKey);
+      localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+      localStorageData.avaliacao_discente = newDataArray;
+      localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   
-      localStorage.setItem("avaliacao_discente", JSON.stringify(newDataArray));
+      //localStorage.setItem("avaliacao_discente", JSON.stringify(newDataArray));
   
       setData(newDataArray);
   
       onClose();
+      window.location.reload();
     };  
+
+    var avaliacaoDiscenteData = "";
+    try {
+      avaliacaoDiscenteData = TokenFunctions.get_avaliacao_discente();
+    } catch (error) {}
+
+    useEffect(() => {
+      if(avaliacaoDiscenteData) {
+        setCodigoDaDisciplina(avaliacaoDiscenteData.avaliacao_discente_codigo[0]);
+      }
+    }, []);
+
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+  
+      const fieldSetters = {
+        CodigoDaDisciplina: setCodigoDaDisciplina,
+        Media: setMedia
+      };
+      const setter = fieldSetters[name];
+      if (setter) {
+        setter(value);
+      }
+    };
   
     return (
       <>
@@ -65,16 +101,18 @@ import {
                   <FormLabel>Código da Disciplina</FormLabel>
                   <Input
                     type="text"
+                    name="CodigoDaDisciplina"
                     value={codigoDaDisciplina}
-                    onChange={(e) => setCodigoDaDisciplina(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 <Box>
                   <FormLabel>Média</FormLabel>
                   <Input
                     type="text"
+                    name="Media"
                     value={media}
-                    onChange={(e) => setMedia(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
               </FormControl>

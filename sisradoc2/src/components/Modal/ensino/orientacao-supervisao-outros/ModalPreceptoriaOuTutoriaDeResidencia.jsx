@@ -13,8 +13,9 @@ import {
     Select,
     Box,
   } from "@chakra-ui/react";
-  import { useState } from "react";
+  import { useState, useContext} from "react";
   import { v4 as uuidv4 } from "uuid";
+  import { AnoContext } from "../../../../utils/AnoContext";
 
   const ModalPreceptoriaOuTutoriaDeResidencia = ({
     data,
@@ -23,6 +24,9 @@ import {
     isOpen,
     onClose
   }) => {
+
+    const { ano } = useContext(AnoContext);
+
     const [nomeOuMatricula, setNomeOuMatricula] = useState(dataEdit.nomeOuMatricula || "");
     const [tipo, setTipo] = useState(dataEdit.tipo || "");
     const [chSemanalSemestre1, setChSemanalSemestre1] = useState(dataEdit.chSemanalSemestre1 || "");
@@ -43,8 +47,14 @@ import {
       const newDataArray = Object.keys(dataEdit).length
         ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
         : [...data, newItem];
+
+      const localStorageKey = `${ano}`;
+      let localStorageData = localStorage.getItem(localStorageKey);
+      localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+      localStorageData.preceptoria_e_ou_tutoria_de_residencia = newDataArray;
+      localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   
-      localStorage.setItem("preceptoria_e_ou_tutoria_de_residencia", JSON.stringify(newDataArray));
+      //localStorage.setItem("preceptoria_e_ou_tutoria_de_residencia", JSON.stringify(newDataArray));
   
       setData(newDataArray);
   
