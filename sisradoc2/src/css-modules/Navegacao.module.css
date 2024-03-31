@@ -30,7 +30,7 @@
   text-decoration: none;
   background: #fff;
   color: #7c5942;
-  border: 2px solid #c1c1c1;
+  border: 2px solid #7c5942;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(50px);
   transition: all 0.8s;
@@ -38,5 +38,5 @@
 
 .itemNavegacao:hover {
   color: #fff;
-  background: #b7ada6;
+  background: #7c5942;
 }

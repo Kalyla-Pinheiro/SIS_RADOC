@@ -7,15 +7,13 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import apiUrls from "../../apis/apiUrls";
 import { ToastContainer, toast } from "react-toastify";
-import {ToastifyMessages} from "../../utils/ToastifyMessages";
-import classesPesquisa from "../../css-modules/Pesquisa.module.css";
+import { ToastifyMessages } from "../../utils/ToastifyMessages";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
-import { Box} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import ReactDOM from "react-dom";
 import TabelasDisciplinasMinistradas from "../../formularios/ensino/aulas-letivas/TabelasDisciplinasMinistradas";
-import paisagem3 from "../imagens/paisagem3.png";
 import TokenFunctions from "../../utils/Token";
 import { useDisclosure, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import ModalDisciplinasMinistradas from "../../components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
@@ -45,10 +43,14 @@ const DisciplinasMinistradas = () => {
   }, [setData]);
 
   const { isOpen, onOpen, onClose } = useDisclosure(); // useDisclosure
-  
+
   // funcões referentes as operacões no localStorage
-  const armazenarNaSessionStorage = (chave, valor) => { sessionStorage.setItem(chave, valor) };
-  const apagarNaSessionStorage=(chave) => { sessionStorage.removeItem(chave) };
+  const armazenarNaSessionStorage = (chave, valor) => {
+    sessionStorage.setItem(chave, valor);
+  };
+  const apagarNaSessionStorage = (chave) => {
+    sessionStorage.removeItem(chave);
+  };
 
   const handlepdfDisciplinasChange = (event) => {
     setPdfDisciplinas(event.target.files[0]);
@@ -56,7 +58,7 @@ const DisciplinasMinistradas = () => {
 
   const handlepdfDiariosChange = (event) => {
     setPdfDiarios(event.target.files[0]);
-  }
+  };
 
   const handleDisciplinasMinistradas = async (event) => {
     event.preventDefault();
@@ -66,7 +68,9 @@ const DisciplinasMinistradas = () => {
     formData.append("file", pdfDisciplinas);
 
     try {
-      ToastifyMessages.loading("Aguarde um momento, estamos processando o PDF...")
+      ToastifyMessages.loading(
+        "Aguarde um momento, estamos processando o PDF..."
+      );
 
       const response = await fetch(apiUrls.disc_ministradas, {
         method: "POST",
@@ -75,7 +79,6 @@ const DisciplinasMinistradas = () => {
 
       if (response.ok) {
         ToastifyMessages.success("PDF submetido com sucesso");
-        
       }
     } catch (error) {
       ToastifyMessages.error("Erro ao submeter PDF");
@@ -90,17 +93,19 @@ const DisciplinasMinistradas = () => {
     formData.append("file", pdfDiarios); // Adicionando o arquivo PDF ao objeto FormData
 
     // Validação de campos vazios
-    if (pdfDiarios === null){
-      ToastifyMessages.warning("Campo vazio, por favor selecione um PDF para submeter!")
+    if (pdfDiarios === null) {
+      ToastifyMessages.warning(
+        "Campo vazio, por favor selecione um PDF para submeter!"
+      );
     }
 
     // Requisição POST para a submissão do PDF para a API
-    try {    
+    try {
       const response = await fetch(apiUrls.aulas_letivas, {
         method: "POST",
         body: formData,
       });
-    
+
       // Se a resposta da requisição for bem sucedida (200)
       if (response.ok) {
         // Aguarde a resolução da promessa retornada por response.json()
@@ -108,14 +113,14 @@ const DisciplinasMinistradas = () => {
 
         // Exibir a mensagem de sucesso
         ToastifyMessages.success("PDF submetido com sucesso");
-        
+
         // Aguardar 2 segundos para executar a função onOpen
         setTimeout(() => {
           onOpen();
         }, 2000);
 
         TokenFunctions.set_diario_turma(data);
-      } else{
+      } else {
         const errorMessage = await response.text();
         const erro = JSON.parse(errorMessage);
         ToastifyMessages.error(`${erro.erro}`);
@@ -123,27 +128,26 @@ const DisciplinasMinistradas = () => {
     } catch (error) {
       ToastifyMessages.error(`${error.message}`);
     }
-  };    
+  };
 
   const theme = extendTheme({
     styles: {
       global: {
         body: {
-          backgroundImage: `url(${paisagem3})`,
+          background: "#f3ede8",
           fontFamily: "Poppins, sans-serif",
           minHeight: "100vh",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          overflow: "hidden"
+          overflow: "hidden",
         },
       },
     },
   });
-  
+
   return (
     <div>
-    
       <Navegacao />
 
       <div className={classes.disciplinasMinistradasConteiner}>
@@ -151,10 +155,20 @@ const DisciplinasMinistradas = () => {
           <h1>Disciplinas Ministradas</h1>
         </div>
 
-        <form className={classes.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data" onSubmit={handleDisciplinasMinistradas}>
+        <form
+          className={classes.campoSubmissaoPDF}
+          action=""
+          method="post"
+          encType="multipart/form-data"
+          onSubmit={handleDisciplinasMinistradas}
+        >
           <div className={classes.anexarPdfs}>
             <div className={classes.inputsPdfs} id={classes.primeiroInput}>
-              <input type="file" accept=".pdf" onChange={handlepdfDisciplinasChange}/>
+              <input
+                type="file"
+                accept=".pdf"
+                onChange={handlepdfDisciplinasChange}
+              />
               <p>Declaração de disciplinas ministradas (PDF)</p>
             </div>
           </div>
@@ -163,28 +177,41 @@ const DisciplinasMinistradas = () => {
           </div>
         </form>
 
-        <form action="" method="post" encType="multipart/form-data" onSubmit={handleDiarioDeTurma} className={classes.campoSubmissaoPDF} id={classes.segundoCampoSubmissao}>
+        <form
+          action=""
+          method="post"
+          encType="multipart/form-data"
+          onSubmit={handleDiarioDeTurma}
+          className={classes.campoSubmissaoPDF}
+          id={classes.segundoCampoSubmissao}
+        >
           <div className={classes.anexarPdfs}>
             <div className={classes.inputsPdfs} id={classes.segundoInput}>
-              <input type="file" accept=".pdf" onChange={handlepdfDiariosChange}/>
-              <p>Diarios de turma (PDF)</p>
+              <input
+                type="file"
+                accept=".pdf"
+                onChange={handlepdfDiariosChange}
+              />
+              <p>Diario de turma (PDF)</p>
             </div>
           </div>
-          <div className={`${classes.buttonSubmeterPDF} ${classes.secondButton}`}>
+          <div
+            className={`${classes.buttonSubmeterPDF} ${classes.secondButton}`}
+          >
             <button>Submeter PDF</button>
           </div>
         </form>
 
         <div className={classes.areaPreenchimento}>
-
-          <div className={classes.campoTabelasSemestre} id={classes.tabelasDisciplinasMinistradas}>
+          <div
+            className={classes.campoTabelasSemestre}
+            id={classes.tabelasDisciplinasMinistradas}
+          >
             <ChakraProvider theme={theme} resetCSS={false}>
-              <TabelasDisciplinasMinistradas/>
+              <TabelasDisciplinasMinistradas />
             </ChakraProvider>
           </div>
-
         </div>
-        
 
         {/*
         <div className={classes.semestre} id={classes.primeiroSemestre}>
@@ -240,14 +267,17 @@ const DisciplinasMinistradas = () => {
         </div>
         */}
 
-        <div className={classes.buttons} id={classes.buttonDisciplinaMinistrada}>
+        <div
+          className={classes.buttons}
+          id={classes.buttonDisciplinaMinistrada}
+        >
           <a href="/ensino/ChSemanalAulas">
             <button>Próximo</button>
           </a>
         </div>
       </div>
       {isOpen && (
-        <ChakraProvider theme={theme} resetCSS={false}> 
+        <ChakraProvider theme={theme} resetCSS={false}>
           <ModalDisciplinasMinistradas
             isOpen={isOpen}
             onClose={onClose}

@@ -4,7 +4,6 @@ import Navegacao from "../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { ChakraProvider, Box } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
-import paisagem3 from "../imagens/paisagem3.png";
 import TabelasPedagogicasComplementares from "../../formularios/ensino/pedagogicas-complementares/TabelasPedagogicasComplementares";
 
 const PedagogicasComplementares = () => {
@@ -12,7 +11,7 @@ const PedagogicasComplementares = () => {
     styles: {
       global: {
         body: {
-          backgroundImage: `url(${paisagem3})`,
+          background: "#f3ede8",
           fontFamily: "Poppins, sans-serif",
           minHeight: "100vh",
           backgroundRepeat: "no-repeat",

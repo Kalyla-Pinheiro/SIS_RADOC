@@ -59,25 +59,30 @@ const TabelasAvaliacaoDiscente = () => {
         <Button
           colorScheme="blue"
           variant="outline"
-          borderColor="#fff"
-          color="#fff"
-          _hover={{ color: "black", bg: "white" }}
+          borderColor="#7c5942"
+          color="#7c5942"
+          _hover={{ color: "#fff", bg: "#7c5942" }}
           onClick={() => [setDataEdit({}), onOpen()]}
         >
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
+        <Box
+          overflowY="auto"
+          overflowX="auto"
+          height="100%"
+          className="custom-scrollbar"
+        >
           <Table mt="5">
             <Thead>
-              <Tr>
-                <Th minW="150px" fontSize="15px" color="#fff">
+              <Tr borderBottom="3px solid #7c5942">
+                <Th minW="150px" fontSize="15px" color="#7c5942">
                   ID
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#7c5942">
                   Código da Disciplina
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#7c5942">
                   Média
                 </Th>
                 <Th p={0}></Th>
@@ -89,16 +94,31 @@ const TabelasAvaliacaoDiscente = () => {
                 <Tr
                   key={index}
                   cursor="pointer "
-                  color="#fff"
-                  _hover={{ bg: "gray.100", color: "#000000" }}
+                  fontWeight={600}
+                  color="#7c5942"
+                  _hover={{ bg: "#7c5942", color: "#fff" }}
                 >
-                  <Td minW="150px" style={{ maxWidth: "150px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  <Td
+                    minW="150px"
+                    style={{
+                      maxWidth: "150px",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
                     {id}
                   </Td>
-                  <Td minW="200px" style={{ wordWrap: "break-word", maxWidth: 200 }}>
+                  <Td
+                    minW="200px"
+                    style={{ wordWrap: "break-word", maxWidth: 200 }}
+                  >
                     {codigoDaDisciplina}
                   </Td>
-                  <Td minW="200px" style={{ wordWrap: "break-word", maxWidth: 200 }}>
+                  <Td
+                    minW="200px"
+                    style={{ wordWrap: "break-word", maxWidth: 200 }}
+                  >
                     {media}
                   </Td>
                   <Td p={0}>
@@ -136,14 +156,17 @@ const TabelasAvaliacaoDiscente = () => {
         />
       )}
       {deleteConfirmationOpen && (
-        <Modal isOpen={deleteConfirmationOpen} onClose={() => setDeleteConfirmationOpen(false)} isCentered motionPreset="scale">
+        <Modal
+          isOpen={deleteConfirmationOpen}
+          onClose={() => setDeleteConfirmationOpen(false)}
+          isCentered
+          motionPreset="scale"
+        >
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Confirmar exclusão</ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
-              Tem certeza de que deseja excluir este item?
-            </ModalBody>
+            <ModalBody>Tem certeza de que deseja excluir este item?</ModalBody>
             <ModalFooter>
               <Button
                 colorScheme="green"
@@ -154,10 +177,13 @@ const TabelasAvaliacaoDiscente = () => {
               >
                 Confirmar
               </Button>
-              <Button colorScheme="red" mr={3} onClick={() => setDeleteConfirmationOpen(false)}>
+              <Button
+                colorScheme="red"
+                mr={3}
+                onClick={() => setDeleteConfirmationOpen(false)}
+              >
                 Cancelar
               </Button>
-              
             </ModalFooter>
           </ModalContent>
         </Modal>

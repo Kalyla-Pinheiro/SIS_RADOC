@@ -3,23 +3,21 @@ import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import ModalChSemanalEnsino from "../../components/Modal/ensino/ch-semanal/ModalChSemanalEnsino";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
-import paisagem3 from "../imagens/paisagem3.png";
 
 const Ensino = () => {
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const theme = extendTheme({
     styles: {
       global: {
         body: {
-          backgroundImage: `url(${paisagem3})`,
+          background: "#f3ede8",
           fontFamily: "Poppins, sans-serif",
           minHeight: "100vh",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          overflow: "hidden"
+          overflow: "hidden",
         },
       },
     },
@@ -72,7 +70,7 @@ const Ensino = () => {
           </a>
         </nav>
 
-        <ChakraProvider theme={theme} resetCSS={false}> 
+        <ChakraProvider theme={theme} resetCSS={false}>
           <ModalChSemanalEnsino isOpen={isOpen} onClose={onClose} />
         </ChakraProvider>
       </div>

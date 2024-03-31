@@ -37,11 +37,11 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.8rem;
+  background: #fff;
+  color: #7c5942;
+  border: 2px solid #7c5942;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 0.8rem;
   backdrop-filter: blur(50px);
 }
 
@@ -53,14 +53,15 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
 }
 
 .titulo {
-  color: #fff;
+  color: #7c5942;
   justify-self: center;
 }
 
 .tituloEbutton button {
   width: 8.125rem;
   height: 2.5rem;
-  background: #fff;
+  background: #00a27b;
+  color: #fff;
   border: none;
   border-radius: 0.375rem;
   font-size: 16px;
@@ -85,13 +86,14 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   align-items: center;
   justify-content: center;
   border-radius: 0.375rem;
-  border: 2px solid;
-  border-color: #fff;
+  border: 2px solid #7c5942;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: all 0.5s;
   text-decoration: none;
-  font-weight: 400;
-  font-size: 16px;
-  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  color: #7c5942;
+  background: #fff;
   transition: all 0.5s;
 }
 .opcaoEnsino:active {
@@ -99,8 +101,8 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
 }
 
 .opcaoEnsino:hover {
-  color: black;
-  background: #fff;
+  color: #fff;
+  background: #7c5942;
 }
 
 #ultimaOpcao {
@@ -117,10 +119,11 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.8rem;
+  background: #fff;
+  color: #7c5942;
+  border: 2px solid #7c5942;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 0.375rem;
   backdrop-filter: blur(50px);
 }
 
@@ -128,6 +131,9 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   width: 500px;
   font-size: 16px;
   background: #fff;
+  color: #7c5942;
+  border: 2px solid #7c5942;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
   outline: none;
 }
@@ -153,7 +159,7 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
 
 .inputsPdfs p {
   font-size: 14px;
-  color: #fff;
+  color: #7c5942;
   margin-left: 10px;
 }
 
@@ -233,7 +239,9 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   width: 130px;
   height: 40px;
   background: #fff;
-  border: none;
+  color: #7c5942;
+  border: 2px solid #7c5942;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
@@ -244,8 +252,13 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   transform: scale(0.8);
 }
 
+.buttons button:hover {
+  color: #fff;
+  background: #7c5942;
+}
+
 .secondButton {
-  padding-left: 153px;
+  padding-left: 160px;
 }
 
 .formulariosPDF {
@@ -265,7 +278,8 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
 .campoTabelasSemestre {
   background: transparent;
   border-radius: 0.375rem;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #7c5942;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
@@ -376,14 +390,21 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   width: 130px;
   height: 40px;
   background: #fff;
-  border: none;
+  color: #7c5942;
+  border: 2px solid #7c5942;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.5s;
 }
-.buttonSalvarPc button:active {
+.buttonSalvarPC button:active {
   transform: scale(0.8);
+}
+
+.buttonSalvarPC button:hover {
+  background: #7c5942;
+  color: #fff;
 }
 
 /*MonografiaQualificacaoDissertacaoTese*/
@@ -503,7 +524,9 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   width: 130px;
   height: 40px;
   background: #fff;
-  border: none;
+  color: #7c5942;
+  border: 2px solid #7c5942;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
@@ -512,6 +535,11 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
 
 .buttonCh button:active {
   transform: scale(0.8);
+}
+
+.buttonCh button:hover {
+  background: #7c5942;
+  color: #fff;
 }
 
 #tabelasChSemanalAulas {
@@ -566,7 +594,9 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   width: 130px;
   height: 40px;
   background: #fff;
-  border: none;
+  color: #7c5942;
+  border: 2px solid #7c5942;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
@@ -575,6 +605,11 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
 
 .buttonOA button:active {
   transform: scale(0.8);
+}
+
+.buttonOA button:hover {
+  background: #7c5942;
+  color: #fff;
 }
 
 .campoSubmissaoPDF {
@@ -595,10 +630,18 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   width: 130px;
   height: 40px;
   background: #fff;
-  border: none;
+  color: #7c5942;
+  border: 2px solid #7c5942;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.8s;
+}
+
+.buttonSubmeterPDF button:hover {
+  color: #fff;
+  background: #7c5942;
 }
 .ConteinerTabelaNCHteste {
   width: 100%;
@@ -687,10 +730,18 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
   width: 130px;
   height: 40px;
   background: #fff;
-  border: none;
+  color: #7c5942;
+  border: 2px solid #7c5942;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 0.375rem;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.8s;
+}
+
+.buttonAD button:hover {
+  color: #fff;
+  background: #7c5942;
 }
 
 #tabelasAvaliacaoDiscente {
