@@ -74,7 +74,7 @@ const Formulario = ({ children }) => {
       icon: <FaFolderOpen />,
     },
     {
-      path: "#",
+      path: "/relatorios",
       name: "Relatórios",
       icon: <HiMiniDocumentDuplicate />,
     },
@@ -132,7 +132,7 @@ const Formulario = ({ children }) => {
                   <a href="/documentos">Documentos</a>
                 </li>
                 <li>
-                  <a href="/documentos">Relatórios</a>
+                  <a href="/relatorios">Relatórios</a>
                 </li>
               </ul>
             </nav>

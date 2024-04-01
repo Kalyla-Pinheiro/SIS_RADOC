@@ -45,6 +45,7 @@ import { Navigate } from "react-router-dom";
 import Erro404 from "./pages/404/Erro404";
 import EmailConfirmar from "./pages/EmailConfirmar/EmailConfirmar";
 import TopBar from "./components/topbar/TopBar";
+import Relatorios from "./pages/relatorios/Relatorios";
 
 import { AnoProvider } from "./utils/AnoContext";
 
@@ -109,6 +110,15 @@ function App() {
               <MainLayout>
                 {" "}
                 <Documento />{" "}
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/relatorios"
+            element={
+              <MainLayout>
+                {" "}
+                <Relatorios />{" "}
               </MainLayout>
             }
           />
