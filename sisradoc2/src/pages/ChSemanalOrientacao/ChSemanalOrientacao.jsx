@@ -43,7 +43,7 @@ const ChSemanalOrientacao = () => {
                 id={classes.primeiroSemestreNCH}
               >
                 <div className={classes.tituloCampoOA}>
-                  <p>1 Semestre</p>
+                  <p>1º Semestre</p>
                 </div>
                 <div className={classes.campoTeoricasPraticas}>
                   <div className={classes.camposTabelaNCH}>
@@ -106,7 +106,7 @@ const ChSemanalOrientacao = () => {
                 id={classes.primeiroSemestreNCH}
               >
                 <div className={classes.tituloCampoOA}>
-                  <p>2 Semestre</p>
+                  <p>2º Semestre</p>
                 </div>
                 <div className={classes.campoTeoricasPraticas}>
                   <div className={classes.camposTabelaNCH}>
