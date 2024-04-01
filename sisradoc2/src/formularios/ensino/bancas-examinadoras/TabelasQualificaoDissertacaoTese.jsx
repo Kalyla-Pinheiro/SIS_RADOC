@@ -12,19 +12,24 @@ import {
   Td,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalQualificacaoDissertacaoTese from "../../../components/Modal/ensino/bancas-examinadoras/ModalQualificacaoDissertacaoTese";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasQualificacaoDissertacaoTese = () => {
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("qualificacao_dissertacao_tese")
-      ? JSON.parse(localStorage.getItem("qualificacao_dissertacao_tese"))
-      : [];
+    // const db_costumer = localStorage.getItem("qualificacao_dissertacao_tese")
+    //   ? JSON.parse(localStorage.getItem("qualificacao_dissertacao_tese"))
+    //   : [];
+
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.monografia_qualificacao_dissertacao_tese || [];
 
     setData(db_costumer);
   }, [setData]);
@@ -36,7 +41,13 @@ const TabelasQualificacaoDissertacaoTese = () => {
 
     setData(newArray);
 
-    localStorage.setItem("qualificacao_dissertacao_tese", JSON.stringify(newArray));
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.monografia_qualificacao_dissertacao_tese = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+    //localStorage.setItem("qualificacao_dissertacao_tese", JSON.stringify(newArray));
   };
 
   //maxW={1000}               BOX

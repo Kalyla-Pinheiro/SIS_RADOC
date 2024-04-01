@@ -12,31 +12,36 @@ import {
   Td,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalEstagioDeExtensao from "../../../components/Modal/extensao/estagio-de-extensao/ModalEstagioDeExtensao";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasEstagioDeExtensao = () => {
+
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("estagio_de_extensao")
-      ? JSON.parse(localStorage.getItem("estagio_de_extensao"))
-      : [];
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.estagio_de_extensao || [];
 
     setData(db_costumer);
   }, [setData]);
 
   const handleRemove = (id) => {
-    //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
       (item) => item.id !== id);
 
     setData(newArray);
 
-    localStorage.setItem("estagio_de_extensao", JSON.stringify(newArray));
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.estagio_de_extensao = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   };
 
   //maxW={1000}               BOX

@@ -12,8 +12,9 @@ import {
     Input,
     Box,
   } from "@chakra-ui/react";
-  import { useState } from "react";
+  import { useState, useContext } from "react";
   import { v4 as uuidv4 } from "uuid"; // Importando a função v4 de uuid
+  import { AnoContext } from "../../../../utils/AnoContext";
   
   const ModalTrabalhosResumosPublicadosApresentados = ({
     data,
@@ -22,6 +23,8 @@ import {
     isOpen,
     onClose,
   }) => {
+    const { ano } = useContext(AnoContext);
+
     const [tipo, setTipo] = useState(dataEdit.tipo || "");
     const [link, setLink] = useState(dataEdit.link || "");
     const [descricao, setDescricao] = useState(dataEdit.descricao || "");
@@ -30,7 +33,7 @@ import {
       if (!tipo || !link || !descricao) return;
   
       const newItem = {
-        id: uuidv4(), // Gerando um ID único para o novo item
+        id: uuidv4(),
         tipo,
         link,
         descricao,
@@ -39,11 +42,12 @@ import {
       const newDataArray = Object.keys(dataEdit).length
         ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
         : [...data, newItem];
-  
-      localStorage.setItem(
-        "trabalhos_resumos_publicados_apresentados",
-        JSON.stringify(newDataArray)
-      );
+      
+      const localStorageKey = `${ano}`;
+      let localStorageData = localStorage.getItem(localStorageKey);
+      localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+      localStorageData.trabalhos_resumos_publicados_apresentados = newDataArray;
+      localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   
       setData(newDataArray);
   

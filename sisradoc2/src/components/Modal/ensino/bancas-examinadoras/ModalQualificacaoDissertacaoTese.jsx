@@ -26,6 +26,8 @@ import {
 
     const { ano } = useContext(AnoContext);
 
+    //treco
+
     const [descricao, setDescricao] = useState(dataEdit.descricao || "");
     const [tipo, setTipo] = useState(dataEdit.tipo || "");
     const [chSemanalSemestre1, setChSemanalSemestre1] = useState(dataEdit.chSemanalSemestre1 || "");  

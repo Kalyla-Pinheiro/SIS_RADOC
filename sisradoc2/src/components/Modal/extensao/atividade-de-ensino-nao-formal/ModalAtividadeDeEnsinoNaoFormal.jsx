@@ -12,8 +12,9 @@ import {
     Input,
     Box,
   } from "@chakra-ui/react";
-  import { useState } from "react";
-  import { v4 as uuidv4 } from "uuid"; // Importando a função v4 de uuid
+  import { useState, useContext } from "react";
+  import { v4 as uuidv4 } from "uuid"; 
+  import { AnoContext } from "../../../../utils/AnoContext";
   
   const ModalAtividadeDeEnsinoNaoFormal = ({
     data,
@@ -22,12 +23,15 @@ import {
     isOpen,
     onClose,
   }) => {
+    
+    const { ano } = useContext(AnoContext);
+
     const [atividade, setAtividade] = useState(dataEdit.atividade || "");
     const [chSemanalSemestre1, setChSemanalSemestre1] = useState(dataEdit.chSemanalSemestre1 || "");
     const [chSemanalSemestre2, setChSemanalSemestre2] = useState(dataEdit.chSemanalSemestre2 || "");
   
     const handleSave = () => {
-      if (!atividade || !chSemanalSemestre1 || !chSemanalSemestre2) return;
+      //if (!atividade || !chSemanalSemestre1 || !chSemanalSemestre2) return;
   
       const newItem = {
         id: uuidv4(), 
@@ -39,11 +43,12 @@ import {
       const newDataArray = Object.keys(dataEdit).length
         ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
         : [...data, newItem];
-  
-      localStorage.setItem(
-        "atividades_de_ensino_nao_formais",
-        JSON.stringify(newDataArray)
-      );
+
+      const localStorageKey = `${ano}`;
+      let localStorageData = localStorage.getItem(localStorageKey);
+      localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+      localStorageData.atividades_de_ensino_nao_formais = newDataArray;
+      localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   
       setData(newDataArray);
   

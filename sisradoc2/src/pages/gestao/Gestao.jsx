@@ -42,9 +42,6 @@ const Gestao = () => {
           <a className={classes.opcaoGestao} type="button" href="/gestao/atividades-de-gestao-e-representacao">
             Atividade de Gestão e Representação
           </a>
-          <a className={classes.opcaoGestao} type="button" href="#">
-            CH Semanal de Atividades de Gestão e Representação
-          </a>
         </nav>
 
         <ChakraProvider theme={theme} resetCSS={false}> 

@@ -57,8 +57,6 @@ import {
       localStorageData.supervisao_academica = newDataArray;
       localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   
-      //localStorage.setItem("supervisao_academica", JSON.stringify(newDataArray));
-  
       setData(newDataArray);
   
       onClose();

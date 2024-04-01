@@ -19,11 +19,15 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalQualificacaoDocente from "../../../components/Modal/outros/qualificacao-docente/ModalQualificaoDocente";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasQualificacaoDocente = () => {
+
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
@@ -31,9 +35,7 @@ const TabelasQualificacaoDocente = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("qualificacao_docente")
-      ? JSON.parse(localStorage.getItem("qualificacao_docente"))
-      : [];
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.qualificacao_docente || [];
 
     setData(db_costumer);
   }, [setData]);
@@ -43,7 +45,11 @@ const TabelasQualificacaoDocente = () => {
 
     setData(newArray);
 
-    localStorage.setItem("qualificacao_docente", JSON.stringify(newArray));
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.qualificacao_docente = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   };
 
   return (

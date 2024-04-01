@@ -54,8 +54,6 @@ import {
       localStorageData.preceptoria_e_ou_tutoria_de_residencia = newDataArray;
       localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   
-      //localStorage.setItem("preceptoria_e_ou_tutoria_de_residencia", JSON.stringify(newDataArray));
-  
       setData(newDataArray);
   
       onClose();
