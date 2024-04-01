@@ -38,35 +38,89 @@ const ChSemanalAulas = () => {
             className={classes.campoTabelasSemestre}
             id={classes.tabelasChSemanalAulas}
           >
-            <div className={classes.semestre} id={classes.primeiroSemestre}>
-              <div className={classes.tituloSemestre}>
-                <p>1º Semestre</p>
-              </div>
-              <div className={classes.camposTabela}>
-                <input type="text" placeholder="Graduação (CH)" required />{" "}
-                <input type="text" placeholder="Pós-Graduação (CH)" required />{" "}
-                <input
-                  type="text"
-                  className={classes.ultimoCampoInput}
-                  placeholder="CH Total"
-                  required
-                />{" "}
+            <div className={classes.camposInlineOA}>
+              <div
+                className={classes.semestreNCH}
+                id={classes.primeiroSemestreNCH}
+              >
+                <div className={classes.tituloCampoOA}>
+                  <p>1º Semestre</p>
+                </div>
+                <div className={classes.campoTeoricasPraticas}>
+                  <div className={classes.camposTabelaNCH}>
+                    <div className={classes.tituloSemestre}>
+                      <p>Graduação</p>{" "}
+                    </div>
+                    <input type="text" placeholder="CH" required />
+                  </div>
+
+                  <div
+                    className={classes.camposTabelaNCH}
+                    id={classes.camposTabelaPraticaNCH}
+                  >
+                    <div className={classes.tituloSemestre}>
+                      <p>Pós-Graduação</p>{" "}
+                    </div>
+                    <input type="text" placeholder="CH" required />
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className={classes.semestre}>
-              <div className={classes.tituloSemestre}>
-                <p>2º Semestre</p>
+            <div className={classes.ConteinerTabelaNCHteste}>
+              <div className={classes.camposTabelaNCHteste}>
+                <div className={classes.tituloSemestre}>
+                  <p>Total:</p>
+                </div>
+                <input type="text" placeholder="" required />
               </div>
-              <div className={classes.camposTabela}>
-                <input type="text" placeholder="Graduação (CH)" required />{" "}
-                <input type="text" placeholder="Pós-Graduação (CH)" required />{" "}
-                <input
-                  type="text"
-                  className={classes.ultimoCampoInput}
-                  placeholder="CH Total"
-                  required
-                />{" "}
+              <div className={classes.camposTabelaNCHteste}>
+                <div className={classes.buttonTotal}>
+                  <button type="button">Calcular</button>
+                </div>
+              </div>
+            </div>
+
+            <div className={classes.camposInlineOA}>
+              <div
+                className={classes.semestreNCH}
+                id={classes.primeiroSemestreNCH}
+              >
+                <div className={classes.tituloCampoOA}>
+                  <p>2º Semestre</p>
+                </div>
+                <div className={classes.campoTeoricasPraticas}>
+                  <div className={classes.camposTabelaNCH}>
+                    <div className={classes.tituloSemestre}>
+                      <p>Graduação</p>{" "}
+                    </div>
+                    <input type="text" placeholder="CH" required />
+                  </div>
+
+                  <div
+                    className={classes.camposTabelaNCH}
+                    id={classes.camposTabelaPraticaNCH}
+                  >
+                    <div className={classes.tituloSemestre}>
+                      <p>Pós-Graduação</p>{" "}
+                    </div>
+                    <input type="text" placeholder="CH" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className={classes.ConteinerTabelaNCHteste}>
+              <div className={classes.camposTabelaNCHteste}>
+                <div className={classes.tituloSemestre}>
+                  <p>Total:</p>
+                </div>
+                <input type="text" placeholder="" required />
+              </div>
+              <div className={classes.camposTabelaNCHteste}>
+                <div className={classes.buttonTotal}>
+                  <button type="button">Calcular</button>
+                </div>
               </div>
             </div>
           </div>
