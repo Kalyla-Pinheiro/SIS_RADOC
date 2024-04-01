@@ -12,31 +12,35 @@ import {
   Td,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalTrabalhosBoletinsOutros from "../../../components/Modal/pesquisa/trabalhos-boletins-e-outros/ModalTrabalhosBoletinsOutros";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasTrabalhosBoletinsOutros = () => {
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
-  useEffect(() => {
-    const db_costumer = localStorage.getItem("trabalhos_boletins_e_outros")
-      ? JSON.parse(localStorage.getItem("trabalhos_boletins_e_outros"))
-      : [];
+  useEffect(() => {    
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.trabalhos_boletins_e_outros || [];
 
     setData(db_costumer);
   }, [setData]);
 
   const handleRemove = (id) => {
-    //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
       (item) => item.id !== id);
 
     setData(newArray);
 
-    localStorage.setItem("trabalhos_boletins_e_outros", JSON.stringify(newArray));
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.trabalhos_boletins_e_outros = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   };
 
   //maxW={1000}               BOX

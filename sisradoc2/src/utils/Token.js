@@ -55,6 +55,16 @@ const TokenFunctions = {
     get_diario_turma: () => {
         const diario = Cookies.get('diario_turma');
         return JSON.parse(diario);
+    },
+
+    set_avaliacao_discente: (avaliacao_discente) => {
+        const avaliacao = JSON.stringify(avaliacao_discente);
+        Cookies.set('avaliacao_discente', avaliacao, { expires: 1, path: '/' })
+    },
+
+    get_avaliacao_discente: () => {
+        const avaliacao = Cookies.get("avaliacao_discente");
+        return JSON.parse(avaliacao);
     }
 }
 

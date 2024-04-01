@@ -12,31 +12,35 @@ import {
   Td,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalLivrosVerbetesPublicados from "../../../components/Modal/pesquisa/livros-verbetes-publicados/ModalLivrosVerbetesPublicados";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasLivrosVerbetesPublicados = () => {
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("livros_verbetes_publicados")
-      ? JSON.parse(localStorage.getItem("livros_verbetes_publicados"))
-      : [];
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.livros_verbetes_publicados || [];
 
     setData(db_costumer);
   }, [setData]);
 
   const handleRemove = (id) => {
-    //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
       (item) => item.id !== id);
 
     setData(newArray);
-
-    localStorage.setItem("livros_verbetes_publicados", JSON.stringify(newArray));
+    
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.livros_verbetes_publicados = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   };
 
   //maxW={1000}               BOX

@@ -1,25 +1,24 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, FormControl, FormLabel, Input, Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
-import { useAnoContext, AnoProvider } from "../../../utils/AnoContext";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const ModalCrieSeuRadoc = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
 
-  const anoContext = useAnoContext();
-  const ano = anoContext.ano;
-  const setAno = anoContext.setAno;
+  const [inputAno, setInputAno] = useState('');
+  const { ano, setAnoValue } = useContext(AnoContext);
 
   const handleComecarClick = () => {
-    console.log("O Valor do ano é: ", ano)
+    setAnoValue(inputAno);
+    console.log("O Valor do ano é: ", ano);
     const jsonData = {};
-    localStorage.setItem(ano, JSON.stringify(jsonData));
+    localStorage.setItem(inputAno, JSON.stringify(jsonData));
     navigate("/formularios");
   };
 
   return (
     <>
-      <AnoProvider>
         <Modal isOpen={isOpen} onClose={onClose} isCentered>
           <ModalOverlay />
           <ModalContent>
@@ -29,7 +28,7 @@ const ModalCrieSeuRadoc = ({ isOpen, onClose }) => {
               <FormControl display="flex" flexDir="column" gap={4}>
                 <Box>
                   <FormLabel>Qual ano do Radoc você deseja preencher?</FormLabel>
-                  <Input type="text" placeholder="Ano" value={ano} onChange={(e) => setAno(e.target.value)}/>
+                  <Input type="text" placeholder="Ano" value={inputAno} onChange={(e) => setInputAno(e.target.value)}/>
                 </Box>
               </FormControl>
             </ModalBody>
@@ -44,7 +43,6 @@ const ModalCrieSeuRadoc = ({ isOpen, onClose }) => {
             </ModalFooter>
           </ModalContent>
         </Modal>
-      </AnoProvider>
     </>
   );
 };

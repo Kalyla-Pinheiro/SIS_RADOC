@@ -12,19 +12,24 @@ import {
   Td,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalDisciplinasMinistradas from "../../../components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasDisciplinasMinistradas = () => {
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("disciplinas_ministradas")
-      ? JSON.parse(localStorage.getItem("disciplinas_ministradas"))
-      : [];
+    // const db_costumer = localStorage.getItem("disciplinas_ministradas")
+    //   ? JSON.parse(localStorage.getItem("disciplinas_ministradas"))
+    //   : [];
+
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.disciplinas_ministradas || [];
 
     setData(db_costumer);
   }, [setData]);
@@ -35,7 +40,13 @@ const TabelasDisciplinasMinistradas = () => {
 
     setData(newArray);
 
-    localStorage.setItem("disciplinas_ministradas", JSON.stringify(newArray));
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.disciplinas_ministradas = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+    //localStorage.setItem("disciplinas_ministradas", JSON.stringify(newArray));
   };
 
   //maxW={1000}               BOX

@@ -12,31 +12,35 @@ import {
   Td,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalTrabalhosResumosPublicadosApresentados from "../../../components/Modal/pesquisa/trabalhos-resumos-publicados-apresentados/ModalResumosPublicadosApresentados";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasTrabalhosResumosPublicadosApresentados = () => {
+  const { ano } = useContext(AnoContext);
+  
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("trabalhos_resumos_publicados_apresentados")
-      ? JSON.parse(localStorage.getItem("trabalhos_resumos_publicados_apresentados"))
-      : [];
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.trabalhos_resumos_publicados_apresentados || [];
 
     setData(db_costumer);
   }, [setData]);
 
   const handleRemove = (id) => {
-    //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
       (item) => item.id !== id);
 
     setData(newArray);
 
-    localStorage.setItem("trabalhos_resumos_publicados_apresentados", JSON.stringify(newArray));
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.trabalhos_resumos_publicados_apresentados = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   };
 
   //maxW={1000}               BOX

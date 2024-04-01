@@ -1,15 +1,23 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 const AnoContext = createContext();
 
-export const useAnoContext = () => useContext(AnoContext);
+const AnoProvider = ({ children }) => {
+  const [ano, setAno] = useState(() => localStorage.getItem('ano') || '');
 
-export const AnoProvider = ({ children }) => {
-  const [ano, setAno] = useState('');
+  const setAnoValue = (value) => {
+    setAno(value);
+  };
+
+  useEffect(() => {
+    localStorage.setItem('ano', ano);
+  }, [ano]);
 
   return (
-    <AnoContext.Provider value={{ ano, setAno }}>
+    <AnoContext.Provider value={{ ano, setAnoValue }}>
       {children}
     </AnoContext.Provider>
   );
 };
+
+export { AnoProvider, AnoContext };

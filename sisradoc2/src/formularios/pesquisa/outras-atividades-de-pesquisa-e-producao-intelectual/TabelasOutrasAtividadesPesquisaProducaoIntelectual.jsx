@@ -12,31 +12,35 @@ import {
   Td,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalOutrasAtividadesProducaoIntelectual from "../../../components/Modal/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual/ModalOutrasAtividadesPesquisaProducaoIntelectual";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasOutrasAtividadesProducaoIntelectual = () => {
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("outras_atividades_de_pesquisa_e_producao_intelectual")
-      ? JSON.parse(localStorage.getItem("outras_atividades_de_pesquisa_e_producao_intelectual"))
-      : [];
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.outras_atividades_de_pesquisa_e_producao_intelectual || [];
 
     setData(db_costumer);
   }, [setData]);
 
   const handleRemove = (id) => {
-    //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter(
       (item) => item.id !== id);
 
     setData(newArray);
 
-    localStorage.setItem("outras_atividades_de_pesquisa_e_producao_intelectual", JSON.stringify(newArray));
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.outras_atividades_de_pesquisa_e_producao_intelectual = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   };
 
   //maxW={1000}               BOX

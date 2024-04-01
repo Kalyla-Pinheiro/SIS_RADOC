@@ -12,35 +12,36 @@ import {
   Td,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalOrientacaoCoorientacaoAcademica from "../../../components/Modal/ensino/orientacao-supervisao-outros/ModalOrientacaoCoorientacaoAcademica";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasOrientacaoCoorientacaoAcademica = () => {
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem(
-      "orientacao_coorientacao_academica"
-    )
-      ? JSON.parse(localStorage.getItem("orientacao_coorientacao_academica"))
-      : [];
+    const db_costumer =
+      JSON.parse(localStorage.getItem(ano))
+        ?.orientacao_coorientacao_academica || [];
 
     setData(db_costumer);
   }, [setData]);
 
   const handleRemove = (id) => {
-    //const newArray = data.filter((item) => item.email !== email);
     const newArray = data.filter((item) => item.id !== id);
 
     setData(newArray);
 
-    localStorage.setItem(
-      "orientacao_coorientacao_academica",
-      JSON.stringify(newArray)
-    );
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.orientacao_coorientacao_academica = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   };
 
   //maxW={1000}               BOX

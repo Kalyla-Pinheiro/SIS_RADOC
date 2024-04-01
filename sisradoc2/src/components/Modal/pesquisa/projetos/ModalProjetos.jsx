@@ -12,8 +12,9 @@ import {
     Input,
     Box,
   } from "@chakra-ui/react";
-  import { useState } from "react";
+  import { useState, useContext } from "react";
   import { v4 as uuidv4 } from "uuid";
+  import { AnoContext } from "../../../../utils/AnoContext";
   
   const ModalProjetos = ({
     data,
@@ -22,22 +23,18 @@ import {
     isOpen,
     onClose
   }) => {
+    const { ano } = useContext(AnoContext);
+
     const [titulo, setTitulo] = useState(dataEdit.titulo || "");
     const [codigoProped, setCodigoProped] = useState(dataEdit.codigoProped || "");
     const [situacaoAtual, setSituacaoAtual] = useState(dataEdit.situacaoAtual || "");
     const [funcao, setFuncao] = useState(dataEdit.funcao || "");
     
     const handleSave = () => {
-      if (!titulo || !codigoProped || !situacaoAtual || !funcao) return;
-      
-      /*
-      if (Object.keys(dataEdit).length) {
-        data[dataEdit.index] = { titulo, codigoProped, situacaoAtual, funcao };
-      }
-      */
+      //if (!titulo || !codigoProped || !situacaoAtual || !funcao) return;
 
       const newItem = {
-        id: uuidv4(), // Gerando um ID único para o novo item
+        id: uuidv4(), 
         titulo,
         codigoProped,
         situacaoAtual,
@@ -47,8 +44,12 @@ import {
       const newDataArray = Object.keys(dataEdit).length
         ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
         : [...data, newItem];
-  
-      localStorage.setItem("projetos", JSON.stringify(newDataArray));
+
+      const localStorageKey = `${ano}`;
+      let localStorageData = localStorage.getItem(localStorageKey);
+      localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+      localStorageData.projetos = newDataArray;
+      localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   
       setData(newDataArray);
   

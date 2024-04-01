@@ -19,11 +19,15 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalOutrasInformacoes from "../../../components/Modal/outros/outras-informacoes/ModalOutrasInformacoes";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasOutrasInformacoes = () => {
+
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
@@ -31,9 +35,7 @@ const TabelasOutrasInformacoes = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("outras_informacoes")
-      ? JSON.parse(localStorage.getItem("outras_informacoes"))
-      : [];
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.outras_informacoes || [];
 
     setData(db_costumer);
   }, [setData]);
@@ -43,7 +45,11 @@ const TabelasOutrasInformacoes = () => {
 
     setData(newArray);
 
-    localStorage.setItem("outras_informacoes", JSON.stringify(newArray));
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.outras_informacoes = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   };
 
   return (

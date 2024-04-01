@@ -19,11 +19,15 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ModalAvaliacaoDiscente from "../../../components/Modal/ensino/avaliacao-discente/ModalAvaliacaoDiscente";
 import "../../styleFormularios.css";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasAvaliacaoDiscente = () => {
+
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
@@ -31,9 +35,11 @@ const TabelasAvaliacaoDiscente = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
 
   useEffect(() => {
-    const db_costumer = localStorage.getItem("avaliacao_discente")
-      ? JSON.parse(localStorage.getItem("avaliacao_discente"))
-      : [];
+    // const db_costumer = localStorage.getItem("avaliacao_discente")
+    //   ? JSON.parse(localStorage.getItem("avaliacao_discente"))
+    //   : [];
+
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.avaliacao_discente || [];
 
     setData(db_costumer);
   }, [setData]);
@@ -43,7 +49,13 @@ const TabelasAvaliacaoDiscente = () => {
 
     setData(newArray);
 
-    localStorage.setItem("avaliacao_discente", JSON.stringify(newArray));
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.avaliacao_discente = newArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+    //localStorage.setItem("avaliacao_discente", JSON.stringify(newArray));
   };
 
   return (

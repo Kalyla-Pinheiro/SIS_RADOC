@@ -12,8 +12,9 @@ import {
     Input,
     Box,
   } from "@chakra-ui/react";
-  import { useState } from "react";
+  import { useState, useContext } from "react";
   import { v4 as uuidv4 } from "uuid";
+  import { AnoContext } from "../../../../utils/AnoContext";
   
   const ModalMotivacaoDoAfastamento = ({
     data,
@@ -22,6 +23,9 @@ import {
     isOpen,
     onClose
   }) => {
+
+    const { ano } = useContext(AnoContext);
+
     const [motivacaoDoAfastamento, setMotivacaoDoAfastamento] = useState(dataEdit.motivacaoDoAfastamento || "");
     const [portaria, setPortaria] = useState(dataEdit.portaria || "");
     
@@ -37,8 +41,12 @@ import {
       const newDataArray = Object.keys(dataEdit).length
         ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
         : [...data, newItem];
-  
-      localStorage.setItem("outras_informacoes", JSON.stringify(newDataArray));
+
+      const localStorageKey = `${ano}`;
+      let localStorageData = localStorage.getItem(localStorageKey);
+      localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+      localStorageData.afastamento = newDataArray;
+      localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   
       setData(newDataArray);
   
