@@ -4,15 +4,14 @@ body {
   align-items: center;
 }
 
-
-.ajuste{
+.ajuste {
   width: 100%;
   height: 100vh;
+  background: #049673;
   display: flex;
   align-items: center;
-    justify-content: center;
-  }
-
+  justify-content: center;
+}
 
 .wrapperCadastro {
   width: 750px;
@@ -21,21 +20,23 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(50px);
   border-radius: 10px;
-  color: #fff;
+  background: #fff;
+  color: #000;
   padding: 40px 35px 55px;
   margin: 0 10px;
 }
 
-.icon{
-  min-width: auto; 
+.icon {
+  min-width: auto;
   height: auto;
-  text-align: center; 
-  -webkit-user-select: none; 
-  user-select: none; 
+  text-align: center;
+  -webkit-user-select: none;
+  user-select: none;
   transition: all 1s;
 }
 
 .wrapperCadastro h1 {
+  color: #049673;
   font-size: 36px;
   text-align: center;
   margin-bottom: 20px;
@@ -52,9 +53,7 @@ body {
   justify-content: space-between;
   gap: 10px;
   align-items: center;
-
 }
-
 
 .selectCampus {
   width: 100%;
@@ -164,8 +163,8 @@ body {
   transition: all 0.5s;
 }
 
-.button:active{
-    transform: scale(0.80);
+.button:active {
+  transform: scale(0.8);
 }
 
 #voltar {
@@ -180,56 +179,7 @@ body {
 }
 
 /*Classe e Referência*/
-.selectClasseReferencia{
-    width: 100%;
-    height: 55px;
-    margin: 13px 0;
-    background: transparent;
-    border: 2px solid rgba(250, 244, 244, 0.2);
-    outline: none;
-    font-size: 16px;
-    border-radius: 6px;
-    padding: 15px 15px 15px 40px;
-    color: #fff;
-}
-.selectClasseReferencia > option{
-    background-color: white;
-    color: black;
-    border: 30px solid black;
-}
-
-.inputFieldClasseReferencia{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-/*Vinculo*/
-.selectVinculo{
-    width: 100%;
-    height: 55px;
-    margin: 13px 0;
-    background: transparent;
-    border: 2px solid rgba(250, 244, 244, 0.2);
-    outline: none;
-    font-size: 16px;
-    border-radius: 6px;
-    padding: 15px 15px 15px 40px;
-    color: #fff;
-}
-.selectVinculo > option{
-    background-color: white;
-    color: black;
-}
-
-.inputFieldVinculo{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-/*Titulação*/
-.selectTitulacao{
+.selectClasseReferencia {
   width: 100%;
   height: 55px;
   margin: 13px 0;
@@ -241,20 +191,69 @@ body {
   padding: 15px 15px 15px 40px;
   color: #fff;
 }
-.selectTitulacao > option{
+.selectClasseReferencia > option {
   background-color: white;
   color: black;
   border: 30px solid black;
 }
 
-.inputFieldTitulacao{
+.inputFieldClasseReferencia {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/*Vinculo*/
+.selectVinculo {
+  width: 100%;
+  height: 55px;
+  margin: 13px 0;
+  background: transparent;
+  border: 2px solid rgba(250, 244, 244, 0.2);
+  outline: none;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 15px 15px 15px 40px;
+  color: #fff;
+}
+.selectVinculo > option {
+  background-color: white;
+  color: black;
+}
+
+.inputFieldVinculo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/*Titulação*/
+.selectTitulacao {
+  width: 100%;
+  height: 55px;
+  margin: 13px 0;
+  background: transparent;
+  border: 2px solid rgba(250, 244, 244, 0.2);
+  outline: none;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 15px 15px 15px 40px;
+  color: #fff;
+}
+.selectTitulacao > option {
+  background-color: white;
+  color: black;
+  border: 30px solid black;
+}
+
+.inputFieldTitulacao {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 /*RegimeTrabalho*/
-.selectRegimeTrabalho{
+.selectRegimeTrabalho {
   width: 100%;
   height: 55px;
   margin: 13px 0;
@@ -266,15 +265,14 @@ body {
   padding: 15px 15px 15px 40px;
   color: #fff;
 }
-.selectRegimeTrabalho > option{
+.selectRegimeTrabalho > option {
   background-color: white;
   color: black;
   border: 30px solid black;
 }
 
-.inputFieldRegimeTrabalho{
+.inputFieldRegimeTrabalho {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
-

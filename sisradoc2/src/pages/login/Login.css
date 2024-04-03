@@ -3,6 +3,7 @@
 .login-container {
   font-family: "Poppins", sans-serif;
   display: flex;
+  background: #049673;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -10,7 +11,7 @@
 
 .wrapper-login {
   width: 420px;
-  background: transparent;
+  background: #fff;
   border: 2px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(30px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -20,11 +21,13 @@
 }
 
 .wrapper-login h1 {
+  color: #049673;
   font-size: 36px;
   text-align: center;
 }
 
 .wrapper-login .input-box {
+  color: #049673;
   position: relative;
   width: 100%;
   height: 50px;
@@ -34,18 +37,17 @@
 .input-box input {
   width: 100%;
   height: 100%;
-  background: transparent;
-  border: none;
   outline: none;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 40px;
+  background: #fff;
+  border: 2px solid gray;
+  border-radius: 0.875rem;
   font-size: 16px;
-  color: #fff;
+
   padding: 20px 45px 20px 20px;
 }
 
 .input-box input::placeholder {
-  color: #fff;
+  color: gray;
 }
 
 .input-box .icon {
@@ -56,6 +58,7 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 16px;
+  color: #049673;
 }
 
 .wrapper-login .remember-forgot {
@@ -63,6 +66,7 @@
   justify-content: space-between;
   font-size: 14.5px;
   margin: -15px 0 15px;
+  color: black;
 }
 
 .remember-forgot label {
@@ -71,30 +75,31 @@
 }
 
 .remember-forgot label input {
-  accent-color: #fff;
+  accent-color: #049673;
   margin-right: 4px;
 }
 
 .remember-forgot a {
-  color: #fff;
+  color: black;
   text-decoration: none;
 }
 
 .remember-forgot a:hover {
   text-decoration: underline;
+  color: #00a27b;
 }
 
 .wrapper-login button {
   width: 100%;
   height: 45px;
-  background: #fff;
+  background: #049673;
   border: none;
   outline: none;
   border-radius: 40px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-size: 16px;
-  color: #333;
+  color: #fff;
   font-weight: 700;
 }
 
@@ -103,20 +108,18 @@
   text-align: center;
   margin: 20px 0 15px;
   transition: all 0.5s;
+  color: black;
 }
 
 .register-link p a {
-  color: #fff;
+  color: black;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .register-link p a:hover {
   text-decoration: underline;
-}
-
-.register-link:active{
-  transform: scale(0.80);
+  color: #00a27b;
 }
 
 .options-login {
@@ -130,7 +133,7 @@
     margin-bottom: 1rem;
   }
 }
-.options-login button:active{
-  transform: scale(0.80);
-}
 
+.options-login button:active {
+  transform: scale(0.8);
+}
