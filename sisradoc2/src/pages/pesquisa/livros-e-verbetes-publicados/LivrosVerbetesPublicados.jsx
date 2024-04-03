@@ -2,24 +2,22 @@ import React from "react";
 import classes from "../../../css-modules/Pesquisa.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
-import { ChakraProvider, Box} from "@chakra-ui/react";
-import { extendTheme } from '@chakra-ui/react';
-import paisagem3 from "../../imagens/paisagem3.png";
+import { ChakraProvider, Box } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 import TabelasLivrosVerbetesPublicados from "../../../formularios/pesquisa/livros-verbetes-publicados/TabelasLivrosVerbetesPublicados";
 
 const LivrosVerbetesPublicados = () => {
-
   const theme = extendTheme({
     styles: {
       global: {
         body: {
-          backgroundImage: `url(${paisagem3})`,
+          background: "#f3ede8",
           fontFamily: "Poppins, sans-serif",
           minHeight: "100vh",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          overflow: "hidden"
+          overflow: "hidden",
         },
       },
     },
@@ -31,13 +29,18 @@ const LivrosVerbetesPublicados = () => {
 
       <div className={classes.pesquisaContainer}>
         <div className={classes.titulo} id={classes.tituloMargin}>
-            <h1>Livros e Verbetes Publicados</h1>
+          <h1>Livros e Verbetes Publicados</h1>
         </div>
 
-        <form className={classes.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data">
+        <form
+          className={classes.campoSubmissaoPDF}
+          action=""
+          method="post"
+          encType="multipart/form-data"
+        >
           <div className={classes.anexarPdfs}>
             <div className={classes.inputsPdfs}>
-              <input type="file" accept=".pdf"/>
+              <input type="file" accept=".pdf" />
               <p>Documentos Comprobatórios (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
@@ -46,17 +49,16 @@ const LivrosVerbetesPublicados = () => {
           </div>
         </form>
 
-
         <div className={classes.areaPreenchimento}>
-
-          <div className={classes.campoTabelasSemestre} id={classes.tabelasLivrosVerbetesPublicados}>
-            <ChakraProvider theme={theme} resetCSS={false}> 
+          <div
+            className={classes.campoTabelasSemestre}
+            id={classes.tabelasLivrosVerbetesPublicados}
+          >
+            <ChakraProvider theme={theme} resetCSS={false}>
               <TabelasLivrosVerbetesPublicados />
             </ChakraProvider>
           </div>
-
         </div>
-
 
         {/*
         <div className={classes.tituloCampoLVP}>
@@ -136,9 +138,7 @@ const LivrosVerbetesPublicados = () => {
             <button>Salvar</button>
           </a>
         </div>
-
       </div>
-
     </div>
   );
 };

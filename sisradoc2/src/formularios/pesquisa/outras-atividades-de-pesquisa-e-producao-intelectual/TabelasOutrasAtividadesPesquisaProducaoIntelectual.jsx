@@ -25,21 +25,23 @@ const TabelasOutrasAtividadesProducaoIntelectual = () => {
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = JSON.parse(localStorage.getItem(ano))?.outras_atividades_de_pesquisa_e_producao_intelectual || [];
+    const db_costumer =
+      JSON.parse(localStorage.getItem(ano))
+        ?.outras_atividades_de_pesquisa_e_producao_intelectual || [];
 
     setData(db_costumer);
   }, [setData]);
 
   const handleRemove = (id) => {
-    const newArray = data.filter(
-      (item) => item.id !== id);
+    const newArray = data.filter((item) => item.id !== id);
 
     setData(newArray);
 
     const localStorageKey = `${ano}`;
     let localStorageData = localStorage.getItem(localStorageKey);
     localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
-    localStorageData.outras_atividades_de_pesquisa_e_producao_intelectual = newArray;
+    localStorageData.outras_atividades_de_pesquisa_e_producao_intelectual =
+      newArray;
     localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
   };
 
@@ -54,52 +56,83 @@ const TabelasOutrasAtividadesProducaoIntelectual = () => {
       fontSize="15px"
       fontFamily="poppins"
     >
-      <Box  maxW={1200} w="100%" h="100%" py={10} px={2} paddingTop={5}>
-        
-        <Button 
-          colorScheme="blue" 
-          variant="outline" 
-          borderColor="#fff" 
-          color="#fff" 
-          _hover={{ color: "black", bg: "white" }} 
+      <Box maxW={1200} w="100%" h="100%" py={10} px={2} paddingTop={5}>
+        <Button
+          colorScheme="blue"
+          variant="outline"
+          borderColor="#7c5942"
+          color="#7c5942"
+          _hover={{ color: "#fff", bg: "#7c5942" }}
           onClick={() => [setDataEdit({}), onOpen()]}
         >
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
+        <Box
+          overflowY="auto"
+          overflowX="auto"
+          height="100%"
+          className="custom-scrollbar"
+        >
           <Table mt="5">
             <Thead>
-              <Tr>
-                <Th minW="150px" fontSize="15px" color="#fff">
-                    ID
+              <Tr borderBottom="3px solid #7c5942">
+                <Th minW="150px" fontSize="15px" color="#7c5942">
+                  ID
                 </Th>
-                <Th minW="300px" fontSize="15px" color="#fff">
-                    Link
+                <Th minW="300px" fontSize="15px" color="#7c5942">
+                  Link
                 </Th>
-                <Th minW="600px" fontSize="15px" color="#fff">
-                    Descrição
+                <Th minW="600px" fontSize="15px" color="#7c5942">
+                  Descrição
                 </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({id, link, descricao}, index) => (
-                <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
-                  <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
-                  <Td minW="300px" style={{ wordWrap: 'break-word', maxWidth: 300 }}>{link}</Td>
-                  <Td minW="600px" style={{ wordWrap: 'break-word', maxWidth: 600 }}>{descricao}</Td>
+              {data.map(({ id, link, descricao }, index) => (
+                <Tr
+                  key={index}
+                  cursor="pointer "
+                  fontWeight={600}
+                  color="#7c5942"
+                  borderBottom="3px solid #7c5942"
+                  _hover={{ bg: "#7c5942", color: "#fff" }}
+                >
+                  <Td
+                    minW="150px"
+                    style={{
+                      maxWidth: "150px",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {id}
+                  </Td>
+                  <Td
+                    minW="300px"
+                    style={{ wordWrap: "break-word", maxWidth: 300 }}
+                  >
+                    {link}
+                  </Td>
+                  <Td
+                    minW="600px"
+                    style={{ wordWrap: "break-word", maxWidth: 600 }}
+                  >
+                    {descricao}
+                  </Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({id, link, descricao, index }),
+                        setDataEdit({ id, link, descricao, index }),
                         onOpen(),
                       ]}
                     />
                   </Td>
-                  <Td >
+                  <Td>
                     <DeleteIcon
                       fontSize={20}
                       onClick={() => handleRemove(id)}

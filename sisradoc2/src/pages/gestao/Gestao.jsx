@@ -3,23 +3,21 @@ import classes from "../../css-modules/Gestao.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import ModalChSemanalGestao from "../../components/Modal/gestao/ch-semanal/ModalChSemanalGestao";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
-import paisagem3 from "../imagens/paisagem3.png";
 
 const Gestao = () => {
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const theme = extendTheme({
     styles: {
       global: {
         body: {
-          backgroundImage: `url(${paisagem3})`,
+          background: "#f3ede8",
           fontFamily: "Poppins, sans-serif",
           minHeight: "100vh",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          overflow: "hidden"
+          overflow: "hidden",
         },
       },
     },
@@ -39,12 +37,16 @@ const Gestao = () => {
         </div>
 
         <nav className={classes.opcoesGestao}>
-          <a className={classes.opcaoGestao} type="button" href="/gestao/atividades-de-gestao-e-representacao">
+          <a
+            className={classes.opcaoGestao}
+            type="button"
+            href="/gestao/atividades-de-gestao-e-representacao"
+          >
             Atividade de Gestão e Representação
           </a>
         </nav>
 
-        <ChakraProvider theme={theme} resetCSS={false}> 
+        <ChakraProvider theme={theme} resetCSS={false}>
           <ModalChSemanalGestao isOpen={isOpen} onClose={onClose} />
         </ChakraProvider>
       </div>

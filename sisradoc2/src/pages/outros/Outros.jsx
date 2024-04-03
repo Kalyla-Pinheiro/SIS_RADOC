@@ -3,23 +3,21 @@ import classes from "../../css-modules/Outros.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import ModalChSemanalOutros from "../../components/Modal/outros/ch-semanal/ModalChSemanalOutros";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
-import paisagem3 from "../imagens/paisagem3.png";
 
 const Outros = () => {
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const theme = extendTheme({
     styles: {
       global: {
         body: {
-          backgroundImage: `url(${paisagem3})`,
+          background: "#f3ede8",
           fontFamily: "Poppins, sans-serif",
           minHeight: "100vh",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          overflow: "hidden"
+          overflow: "hidden",
         },
       },
     },
@@ -39,7 +37,11 @@ const Outros = () => {
         </div>
 
         <nav className={classes.opcoesOutros}>
-          <a className={classes.opcaoOutros} type="button" href="/outros/qualificacao-docente">
+          <a
+            className={classes.opcaoOutros}
+            type="button"
+            href="/outros/qualificacao-docente"
+          >
             Qualificação Docente
           </a>
           <a
@@ -58,7 +60,7 @@ const Outros = () => {
           </a>
         </nav>
 
-        <ChakraProvider theme={theme} resetCSS={false}> 
+        <ChakraProvider theme={theme} resetCSS={false}>
           <ModalChSemanalOutros isOpen={isOpen} onClose={onClose} />
         </ChakraProvider>
       </div>

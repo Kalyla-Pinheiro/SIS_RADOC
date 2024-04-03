@@ -112,6 +112,7 @@ const TabelasPreceptoriaOuTutoriaDeResidencia = () => {
                     cursor="pointer "
                     fontWeight={600}
                     color="#7c5942"
+                    borderBottom="3px solid #7c5942"
                     _hover={{ bg: "#7c5942", color: "#fff" }}
                   >
                     <Td

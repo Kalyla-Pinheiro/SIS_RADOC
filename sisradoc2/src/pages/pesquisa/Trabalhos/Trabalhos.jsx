@@ -2,24 +2,22 @@ import React from "react";
 import classes from "../../../css-modules/Pesquisa.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
-import { ChakraProvider, Box} from "@chakra-ui/react";
-import { extendTheme } from '@chakra-ui/react';
-import paisagem3 from "../../imagens/paisagem3.png";
+import { ChakraProvider, Box } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 import TabelasTrabalhosBoletinsOutros from "../../../formularios/pesquisa/trabalhos-boletins-e-outros/TabelasTrabalhosBoletinsOutros";
 
 const Trabalhos = () => {
-
   const theme = extendTheme({
     styles: {
       global: {
         body: {
-          backgroundImage: `url(${paisagem3})`,
+          background: "#f3ede8",
           fontFamily: "Poppins, sans-serif",
           minHeight: "100vh",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          overflow: "hidden"
+          overflow: "hidden",
         },
       },
     },
@@ -34,10 +32,15 @@ const Trabalhos = () => {
           <h1>Trabalhos, Boletins Técnicos e outros</h1>
         </div>
 
-        <form className={classes.campoSubmissaoPDF} action="" method="post" encType="multipart/form-data">
+        <form
+          className={classes.campoSubmissaoPDF}
+          action=""
+          method="post"
+          encType="multipart/form-data"
+        >
           <div className={classes.anexarPdfs}>
             <div className={classes.inputsPdfs}>
-              <input type="file" accept=".pdf"/>
+              <input type="file" accept=".pdf" />
               <p>Documento Comprobatório (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
@@ -46,17 +49,16 @@ const Trabalhos = () => {
           </div>
         </form>
 
-
         <div className={classes.areaPreenchimento}>
-
-          <div className={classes.campoTabelasSemestre} id={classes.tabelasTrabalhosBoletinsOutros}>
-            <ChakraProvider theme={theme} resetCSS={false}> 
+          <div
+            className={classes.campoTabelasSemestre}
+            id={classes.tabelasTrabalhosBoletinsOutros}
+          >
+            <ChakraProvider theme={theme} resetCSS={false}>
               <TabelasTrabalhosBoletinsOutros />
             </ChakraProvider>
           </div>
-
         </div>
-
 
         {/*
         <div className={classes.conteiner2}>
@@ -116,7 +118,10 @@ const Trabalhos = () => {
         </div>
         */}
 
-        <div className={classes.buttons} id={classes.buttonTrabalhosBoletinsOutros}>
+        <div
+          className={classes.buttons}
+          id={classes.buttonTrabalhosBoletinsOutros}
+        >
           <div>
             <a href="#">
               <button>Salvar</button>

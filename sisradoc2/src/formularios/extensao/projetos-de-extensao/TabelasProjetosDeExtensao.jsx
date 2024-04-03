@@ -25,14 +25,14 @@ const TabelasProjetosDeExtensao = () => {
   const [dataEdit, setDataEdit] = useState({});
 
   useEffect(() => {
-    const db_costumer = JSON.parse(localStorage.getItem(ano))?.projetos_de_extensao || [];
+    const db_costumer =
+      JSON.parse(localStorage.getItem(ano))?.projetos_de_extensao || [];
 
     setData(db_costumer);
   }, [setData]);
 
   const handleRemove = (id) => {
-    const newArray = data.filter(
-      (item) => item.id !== id);
+    const newArray = data.filter((item) => item.id !== id);
 
     setData(newArray);
 
@@ -54,75 +54,148 @@ const TabelasProjetosDeExtensao = () => {
       fontSize="15px"
       fontFamily="poppins"
     >
-      <Box  maxW={1200} w="100%" h="100%" py={10} px={2} paddingTop={5}>
-        
-        <Button 
-          colorScheme="blue" 
-          variant="outline" 
-          borderColor="#fff" 
-          color="#fff" 
-          _hover={{ color: "black", bg: "white" }} 
+      <Box maxW={1200} w="100%" h="100%" py={10} px={2} paddingTop={5}>
+        <Button
+          colorScheme="blue"
+          variant="outline"
+          borderColor="#7c5942"
+          color="#7c5942"
+          _hover={{ color: "#fff", bg: "#7c5942" }}
           onClick={() => [setDataEdit({}), onOpen()]}
         >
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
+        <Box
+          overflowY="auto"
+          overflowX="auto"
+          height="100%"
+          className="custom-scrollbar"
+        >
           <Table mt="5">
             <Thead>
-              <Tr>
-                <Th minW="150px" fontSize="15px" color="#fff">
-                    ID
+              <Tr borderBottom="3px solid #7c5942">
+                <Th minW="150px" fontSize="15px" color="#7c5942">
+                  ID
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                    Título
+                <Th minW="200px" fontSize="15px" color="#7c5942">
+                  Título
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                    Cadastro PROEX
+                <Th minW="200px" fontSize="15px" color="#7c5942">
+                  Cadastro PROEX
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                    Situação Atual
+                <Th minW="200px" fontSize="15px" color="#7c5942">
+                  Situação Atual
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                    Função
+                <Th minW="200px" fontSize="15px" color="#7c5942">
+                  Função
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                    CH Semanal (1º Semestre)
+                <Th minW="200px" fontSize="15px" color="#7c5942">
+                  CH Semanal (1º Semestre)
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
-                    CH Semanal (2º Semestre)
+                <Th minW="200px" fontSize="15px" color="#7c5942">
+                  CH Semanal (2º Semestre)
                 </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({id, titulo, cadastroProex, situacaoAtual, funcao, chSemanalSemestre1, chSemanalSemestre2}, index) => (
-                <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
-                  <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{titulo}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{cadastroProex}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{situacaoAtual}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{funcao}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre1}</Td>
-                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre2}</Td>
-                  <Td p={0}>
-                    <EditIcon
-                      fontSize={20}
-                      onClick={() => [
-                        setDataEdit({id, titulo, cadastroProex, situacaoAtual, funcao, chSemanalSemestre1, chSemanalSemestre2, index }),
-                        onOpen(),
-                      ]}
-                    />
-                  </Td>
-                  <Td >
-                    <DeleteIcon
-                      fontSize={20}
-                      onClick={() => handleRemove(id)}
-                    />
-                  </Td>
-                </Tr>
-              ))}
+              {data.map(
+                (
+                  {
+                    id,
+                    titulo,
+                    cadastroProex,
+                    situacaoAtual,
+                    funcao,
+                    chSemanalSemestre1,
+                    chSemanalSemestre2,
+                  },
+                  index
+                ) => (
+                  <Tr
+                    key={index}
+                    cursor="pointer "
+                    fontWeight={600}
+                    color="#7c5942"
+                    borderBottom="3px solid #7c5942"
+                    _hover={{ bg: "#7c5942", color: "#fff" }}
+                  >
+                    <Td
+                      minW="150px"
+                      style={{
+                        maxWidth: "150px",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {id}
+                    </Td>
+                    <Td
+                      minW="200px"
+                      style={{ wordWrap: "break-word", maxWidth: 200 }}
+                    >
+                      {titulo}
+                    </Td>
+                    <Td
+                      minW="200px"
+                      style={{ wordWrap: "break-word", maxWidth: 200 }}
+                    >
+                      {cadastroProex}
+                    </Td>
+                    <Td
+                      minW="200px"
+                      style={{ wordWrap: "break-word", maxWidth: 200 }}
+                    >
+                      {situacaoAtual}
+                    </Td>
+                    <Td
+                      minW="200px"
+                      style={{ wordWrap: "break-word", maxWidth: 200 }}
+                    >
+                      {funcao}
+                    </Td>
+                    <Td
+                      minW="200px"
+                      style={{ wordWrap: "break-word", maxWidth: 200 }}
+                    >
+                      {chSemanalSemestre1}
+                    </Td>
+                    <Td
+                      minW="200px"
+                      style={{ wordWrap: "break-word", maxWidth: 200 }}
+                    >
+                      {chSemanalSemestre2}
+                    </Td>
+                    <Td p={0}>
+                      <EditIcon
+                        fontSize={20}
+                        onClick={() => [
+                          setDataEdit({
+                            id,
+                            titulo,
+                            cadastroProex,
+                            situacaoAtual,
+                            funcao,
+                            chSemanalSemestre1,
+                            chSemanalSemestre2,
+                            index,
+                          }),
+                          onOpen(),
+                        ]}
+                      />
+                    </Td>
+                    <Td>
+                      <DeleteIcon
+                        fontSize={20}
+                        onClick={() => handleRemove(id)}
+                      />
+                    </Td>
+                  </Tr>
+                )
+              )}
             </Tbody>
           </Table>
         </Box>
