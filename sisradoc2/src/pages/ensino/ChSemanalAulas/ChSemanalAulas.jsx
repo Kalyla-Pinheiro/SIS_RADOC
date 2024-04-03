@@ -24,6 +24,10 @@ const ChSemanalAulas = () => {
     },
   });
 
+  const salvar_diarios_turmas = () => {
+    alert("cala a boca rodrigo")
+  }
+
   return (
     <div>
       <Navegacao />
@@ -130,7 +134,9 @@ const ChSemanalAulas = () => {
           <a href="/disciplinas">
             <button>Voltar</button>
           </a>
-          <button>Salvar</button>
+          <button
+          onClick={salvar_diarios_turmas()}
+          >Salvar</button>
         </div>
       </div>
     </div>
