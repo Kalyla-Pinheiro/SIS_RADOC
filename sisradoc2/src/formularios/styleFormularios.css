@@ -1,15 +1,14 @@
-  
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 10px;
-    height: 10px; 
-    background-color: transparent; 
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2); 
-    border-radius: 10px; 
-  }
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+}
 
-  .custom-scrollbar::-webkit-scrollbar-corner {
-    background-color: transparent;
-  }
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #7c5942;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
