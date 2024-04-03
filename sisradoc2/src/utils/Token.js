@@ -57,6 +57,11 @@ const TokenFunctions = {
         return JSON.parse(diario);
     },
 
+    get_tabela: () => {
+        const dados = localStorage.getItem('2024');
+        return JSON.parse(dados);
+    },
+
     set_avaliacao_discente: (avaliacao_discente) => {
         const avaliacao = JSON.stringify(avaliacao_discente);
         Cookies.set('avaliacao_discente', avaliacao, { expires: 1, path: '/' })
