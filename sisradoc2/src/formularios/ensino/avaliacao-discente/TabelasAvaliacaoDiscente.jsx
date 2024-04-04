@@ -25,7 +25,6 @@ import "../../styleFormularios.css";
 import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasAvaliacaoDiscente = () => {
-
   const { ano } = useContext(AnoContext);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -39,7 +38,8 @@ const TabelasAvaliacaoDiscente = () => {
     //   ? JSON.parse(localStorage.getItem("avaliacao_discente"))
     //   : [];
 
-    const db_costumer = JSON.parse(localStorage.getItem(ano))?.avaliacao_discente || [];
+    const db_costumer =
+      JSON.parse(localStorage.getItem(ano))?.avaliacao_discente || [];
 
     setData(db_costumer);
   }, [setData]);
@@ -108,6 +108,7 @@ const TabelasAvaliacaoDiscente = () => {
                   cursor="pointer "
                   fontWeight={600}
                   color="#7c5942"
+                  borderBottom="3px solid #7c5942"
                   _hover={{ bg: "#7c5942", color: "#fff" }}
                 >
                   <Td

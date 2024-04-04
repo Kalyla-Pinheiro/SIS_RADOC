@@ -3,23 +3,21 @@ import classes from "../../css-modules/Pesquisa.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import ModalChSemanalPesquisa from "../../components/Modal/pesquisa/ch-semanal/ModalChSemanalPesquisa";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
-import paisagem3 from "../imagens/paisagem3.png";
 
 const Pesquisa = () => {
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const theme = extendTheme({
     styles: {
       global: {
         body: {
-          backgroundImage: `url(${paisagem3})`,
+          background: "#f3ede8",
           fontFamily: "Poppins, sans-serif",
           minHeight: "100vh",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          overflow: "hidden"
+          overflow: "hidden",
         },
       },
     },
@@ -53,18 +51,30 @@ const Pesquisa = () => {
           >
             Trabalhos, Boletins Técnicos e Outros
           </a>
-          <a className={classes.opcaoPesquisa} type="button" href="/pesquisa/livros-e-verbetes-publicados">
+          <a
+            className={classes.opcaoPesquisa}
+            type="button"
+            href="/pesquisa/livros-e-verbetes-publicados"
+          >
             Livros e Verbetes Publicados
           </a>
-          <a className={classes.opcaoPesquisa} type="button" href="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados">
+          <a
+            className={classes.opcaoPesquisa}
+            type="button"
+            href="/pesquisa/trabalhos-e-resumos-publicados-ou-apresentados"
+          >
             Resumos Publicados em Anais de Congressos ou Similares
           </a>
-          <a className={classes.opcaoPesquisa} type="button" href="/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual">
+          <a
+            className={classes.opcaoPesquisa}
+            type="button"
+            href="/pesquisa/outras-atividades-de-pesquisa-e-producao-intelectual"
+          >
             Outras Atividades de Produção Intelectual
           </a>
         </nav>
 
-        <ChakraProvider theme={theme} resetCSS={false}> 
+        <ChakraProvider theme={theme} resetCSS={false}>
           <ModalChSemanalPesquisa isOpen={isOpen} onClose={onClose} />
         </ChakraProvider>
       </div>

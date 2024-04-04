@@ -25,7 +25,6 @@ import "../../styleFormularios.css";
 import { AnoContext } from "../../../utils/AnoContext";
 
 const TabelasQualificacaoDocente = () => {
-
   const { ano } = useContext(AnoContext);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,7 +34,8 @@ const TabelasQualificacaoDocente = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
 
   useEffect(() => {
-    const db_costumer = JSON.parse(localStorage.getItem(ano))?.qualificacao_docente || [];
+    const db_costumer =
+      JSON.parse(localStorage.getItem(ano))?.qualificacao_docente || [];
 
     setData(db_costumer);
   }, [setData]);
@@ -65,25 +65,30 @@ const TabelasQualificacaoDocente = () => {
         <Button
           colorScheme="blue"
           variant="outline"
-          borderColor="#fff"
-          color="#fff"
-          _hover={{ color: "black", bg: "white" }}
+          borderColor="#7c5942"
+          color="#7c5942"
+          _hover={{ color: "#fff", bg: "#7c5942" }}
           onClick={() => [setDataEdit({}), onOpen()]}
         >
           NOVO CADASTRO
         </Button>
 
-        <Box overflowY="auto" overflowX="auto" height="100%" className="custom-scrollbar">
+        <Box
+          overflowY="auto"
+          overflowX="auto"
+          height="100%"
+          className="custom-scrollbar"
+        >
           <Table mt="5">
             <Thead>
-              <Tr>
-                <Th minW="150px" fontSize="15px" color="#fff">
+              <Tr borderBottom="3px solid #7c5942">
+                <Th minW="150px" fontSize="15px" color="#7c5942">
                   ID
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#7c5942">
                   Descrição
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#fff">
+                <Th minW="200px" fontSize="15px" color="#7c5942">
                   Portaria
                 </Th>
                 <Th p={0}></Th>
@@ -95,16 +100,32 @@ const TabelasQualificacaoDocente = () => {
                 <Tr
                   key={index}
                   cursor="pointer "
-                  color="#fff"
-                  _hover={{ bg: "gray.100", color: "#000000" }}
+                  fontWeight={600}
+                  color="#7c5942"
+                  borderBottom="3px solid #7c5942"
+                  _hover={{ bg: "#7c5942", color: "#fff" }}
                 >
-                  <Td minW="150px" style={{ maxWidth: "150px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  <Td
+                    minW="150px"
+                    style={{
+                      maxWidth: "150px",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
                     {id}
                   </Td>
-                  <Td minW="200px" style={{ wordWrap: "break-word", maxWidth: 200 }}>
+                  <Td
+                    minW="200px"
+                    style={{ wordWrap: "break-word", maxWidth: 200 }}
+                  >
                     {descricao}
                   </Td>
-                  <Td minW="200px" style={{ wordWrap: "break-word", maxWidth: 200 }}>
+                  <Td
+                    minW="200px"
+                    style={{ wordWrap: "break-word", maxWidth: 200 }}
+                  >
                     {portaria}
                   </Td>
                   <Td p={0}>
@@ -142,14 +163,17 @@ const TabelasQualificacaoDocente = () => {
         />
       )}
       {deleteConfirmationOpen && (
-        <Modal isOpen={deleteConfirmationOpen} onClose={() => setDeleteConfirmationOpen(false)} isCentered motionPreset="scale">
+        <Modal
+          isOpen={deleteConfirmationOpen}
+          onClose={() => setDeleteConfirmationOpen(false)}
+          isCentered
+          motionPreset="scale"
+        >
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Confirmar exclusão</ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
-              Tem certeza de que deseja excluir este item?
-            </ModalBody>
+            <ModalBody>Tem certeza de que deseja excluir este item?</ModalBody>
             <ModalFooter>
               <Button
                 colorScheme="green"
@@ -160,10 +184,13 @@ const TabelasQualificacaoDocente = () => {
               >
                 Confirmar
               </Button>
-              <Button colorScheme="red" mr={3} onClick={() => setDeleteConfirmationOpen(false)}>
+              <Button
+                colorScheme="red"
+                mr={3}
+                onClick={() => setDeleteConfirmationOpen(false)}
+              >
                 Cancelar
               </Button>
-              
             </ModalFooter>
           </ModalContent>
         </Modal>

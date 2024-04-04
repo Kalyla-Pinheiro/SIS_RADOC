@@ -29,7 +29,8 @@ const TabelasDisciplinasMinistradas = () => {
     //   ? JSON.parse(localStorage.getItem("disciplinas_ministradas"))
     //   : [];
 
-    const db_costumer = JSON.parse(localStorage.getItem(ano))?.disciplinas_ministradas || [];
+    const db_costumer =
+      JSON.parse(localStorage.getItem(ano))?.disciplinas_ministradas || [];
 
     setData(db_costumer);
   }, [setData]);
@@ -145,6 +146,7 @@ const TabelasDisciplinasMinistradas = () => {
                     cursor="pointer "
                     fontWeight={600}
                     color="#7c5942"
+                    borderBottom="3px solid #7c5942"
                     _hover={{ bg: "#7c5942", color: "#fff" }}
                   >
                     <Td
