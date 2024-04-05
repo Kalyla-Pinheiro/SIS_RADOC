@@ -160,10 +160,10 @@ main {
   justify-items: end;
 }
 
-.testeUserContent h2,
+/* .testeUserContent h2,
 h4 {
   margin-left: 45px;
-}
+} */
 
 .dropdown-item {
   width: max-content;

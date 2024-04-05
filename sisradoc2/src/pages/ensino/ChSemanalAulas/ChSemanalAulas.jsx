@@ -26,13 +26,15 @@ const ChSemanalAulas = () => {
   const [posGraduacaoSemestre1, setPosGraduacaoSemestre1] = useState("");
   const [posGraduacaoSemestre2, setPosGraduacaoSemestre2] = useState("");
 
-  const [totalSemestre1, setTotalSemestre1] = useState("");
-  const [totalSemestre2, setTotalSemestre2] = useState("");
+  const [totalSemestre1, setTotalSemestre1] = useState(0);
+  const [totalSemestre2, setTotalSemestre2] = useState(0);
 
   const localStorageKey = `${ano}`;
   let localStorageData = localStorage.getItem(localStorageKey);
   localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
   const disciplinas_ministradas = localStorageData.disciplinas_ministradas;
+  localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
 
   let list_Graduacao_Semestre1 = [];
   let list_PosGraduacao_Semestre1 = [];
@@ -84,7 +86,7 @@ const ChSemanalAulas = () => {
     }
   }
 
-  console.log(list_Graduacao_Semestre1);
+  // console.log(list_Graduacao_Semestre1);
 
   let totalChDocenteEnvolvidoGraduacaoSemestre1 = 0;
   let totalChDocenteEnvolvidoPosGraduacaoSemestre1 = 0;
@@ -208,6 +210,8 @@ const ChSemanalAulas = () => {
 
     setPosGraduacaoSemestre1(totalChDocenteEnvolvidoPosGraduacaoSemestre1);
     setPosGraduacaoSemestre2(totalChDocenteEnvolvidoPosGraduacaoSemestre2);
+
+    
   }, [
     totalChDocenteEnvolvidoGraduacaoSemestre1,
     totalChDocenteEnvolvidoGraduacaoSemestre2,
@@ -216,8 +220,31 @@ const ChSemanalAulas = () => {
   ]);
 
   const somaChTotalSemestre1 = () => {
-    setTotalSemestre1(totalChDocenteEnvolvidoGraduacaoSemestre1 + totalChDocenteEnvolvidoPosGraduacaoSemestre1) 
+    const resultado = totalChDocenteEnvolvidoGraduacaoSemestre1 + totalChDocenteEnvolvidoPosGraduacaoSemestre1;
+    setTotalSemestre1(resultado);
   };
+
+  const somaChTotalSemestre2 = () => {
+    const resultado = totalChDocenteEnvolvidoGraduacaoSemestre2 + totalChDocenteEnvolvidoPosGraduacaoSemestre2;
+    setTotalSemestre2(resultado);
+  };
+
+  var itensExistentes = JSON.parse(localStorage.getItem(localStorageKey));
+  console.log(itensExistentes)
+
+
+  const updatedLocalStorageData = {
+    ...localStorageData,
+    disciplinas_ministradas: disciplinas_ministradas,
+    ChTotalAulasLetivas: {
+      "1º SEMESTRE": totalSemestre1,
+      "2º SEMESTRE": totalSemestre2
+    }
+  };
+
+  localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
+
+
 
   const theme = extendTheme({
     styles: {
@@ -372,14 +399,17 @@ const ChSemanalAulas = () => {
                 <div className={classes.tituloSemestre}>
                   <p>Total:</p>
                 </div>
-                <input type="text" placeholder="" required />
+                <input type="text" placeholder="" required value={totalSemestre2}/>
               </div>
               <div className={classes.camposTabelaNCHteste}>
                 <div className={classes.buttonTotal}>
-                  <button type="button">Calcular</button>
+                  <button type="button" onClick={somaChTotalSemestre2}>
+                    Calcular
+                  </button>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
 
