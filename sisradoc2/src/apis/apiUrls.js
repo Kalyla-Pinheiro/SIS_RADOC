@@ -10,7 +10,8 @@ const apiUrls = {
   diario_de_turma: `${baseUrl}/pdf/diarios`,
   verificar_usuario: `${baseUrl}/verificar-usuario`,
   avaliacao_discente: `${baseUrl}/pdf/avaliacao_discente`,
-  salvar_diarios_turmas: `${baseUrl}/aulas_letivas`
+  salvar_diarios_turmas: `${baseUrl}/aulas_letivas`,
+  projetos_pesquisa: `${baseUrl}/pdf/projetos`,
 };
 
 export default apiUrls;

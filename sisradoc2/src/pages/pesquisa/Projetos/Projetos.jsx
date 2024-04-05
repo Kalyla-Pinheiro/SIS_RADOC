@@ -1,12 +1,75 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import classes from "../../../css-modules/Pesquisa.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
-import { ChakraProvider, Box } from "@chakra-ui/react";
-import { extendTheme } from "@chakra-ui/react";
+import { useDisclosure, ChakraProvider, extendTheme } from "@chakra-ui/react";
+import apiUrls from "../../../apis/apiUrls";
 import TabelasProjetos from "../../../formularios/pesquisa/projetos/TabelasProjetos";
+import { AnoContext } from "../../../utils/AnoContext";
+import { ToastifyMessages } from "../../../utils/ToastifyMessages";
+import TokenFunctions from "../../../utils/Token";
+import ModalProjetos from "../../../components/Modal/pesquisa/projetos/ModalProjetos";
+import { ToastContainer, toast } from "react-toastify";
 
 const Projetos = () => {
+  const { ano } = useContext(AnoContext);
+
+  const [pdfProjetosPesquisa, setPdfProjetosPesquisa] = useState(null);
+  const [data, setData] = useState([]);
+  const [dataEdit, setDataEdit] = useState({});
+
+  useEffect(() => {
+    const db_costumer = JSON.parse(localStorage.getItem(ano))?.projetos || [];
+
+    setData(db_costumer);
+  }, [setData]);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handlepdfProjetosPesquisaChange = (event) => {
+    setPdfProjetosPesquisa(event.target.files[0]);
+  };
+
+  const handleProjetosPesquisa = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append("file", pdfProjetosPesquisa);
+
+    if (pdfProjetosPesquisa === null) {
+      ToastifyMessages.warning(
+        "Campo vazio, por favor selecione um PDF para submeter!"
+      );
+    }
+
+    try {
+      const response = await fetch(apiUrls.projetos_pesquisa, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        ToastifyMessages.success("PDF submetido com sucesso");
+
+        setTimeout(() => {
+          onOpen();
+        }, 2000);
+
+        TokenFunctions.set_projetos_pesquisa(data);
+      } else {
+        const errorMessage = await response.text();
+        const erro = JSON.parse(errorMessage);
+        ToastifyMessages.error(`${erro.erro}`);
+      }
+    } catch (error) {
+      console.log(error);
+      ToastifyMessages.error(`${error.message}`);
+    }
+  };
+
   const theme = extendTheme({
     styles: {
       global: {
@@ -37,10 +100,15 @@ const Projetos = () => {
           action=""
           method="post"
           encType="multipart/form-data"
+          onSubmit={handleProjetosPesquisa}
         >
           <div className={classes.anexarPdfs}>
             <div className={classes.inputsPdfs}>
-              <input type="file" accept=".pdf" />
+              <input
+                type="file"
+                accept=".pdf"
+                onChange={handlepdfProjetosPesquisaChange}
+              />
               <p>Campo de submissão (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
@@ -156,6 +224,20 @@ const Projetos = () => {
           </div>
         </div>
       </div>
+      {isOpen && (
+        <ChakraProvider theme={theme} resetCSS={false}>
+          <ModalProjetos
+            isOpen={isOpen}
+            onClose={onClose}
+            data={data}
+            setData={setData}
+            dataEdit={dataEdit}
+            setDataEdit={setDataEdit}
+          />
+        </ChakraProvider>
+      )}
+
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };
