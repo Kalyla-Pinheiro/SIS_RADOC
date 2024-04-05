@@ -224,6 +224,7 @@ const Projetos = () => {
           </div>
         </div>
       </div>
+
       {isOpen && (
         <ChakraProvider theme={theme} resetCSS={false}>
           <ModalProjetos
