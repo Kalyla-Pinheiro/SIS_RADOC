@@ -11,6 +11,13 @@ import {
   Tbody,
   Td,
   useBreakpointValue,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import { useEffect, useState, useContext } from "react";
 import ModalProjetosDeExtensao from "../../../components/Modal/extensao/projetos-de-extensao/ModalProjetosDeExtensao";
@@ -23,6 +30,8 @@ const TabelasProjetosDeExtensao = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   useEffect(() => {
     const db_costumer =
@@ -101,6 +110,35 @@ const TabelasProjetosDeExtensao = () => {
               </Tr>
             </Thead>
             <Tbody>
+              {data.map(({id, titulo, cadastroProex, situacaoAtual, funcao, chSemanalSemestre1, chSemanalSemestre2}, index) => (
+                <Tr key={index} cursor="pointer " color="#fff" _hover={{ bg: "gray.100", color: "#000000" }}>
+                  <Td minW="150px" style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{id}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{titulo}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{cadastroProex}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{situacaoAtual}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{funcao}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre1}</Td>
+                  <Td minW="200px" style={{ wordWrap: 'break-word', maxWidth: 200 }}>{chSemanalSemestre2}</Td>
+                  <Td p={0}>
+                    <EditIcon
+                      fontSize={20}
+                      onClick={() => [
+                        setDataEdit({id, titulo, cadastroProex, situacaoAtual, funcao, chSemanalSemestre1, chSemanalSemestre2, index }),
+                        onOpen(),
+                      ]}
+                    />
+                  </Td>
+                  <Td >
+                    <DeleteIcon
+                      fontSize={20}
+                      onClick={() => {
+                        setItemToDelete(id);
+                        setDeleteConfirmationOpen(true);
+                      }}
+                    />
+                  </Td>
+                </Tr>
+              ))}
               {data.map(
                 (
                   {
@@ -209,6 +247,33 @@ const TabelasProjetosDeExtensao = () => {
           dataEdit={dataEdit}
           setDataEdit={setDataEdit}
         />
+      )}
+    {deleteConfirmationOpen && (
+        <Modal isOpen={deleteConfirmationOpen} onClose={() => setDeleteConfirmationOpen(false)} isCentered motionPreset="scale">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Confirmar exclusão</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              Tem certeza de que deseja excluir este item?
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                colorScheme="green"
+                onClick={() => {
+                  handleRemove(itemToDelete);
+                  setDeleteConfirmationOpen(false);
+                }}
+              >
+                Confirmar
+              </Button>
+              <Button colorScheme="red" mr={3} onClick={() => setDeleteConfirmationOpen(false)}>
+                Cancelar
+              </Button>
+              
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       )}
     </Flex>
   );

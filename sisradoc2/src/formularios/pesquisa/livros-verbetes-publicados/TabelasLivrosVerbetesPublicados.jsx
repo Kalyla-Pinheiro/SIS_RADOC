@@ -11,6 +11,13 @@ import {
   Tbody,
   Td,
   useBreakpointValue,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import { useEffect, useState, useContext } from "react";
 import ModalLivrosVerbetesPublicados from "../../../components/Modal/pesquisa/livros-verbetes-publicados/ModalLivrosVerbetesPublicados";
@@ -23,6 +30,8 @@ const TabelasLivrosVerbetesPublicados = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   useEffect(() => {
     const db_costumer =
@@ -133,7 +142,10 @@ const TabelasLivrosVerbetesPublicados = () => {
                   <Td>
                     <DeleteIcon
                       fontSize={20}
-                      onClick={() => handleRemove(id)}
+                      onClick={() => {
+                        setItemToDelete(id);
+                        setDeleteConfirmationOpen(true);
+                      }}
                     />
                   </Td>
                 </Tr>
@@ -151,6 +163,33 @@ const TabelasLivrosVerbetesPublicados = () => {
           dataEdit={dataEdit}
           setDataEdit={setDataEdit}
         />
+      )}
+    {deleteConfirmationOpen && (
+        <Modal isOpen={deleteConfirmationOpen} onClose={() => setDeleteConfirmationOpen(false)} isCentered motionPreset="scale">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Confirmar exclusão</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              Tem certeza de que deseja excluir este item?
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                colorScheme="green"
+                onClick={() => {
+                  handleRemove(itemToDelete);
+                  setDeleteConfirmationOpen(false);
+                }}
+              >
+                Confirmar
+              </Button>
+              <Button colorScheme="red" mr={3} onClick={() => setDeleteConfirmationOpen(false)}>
+                Cancelar
+              </Button>
+              
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       )}
     </Flex>
   );

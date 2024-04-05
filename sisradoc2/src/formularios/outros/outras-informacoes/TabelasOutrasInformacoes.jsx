@@ -186,6 +186,33 @@ const TabelasOutrasInformacoes = () => {
           </ModalContent>
         </Modal>
       )}
+    {deleteConfirmationOpen && (
+        <Modal isOpen={deleteConfirmationOpen} onClose={() => setDeleteConfirmationOpen(false)} isCentered motionPreset="scale">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Confirmar exclusão</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              Tem certeza de que deseja excluir este item?
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                colorScheme="green"
+                onClick={() => {
+                  handleRemove(itemToDelete);
+                  setDeleteConfirmationOpen(false);
+                }}
+              >
+                Confirmar
+              </Button>
+              <Button colorScheme="red" mr={3} onClick={() => setDeleteConfirmationOpen(false)}>
+                Cancelar
+              </Button>
+              
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      )}
     </Flex>
   );
 };
