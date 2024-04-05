@@ -96,9 +96,21 @@ const ModalDisciplinasMinistradas = ({
           "-" +
           aulasLetivasData.diario_turma.Disciplina[0]
       );
-      setChTotal(aulasLetivasData.diario_turma["Carga Horária"]);
-      setNomeDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[0]);
-      setChDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[1]);
+        // Verifica se docentes_envolvidos tem mais de um elemento
+        if (aulasLetivasData.docentes_envolvidos.length > 1) {
+          setNomeDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[0] + ', ' + aulasLetivasData.docentes_envolvidos[1]);
+      } else {
+          // Se não houver segundo elemento, define como uma string vazia
+          setNomeDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[0] || '');
+      }
+
+      // Verifica se docentes_ch_envolvidos tem mais de um elemento
+      if (aulasLetivasData.docentes_ch_envolvidos.length > 1) {
+          setChDocenteEnvolvido(aulasLetivasData.docentes_ch_envolvidos[0] + ', ' + aulasLetivasData.docentes_ch_envolvidos[1]);
+      } else {
+          // Se não houver segundo elemento, define como uma string vazia
+          setChDocenteEnvolvido(aulasLetivasData.docentes_ch_envolvidos[0] || '');
+      }
     }
   }, []);
 
