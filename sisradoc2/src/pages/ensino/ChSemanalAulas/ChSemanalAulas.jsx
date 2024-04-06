@@ -26,8 +26,8 @@ const ChSemanalAulas = () => {
   const [posGraduacaoSemestre1, setPosGraduacaoSemestre1] = useState("");
   const [posGraduacaoSemestre2, setPosGraduacaoSemestre2] = useState("");
 
-  const [totalSemestre1, setTotalSemestre1] = useState(0);
-  const [totalSemestre2, setTotalSemestre2] = useState(0);
+  // const [totalSemestre1, setTotalSemestre1] = useState(totalChDocenteEnvolvidoGraduacaoSemestre1+totalChDocenteEnvolvidoPosGraduacaoSemestre1);
+  // const [totalSemestre2, setTotalSemestre2] = useState(0);
 
   const localStorageKey = `${ano}`;
   let localStorageData = localStorage.getItem(localStorageKey);
@@ -92,6 +92,8 @@ const ChSemanalAulas = () => {
   let totalChDocenteEnvolvidoPosGraduacaoSemestre1 = 0;
   let totalChDocenteEnvolvidoGraduacaoSemestre2 = 0;
   let totalChDocenteEnvolvidoPosGraduacaoSemestre2 = 0;
+
+  
 
   if (
     Array.isArray(disciplinas_ministradas) &&
@@ -204,6 +206,9 @@ const ChSemanalAulas = () => {
     console.log("disciplinas_ministradas não é um array ou está vazio");
   }
 
+  const [totalSemestre1, setTotalSemestre1] = useState(totalChDocenteEnvolvidoGraduacaoSemestre1+totalChDocenteEnvolvidoPosGraduacaoSemestre1);
+  const [totalSemestre2, setTotalSemestre2] = useState(totalChDocenteEnvolvidoGraduacaoSemestre2+totalChDocenteEnvolvidoPosGraduacaoSemestre2);
+
   useEffect(() => {
     setGraduacaoSemestre1(totalChDocenteEnvolvidoGraduacaoSemestre1);
     setGraduacaoSemestre2(totalChDocenteEnvolvidoGraduacaoSemestre2);
@@ -211,12 +216,29 @@ const ChSemanalAulas = () => {
     setPosGraduacaoSemestre1(totalChDocenteEnvolvidoPosGraduacaoSemestre1);
     setPosGraduacaoSemestre2(totalChDocenteEnvolvidoPosGraduacaoSemestre2);
 
+    const updatedLocalStorageData = {
+      ...localStorageData,
+      disciplinas_ministradas: disciplinas_ministradas,
+      ChTotalAulasLetivas: {
+        "1Semestre": totalSemestre1,
+        "1SemestreGraduacao": totalChDocenteEnvolvidoGraduacaoSemestre1,
+        "1SemestrePosGraduacao": totalChDocenteEnvolvidoPosGraduacaoSemestre1,
+        "2Semestre": totalSemestre2,
+        "2SemestreGraduacao": totalChDocenteEnvolvidoGraduacaoSemestre2,
+        "2SemestrePosGraduacao": totalChDocenteEnvolvidoPosGraduacaoSemestre2,
+      }
+    };
+  
+    localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
+
     
   }, [
     totalChDocenteEnvolvidoGraduacaoSemestre1,
     totalChDocenteEnvolvidoGraduacaoSemestre2,
     totalChDocenteEnvolvidoPosGraduacaoSemestre1,
     totalChDocenteEnvolvidoPosGraduacaoSemestre2,
+    totalSemestre1,
+    totalSemestre2
   ]);
 
   const somaChTotalSemestre1 = () => {
@@ -232,17 +254,6 @@ const ChSemanalAulas = () => {
   var itensExistentes = JSON.parse(localStorage.getItem(localStorageKey));
   console.log(itensExistentes)
 
-
-  const updatedLocalStorageData = {
-    ...localStorageData,
-    disciplinas_ministradas: disciplinas_ministradas,
-    ChTotalAulasLetivas: {
-      "1º SEMESTRE": totalSemestre1,
-      "2º SEMESTRE": totalSemestre2
-    }
-  };
-
-  localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
 
 
 
@@ -344,13 +355,13 @@ const ChSemanalAulas = () => {
                 </div>
                 <input type="text" placeholder="" required value={totalSemestre1}/>
               </div>
-              <div className={classes.camposTabelaNCHteste}>
+              {/* <div className={classes.camposTabelaNCHteste}>
                 <div className={classes.buttonTotal}>
                   <button type="button" onClick={somaChTotalSemestre1}>
                     Calcular
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className={classes.camposInlineOA}>
@@ -401,13 +412,13 @@ const ChSemanalAulas = () => {
                 </div>
                 <input type="text" placeholder="" required value={totalSemestre2}/>
               </div>
-              <div className={classes.camposTabelaNCHteste}>
+              {/* <div className={classes.camposTabelaNCHteste}>
                 <div className={classes.buttonTotal}>
                   <button type="button" onClick={somaChTotalSemestre2}>
                     Calcular
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
 
           </div>
