@@ -29,7 +29,7 @@ import {
     const [descricao, setDescricao] = useState(dataEdit.descricao || "");
     
     const handleSave = () => {
-      if (!descricao) return;
+      // if (!descricao) return;
 
       const newItem = {
         id: uuidv4(),

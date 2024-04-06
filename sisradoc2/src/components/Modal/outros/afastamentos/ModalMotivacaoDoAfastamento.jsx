@@ -30,7 +30,7 @@ import {
     const [portaria, setPortaria] = useState(dataEdit.portaria || "");
     
     const handleSave = () => {
-      if (!motivacaoDoAfastamento || !portaria) return;
+      // if (!motivacaoDoAfastamento || !portaria) return;
 
       const newItem = {
         id: uuidv4(),
