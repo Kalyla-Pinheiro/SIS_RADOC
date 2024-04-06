@@ -46,8 +46,12 @@ const Cadastro = () => {
     nome: "",
     nomeUsuario: "",
     siape: "",
-    campus: "",
-    classeReferencia: "",
+    campus_id: "",
+    Disciplina_id: "",
+    instituto_id: "",
+    verificado: false,
+    token_email: "",
+    classe: "",
     vinculo: "",
     regimeTrabalho: "",
     titulacao: "",
@@ -158,8 +162,8 @@ const Cadastro = () => {
                   <input
                     type="text"
                     placeholder="SIAPE"
-                    name="siap"
-                    value={formData.siap}
+                    name="siape"
+                    value={formData.siape}
                     onChange={handleChange}
                     required
                   />
@@ -169,10 +173,10 @@ const Cadastro = () => {
                   <div className={classes.inputFieldCampus}>
                     <select
                       className={classes.selectCampus}
-                      value={formData.campus}
+                      value={formData.campus_id}
                       onChange={handleChange}
-                      id="campus"
-                      name="campus"
+                      id="campus_id"
+                      name="campus_id"
                       placeholder="CAMPUS/INSTITUTO"
                       required
                     >
@@ -196,10 +200,10 @@ const Cadastro = () => {
                   <div className={classes.inputFieldClasseReferencia}>
                     <select 
                       className={classes.selectClasseReferencia}  
-                      value={formData.classeReferencia}
+                      value={formData.classe}
                       onChange={handleChange}
-                      id="classeReferencia" 
-                      name="classeReferencia" 
+                      id="classe" 
+                      name="classe" 
                       placeholder="Classe e Referencia" 
                       required
                       >
@@ -227,7 +231,7 @@ const Cadastro = () => {
                       required
                       >
                         <option value="">Selecione o Vinculo</option>
-                        <option value="Estatuario">Estatúario</option>
+                        <option value="Estatuario">Estatutário</option>
                       </select>
                   </div>
                 </div>
