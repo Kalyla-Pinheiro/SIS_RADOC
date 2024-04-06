@@ -68,6 +68,7 @@ const AvaliacaoDocente = () => {
         ToastifyMessages.error(`${erro.erro}`);
       }
     } catch (error) {
+      console.log(error);
       ToastifyMessages.error(`${error.message}`);
     }
   };

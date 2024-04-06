@@ -79,6 +79,17 @@ const TokenFunctions = {
     const projetos = Cookies.get("projetos_pesquisa");
     return JSON.parse(projetos);
   },
+
+  set_projetos_extensao: (projetos_extensao) => {
+    const projetosExtensao = JSON.stringify(projetos_extensao);
+
+    Cookies.set("projetos_extensao", projetosExtensao, { expires: 1, path: "/" });
+  },
+
+  get_projetos_extensao: () => {
+    const projetosExtensao = Cookies.get("projetos_extensao");
+    return JSON.parse(projetosExtensao);
+  },
 };
 
 export default TokenFunctions;

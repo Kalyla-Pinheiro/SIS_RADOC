@@ -12,6 +12,7 @@ const apiUrls = {
   avaliacao_discente: `${baseUrl}/pdf/avaliacao_discente`,
   salvar_diarios_turmas: `${baseUrl}/aulas_letivas`,
   projetos_pesquisa: `${baseUrl}/pdf/projetos`,
+  projetos_extensao: `${baseUrl}/pdf/projetos_extensao`,
 };
 
 export default apiUrls;

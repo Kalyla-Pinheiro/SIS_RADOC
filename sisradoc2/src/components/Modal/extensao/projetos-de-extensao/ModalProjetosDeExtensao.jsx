@@ -12,9 +12,10 @@ import {
     Input,
     Box,
   } from "@chakra-ui/react";
-  import { useState, useContext } from "react";
-  import { v4 as uuidv4 } from "uuid"; 
+  import { useState, useContext, useEffect } from "react";
+  import { v4 as uuidv4 } from "uuid";
   import { AnoContext } from "../../../../utils/AnoContext";
+  import TokenFunctions from "../../../../utils/Token";
   
   const ModalProjetosDeExtensao = ({
     data,
@@ -59,6 +60,36 @@ import {
       setData(newDataArray);
   
       onClose();
+      window.location.reload();
+    };
+
+    var projetosExtensaoData = "";
+    try {
+      projetosExtensaoData = TokenFunctions.get_projetos_extensao();
+    } catch (error) {}
+  
+    useEffect(() => {
+      if(projetosExtensaoData) {
+        setTitulo(projetosExtensaoData.projetos_extensao["Título"]);
+        setCadastroProex(projetosExtensaoData.projetos_extensao["Código"]);
+        setSituacaoAtual(projetosExtensaoData.projetos_extensao["Situação"]);
+      }
+    }, []);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+  
+      const fieldSetters = {
+        Titulo: setTitulo,
+        CadastroProex: setCadastroProex,
+        SituacaoAtual: setSituacaoAtual,
+        Funcao: setFuncao,
+      };
+
+      const setter = fieldSetters[name];
+      if (setter) {
+        setter(value);
+      }
     };
   
     return (
@@ -74,32 +105,36 @@ import {
                   <FormLabel>Título</FormLabel>
                   <Input
                     type="text"
+                    name="Titulo"
                     value={titulo}
-                    onChange={(e) => setTitulo(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 <Box>
                   <FormLabel>Cadastro Proex</FormLabel>
                   <Input
                     type="text"
+                    name="CadastroProex"
                     value={cadastroProex}
-                    onChange={(e) => setCadastroProex(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 <Box>
                   <FormLabel>Situação Atual</FormLabel>
                   <Input
                     type="text"
+                    name="SituacaoAtual"
                     value={situacaoAtual}
-                    onChange={(e) => setSituacaoAtual(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 <Box>
                   <FormLabel>Função</FormLabel>
                   <Input
                     type="text"
+                    name="Funcao"
                     value={funcao}
-                    onChange={(e) => setFuncao(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 <Box>
