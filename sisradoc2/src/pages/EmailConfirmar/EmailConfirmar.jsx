@@ -23,11 +23,6 @@ const EmailConfirmar = () => {
 
         <div className={classes.botao}>
           <div>
-            <a href="/cadastro">
-              <button>Voltar</button>
-            </a>
-          </div>
-          <div>
             <button>Reenviar Email</button>
           </div>
         </div>
