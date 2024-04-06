@@ -10,6 +10,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Select,
   Box,
 } from "@chakra-ui/react";
 import { useState, useContext, useEffect } from "react";
@@ -121,12 +122,15 @@ const ModalProjetos = ({ data, setData, dataEdit, isOpen, onClose }) => {
               </Box>
               <Box>
                 <FormLabel>Função</FormLabel>
-                <Input
-                  type="text"
+                <Select
                   name="Funcao"
+                  placeholder="Selecione a Função"
                   value={funcao}
                   onChange={handleChange}
-                />
+                >
+                  <option>Coordenador</option>
+                  <option>Colaborador</option>
+                </Select>
               </Box>
             </FormControl>
           </ModalBody>
