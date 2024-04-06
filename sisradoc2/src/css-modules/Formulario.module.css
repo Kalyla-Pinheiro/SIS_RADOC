@@ -1,7 +1,6 @@
 .formularioContainer {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   margin-top: 25px;
   height: 700px;
   width: 100%;
@@ -14,4 +13,10 @@
 
 .titulo {
   color: #7c5942;
+  text-align: center;
+  margin: 40px 75px 0px 75px;
+}
+
+.paragrafos {
+  margin: 20px 75px 0px 75px;
 }

@@ -75,6 +75,7 @@ main {
   display: flex;
   align-items: center;
   margin-left: 2rem;
+  text-transform: uppercase;
 }
 
 .dropdown-menu {
