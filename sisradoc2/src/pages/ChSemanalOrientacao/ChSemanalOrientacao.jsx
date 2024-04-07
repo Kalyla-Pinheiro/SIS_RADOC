@@ -35,123 +35,147 @@ const ChSemanalOrientacao = () => {
   let list_Supervisao_Semestre2 = 0;
   let list_Preceptoria_Semestre2 = 0;
 
-  // For de orientação
-
-  for (let i = 0; i < orientacao_coorientacao.length; i++) {
-    var dados = orientacao_coorientacao[i];
-
-    if (
-      dados.participacao === "ORIENTAÇÃO"
-    ) {
-      list_Orientacao_Semestre1 += parseInt(
-        dados.chSemanalSemestre1
-      );
-    }
-
-  }
-
-  for (let i = 0; i < orientacao_coorientacao.length; i++) {
-    var dados = orientacao_coorientacao[i];
-
-    if (
-      dados.participacao === "ORIENTAÇÃO"
-    ) {
-      list_Orientacao_Semestre2 += parseInt(
-        dados.chSemanalSemestre2
-      );
-    }
-
-  }
-
-  // For de coorientação
-
-  for (let i = 0; i < orientacao_coorientacao.length; i++) {
-    var dados = orientacao_coorientacao[i];
-
-    if (
-      dados.participacao === "CO-ORIENTAÇÃO"
-    ) {
-      list_Coorientacao_Semestre1 += parseInt(
-        dados.chSemanalSemestre1
-      );
-    }
-
-  }
-
-  for (let i = 0; i < orientacao_coorientacao.length; i++) {
-    var dados = orientacao_coorientacao[i];
-
-    if (
-      dados.participacao === "CO-ORIENTAÇÃO"
-    ) {
-      list_Coorientacao_Semestre2 += parseInt(
-        dados.chSemanalSemestre2
-      );
-    }
-
-  }
-
-
-  // For de Supervisao
-
-  for (let i = 0; i < supervisao_academica.length; i++) {
-    var dados = supervisao_academica[i];
-
-    if (
-      // dados.participacao === "ORIENTAÇÃO"
-      true
-    ) {
-      list_Supervisao_Semestre1 += parseInt(
-        dados.chSemanalSemestre1
-      );
-    }
-
-  }
-
-  for (let i = 0; i < supervisao_academica.length; i++) {
-    var dados = supervisao_academica[i];
-
-    if (
-      // dados.nivel === "ORIENTAÇÃO"
-      true
-    ) {
-      list_Supervisao_Semestre2 += parseInt(
-        dados.chSemanalSemestre2
-      );
-    }
-
-  }
-
-  // For de Preceptoria
-
-  for (let i = 0; i < preceptoria_tutoria.length; i++) {
-    var dados = preceptoria_tutoria[i];
-
-    if (
-      // dados.participacao === "ORIENTAÇÃO"
-      true
-    ) {
-      list_Preceptoria_Semestre1 += parseInt(
-        dados.chSemanalSemestre1
-      );
-    }
-
-  }
-
-  for (let i = 0; i < preceptoria_tutoria.length; i++) {
-    var dados = preceptoria_tutoria[i];
-
-    if (
-      // dados.nivel === "ORIENTAÇÃO"
-      true
-    ) {
-      list_Preceptoria_Semestre2 += parseInt(
-        dados.chSemanalSemestre2
-      );
-    }
-
-  }
   
+
+  if (
+    Array.isArray(orientacao_coorientacao) &&
+    orientacao_coorientacao.length > 0
+  ) {
+
+
+    // For de orientação
+
+    for (let i = 0; i < orientacao_coorientacao.length; i++) {
+      var dados = orientacao_coorientacao[i];
+
+      if (
+        dados.participacao === "ORIENTAÇÃO"
+      ) {
+        list_Orientacao_Semestre1 += parseInt(
+          dados.chSemanalSemestre1
+        );
+      }
+
+    }
+
+    for (let i = 0; i < orientacao_coorientacao.length; i++) {
+      var dados = orientacao_coorientacao[i];
+
+      if (
+        dados.participacao === "ORIENTAÇÃO"
+      ) {
+        list_Orientacao_Semestre2 += parseInt(
+          dados.chSemanalSemestre2
+        );
+      }
+
+    }
+
+    // For de coorientação
+
+    for (let i = 0; i < orientacao_coorientacao.length; i++) {
+      var dados = orientacao_coorientacao[i];
+
+      if (
+        dados.participacao === "CO-ORIENTAÇÃO"
+      ) {
+        list_Coorientacao_Semestre1 += parseInt(
+          dados.chSemanalSemestre1
+        );
+      }
+
+    }
+
+    for (let i = 0; i < orientacao_coorientacao.length; i++) {
+      var dados = orientacao_coorientacao[i];
+
+      if (
+        dados.participacao === "CO-ORIENTAÇÃO"
+      ) {
+        list_Coorientacao_Semestre2 += parseInt(
+          dados.chSemanalSemestre2
+        );
+      }
+
+    }
+
+  }
+
+
+
+  if (
+    Array.isArray(supervisao_academica) &&
+    supervisao_academica.length > 0
+  ) {
+
+    // For de Supervisao
+
+    for (let i = 0; i < supervisao_academica.length; i++) {
+      var dados = supervisao_academica[i];
+
+      if (
+        // dados.participacao === "ORIENTAÇÃO"
+        true
+      ) {
+        list_Supervisao_Semestre1 += parseInt(
+          dados.chSemanalSemestre1
+        );
+      }
+
+    }
+
+    for (let i = 0; i < supervisao_academica.length; i++) {
+      var dados = supervisao_academica[i];
+
+      if (
+        // dados.nivel === "ORIENTAÇÃO"
+        true
+      ) {
+        list_Supervisao_Semestre2 += parseInt(
+          dados.chSemanalSemestre2
+        );
+      }
+
+    }
+
+  }
+
+  if (
+    Array.isArray(preceptoria_tutoria) &&
+    preceptoria_tutoria.length > 0
+  ) {
+
+    // For de Preceptoria
+
+    for (let i = 0; i < preceptoria_tutoria.length; i++) {
+      var dados = preceptoria_tutoria[i];
+
+      if (
+        // dados.participacao === "ORIENTAÇÃO"
+        true
+      ) {
+        list_Preceptoria_Semestre1 += parseInt(
+          dados.chSemanalSemestre1
+        );
+      }
+
+    }
+
+    for (let i = 0; i < preceptoria_tutoria.length; i++) {
+      var dados = preceptoria_tutoria[i];
+
+      if (
+        // dados.nivel === "ORIENTAÇÃO"
+        true
+      ) {
+        list_Preceptoria_Semestre2 += parseInt(
+          dados.chSemanalSemestre2
+        );
+      }
+
+    }
+  
+  }
 
 
   // variaveis
