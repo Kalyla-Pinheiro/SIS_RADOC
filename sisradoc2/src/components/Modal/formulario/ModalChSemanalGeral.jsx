@@ -90,11 +90,11 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
                   textAlign="center"
                   marginTop={4}
                 >
-                  <FormLabel textAlign="center">Semestre_1</FormLabel>
+                  <FormLabel textAlign="center">1ºSemestre</FormLabel>
                 </Box>
                 <Box textAlign="center">
                   <FormLabel marginTop={6} textAlign="center">
-                    Semestre_2
+                    2ºSemestre
                   </FormLabel>
                 </Box>
               </Box>
