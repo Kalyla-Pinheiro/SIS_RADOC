@@ -8,6 +8,11 @@ const Perfil = () => {
 
   const nomeUsuario = TokenFunctions.getName(token);
   const emailUsuario = TokenFunctions.getEmail(token);
+  // const vinculoUsuario = TokenFunctions.getVinculo(token);
+  // const siapeUsuario = TokenFunctions.getSiape(token);
+  // const titulacaoUsuario = TokenFunctions.getTitulacao(token);
+  // const institutoUsuario = TokenFunctions.getInstituto(token);
+  // const campusUsuario = TokenFunctions.getCampus(token);
 
   // const nomeUsuario = decodedToken.nomeUsuario;
 

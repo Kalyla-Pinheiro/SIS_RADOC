@@ -80,7 +80,10 @@ const TokenFunctions = {
 
   set_projetos_extensao: (projetos_extensao) => {
     const projetosExtensao = JSON.stringify(projetos_extensao);
-    Cookies.set("projetos_extensao", projetosExtensao, { expires: 1, path: "/" });
+    Cookies.set("projetos_extensao", projetosExtensao, {
+      expires: 1,
+      path: "/",
+    });
   },
 
   get_projetos_extensao: () => {
@@ -90,7 +93,10 @@ const TokenFunctions = {
 
   set_orientacao_academica: (orientacao_academica) => {
     const orientacaoAcademica = JSON.stringify(orientacao_academica);
-    Cookies.set("orientacao_academica", orientacaoAcademica, { expires: 1, path: "/" });
+    Cookies.set("orientacao_academica", orientacaoAcademica, {
+      expires: 1,
+      path: "/",
+    });
   },
 
   get_orientacao_academica: () => {

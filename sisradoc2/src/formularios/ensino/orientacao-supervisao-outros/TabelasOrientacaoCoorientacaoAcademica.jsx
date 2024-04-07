@@ -101,6 +101,9 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
                   Nível
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#7c5942">
+                  Participação
+                </Th>
+                <Th minW="200px" fontSize="15px" color="#7c5942">
                   CH Semanal (1º Semestre)
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#7c5942">
@@ -119,6 +122,7 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
                     curso,
                     tipo,
                     nivel,
+                    participacao,
                     chSemanalSemestre1,
                     chSemanalSemestre2,
                   },
@@ -171,6 +175,12 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
                       minW="200px"
                       style={{ wordWrap: "break-word", maxWidth: 200 }}
                     >
+                      {participacao}
+                    </Td>
+                    <Td
+                      minW="200px"
+                      style={{ wordWrap: "break-word", maxWidth: 200 }}
+                    >
                       {chSemanalSemestre1}
                     </Td>
                     <Td
@@ -189,6 +199,7 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
                             curso,
                             tipo,
                             nivel,
+                            participacao,
                             chSemanalSemestre1,
                             chSemanalSemestre2,
                             index,
@@ -198,16 +209,17 @@ const TabelasOrientacaoCoorientacaoAcademica = () => {
                       />
                     </Td>
                     <Td>
-                    <DeleteIcon
-                      fontSize={20}
-                      onClick={() => {
-                        setItemToDelete(id);
-                        setDeleteConfirmationOpen(true);
-                      }}
-                    />
-                  </Td>
-                </Tr>
-              ))}
+                      <DeleteIcon
+                        fontSize={20}
+                        onClick={() => {
+                          setItemToDelete(id);
+                          setDeleteConfirmationOpen(true);
+                        }}
+                      />
+                    </Td>
+                  </Tr>
+                )
+              )}
             </Tbody>
           </Table>
         </Box>
