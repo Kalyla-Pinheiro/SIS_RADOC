@@ -22,6 +22,7 @@ const Perfil = () => {
         <div className="titulo">
           <h2>DADOS DO DOCENTE</h2>
         </div>
+        <div></div>
 
         <div className="areaPreenchimento">
           <div className="campoTabelasSemestre">
