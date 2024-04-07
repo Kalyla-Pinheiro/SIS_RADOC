@@ -3,6 +3,7 @@ import classes from "../../css-modules/Outros.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import ModalChSemanalOutros from "../../components/Modal/outros/ch-semanal/ModalChSemanalOutros";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
+import { BiChevronLeft } from "react-icons/bi";
 
 const Outros = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,7 +30,11 @@ const Outros = () => {
 
       <div className={classes.outrosContainer}>
         <div className={classes.tituloEbutton}>
-          <div></div>
+          <div className={classes.btnConteiner}>
+            <a href="/formularios">
+              <BiChevronLeft className={classes.btnVoltar} />
+            </a>
+          </div>
           <div className={classes.titulo}>
             <h1>Outros</h1>
           </div>

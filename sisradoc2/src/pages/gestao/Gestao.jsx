@@ -3,6 +3,7 @@ import classes from "../../css-modules/Gestao.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import ModalChSemanalGestao from "../../components/Modal/gestao/ch-semanal/ModalChSemanalGestao";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
+import { BiChevronLeft } from "react-icons/bi";
 
 const Gestao = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,7 +30,11 @@ const Gestao = () => {
 
       <div className={classes.gestaoContainer}>
         <div className={classes.tituloEbutton}>
-          <div></div>
+          <div className={classes.btnConteiner}>
+            <a href="/formularios">
+              <BiChevronLeft className={classes.btnVoltar} />
+            </a>
+          </div>
           <div className={classes.titulo}>
             <h1>Gestão</h1>
           </div>
