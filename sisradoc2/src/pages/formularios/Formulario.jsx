@@ -32,8 +32,7 @@ const Formulario = () => {
             passíveis de preenchimento. Para preencher uma seção específica,
             basta clicar no botão correspondente a cada atividade. Além disso, é
             possível visualizar a distribuição da carga horária semanal das
-            atividades do ano em preenchimento ao clicar no botão "Visualizar
-            Distribuição da CH Semanal".
+            atividades do ano em preenchimento ao clicar no botão "CH Semanal".
           </h3>
           <h3 className={classes.paragrafos}>
             Ao concluir o preenchimento, clique em "Gerar Radoc" para finalizar
