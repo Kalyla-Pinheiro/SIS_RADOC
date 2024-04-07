@@ -3,6 +3,7 @@ import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import ModalChSemanalEnsino from "../../components/Modal/ensino/ch-semanal/ModalChSemanalEnsino";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
+import { BiChevronLeft } from "react-icons/bi";
 
 const Ensino = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,7 +30,12 @@ const Ensino = () => {
 
       <div className={classes.ensinoContainer}>
         <div className={classes.tituloEbutton}>
-          <div></div>
+          <div className={classes.btnConteiner}>
+            <a href="/formularios">
+              <BiChevronLeft className={classes.btnVoltar} />
+            </a>
+          </div>
+
           <div className={classes.titulo}>
             <h1>Ensino</h1>
           </div>

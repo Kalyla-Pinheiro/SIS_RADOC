@@ -3,6 +3,7 @@ import classes from "../../css-modules/Extensao.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import ModalChSemanalExtensao from "../../components/Modal/extensao/ch-semanal/ModalChSemanalExtensao";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
+import { BiChevronLeft } from "react-icons/bi";
 
 const Extensao = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,7 +30,11 @@ const Extensao = () => {
 
       <div className={classes.extensaoContainer}>
         <div className={classes.tituloEbutton}>
-          <div></div>
+          <div className={classes.btnConteiner}>
+            <a href="/formularios">
+              <BiChevronLeft className={classes.btnVoltar} />
+            </a>
+          </div>
           <div className={classes.titulo}>
             <h1>Extensão</h1>
           </div>

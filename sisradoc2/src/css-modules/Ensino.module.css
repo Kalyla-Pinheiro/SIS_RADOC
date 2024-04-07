@@ -75,7 +75,7 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
 }
 
 .opcoesEnsino {
-  margin: 50px;
+  margin: 27px 50px 50px 50px;
   width: 700px;
 }
 
@@ -767,4 +767,18 @@ body:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
 #tabelasAvaliacaoDiscente {
   width: 68.75rem;
   height: 430px;
+}
+
+.btnConteiner {
+  width: 100%;
+  height: 100%;
+}
+
+.btnVoltar {
+  width: 4rem;
+  height: 4rem;
+  margin-left: 2rem;
+  color: #049673;
+  border-radius: 1rem;
+  cursor: pointer;
 }

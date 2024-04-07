@@ -3,6 +3,7 @@ import classes from "../../css-modules/Pesquisa.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import ModalChSemanalPesquisa from "../../components/Modal/pesquisa/ch-semanal/ModalChSemanalPesquisa";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
+import { BiChevronLeft } from "react-icons/bi";
 
 const Pesquisa = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,7 +30,11 @@ const Pesquisa = () => {
 
       <div className={classes.pesquisaContainer}>
         <div className={classes.tituloEbutton}>
-          <div></div>
+          <div className={classes.btnConteiner}>
+            <a href="/formularios">
+              <BiChevronLeft className={classes.btnVoltar} />
+            </a>
+          </div>
           <div className={classes.titulo}>
             <h1>Pesquisa</h1>
           </div>
