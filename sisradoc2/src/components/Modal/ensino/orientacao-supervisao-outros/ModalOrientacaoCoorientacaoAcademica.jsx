@@ -13,17 +13,12 @@ import {
     Select,
     Box,
   } from "@chakra-ui/react";
-  import { useState, useContext } from "react";
+  import { useState, useContext, useEffect } from "react";
   import { v4 as uuidv4 } from "uuid";
   import { AnoContext } from "../../../../utils/AnoContext";
+  import TokenFunctions from "../../../../utils/Token";
   
-  const ModalOrientacaoCoorientacaoAcademica = ({
-    data,
-    setData,
-    dataEdit,
-    isOpen,
-    onClose
-  }) => {
+  const ModalOrientacaoCoorientacaoAcademica = ({ data, setData, dataEdit, isOpen, onClose }) => {
 
     const { ano } = useContext(AnoContext);
     console.log("O valor do ano é: ", ano);
@@ -65,7 +60,38 @@ import {
       setData(newDataArray);
   
       onClose();
+      window.location.reload();
     };  
+
+    var orientacaoAcademicaData = "";
+    try {
+      orientacaoAcademicaData = TokenFunctions.get_orientacao_academica();
+    } catch (error) {}
+  
+    useEffect(() => {
+      if (orientacaoAcademicaData) {
+        setNome(orientacaoAcademicaData.orientacao_academica_nome);
+        setCurso(orientacaoAcademicaData.orientacao_academica_curso);
+      }
+    }, []);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+  
+      const fieldSetters = {
+        Nome: setNome,
+        Curso: setCurso,
+        Tipo: setTipo,
+        Nivel: setNivel,
+        CH_Semanal_Semestre_1: setChSemanalSemestre1,
+        CH_Semanal_Semestre_2: setChSemanalSemestre2,
+      };
+  
+      const setter = fieldSetters[name];
+      if (setter) {
+        setter(value);
+      }
+    };
   
     return (
       <>
@@ -80,16 +106,18 @@ import {
                   <FormLabel>Nome</FormLabel>
                   <Input
                     type="text"
+                    name="Nome"
                     value={nome}
-                    onChange={(e) => setNome(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 <Box>
                   <FormLabel>Curso</FormLabel>
                   <Input
                     type="text"
+                    name="Curso"
                     value={curso}
-                    onChange={(e) => setCurso(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 <Box>
@@ -98,7 +126,7 @@ import {
                     name="Tipo"
                     placeholder="Selecione o tipo"
                     value={tipo}
-                    onChange={(e) => setTipo(e.target.value)}
+                    onChange={handleChange}
                   >
                     <option>IC</option>
                     <option>VIC</option>
@@ -121,7 +149,7 @@ import {
                     name="Nivel"
                     placeholder="Selecione o nível"
                     value={nivel}
-                    onChange={(e) => setNivel(e.target.value)}
+                    onChange={handleChange}
                   >
                     <option>GRADUAÇÃO</option>
                     <option>PÓS-GRADUAÇÃO</option>
@@ -133,7 +161,7 @@ import {
                     name="Participação"
                     placeholder="Selecione a participação"
                     value={participacao}
-                    onChange={(e) => setParticipacao(e.target.value)}
+                    onChange={handleChange}
                   >
                     <option>ORIENTAÇÃO</option>
                     <option>CO-ORIENTAÇÃO</option>
@@ -143,16 +171,18 @@ import {
                   <FormLabel>CH Semanal (1º Semestre)</FormLabel>
                   <Input
                     type="text"
+                    name="CH_Semanal_Semestre_1"
                     value={chSemanalSemestre1}
-                    onChange={(e) => setChSemanalSemestre1(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 <Box>
                   <FormLabel>CH Semanal (2º Semestre)</FormLabel>
                   <Input
                     type="text"
+                    name="CH_Semanal_Semestre_2"
                     value={chSemanalSemestre2}
-                    onChange={(e) => setChSemanalSemestre2(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 
