@@ -1,6 +1,6 @@
-const baseUrl = "http://localhost:5000";
+const baseUrl = "http://localhost:5000"
 /*const baseUrl =
-  "https://250e-200-129-150-3.ngrok-free.app";*/
+  "https://d172-2804-14c-5984-871a-10df-80dc-2fbc-f646.ngrok-free.app";*/
 
 const apiUrls = {
   login: `${baseUrl}/login`,
@@ -13,6 +13,7 @@ const apiUrls = {
   salvar_diarios_turmas: `${baseUrl}/aulas_letivas`,
   projetos_pesquisa: `${baseUrl}/pdf/projetos`,
   projetos_extensao: `${baseUrl}/pdf/projetos_extensao`,
+  orientacao_academica: `${baseUrl}/pdf/orientacao_academica`,
 };
 
 export default apiUrls;

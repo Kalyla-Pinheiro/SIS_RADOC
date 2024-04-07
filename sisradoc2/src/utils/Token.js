@@ -45,7 +45,6 @@ const TokenFunctions = {
 
   set_diario_turma: (diario_turma) => {
     const diario = JSON.stringify(diario_turma);
-
     Cookies.set("diario_turma", diario, { expires: 1, path: "/" });
   },
 
@@ -71,7 +70,6 @@ const TokenFunctions = {
 
   set_projetos_pesquisa: (projetos_pesquisa) => {
     const projetos = JSON.stringify(projetos_pesquisa);
-
     Cookies.set("projetos_pesquisa", projetos, { expires: 1, path: "/" });
   },
 
@@ -82,13 +80,28 @@ const TokenFunctions = {
 
   set_projetos_extensao: (projetos_extensao) => {
     const projetosExtensao = JSON.stringify(projetos_extensao);
-
-    Cookies.set("projetos_extensao", projetosExtensao, { expires: 1, path: "/" });
+    Cookies.set("projetos_extensao", projetosExtensao, {
+      expires: 1,
+      path: "/",
+    });
   },
 
   get_projetos_extensao: () => {
     const projetosExtensao = Cookies.get("projetos_extensao");
     return JSON.parse(projetosExtensao);
+  },
+
+  set_orientacao_academica: (orientacao_academica) => {
+    const orientacaoAcademica = JSON.stringify(orientacao_academica);
+    Cookies.set("orientacao_academica", orientacaoAcademica, {
+      expires: 1,
+      path: "/",
+    });
+  },
+
+  get_orientacao_academica: () => {
+    const orientacaoAcademica = Cookies.get("orientacao_academica");
+    return JSON.parse(orientacaoAcademica);
   },
 };
 

@@ -18,13 +18,8 @@ import { v4 as uuidv4 } from "uuid";
 import { AnoContext } from "../../../../utils/AnoContext";
 import TokenFunctions from "../../../../utils/Token";
 
-const ModalProjetosDeExtensao = ({
-  data,
-  setData,
-  dataEdit,
-  isOpen,
-  onClose,
-}) => {
+const ModalProjetosDeExtensao = ({ data, setData, dataEdit, isOpen, onClose }) => {
+  
   const { ano } = useContext(AnoContext);
 
   const [titulo, setTitulo] = useState(dataEdit.titulo || "");
@@ -92,6 +87,8 @@ const ModalProjetosDeExtensao = ({
       CadastroProex: setCadastroProex,
       SituacaoAtual: setSituacaoAtual,
       Funcao: setFuncao,
+      CH_Semanal_Semestre_1: setChSemanalSemestre1,
+      CH_Semanal_Semestre_2: setChSemanalSemestre2
     };
 
     const setter = fieldSetters[name];
@@ -142,7 +139,7 @@ const ModalProjetosDeExtensao = ({
                   name="Funcao"
                   placeholder="Selecione a Função"
                   value={funcao}
-                  onChange={(e) => setFuncao(e.target.value)}
+                  onChange={handleChange}
                 >
                   <option>Coordenador</option>
                   <option>Colaborador</option>
@@ -153,16 +150,18 @@ const ModalProjetosDeExtensao = ({
                 <FormLabel>CH Semanal (1º Semestre)</FormLabel>
                 <Input
                   type="text"
+                  name="CH_Semanal_Semestre_1"
                   value={chSemanalSemestre1}
-                  onChange={(e) => setChSemanalSemestre1(e.target.value)}
+                  onChange={handleChange}
                 />
               </Box>
               <Box>
                 <FormLabel>CH Semanal (2º Semestre)</FormLabel>
                 <Input
                   type="text"
+                  name="CH_Semanal_Semestre_2"
                   value={chSemanalSemestre2}
-                  onChange={(e) => setChSemanalSemestre2(e.target.value)}
+                  onChange={handleChange}
                 />
               </Box>
             </FormControl>
