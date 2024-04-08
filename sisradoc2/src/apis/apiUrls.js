@@ -14,6 +14,7 @@ const apiUrls = {
   projetos_pesquisa: `${baseUrl}/pdf/projetos`,
   projetos_extensao: `${baseUrl}/pdf/projetos_extensao`,
   orientacao_academica: `${baseUrl}/pdf/orientacao_academica`,
+  trabalhos_boletins: `${baseUrl}/pdf/trabalhos_boletins`,
 };
 
 export default apiUrls;

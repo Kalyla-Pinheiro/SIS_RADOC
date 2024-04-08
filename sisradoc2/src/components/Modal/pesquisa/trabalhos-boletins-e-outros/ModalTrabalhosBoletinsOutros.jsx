@@ -12,17 +12,12 @@ import {
     Input,
     Box,
   } from "@chakra-ui/react";
-  import { useState, useContext } from "react";
+  import { useState, useContext, useEffect } from "react";
   import { v4 as uuidv4 } from "uuid";
   import { AnoContext } from "../../../../utils/AnoContext";
+  import TokenFunctions from "../../../../utils/Token";
   
-  const ModalTrabalhosBoletinsOutros = ({
-    data,
-    setData,
-    dataEdit,
-    isOpen,
-    onClose
-  }) => {
+  const ModalTrabalhosBoletinsOutros = ({ data, setData, dataEdit, isOpen, onClose }) => {
     const { ano } = useContext(AnoContext);
     
     const [link, setLink] = useState(dataEdit.link || "");
@@ -50,7 +45,32 @@ import {
       setData(newDataArray);
   
       onClose();
+      window.location.reload();
     };  
+
+    var trabalhosBoletinsData = "";
+    try {
+      trabalhosBoletinsData = TokenFunctions.get_projetos_extensao();
+    } catch (error) {}
+
+    useEffect(() => {
+      if (trabalhosBoletinsData) {
+        setDescricao(trabalhosBoletinsData.trabalhosBoletins[0]);
+      }
+    }, []);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+  
+      const fieldSetters = {
+        Descricao: setDescricao,
+      };
+  
+      const setter = fieldSetters[name];
+      if (setter) {
+        setter(value);
+      }
+    };
   
     return (
       <>
@@ -73,8 +93,9 @@ import {
                   <FormLabel>Descrição</FormLabel>
                   <Input
                     type="text"
+                    name="Descricao"
                     value={descricao}
-                    onChange={(e) => setDescricao(e.target.value)}
+                    onChange={handleChange}
                   />
                 </Box>
                 
