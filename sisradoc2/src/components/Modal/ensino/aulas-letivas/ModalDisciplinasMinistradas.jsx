@@ -106,10 +106,11 @@ const ModalDisciplinasMinistradas = ({
 
       // Verifica se docentes_ch_envolvidos tem mais de um elemento
       if (aulasLetivasData.docentes_ch_envolvidos.length > 1) {
-          setChDocenteEnvolvido(aulasLetivasData.docentes_ch_envolvidos[0] + ', ' + aulasLetivasData.docentes_ch_envolvidos[1]);
+          // setChDocenteEnvolvido(parseInt(aulasLetivasData.docentes_ch_envolvidos[0]) + ', ' + parseInt(aulasLetivasData.docentes_ch_envolvidos[1]));
+          setChDocenteEnvolvido(parseInt(aulasLetivasData.docentes_ch_envolvidos[0]) + parseInt(aulasLetivasData.docentes_ch_envolvidos[1]));
       } else {
           // Se não houver segundo elemento, define como uma string vazia
-          setChDocenteEnvolvido(aulasLetivasData.docentes_ch_envolvidos[0] || '');
+          setChDocenteEnvolvido(parseInt(aulasLetivasData.docentes_ch_envolvidos[0]) || '');
       }
     }
   }, []);
@@ -249,9 +250,9 @@ const ModalDisciplinasMinistradas = ({
               <Box>
                 <FormLabel>CH Docente Envolvido</FormLabel>
                 <Input
-                  type="text"
+                  type="number"
                   name="CH_Docente_Envolvido"
-                  value={chDocenteEnvolvido}
+                  value={parseInt(chDocenteEnvolvido)}
                   onChange={handleChange}
                 />
               </Box>
