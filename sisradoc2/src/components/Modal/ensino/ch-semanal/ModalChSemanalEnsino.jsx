@@ -40,46 +40,43 @@ import {
     let TodoSemestre1 = 0;
     let TodoSemestre2 = 0;
 
-    console.log(ChAulasLetivas.length)
+    if (ChAulasLetivas) {
 
-    if (
-      ChAulasLetivas
-    ) {
-  
-      
       TodoSemestre1 += ChAulasLetivas["1Semestre"];
       TodoSemestre2 += ChAulasLetivas["2Semestre"];
 
     }
 
-    if (
-      ChPedagogicasComplementares
-    ) {
-  
-        TodoSemestre1 += ChPedagogicasComplementares["1Semestre"]
-        TodoSemestre2 += ChPedagogicasComplementares["2Semestre"]
+    if (ChPedagogicasComplementares && ChOrientacaoCoorientacao) {
+
+      if(ChPedagogicasComplementares["1Semestre"] + ChOrientacaoCoorientacao["1Semestre"] > 24) {
+        TodoSemestre1 += 24;
+      } else {
+        TodoSemestre1 += ChPedagogicasComplementares["1Semestre"] + ChOrientacaoCoorientacao["1Semestre"];
+      }
+      
+      if(ChPedagogicasComplementares["2Semestre"] + ChOrientacaoCoorientacao["2Semestre"] > 24) {
+        TodoSemestre2 += 24;
+      } else {
+        TodoSemestre2 += ChPedagogicasComplementares["2Semestre"] + ChOrientacaoCoorientacao["2Semestre"];
+      }
+
+    } else if (ChPedagogicasComplementares) {
+
+      TodoSemestre1 += ChPedagogicasComplementares["1Semestre"]
+      TodoSemestre2 += ChPedagogicasComplementares["2Semestre"]
+
+    } else if (ChOrientacaoCoorientacao) {
+
+      TodoSemestre1 += ChOrientacaoCoorientacao["1Semestre"]
+      TodoSemestre2 += ChOrientacaoCoorientacao["2Semestre"]
 
     }
 
-    if (
-      ChOrientacaoCoorientacao
-    ) {
-  
-        TodoSemestre1 += ChOrientacaoCoorientacao["1Semestre"]
-        TodoSemestre2 += ChOrientacaoCoorientacao["2Semestre"]
-  
-      
+    if (ChMonografiaQualificacao) {
 
-    }
-
-    if (
-      ChMonografiaQualificacao
-    ) {
-  
-        TodoSemestre1 += ChMonografiaQualificacao["1Semestre"]
-        TodoSemestre2 += ChMonografiaQualificacao["2Semestre"]
-  
-      
+      TodoSemestre1 += ChMonografiaQualificacao["1Semestre"]
+      TodoSemestre2 += ChMonografiaQualificacao["2Semestre"]
 
     }
 
