@@ -103,6 +103,19 @@ const TokenFunctions = {
     const orientacaoAcademica = Cookies.get("orientacao_academica");
     return JSON.parse(orientacaoAcademica);
   },
+
+  set_trabalhos_boletins: (trabalhos_boletins) => {
+    const trabalhosBoletins = JSON.stringify(trabalhos_boletins);
+    Cookies.set("trabalhos_boletins", trabalhosBoletins, {
+      expires: 1,
+      path: "/",
+    });
+  },
+
+  get_trabalhos_boletins: () => {
+    const trabalhosBoletins = Cookies.get("trabalhos_boletins");
+    return JSON.parse(trabalhosBoletins);
+  },
 };
 
 export default TokenFunctions;
