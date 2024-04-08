@@ -36,6 +36,48 @@ const TokenFunctions = {
     return email;
   },
 
+  getSiape: (token) => {
+    const tokenDecoded = jwtDecode(token);
+    const siape = tokenDecoded.siape;
+
+    return siape;
+  },
+
+  getVinculo: (token) => {
+    const tokenDecoded = jwtDecode(token);
+    const vinculo = tokenDecoded.vinculo;
+
+    return vinculo;
+  },
+
+  getTitulacao: (token) => {
+    const tokenDecoded = jwtDecode(token);
+    const titulacao = tokenDecoded.titulacao;
+
+    return titulacao;
+  },
+
+  getInstituto: (token) => {
+    const tokenDecoded = jwtDecode(token);
+    const instituto = tokenDecoded.instituto_id;
+
+    return instituto;
+  },
+
+  getCampus: (token) => {
+    const tokenDecoded = jwtDecode(token);
+    const campus = tokenDecoded.campus_id;
+
+    return campus;
+  },
+
+  getRegime: (token) => {
+    const tokenDecoded = jwtDecode(token);
+    const regime = tokenDecoded.regimeTrabalho;
+
+    return regime;
+  },
+
   getSystem: (token) => {
     const tokenDecoded = jwtDecode(token);
     const system = tokenDecoded.system;

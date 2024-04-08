@@ -5,14 +5,16 @@ import { jwtDecode } from "jwt-decode";
 import { AiOutlineUser } from "react-icons/ai";
 const Perfil = () => {
   const token = TokenFunctions.getToken();
+  console.log(jwtDecode(token));
 
   const nomeUsuario = TokenFunctions.getName(token);
   const emailUsuario = TokenFunctions.getEmail(token);
-  // const vinculoUsuario = TokenFunctions.getVinculo(token);
-  // const siapeUsuario = TokenFunctions.getSiape(token);
-  // const titulacaoUsuario = TokenFunctions.getTitulacao(token);
-  // const institutoUsuario = TokenFunctions.getInstituto(token);
-  // const campusUsuario = TokenFunctions.getCampus(token);
+  const siapeUsuario = TokenFunctions.getSiape(token);
+  const vinculoUsuario = TokenFunctions.getVinculo(token);
+  const titulacaoUsuario = TokenFunctions.getTitulacao(token);
+  const institutoUsuario = TokenFunctions.getInstituto(token);
+  const campusUsuario = TokenFunctions.getCampus(token);
+  const regimeUsuario = TokenFunctions.getRegime(token);
 
   // const nomeUsuario = decodedToken.nomeUsuario;
 
@@ -44,7 +46,7 @@ const Perfil = () => {
                 <h2>Vinculo:</h2>
               </div>
               <div id="efeitoH2">
-                <h2>{}</h2>
+                <h2>{vinculoUsuario}</h2>
               </div>
             </div>
             <div className="displayFlex">
@@ -52,7 +54,7 @@ const Perfil = () => {
                 <h2>SIAPE:</h2>
               </div>
               <div id="efeitoH2">
-                <h2>{}</h2>
+                <h2>{siapeUsuario}</h2>
               </div>
             </div>
             <div className="displayFlex">
@@ -68,7 +70,7 @@ const Perfil = () => {
                 <h2>Regime de Trabalho:</h2>
               </div>
               <div id="efeitoH2">
-                <h2>{}</h2>
+                <h2>{regimeUsuario}</h2>
               </div>
             </div>
             <div className="displayFlex">
@@ -76,7 +78,7 @@ const Perfil = () => {
                 <h2>Titulação:</h2>
               </div>
               <div id="efeitoH2">
-                <h2>{}</h2>
+                <h2>{titulacaoUsuario}</h2>
               </div>
             </div>
             <div className="displayFlex">
@@ -84,7 +86,7 @@ const Perfil = () => {
                 <h2>Instituto:</h2>
               </div>
               <div id="efeitoH2">
-                <h2>{}</h2>
+                <h2>{institutoUsuario}</h2>
               </div>
             </div>
             <div className="displayFlex">
@@ -92,7 +94,7 @@ const Perfil = () => {
                 <h2>Campus:</h2>
               </div>
               <div id="efeitoH2">
-                <h2>{}</h2>
+                <h2>{campusUsuario}</h2>
               </div>
             </div>
             <div className="divEditar">
