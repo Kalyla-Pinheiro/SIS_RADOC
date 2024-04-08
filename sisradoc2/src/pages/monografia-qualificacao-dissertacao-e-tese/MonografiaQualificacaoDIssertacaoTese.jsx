@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
@@ -7,7 +7,91 @@ import { ChakraProvider, Box } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import TabelasQualificacaoDissertacaoTese from "../../formularios/ensino/bancas-examinadoras/TabelasQualificaoDissertacaoTese";
 
+import { AnoContext } from "../../utils/AnoContext";
+
 const MonografiaQualificacaoDIssertacaoTese = () => {
+
+  const { ano } = useContext(AnoContext);
+
+  const localStorageKey = `${ano}`;
+  let localStorageData = localStorage.getItem(localStorageKey);
+  localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+
+  const Monografia_Qualificacao = localStorageData.monografia_qualificacao_dissertacao_tese;
+
+
+  localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+  let list_MonografiaQualificacao_Semestre1 = 0;
+  let list_MonografiaQualificacao_Semestre2 = 0;
+
+  if (
+    Array.isArray(Monografia_Qualificacao) &&
+    Monografia_Qualificacao.length > 0
+  ) {
+
+
+    // For de orientação
+
+    for (let i = 0; i < Monografia_Qualificacao.length; i++) {
+      var dados = Monografia_Qualificacao[i];
+
+      if (
+        // dados.participacao === "ORIENTAÇÃO"
+        true
+      ) {
+        list_MonografiaQualificacao_Semestre1 += parseInt(
+          dados.chSemanalSemestre1
+        );
+      }
+
+    }
+
+    for (let i = 0; i < Monografia_Qualificacao.length; i++) {
+      var dados = Monografia_Qualificacao[i];
+
+      if (
+        // dados.participacao === "ORIENTAÇÃO"
+        true
+      ) {
+        list_MonografiaQualificacao_Semestre2 += parseInt(
+          dados.chSemanalSemestre2
+        );
+      }
+
+    }
+
+  }
+
+  const [totalMonografiaSemestre1, setTotalMonografiaSemestre1] = useState(list_MonografiaQualificacao_Semestre1);
+  const [totalMonografiaSemestre2, setTotalMonografiaSemestre2] = useState(list_MonografiaQualificacao_Semestre2);
+
+
+  useEffect(() => {
+    setTotalMonografiaSemestre1(list_MonografiaQualificacao_Semestre1);
+    setTotalMonografiaSemestre2(list_MonografiaQualificacao_Semestre2);
+
+
+
+
+    const updatedLocalStorageData = {
+      ...localStorageData,
+      ChTotalMonografia: {
+        "1Semestre": list_MonografiaQualificacao_Semestre1,
+        "2Semestre": list_MonografiaQualificacao_Semestre2,
+      }
+    };
+  
+    localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
+
+
+  }, [
+    list_MonografiaQualificacao_Semestre1,
+    list_MonografiaQualificacao_Semestre1,
+  ]);
+
+
+
   const theme = extendTheme({
     styles: {
       global: {
