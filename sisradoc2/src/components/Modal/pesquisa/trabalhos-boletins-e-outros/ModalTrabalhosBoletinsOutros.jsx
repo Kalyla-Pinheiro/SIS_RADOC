@@ -56,12 +56,12 @@ const ModalTrabalhosBoletinsOutros = ({
 
   var trabalhosBoletinsData = "";
   try {
-    trabalhosBoletinsData = TokenFunctions.get_projetos_extensao();
+    trabalhosBoletinsData = TokenFunctions.get_trabalhos_boletins();
   } catch (error) {}
 
   useEffect(() => {
     if (trabalhosBoletinsData) {
-      setDescricao(trabalhosBoletinsData.trabalhosBoletins);
+      setDescricao(trabalhosBoletinsData.trabalhosBoletins[0]);
     }
   }, []);
 
