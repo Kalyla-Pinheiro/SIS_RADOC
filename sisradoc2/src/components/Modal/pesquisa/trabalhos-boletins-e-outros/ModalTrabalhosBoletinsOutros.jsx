@@ -26,7 +26,6 @@ const ModalTrabalhosBoletinsOutros = ({
 }) => {
   const { ano } = useContext(AnoContext);
 
-  const [link, setLink] = useState(dataEdit.link || "");
   const [descricao, setDescricao] = useState(dataEdit.descricao || "");
 
   const handleSave = () => {
@@ -34,7 +33,6 @@ const ModalTrabalhosBoletinsOutros = ({
 
     const newItem = {
       id: uuidv4(),
-      link,
       descricao,
     };
 
@@ -87,14 +85,6 @@ const ModalTrabalhosBoletinsOutros = ({
           <ModalCloseButton />
           <ModalBody>
             <FormControl display="flex" flexDir="column" gap={4}>
-              <Box>
-                <FormLabel>Link</FormLabel>
-                <Input
-                  type="text"
-                  value={link}
-                  onChange={(e) => setLink(e.target.value)}
-                />
-              </Box>
               <Box>
                 <FormLabel>Descrição</FormLabel>
                 <Input

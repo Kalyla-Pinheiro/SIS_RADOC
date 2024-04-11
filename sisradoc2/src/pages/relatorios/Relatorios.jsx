@@ -41,26 +41,27 @@ const Relatorios = () => {
 
   return (
     <div>
-        <div className={classes.relatoriosContainer}>
+      <div className={classes.relatoriosContainer}>
         <div className={classes.titulo}>
-            <h1>Relatórios (RADOC)</h1>
+          <h1>Relatórios (RADOC)</h1>
         </div>
 
         <div className={classes.texto}>
-            <h3>
-                Nesta página, estão disponíveis os RADOC’s gerados a partir das informações preenchidas nos formulários das atividades.
-            </h3>
+          <h3>
+            Nesta página, estão disponíveis os RADOC’s gerados a partir das
+            informações preenchidas nos formulários das atividades.
+          </h3>
         </div>
 
         <div className={classes.areaVisualizacao}>
-          <div className={classes.campoRelatorios} id={classes.relatorios}>
-
-          </div>
+          <div
+            className={classes.campoRelatorios}
+            id={classes.relatorios}
+          ></div>
         </div>
-        
-        </div>
+      </div>
 
-        <ToastContainer position="bottom-left" />
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };

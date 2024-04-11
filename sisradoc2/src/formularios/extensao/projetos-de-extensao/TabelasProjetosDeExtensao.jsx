@@ -99,12 +99,6 @@ const TabelasProjetosDeExtensao = () => {
                 <Th minW="200px" fontSize="15px" color="#7c5942">
                   Função
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#7c5942">
-                  CH Semanal (1º Semestre)
-                </Th>
-                <Th minW="200px" fontSize="15px" color="#7c5942">
-                  CH Semanal (2º Semestre)
-                </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>
               </Tr>
@@ -112,15 +106,7 @@ const TabelasProjetosDeExtensao = () => {
             <Tbody>
               {data.map(
                 (
-                  {
-                    id,
-                    titulo,
-                    cadastroProex,
-                    situacaoAtual,
-                    funcao,
-                    chSemanalSemestre1,
-                    chSemanalSemestre2,
-                  },
+                  { id, titulo, cadastroProex, situacaoAtual, funcao },
                   index
                 ) => (
                   <Tr
@@ -166,18 +152,6 @@ const TabelasProjetosDeExtensao = () => {
                     >
                       {funcao}
                     </Td>
-                    <Td
-                      minW="200px"
-                      style={{ wordWrap: "break-word", maxWidth: 200 }}
-                    >
-                      {chSemanalSemestre1}
-                    </Td>
-                    <Td
-                      minW="200px"
-                      style={{ wordWrap: "break-word", maxWidth: 200 }}
-                    >
-                      {chSemanalSemestre2}
-                    </Td>
                     <Td p={0}>
                       <EditIcon
                         fontSize={20}
@@ -188,8 +162,6 @@ const TabelasProjetosDeExtensao = () => {
                             cadastroProex,
                             situacaoAtual,
                             funcao,
-                            chSemanalSemestre1,
-                            chSemanalSemestre2,
                             index,
                           }),
                           onOpen(),
@@ -197,16 +169,17 @@ const TabelasProjetosDeExtensao = () => {
                       />
                     </Td>
                     <Td>
-                    <DeleteIcon
-                      fontSize={20}
-                      onClick={() => {
-                        setItemToDelete(id);
-                        setDeleteConfirmationOpen(true);
-                      }}
-                    />
-                  </Td>
-                </Tr>
-              ))}
+                      <DeleteIcon
+                        fontSize={20}
+                        onClick={() => {
+                          setItemToDelete(id);
+                          setDeleteConfirmationOpen(true);
+                        }}
+                      />
+                    </Td>
+                  </Tr>
+                )
+              )}
             </Tbody>
           </Table>
         </Box>

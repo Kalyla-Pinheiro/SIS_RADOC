@@ -51,7 +51,6 @@ import { AnoProvider } from "./utils/AnoContext";
 
 import ModalDisciplinasMinistradas from "./components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
 
-
 const MainLayout = ({ children }) => (
   <div>
     {/* <Sidebar /> */}
@@ -76,7 +75,14 @@ function App() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/email-confirmar" element={<EmailConfirmar />} />
 
-        <Route element={ <AnoProvider> <AuthMiddleware /> </AnoProvider>}>
+        <Route
+          element={
+            <AnoProvider>
+              {" "}
+              <AuthMiddleware />{" "}
+            </AnoProvider>
+          }
+        >
           <Route
             path="/home"
             element={

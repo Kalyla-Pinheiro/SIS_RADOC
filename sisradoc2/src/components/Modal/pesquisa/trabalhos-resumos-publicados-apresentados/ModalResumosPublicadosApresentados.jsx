@@ -1,108 +1,87 @@
 import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Button,
-    FormControl,
-    FormLabel,
-    Input,
-    Box,
-  } from "@chakra-ui/react";
-  import { useState, useContext } from "react";
-  import { v4 as uuidv4 } from "uuid"; // Importando a função v4 de uuid
-  import { AnoContext } from "../../../../utils/AnoContext";
-  
-  const ModalTrabalhosResumosPublicadosApresentados = ({
-    data,
-    setData,
-    dataEdit,
-    isOpen,
-    onClose,
-  }) => {
-    const { ano } = useContext(AnoContext);
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Box,
+} from "@chakra-ui/react";
+import { useState, useContext } from "react";
+import { v4 as uuidv4 } from "uuid"; // Importando a função v4 de uuid
+import { AnoContext } from "../../../../utils/AnoContext";
 
-    const [tipo, setTipo] = useState(dataEdit.tipo || "");
-    const [link, setLink] = useState(dataEdit.link || "");
-    const [descricao, setDescricao] = useState(dataEdit.descricao || "");
-  
-    const handleSave = () => {
-      //if (!tipo || !link || !descricao) return;
-  
-      const newItem = {
-        id: uuidv4(),
-        tipo,
-        link,
-        descricao,
-      };
-  
-      const newDataArray = Object.keys(dataEdit).length
-        ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
-        : [...data, newItem];
-      
-      const localStorageKey = `${ano}`;
-      let localStorageData = localStorage.getItem(localStorageKey);
-      localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
-      localStorageData.trabalhos_resumos_publicados_apresentados = newDataArray;
-      localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
-  
-      setData(newDataArray);
-  
-      onClose();
+const ModalTrabalhosResumosPublicadosApresentados = ({
+  data,
+  setData,
+  dataEdit,
+  isOpen,
+  onClose,
+}) => {
+  const { ano } = useContext(AnoContext);
+
+  const [descricao, setDescricao] = useState(dataEdit.descricao || "");
+
+  const handleSave = () => {
+    //if (!tipo || !link || !descricao) return;
+
+    const newItem = {
+      id: uuidv4(),
+      descricao,
     };
-  
-    return (
-      <>
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Cadastro dos dados</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <FormControl display="flex" flexDir="column" gap={4}>
-                <Box>
-                  <FormLabel>Tipo</FormLabel>
-                  <Input
-                    type="text"
-                    value={tipo}
-                    onChange={(e) => setTipo(e.target.value)}
-                  />
-                </Box>
-                <Box>
-                  <FormLabel>Link</FormLabel>
-                  <Input
-                    type="text"
-                    value={link}
-                    onChange={(e) => setLink(e.target.value)}
-                  />
-                </Box>
-                <Box>
-                  <FormLabel>Descrição</FormLabel>
-                  <Input
-                    type="text"
-                    value={descricao}
-                    onChange={(e) => setDescricao(e.target.value)}
-                  />
-                </Box>
-              </FormControl>
-            </ModalBody>
-  
-            <ModalFooter justifyContent="start">
-              <Button colorScheme="green" mr={3} onClick={handleSave}>
-                SALVAR
-              </Button>
-              <Button colorScheme="red" onClick={onClose}>
-                CANCELAR
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </>
-    );
+
+    const newDataArray = Object.keys(dataEdit).length
+      ? data.map((item) => (item.id === dataEdit.id ? newItem : item))
+      : [...data, newItem];
+
+    const localStorageKey = `${ano}`;
+    let localStorageData = localStorage.getItem(localStorageKey);
+    localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+    localStorageData.trabalhos_resumos_publicados_apresentados = newDataArray;
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+    setData(newDataArray);
+
+    onClose();
   };
-  
-  export default ModalTrabalhosResumosPublicadosApresentados;
-  
+
+  return (
+    <>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Cadastro dos dados</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl display="flex" flexDir="column" gap={4}>
+              <Box>
+                <FormLabel>Descrição</FormLabel>
+                <Input
+                  type="text"
+                  value={descricao}
+                  onChange={(e) => setDescricao(e.target.value)}
+                />
+              </Box>
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter justifyContent="start">
+            <Button colorScheme="green" mr={3} onClick={handleSave}>
+              SALVAR
+            </Button>
+            <Button colorScheme="red" onClick={onClose}>
+              CANCELAR
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+};
+
+export default ModalTrabalhosResumosPublicadosApresentados;

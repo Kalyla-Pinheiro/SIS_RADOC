@@ -88,12 +88,6 @@ const TabelasTrabalhosResumosPublicadosApresentados = () => {
                 <Th minW="150px" fontSize="15px" color="#7c5942">
                   ID
                 </Th>
-                <Th minW="200px" fontSize="15px" color="#7c5942">
-                  Tipo
-                </Th>
-                <Th minW="300px" fontSize="15px" color="#7c5942">
-                  Link
-                </Th>
                 <Th minW="600px" fontSize="15px" color="#7c5942">
                   Descrição
                 </Th>
@@ -102,7 +96,7 @@ const TabelasTrabalhosResumosPublicadosApresentados = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({ id, tipo, link, descricao }, index) => (
+              {data.map(({ id, descricao }, index) => (
                 <Tr
                   key={index}
                   cursor="pointer "
@@ -123,18 +117,6 @@ const TabelasTrabalhosResumosPublicadosApresentados = () => {
                     {id}
                   </Td>
                   <Td
-                    minW="200px"
-                    style={{ wordWrap: "break-word", maxWidth: 200 }}
-                  >
-                    {tipo}
-                  </Td>
-                  <Td
-                    minW="300px"
-                    style={{ wordWrap: "break-word", maxWidth: 300 }}
-                  >
-                    {link}
-                  </Td>
-                  <Td
                     minW="600px"
                     style={{ wordWrap: "break-word", maxWidth: 600 }}
                   >
@@ -144,13 +126,13 @@ const TabelasTrabalhosResumosPublicadosApresentados = () => {
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({ id, tipo, link, descricao, index }),
+                        setDataEdit({ id, descricao, index }),
                         onOpen(),
                       ]}
                     />
                   </Td>
                   <Td>
-                  <DeleteIcon
+                    <DeleteIcon
                       fontSize={20}
                       onClick={() => {
                         setItemToDelete(id);

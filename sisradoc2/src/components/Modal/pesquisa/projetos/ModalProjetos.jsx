@@ -22,19 +22,21 @@ const ModalProjetos = ({ data, setData, dataEdit, isOpen, onClose }) => {
   const { ano } = useContext(AnoContext);
 
   const [titulo, setTitulo] = useState(dataEdit.titulo || "");
-  const [codigoProped, setCodigoProped] = useState(dataEdit.codigoProped || "");
+  const [cadastroProped, setCadastroProped] = useState(
+    dataEdit.cadastroProped || ""
+  );
   const [situacaoAtual, setSituacaoAtual] = useState(
     dataEdit.situacaoAtual || ""
   );
   const [funcao, setFuncao] = useState(dataEdit.funcao || "");
 
   const handleSave = () => {
-    //if (!titulo || !codigoProped || !situacaoAtual || !funcao) return;
+    //if (!titulo || !cadastroProped || !situacaoAtual || !funcao) return;
 
     const newItem = {
       id: uuidv4(),
       titulo,
-      codigoProped,
+      cadastroProped,
       situacaoAtual,
       funcao,
     };
@@ -63,7 +65,7 @@ const ModalProjetos = ({ data, setData, dataEdit, isOpen, onClose }) => {
   useEffect(() => {
     if (projetosPesquisaData) {
       setTitulo(projetosPesquisaData.projetos["Titulo do Projeto"]);
-      setCodigoProped(projetosPesquisaData.projetos["Código"]);
+      setCadastroProped(projetosPesquisaData.projetos["Código"]);
       setSituacaoAtual(projetosPesquisaData.projetos["Situação do Projeto"]);
     }
   }, []);
@@ -73,7 +75,7 @@ const ModalProjetos = ({ data, setData, dataEdit, isOpen, onClose }) => {
 
     const fieldSetters = {
       Titulo: setTitulo,
-      CodigoProped: setCodigoProped,
+      CadastroProped: setCadastroProped,
       SituacaoAtual: setSituacaoAtual,
       Funcao: setFuncao,
     };
@@ -103,11 +105,11 @@ const ModalProjetos = ({ data, setData, dataEdit, isOpen, onClose }) => {
                 />
               </Box>
               <Box>
-                <FormLabel>Código PROPED</FormLabel>
+                <FormLabel>Cadastro PROPED</FormLabel>
                 <Input
                   type="text"
-                  name="CodigoProped"
-                  value={codigoProped}
+                  name="CadastroProped"
+                  value={cadastroProped}
                   onChange={handleChange}
                 />
               </Box>
