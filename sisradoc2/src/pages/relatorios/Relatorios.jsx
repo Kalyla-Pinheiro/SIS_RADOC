@@ -60,9 +60,7 @@ const Relatorios = () => {
   return (
     <div>
       <div className={classes.relatoriosContainer}>
-      <div className={classes.relatoriosContainer}>
         <div className={classes.titulo}>
-          <h1>Relatórios (RADOC)</h1>
           <h1>Relatórios (RADOC)</h1>
         </div>
 
@@ -80,7 +78,6 @@ const Relatorios = () => {
         
       </div>
 
-      <ToastContainer position="bottom-left" />
       <ToastContainer position="bottom-left" />
     </div>
   );
