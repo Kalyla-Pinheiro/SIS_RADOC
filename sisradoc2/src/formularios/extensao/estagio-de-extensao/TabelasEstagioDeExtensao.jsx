@@ -97,13 +97,7 @@ const TabelasEstagioDeExtensao = () => {
                   Período
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#7c5942">
-                  Instituto
-                </Th>
-                <Th minW="200px" fontSize="15px" color="#7c5942">
-                  CH Semanal (1º Semestre)
-                </Th>
-                <Th minW="200px" fontSize="15px" color="#7c5942">
-                  CH Semanal (2º Semestre)
+                  CH Semanal
                 </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>
@@ -112,15 +106,7 @@ const TabelasEstagioDeExtensao = () => {
             <Tbody>
               {data.map(
                 (
-                  {
-                    id,
-                    areaDeConhecimento,
-                    instituicao,
-                    periodo,
-                    instituto,
-                    chSemanalSemestre1,
-                    chSemanalSemestre2,
-                  },
+                  { id, areaDeConhecimento, instituicao, periodo, chSemanal },
                   index
                 ) => (
                   <Tr
@@ -164,19 +150,7 @@ const TabelasEstagioDeExtensao = () => {
                       minW="200px"
                       style={{ wordWrap: "break-word", maxWidth: 200 }}
                     >
-                      {instituto}
-                    </Td>
-                    <Td
-                      minW="200px"
-                      style={{ wordWrap: "break-word", maxWidth: 200 }}
-                    >
-                      {chSemanalSemestre1}
-                    </Td>
-                    <Td
-                      minW="200px"
-                      style={{ wordWrap: "break-word", maxWidth: 200 }}
-                    >
-                      {chSemanalSemestre2}
+                      {chSemanal}
                     </Td>
                     <Td p={0}>
                       <EditIcon
@@ -187,9 +161,7 @@ const TabelasEstagioDeExtensao = () => {
                             areaDeConhecimento,
                             instituicao,
                             periodo,
-                            instituto,
-                            chSemanalSemestre1,
-                            chSemanalSemestre2,
+                            chSemanal,
                             index,
                           }),
                           onOpen(),
@@ -197,16 +169,17 @@ const TabelasEstagioDeExtensao = () => {
                       />
                     </Td>
                     <Td>
-                    <DeleteIcon
-                      fontSize={20}
-                      onClick={() => {
-                        setItemToDelete(id);
-                        setDeleteConfirmationOpen(true);
-                      }}
-                    />
-                  </Td>
-                </Tr>
-              ))}
+                      <DeleteIcon
+                        fontSize={20}
+                        onClick={() => {
+                          setItemToDelete(id);
+                          setDeleteConfirmationOpen(true);
+                        }}
+                      />
+                    </Td>
+                  </Tr>
+                )
+              )}
             </Tbody>
           </Table>
         </Box>

@@ -89,9 +89,6 @@ const TabelasOutrasAtividadesProducaoIntelectual = () => {
                 <Th minW="150px" fontSize="15px" color="#7c5942">
                   ID
                 </Th>
-                <Th minW="300px" fontSize="15px" color="#7c5942">
-                  Link
-                </Th>
                 <Th minW="600px" fontSize="15px" color="#7c5942">
                   Descrição
                 </Th>
@@ -100,7 +97,7 @@ const TabelasOutrasAtividadesProducaoIntelectual = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map(({ id, link, descricao }, index) => (
+              {data.map(({ id, descricao }, index) => (
                 <Tr
                   key={index}
                   cursor="pointer "
@@ -121,12 +118,6 @@ const TabelasOutrasAtividadesProducaoIntelectual = () => {
                     {id}
                   </Td>
                   <Td
-                    minW="300px"
-                    style={{ wordWrap: "break-word", maxWidth: 300 }}
-                  >
-                    {link}
-                  </Td>
-                  <Td
                     minW="600px"
                     style={{ wordWrap: "break-word", maxWidth: 600 }}
                   >
@@ -136,13 +127,13 @@ const TabelasOutrasAtividadesProducaoIntelectual = () => {
                     <EditIcon
                       fontSize={20}
                       onClick={() => [
-                        setDataEdit({ id, link, descricao, index }),
+                        setDataEdit({ id, descricao, index }),
                         onOpen(),
                       ]}
                     />
                   </Td>
                   <Td>
-                  <DeleteIcon
+                    <DeleteIcon
                       fontSize={20}
                       onClick={() => {
                         setItemToDelete(id);

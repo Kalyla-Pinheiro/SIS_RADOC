@@ -90,7 +90,7 @@ const TabelasProjetos = () => {
                   Título
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#7c5942">
-                  Código PROPED
+                  Cadastro PROPED
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#7c5942">
                   Situação Atual
@@ -105,7 +105,7 @@ const TabelasProjetos = () => {
             <Tbody>
               {data.map(
                 (
-                  { id, titulo, codigoProped, situacaoAtual, funcao },
+                  { id, titulo, cadastroProped, situacaoAtual, funcao },
                   index
                 ) => (
                   <Tr
@@ -137,7 +137,7 @@ const TabelasProjetos = () => {
                       minW="200px"
                       style={{ wordWrap: "break-word", maxWidth: 200 }}
                     >
-                      {codigoProped}
+                      {cadastroProped}
                     </Td>
                     <Td
                       minW="200px"
@@ -158,7 +158,7 @@ const TabelasProjetos = () => {
                           setDataEdit({
                             id,
                             titulo,
-                            codigoProped,
+                            cadastroProped,
                             situacaoAtual,
                             funcao,
                             index,
@@ -168,16 +168,17 @@ const TabelasProjetos = () => {
                       />
                     </Td>
                     <Td>
-                    <DeleteIcon
-                      fontSize={20}
-                      onClick={() => {
-                        setItemToDelete(id);
-                        setDeleteConfirmationOpen(true);
-                      }}
-                    />
-                  </Td>
-                </Tr>
-              ))}
+                      <DeleteIcon
+                        fontSize={20}
+                        onClick={() => {
+                          setItemToDelete(id);
+                          setDeleteConfirmationOpen(true);
+                        }}
+                      />
+                    </Td>
+                  </Tr>
+                )
+              )}
             </Tbody>
           </Table>
         </Box>

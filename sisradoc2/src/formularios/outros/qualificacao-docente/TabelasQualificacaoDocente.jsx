@@ -89,7 +89,7 @@ const TabelasQualificacaoDocente = () => {
                   Descrição
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#7c5942">
-                  Portaria
+                  Portaria e/ou Data da Realização
                 </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>

@@ -89,6 +89,9 @@ const TabelasAtividadeGestaoRepresentacao = () => {
                   ID
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#7c5942">
+                  Semestre
+                </Th>
+                <Th minW="200px" fontSize="15px" color="#7c5942">
                   Cargo/Função
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#7c5942">
@@ -98,10 +101,7 @@ const TabelasAtividadeGestaoRepresentacao = () => {
                   Período
                 </Th>
                 <Th minW="200px" fontSize="15px" color="#7c5942">
-                  CH Semanal (1º Semestre)
-                </Th>
-                <Th minW="200px" fontSize="15px" color="#7c5942">
-                  CH Semanal (2º Semestre)
+                  CH Semanal
                 </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>
@@ -112,11 +112,11 @@ const TabelasAtividadeGestaoRepresentacao = () => {
                 (
                   {
                     id,
+                    semestre,
                     cargoOuFuncao,
                     atoDeDesignacao,
                     periodo,
-                    chSemanalSemestre1,
-                    chSemanalSemestre2,
+                    chSemanal,
                   },
                   index
                 ) => (
@@ -143,6 +143,12 @@ const TabelasAtividadeGestaoRepresentacao = () => {
                       minW="200px"
                       style={{ wordWrap: "break-word", maxWidth: 200 }}
                     >
+                      {semestre}
+                    </Td>
+                    <Td
+                      minW="200px"
+                      style={{ wordWrap: "break-word", maxWidth: 200 }}
+                    >
                       {cargoOuFuncao}
                     </Td>
                     <Td
@@ -161,13 +167,7 @@ const TabelasAtividadeGestaoRepresentacao = () => {
                       minW="200px"
                       style={{ wordWrap: "break-word", maxWidth: 200 }}
                     >
-                      {chSemanalSemestre1}
-                    </Td>
-                    <Td
-                      minW="200px"
-                      style={{ wordWrap: "break-word", maxWidth: 200 }}
-                    >
-                      {chSemanalSemestre2}
+                      {chSemanal}
                     </Td>
                     <Td p={0}>
                       <EditIcon
@@ -175,11 +175,11 @@ const TabelasAtividadeGestaoRepresentacao = () => {
                         onClick={() => [
                           setDataEdit({
                             id,
+                            semestre,
                             cargoOuFuncao,
                             atoDeDesignacao,
                             periodo,
-                            chSemanalSemestre1,
-                            chSemanalSemestre2,
+                            chSemanal,
                             index,
                           }),
                           onOpen(),
@@ -187,16 +187,17 @@ const TabelasAtividadeGestaoRepresentacao = () => {
                       />
                     </Td>
                     <Td>
-                    <DeleteIcon
-                      fontSize={20}
-                      onClick={() => {
-                        setItemToDelete(id);
-                        setDeleteConfirmationOpen(true);
-                      }}
-                    />
-                  </Td>
-                </Tr>
-              ))}
+                      <DeleteIcon
+                        fontSize={20}
+                        onClick={() => {
+                          setItemToDelete(id);
+                          setDeleteConfirmationOpen(true);
+                        }}
+                      />
+                    </Td>
+                  </Tr>
+                )
+              )}
             </Tbody>
           </Table>
         </Box>

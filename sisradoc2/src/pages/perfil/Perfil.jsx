@@ -77,8 +77,8 @@ const Perfil = () => {
               <div id="efeitoH">
                 <h2>Titulação:</h2>
               </div>
-              <div id="efeitoH2">
-                <h2>{titulacaoUsuario}</h2>
+              <div id="efeitoH21">
+                <h2> {titulacaoUsuario}</h2>
               </div>
             </div>
             <div className="displayFlex">

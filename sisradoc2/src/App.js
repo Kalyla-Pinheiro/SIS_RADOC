@@ -52,7 +52,6 @@ import { ItemRelatorioProvider } from "./utils/ItemRelatorioContext";
 
 import ModalDisciplinasMinistradas from "./components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
 
-
 const MainLayout = ({ children }) => (
   <div>
     {/* <Sidebar /> */}

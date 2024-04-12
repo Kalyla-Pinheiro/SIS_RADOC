@@ -18,8 +18,13 @@ import { v4 as uuidv4 } from "uuid";
 import { AnoContext } from "../../../../utils/AnoContext";
 import TokenFunctions from "../../../../utils/Token";
 
-const ModalProjetosDeExtensao = ({ data, setData, dataEdit, isOpen, onClose }) => {
-  
+const ModalProjetosDeExtensao = ({
+  data,
+  setData,
+  dataEdit,
+  isOpen,
+  onClose,
+}) => {
   const { ano } = useContext(AnoContext);
 
   const [titulo, setTitulo] = useState(dataEdit.titulo || "");
@@ -30,12 +35,6 @@ const ModalProjetosDeExtensao = ({ data, setData, dataEdit, isOpen, onClose }) =
     dataEdit.situacaoAtual || ""
   );
   const [funcao, setFuncao] = useState(dataEdit.funcao || "");
-  const [chSemanalSemestre1, setChSemanalSemestre1] = useState(
-    dataEdit.chSemanalSemestre1 || ""
-  );
-  const [chSemanalSemestre2, setChSemanalSemestre2] = useState(
-    dataEdit.chSemanalSemestre2 || ""
-  );
 
   const handleSave = () => {
     //if (!titulo || !cadastroProex || !situacaoAtual || !funcao || !chSemanalSemestre1 || !chSemanalSemestre2) return;
@@ -46,8 +45,6 @@ const ModalProjetosDeExtensao = ({ data, setData, dataEdit, isOpen, onClose }) =
       cadastroProex,
       situacaoAtual,
       funcao,
-      chSemanalSemestre1,
-      chSemanalSemestre2,
     };
 
     const newDataArray = Object.keys(dataEdit).length
@@ -87,8 +84,6 @@ const ModalProjetosDeExtensao = ({ data, setData, dataEdit, isOpen, onClose }) =
       CadastroProex: setCadastroProex,
       SituacaoAtual: setSituacaoAtual,
       Funcao: setFuncao,
-      CH_Semanal_Semestre_1: setChSemanalSemestre1,
-      CH_Semanal_Semestre_2: setChSemanalSemestre2
     };
 
     const setter = fieldSetters[name];
@@ -144,25 +139,6 @@ const ModalProjetosDeExtensao = ({ data, setData, dataEdit, isOpen, onClose }) =
                   <option>Coordenador</option>
                   <option>Colaborador</option>
                 </Select>
-              </Box>
-
-              <Box>
-                <FormLabel>CH Semanal (1º Semestre)</FormLabel>
-                <Input
-                  type="text"
-                  name="CH_Semanal_Semestre_1"
-                  value={chSemanalSemestre1}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box>
-                <FormLabel>CH Semanal (2º Semestre)</FormLabel>
-                <Input
-                  type="text"
-                  name="CH_Semanal_Semestre_2"
-                  value={chSemanalSemestre2}
-                  onChange={handleChange}
-                />
               </Box>
             </FormControl>
           </ModalBody>
