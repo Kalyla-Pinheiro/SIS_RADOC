@@ -8,7 +8,8 @@ import { ItemRelatorioContext } from "../../utils/ItemRelatorioContext";
 const Formulario = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { itemRelatorio, setItemRelatorioValue } = useContext(ItemRelatorioContext);
+  const { itemRelatorio, setItemRelatorioValue } =
+    useContext(ItemRelatorioContext);
 
   const handleGerarRadocClick = () => {
     setItemRelatorioValue("Ativo");

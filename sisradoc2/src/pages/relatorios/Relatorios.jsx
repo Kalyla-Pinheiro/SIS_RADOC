@@ -25,7 +25,8 @@ const Relatorios = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { ano } = useContext(AnoContext);
-  const { itemRelatorio, setItemRelatorioValue } = useContext(ItemRelatorioContext);
+  const { itemRelatorio, setItemRelatorioValue } =
+    useContext(ItemRelatorioContext);
 
   useEffect(() => {
     if (itemRelatorio === "Ativo") {
@@ -35,8 +36,9 @@ const Relatorios = () => {
       relatorioDiv.appendChild(h2);
       const relatoriosContainer = document.getElementById("relatorios");
       if (relatoriosContainer) {
+        relatoriosContainer.innerHTML = ""; // Limpa o conteúdo anterior
         relatoriosContainer.appendChild(relatorioDiv);
-        //setItemRelatorioValue("Inativo");
+        // setItemRelatorioValue("Inativo");
       }
     }
   }, [itemRelatorio]);
@@ -66,16 +68,14 @@ const Relatorios = () => {
 
         <div className={classes.texto}>
           <h3>
-            Nesta página, estão disponíveis os RADOC’s gerados a partir das informações preenchidas nos formulários das atividades.
+            Nesta página, estão disponíveis os RADOC’s gerados a partir das
+            informações preenchidas nos formulários das atividades.
           </h3>
         </div>
 
         <div className={classes.areaVisualizacao}>
-          <div className={classes.campoRelatorios} id="relatorios">
-
-          </div>
+          <div className={classes.campoRelatorios} id="relatorios"></div>
         </div>
-        
       </div>
 
       <ToastContainer position="bottom-left" />
