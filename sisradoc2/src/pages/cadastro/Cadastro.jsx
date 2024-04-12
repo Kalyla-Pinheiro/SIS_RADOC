@@ -44,20 +44,18 @@ const Cadastro = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nome: "",
-    nomeUsuario: "",
     siape: "",
-    campus_id: "",
-    Disciplina_id: "",
-    instituto_id: "",
-    verificado: false,
-    token_email: "",
     classe: "",
     vinculo: "",
     regimeTrabalho: "",
     titulacao: "",
-    email: "",
     telefone: "",
+    nomeUsuario: "",
+    email: "",
     senha: "",
+    verificado: false,
+    token_email: "",
+    campus_id: "",
     confirmarSenha: "",
   });
 
@@ -89,6 +87,22 @@ const Cadastro = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const bodyArgs = {
+      nome: formData.nome,
+      siape: formData.siape,
+      classe: formData.classe,
+      vinculo: formData.vinculo,
+      regimeTrabalho: formData.regimeTrabalho,
+      titulacao: formData.titulacao,
+      telefone: formData.telefone,
+      nomeUsuario: formData.nomeUsuario,
+      email: formData.email,
+      senha: formData.senha,
+      verificado: false,
+      token_email: formData.token_email,
+      campus_id: Number(formData.campus_id)
+    }
+
     if (formData.senha !== formData.confirmarSenha) {
       ToastifyMessages.warning("Senhas não coincidem!");
       return;
@@ -100,7 +114,7 @@ const Cadastro = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(bodyArgs),
       });
 
       if (response.status === 201) {
@@ -181,14 +195,14 @@ const Cadastro = () => {
                       required
                     >
                       <option value="">Selecione o Instituto/Campus</option>
-                      <option value="ICA">ICA</option>
-                      <option value="ICIBE">ICIBE</option>
-                      <option value="ISARH">ISARH</option>
-                      <option value="CAPANEMA">CAPANEMA</option>
-                      <option value="CAPITÃO-POÇO">CAPITÃO-POÇO</option>
-                      <option value="PARAGOMINAS">PARAGOMINAS</option>
-                      <option value="PARAUAPEBAS">PARAUAPEBAS</option>
-                      <option value="TOMÉ-AÇU">TOMÉ-AÇU</option>
+                      <option value="1">ICA</option>
+                      <option value="2">ICIBE</option>
+                      <option value="3">ISARH</option>
+                      <option value="4">CAPANEMA</option>
+                      <option value="5">CAPITÃO-POÇO</option>
+                      <option value="6">PARAGOMINAS</option>
+                      <option value="7">PARAUAPEBAS</option>
+                      <option value="8">TOMÉ-AÇU</option>
                     </select>
                   </div>
                 </div>
