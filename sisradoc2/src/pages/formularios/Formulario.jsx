@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom"; // Importe o Link do React Router
 import classes from "../../css-modules/Formulario.module.css";
 import ModalChSemanalGeral from "../../components/Modal/formulario/ModalChSemanalGeral";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
+import { ItemRelatorioContext } from "../../utils/ItemRelatorioContext";
 
 const Formulario = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { itemRelatorio, setItemRelatorioValue } = useContext(ItemRelatorioContext);
+
+  const handleGerarRadocClick = () => {
+    setItemRelatorioValue("Ativo");
+  };
 
   const theme = extendTheme({
     styles: {
@@ -60,9 +68,10 @@ const Formulario = () => {
         </div>
         <div className={classes.button}>
           <button onClick={onOpen}>CH Semanal</button>
-          <a href="/formularios">
-            <button>Gerar Radoc</button>
-          </a>
+
+          <Link to="/relatorios">
+            <button onClick={handleGerarRadocClick}>Gerar Radoc</button>
+          </Link>
         </div>
         <ChakraProvider theme={theme} resetCSS={false}>
           <ModalChSemanalGeral isOpen={isOpen} onClose={onClose} />

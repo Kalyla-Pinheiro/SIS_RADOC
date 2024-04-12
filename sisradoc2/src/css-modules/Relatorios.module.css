@@ -43,6 +43,8 @@
     overflow: hidden;
     overflow-y: auto;
     overflow-x: auto;
+    width: 68.75rem;
+    height: 480px;
   }
   
   .campoRelatorios::-webkit-scrollbar {
@@ -52,10 +54,12 @@
     height: 10px;
   }
 
+  /*
   #relatorios {
     width: 68.75rem;
     height: 480px;
   }
+  */
 
   
   .buttons {

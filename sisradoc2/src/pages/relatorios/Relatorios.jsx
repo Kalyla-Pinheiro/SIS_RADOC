@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import classes from "../../css-modules/Relatorios.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { ToastifyMessages } from "../../utils/ToastifyMessages";
 import TokenFunctions from "../../utils/Token";
-import { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -19,9 +18,28 @@ import {
 } from "@chakra-ui/react";
 import ModalCrieSeuRadoc from "../../components/Modal/home/ModalCrieSeuRadoc";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { AnoContext } from "../../utils/AnoContext";
+import { ItemRelatorioContext } from "../../utils/ItemRelatorioContext";
 
 const Relatorios = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { ano } = useContext(AnoContext);
+  const { itemRelatorio, setItemRelatorioValue } = useContext(ItemRelatorioContext);
+
+  useEffect(() => {
+    if (itemRelatorio === "Ativo") {
+      const relatorioDiv = document.createElement("div");
+      const h2 = document.createElement("h2");
+      h2.textContent = ano;
+      relatorioDiv.appendChild(h2);
+      const relatoriosContainer = document.getElementById("relatorios");
+      if (relatoriosContainer) {
+        relatoriosContainer.appendChild(relatorioDiv);
+        //setItemRelatorioValue("Inativo");
+      }
+    }
+  }, [itemRelatorio]);
 
   const theme = extendTheme({
     styles: {
@@ -41,26 +59,26 @@ const Relatorios = () => {
 
   return (
     <div>
-        <div className={classes.relatoriosContainer}>
+      <div className={classes.relatoriosContainer}>
         <div className={classes.titulo}>
-            <h1>Relatórios (RADOC)</h1>
+          <h1>Relatórios (RADOC)</h1>
         </div>
 
         <div className={classes.texto}>
-            <h3>
-                Nesta página, estão disponíveis os RADOC’s gerados a partir das informações preenchidas nos formulários das atividades.
-            </h3>
+          <h3>
+            Nesta página, estão disponíveis os RADOC’s gerados a partir das informações preenchidas nos formulários das atividades.
+          </h3>
         </div>
 
         <div className={classes.areaVisualizacao}>
-          <div className={classes.campoRelatorios} id={classes.relatorios}>
+          <div className={classes.campoRelatorios} id="relatorios">
 
           </div>
         </div>
         
-        </div>
+      </div>
 
-        <ToastContainer position="bottom-left" />
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };

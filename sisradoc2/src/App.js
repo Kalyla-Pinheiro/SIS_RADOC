@@ -48,6 +48,7 @@ import TopBar from "./components/topbar/TopBar";
 import Relatorios from "./pages/relatorios/Relatorios";
 
 import { AnoProvider } from "./utils/AnoContext";
+import { ItemRelatorioProvider } from "./utils/ItemRelatorioContext";
 
 import ModalDisciplinasMinistradas from "./components/Modal/ensino/aulas-letivas/ModalDisciplinasMinistradas";
 
@@ -76,7 +77,7 @@ function App() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/email-confirmar" element={<EmailConfirmar />} />
 
-        <Route element={ <AnoProvider> <AuthMiddleware /> </AnoProvider>}>
+        <Route element={ <AnoProvider> <ItemRelatorioProvider> <AuthMiddleware /> </ItemRelatorioProvider> </AnoProvider>}>
           <Route
             path="/home"
             element={
