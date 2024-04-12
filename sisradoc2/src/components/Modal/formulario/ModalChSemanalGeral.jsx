@@ -12,11 +12,12 @@ import {
   Input,
   Box,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const ModalChSemanalGeral = ({ isOpen, onClose }) => {
   //const [ano, setAno] = useState(dataEdit.ano || "");
-
+  const { ano } = useContext(AnoContext);
   const [Ensino1, setEnsino1] = useState(null);
   const [Ensino2, setEnsino2] = useState(null);
   const [Pesquisa1, setPesquisa1] = useState(null);
@@ -66,6 +67,97 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
     }
   }, []);
 
+
+
+
+
+
+
+
+
+  
+
+  const localStorageKey = `${ano}`;
+  let localStorageData = localStorage.getItem(localStorageKey);
+  localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+
+  const ChAulasLetivas = localStorageData.ChTotalAulasLetivas;
+  const ChPedagogicasComplementares = localStorageData.ChTotalPedagogicasComplementares || {};
+  const ChOrientacaoCoorientacao = localStorageData.ChTotalOrientacaoSupervisao || {};
+  const ChMonografiaQualificacao = localStorageData.ChTotalMonografia || {};
+
+
+  localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+  let Semestre1Ensino = 0;
+  let Semestre2Ensino = 0;
+
+  if (ChAulasLetivas) {
+
+    Semestre1Ensino += ChAulasLetivas["1Semestre"];
+    Semestre2Ensino += ChAulasLetivas["2Semestre"];
+
+  }
+
+  if (ChPedagogicasComplementares && ChOrientacaoCoorientacao) {
+
+    if(ChPedagogicasComplementares["1Semestre"] + ChOrientacaoCoorientacao["1Semestre"] > 24) {
+      Semestre1Ensino += 24;
+    } else {
+      Semestre1Ensino += ChPedagogicasComplementares["1Semestre"] + ChOrientacaoCoorientacao["1Semestre"];
+    }
+    
+    if(ChPedagogicasComplementares["2Semestre"] + ChOrientacaoCoorientacao["2Semestre"] > 24) {
+      Semestre2Ensino += 24;
+    } else {
+      Semestre2Ensino += ChPedagogicasComplementares["2Semestre"] + ChOrientacaoCoorientacao["2Semestre"];
+    }
+
+  } else if (ChPedagogicasComplementares) {
+
+    if (ChPedagogicasComplementares["1Semestre"] > 24) {
+      Semestre1Ensino += 24
+    } else {
+      Semestre1Ensino += ChPedagogicasComplementares["1Semestre"]
+    }
+
+    if (ChPedagogicasComplementares["2Semestre"] > 24) {
+      Semestre2Ensino += 24
+    } else {
+      Semestre2Ensino += ChPedagogicasComplementares["2Semestre"]
+    }
+
+  } else if (ChOrientacaoCoorientacao) {
+
+    if (ChOrientacaoCoorientacao["1Semestre"] > 24) {
+      Semestre1Ensino += 24
+    } else {
+      Semestre1Ensino += ChOrientacaoCoorientacao["1Semestre"]
+    }
+
+    if (ChOrientacaoCoorientacao["2Semestre"] > 24) {
+      Semestre2Ensino += 24
+    } else {
+      Semestre2Ensino += ChOrientacaoCoorientacao["2Semestre"]
+    }
+
+  }
+
+  if (ChMonografiaQualificacao) {
+
+    Semestre1Ensino += ChMonografiaQualificacao["1Semestre"]
+    Semestre2Ensino += ChMonografiaQualificacao["2Semestre"]
+
+  }
+
+
+
+
+
+
+
+
+
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -107,9 +199,9 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
                   marginBottom={4}
                   type="text"
                   placeholder="CH"
-                  value={Ensino1}
+                  value={Semestre1Ensino}
                 />
-                <Input type="text" placeholder="CH" value={Ensino2} />
+                <Input type="text" placeholder="CH" value={Semestre2Ensino} />
               </Box>
               <Box>
                 <FormLabel textAlign="center" gap={10}>

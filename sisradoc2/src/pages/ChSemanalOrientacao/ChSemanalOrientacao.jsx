@@ -48,12 +48,10 @@ const ChSemanalOrientacao = () => {
     for (let i = 0; i < orientacao_coorientacao.length; i++) {
       var dados = orientacao_coorientacao[i];
 
-      if (
-        dados.participacao === "ORIENTAÇÃO"
-      ) {
-        list_Orientacao_Semestre1 += parseInt(
-          dados.chSemanalSemestre1
-        );
+      if (dados.chSemanalSemestre1 != "" && dados.participacao === "ORIENTAÇÃO") {
+        list_Orientacao_Semestre1 += parseInt(dados.chSemanalSemestre1);
+      } else {
+        list_Orientacao_Semestre1 = 0;
       }
 
     }
@@ -61,12 +59,10 @@ const ChSemanalOrientacao = () => {
     for (let i = 0; i < orientacao_coorientacao.length; i++) {
       var dados = orientacao_coorientacao[i];
 
-      if (
-        dados.participacao === "ORIENTAÇÃO"
-      ) {
-        list_Orientacao_Semestre2 += parseInt(
-          dados.chSemanalSemestre2
-        );
+      if (dados.chSemanalSemestre2 != "" && dados.participacao === "ORIENTAÇÃO") {
+        list_Orientacao_Semestre2 += parseInt(dados.chSemanalSemestre2);
+      } else {
+        list_Orientacao_Semestre2 = 0;
       }
 
     }
@@ -76,12 +72,10 @@ const ChSemanalOrientacao = () => {
     for (let i = 0; i < orientacao_coorientacao.length; i++) {
       var dados = orientacao_coorientacao[i];
 
-      if (
-        dados.participacao === "CO-ORIENTAÇÃO"
-      ) {
-        list_Coorientacao_Semestre1 += parseInt(
-          dados.chSemanalSemestre1
-        );
+      if (dados.chSemanalSemestre1 != "" && dados.participacao === "CO-ORIENTAÇÃO") {
+        list_Coorientacao_Semestre1 += parseInt(dados.chSemanalSemestre1);
+      } else{
+        list_Coorientacao_Semestre1 = 0;
       }
 
     }
@@ -89,12 +83,10 @@ const ChSemanalOrientacao = () => {
     for (let i = 0; i < orientacao_coorientacao.length; i++) {
       var dados = orientacao_coorientacao[i];
 
-      if (
-        dados.participacao === "CO-ORIENTAÇÃO"
-      ) {
-        list_Coorientacao_Semestre2 += parseInt(
-          dados.chSemanalSemestre2
-        );
+      if (dados.chSemanalSemestre2 != "" && dados.participacao === "CO-ORIENTAÇÃO") {
+        list_Coorientacao_Semestre2 += parseInt(dados.chSemanalSemestre2);
+      } else {
+        list_Coorientacao_Semestre2 = 0;
       }
 
     }
@@ -113,13 +105,10 @@ const ChSemanalOrientacao = () => {
     for (let i = 0; i < supervisao_academica.length; i++) {
       var dados = supervisao_academica[i];
 
-      if (
-        // dados.participacao === "ORIENTAÇÃO"
-        true
-      ) {
-        list_Supervisao_Semestre1 += parseInt(
-          dados.chSemanalSemestre1
-        );
+      if (dados.chSemanalSemestre1 != "") {
+        list_Supervisao_Semestre1 += parseInt(dados.chSemanalSemestre1);
+      } else {
+        list_Supervisao_Semestre1 = 0;
       }
 
     }
@@ -127,13 +116,10 @@ const ChSemanalOrientacao = () => {
     for (let i = 0; i < supervisao_academica.length; i++) {
       var dados = supervisao_academica[i];
 
-      if (
-        // dados.nivel === "ORIENTAÇÃO"
-        true
-      ) {
-        list_Supervisao_Semestre2 += parseInt(
-          dados.chSemanalSemestre2
-        );
+      if (dados.chSemanalSemestre2 != "") {
+        list_Supervisao_Semestre2 += parseInt(dados.chSemanalSemestre2);
+      } else {
+        list_Supervisao_Semestre2 = 0;
       }
 
     }
@@ -150,13 +136,10 @@ const ChSemanalOrientacao = () => {
     for (let i = 0; i < preceptoria_tutoria.length; i++) {
       var dados = preceptoria_tutoria[i];
 
-      if (
-        // dados.participacao === "ORIENTAÇÃO"
-        true
-      ) {
-        list_Preceptoria_Semestre1 += parseInt(
-          dados.chSemanalSemestre1
-        );
+      if (dados.chSemanalSemestre1 != 0) {
+        list_Preceptoria_Semestre1 += parseInt(dados.chSemanalSemestre1);
+      } else {
+        list_Preceptoria_Semestre1 = 0;
       }
 
     }
@@ -164,13 +147,10 @@ const ChSemanalOrientacao = () => {
     for (let i = 0; i < preceptoria_tutoria.length; i++) {
       var dados = preceptoria_tutoria[i];
 
-      if (
-        // dados.nivel === "ORIENTAÇÃO"
-        true
-      ) {
-        list_Preceptoria_Semestre2 += parseInt(
-          dados.chSemanalSemestre2
-        );
+      if (dados.chSemanalSemestre2 != "") {
+        list_Preceptoria_Semestre2 += parseInt(dados.chSemanalSemestre2);
+      } else {
+        list_Preceptoria_Semestre2 = 0;
       }
 
     }
@@ -181,17 +161,29 @@ const ChSemanalOrientacao = () => {
   // variaveis
 
 
-  const [totalOrientacaoSemestre1, setTotalOrientacaoSemestre1] = useState(list_Orientacao_Semestre1);
-  const [totalOrientacaoSemestre2, setTotalOrientacaoSemestre2] = useState(list_Orientacao_Semestre2);
+  // const [totalOrientacaoSemestre1, setTotalOrientacaoSemestre1] = useState(list_Orientacao_Semestre1);
+  // const [totalOrientacaoSemestre2, setTotalOrientacaoSemestre2] = useState(list_Orientacao_Semestre2);
 
-  const [totalCoorientacaoSemestre1, setTotalCoorientacaoSemestre1] = useState(list_Coorientacao_Semestre1);
-  const [totalCoorientacaoSemestre2, setTotalCoorientacaoSemestre2] = useState(list_Coorientacao_Semestre2);
+  // const [totalCoorientacaoSemestre1, setTotalCoorientacaoSemestre1] = useState(list_Coorientacao_Semestre1);
+  // const [totalCoorientacaoSemestre2, setTotalCoorientacaoSemestre2] = useState(list_Coorientacao_Semestre2);
 
-  const [totalSupervisaoSemestre1, setTotalSupervisaoSemestre1] = useState(list_Supervisao_Semestre1);
-  const [totalSupervisaoSemestre2, setTotalSupervisaoSemestre2] = useState(list_Supervisao_Semestre2);
+  // const [totalSupervisaoSemestre1, setTotalSupervisaoSemestre1] = useState(list_Supervisao_Semestre1);
+  // const [totalSupervisaoSemestre2, setTotalSupervisaoSemestre2] = useState(list_Supervisao_Semestre2);
 
-  const [totalPreceptoriaSemestre1, setTotalPreceptoriaSemestre1] = useState(list_Preceptoria_Semestre1);
-  const [totalPreceptoriaSemestre2, setTotalPreceptoriaSemestre2] = useState(list_Preceptoria_Semestre2);
+  // const [totalPreceptoriaSemestre1, setTotalPreceptoriaSemestre1] = useState(list_Preceptoria_Semestre1);
+  // const [totalPreceptoriaSemestre2, setTotalPreceptoriaSemestre2] = useState(list_Preceptoria_Semestre2);
+
+  const [totalOrientacaoSemestre1, setTotalOrientacaoSemestre1] = useState(0);
+  const [totalOrientacaoSemestre2, setTotalOrientacaoSemestre2] = useState(0);
+
+  const [totalCoorientacaoSemestre1, setTotalCoorientacaoSemestre1] = useState(0);
+  const [totalCoorientacaoSemestre2, setTotalCoorientacaoSemestre2] = useState(0);
+
+  const [totalSupervisaoSemestre1, setTotalSupervisaoSemestre1] = useState(0);
+  const [totalSupervisaoSemestre2, setTotalSupervisaoSemestre2] = useState(0);
+
+  const [totalPreceptoriaSemestre1, setTotalPreceptoriaSemestre1] = useState(0);
+  const [totalPreceptoriaSemestre2, setTotalPreceptoriaSemestre2] = useState(0);
 
   const [totalSemestre1, setTotalSemestre1] = useState(list_Orientacao_Semestre1+list_Coorientacao_Semestre1+list_Supervisao_Semestre1+list_Preceptoria_Semestre1);
   const [totalSemestre2, setTotalSemestre2] = useState(list_Orientacao_Semestre2+list_Coorientacao_Semestre2+list_Supervisao_Semestre2+list_Preceptoria_Semestre2);

@@ -63,13 +63,31 @@ import {
 
     } else if (ChPedagogicasComplementares) {
 
-      TodoSemestre1 += ChPedagogicasComplementares["1Semestre"]
-      TodoSemestre2 += ChPedagogicasComplementares["2Semestre"]
+      if (ChPedagogicasComplementares["1Semestre"] > 24) {
+        TodoSemestre1 += 24
+      } else {
+        TodoSemestre1 += ChPedagogicasComplementares["1Semestre"]
+      }
+
+      if (ChPedagogicasComplementares["2Semestre"] > 24) {
+        TodoSemestre2 += 24
+      } else {
+        TodoSemestre2 += ChPedagogicasComplementares["2Semestre"]
+      }
 
     } else if (ChOrientacaoCoorientacao) {
 
-      TodoSemestre1 += ChOrientacaoCoorientacao["1Semestre"]
-      TodoSemestre2 += ChOrientacaoCoorientacao["2Semestre"]
+      if (ChOrientacaoCoorientacao["1Semestre"] > 24) {
+        TodoSemestre1 += 24
+      } else {
+        TodoSemestre1 += ChOrientacaoCoorientacao["1Semestre"]
+      }
+
+      if (ChOrientacaoCoorientacao["2Semestre"] > 24) {
+        TodoSemestre2 += 24
+      } else {
+        TodoSemestre2 += ChOrientacaoCoorientacao["2Semestre"]
+      }
 
     }
 
