@@ -1,8 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classes from "../../css-modules/Relatorios.module.css";
 import { ToastContainer, toast } from "react-toastify";
-import { ToastifyMessages } from "../../utils/ToastifyMessages";
-import TokenFunctions from "../../utils/Token";
 import {
   Box,
   Flex,
@@ -16,30 +14,65 @@ import {
   Td,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import ModalCrieSeuRadoc from "../../components/Modal/home/ModalCrieSeuRadoc";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { AnoContext } from "../../utils/AnoContext";
-import { ItemRelatorioContext } from "../../utils/ItemRelatorioContext";
+
 
 const Relatorios = () => {
+
+  // IDEIA DE GERACÃO DE ITENS NA TELA DE RELATÓRIOS (PARTE 2)
+  // -> basicamente a tela de relatórios terá de gerar divs correspondentes aos itens presentes no json do localStorage
+  // -> no UseEffect eu vou ter que pegar os itens do json e gerar a div de cada um deles
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { ano } = useContext(AnoContext);
-  const { itemRelatorio, setItemRelatorioValue } = useContext(ItemRelatorioContext);
+  const gerarDivs = (itens) => {
+    const relatoriosDiv = document.getElementById("relatorios");
+    if (relatoriosDiv) {
+      relatoriosDiv.innerHTML = "";
+      for (const chave in itens) {
+        const div = document.createElement("div");
+        div.classList.add(classes.itemRelatorio);
+        
+        const h2 = document.createElement("h2");
+        h2.textContent = chave;
+        
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Deletar";
+        deleteButton.addEventListener("click", () => {
+          // Remover o item do Local Storage
+          const localStorageKey = "itens_relatorio";
+          let localStorageData = localStorage.getItem(localStorageKey);
+          if (localStorageData) {
+            localStorageData = JSON.parse(localStorageData);
+            delete localStorageData[chave]; // Remove o item correspondente à chave
+            localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+            // Atualizar as divs após deletar
+            gerarDivs(localStorageData);
+          }
+        });
 
-  useEffect(() => {
-    if (itemRelatorio === "Ativo") {
-      const relatorioDiv = document.createElement("div");
-      const h2 = document.createElement("h2");
-      h2.textContent = ano;
-      relatorioDiv.appendChild(h2);
-      const relatoriosContainer = document.getElementById("relatorios");
-      if (relatoriosContainer) {
-        relatoriosContainer.appendChild(relatorioDiv);
-        //setItemRelatorioValue("Inativo");
+        const visualizarButton = document.createElement("button");
+        visualizarButton.textContent = "PDF";
+
+        
+        div.appendChild(h2);
+        div.appendChild(visualizarButton);
+        div.appendChild(deleteButton);
+        relatoriosDiv.appendChild(div);
       }
     }
-  }, [itemRelatorio]);
+  };
+
+  useEffect(() => {
+    // Obter os itens do localStorage
+    const localStorageKey = "itens_relatorio";
+    let localStorageData = localStorage.getItem(localStorageKey);
+    if (localStorageData) {
+      localStorageData = JSON.parse(localStorageData);
+      // Gerar as divs correspondentes aos itens
+      gerarDivs(localStorageData);
+    }
+  }, []);
 
   const theme = extendTheme({
     styles: {
@@ -72,7 +105,7 @@ const Relatorios = () => {
 
         <div className={classes.areaVisualizacao}>
           <div className={classes.campoRelatorios} id="relatorios">
-
+            
           </div>
         </div>
         
