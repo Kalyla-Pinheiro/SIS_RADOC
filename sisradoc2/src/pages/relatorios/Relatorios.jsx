@@ -22,6 +22,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"; 
+import { Link } from "react-router-dom";
 
 const Relatorios = () => {
 
@@ -53,6 +54,9 @@ const Relatorios = () => {
 
         const visualizarButton = document.createElement("button");
         visualizarButton.textContent = "PDF";
+        visualizarButton.addEventListener("click", () => {
+          window.location.href = "#";
+        });
 
         div.appendChild(h2);
         div.appendChild(visualizarButton);
