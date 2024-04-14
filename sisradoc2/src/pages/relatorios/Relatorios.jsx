@@ -13,9 +13,15 @@ import {
   Tbody,
   Td,
   useBreakpointValue,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"; 
 
 const Relatorios = () => {
 
@@ -24,6 +30,7 @@ const Relatorios = () => {
   // -> no UseEffect eu vou ter que pegar os itens do json e gerar a div de cada um deles
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   const gerarDivs = (itens) => {
     const relatoriosDiv = document.getElementById("relatorios");
@@ -32,29 +39,21 @@ const Relatorios = () => {
       for (const chave in itens) {
         const div = document.createElement("div");
         div.classList.add(classes.itemRelatorio);
-        
+
         const h2 = document.createElement("h2");
         h2.textContent = chave;
-        
+
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Deletar";
         deleteButton.addEventListener("click", () => {
-          // Remover o item do Local Storage
-          const localStorageKey = "itens_relatorio";
-          let localStorageData = localStorage.getItem(localStorageKey);
-          if (localStorageData) {
-            localStorageData = JSON.parse(localStorageData);
-            delete localStorageData[chave]; // Remove o item correspondente à chave
-            localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
-            // Atualizar as divs após deletar
-            gerarDivs(localStorageData);
-          }
+          // Exibir modal de confirmação ao deletar
+          setItemToDelete(chave);
+          onOpen();
         });
 
         const visualizarButton = document.createElement("button");
         visualizarButton.textContent = "PDF";
 
-        
         div.appendChild(h2);
         div.appendChild(visualizarButton);
         div.appendChild(deleteButton);
@@ -110,6 +109,46 @@ const Relatorios = () => {
         </div>
         
       </div>
+
+      <ChakraProvider theme={theme} resetCSS={false}>
+        <Modal isOpen={isOpen} onClose={onClose} isCentered>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Confirmação de exclusão</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              Tem certeza que deseja excluir o item "{itemToDelete}"?
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                colorScheme="green"
+                onClick={() => {
+                  // Removendo o item do Local Storage
+                  const localStorageKey = "itens_relatorio";
+                  let localStorageData = localStorage.getItem(localStorageKey);
+                  if (localStorageData) {
+                    localStorageData = JSON.parse(localStorageData);
+                    delete localStorageData[itemToDelete]; // Removendo o item correspondente à chave
+                    localStorage.setItem(
+                      localStorageKey,
+                      JSON.stringify(localStorageData)
+                    );
+                    // Atualizar as divs depois de deletar
+                    gerarDivs(localStorageData);
+                  }
+                  onClose();
+                  toast.success("Item excluído com sucesso!");
+                }}
+              >
+                Confirmar
+              </Button>
+              <Button colorScheme="red" mr={3} onClick={onClose}>
+                Cancelar
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </ChakraProvider>
 
       <ToastContainer position="bottom-left" />
     </div>
