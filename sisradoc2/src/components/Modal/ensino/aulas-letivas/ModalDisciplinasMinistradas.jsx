@@ -252,7 +252,7 @@ const ModalDisciplinasMinistradas = ({
                 <Input
                   type="text"
                   name="CH_Docente_Envolvido"
-                  value={parseInt(chDocenteEnvolvido)}
+                  value={chDocenteEnvolvido}
                   onChange={handleChange}
                 />
               </Box>

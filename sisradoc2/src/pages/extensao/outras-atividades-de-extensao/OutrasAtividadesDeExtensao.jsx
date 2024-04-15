@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import classes from "../../../css-modules/Extensao.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
@@ -6,7 +6,77 @@ import { ChakraProvider, Box } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import TabelasOutrasAtividadesDeExtensao from "../../../formularios/extensao/outras-atividades-de-extensao/TabelasOutrasAtividadesDeExtensao";
 
+import { AnoContext } from "../../../utils/AnoContext";
+
 const OutrasAtividadesDeExtensao = () => {
+
+  const { ano } = useContext(AnoContext);
+
+  const localStorageKey = `${ano}`;
+  let localStorageData = localStorage.getItem(localStorageKey);
+  localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+
+  const Outras_Atividades_Extensao = localStorageData.outras_atividades_de_extensao;
+
+
+  localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+
+  let outrasAtividadesExtensaoSemestre1 = 0;
+  let outrasAtividadesExtensaoSemestre2 = 0;
+
+
+  if (
+    Array.isArray(Outras_Atividades_Extensao) &&
+    Outras_Atividades_Extensao.length > 0
+  ) {
+
+    for (let i = 0; i < Outras_Atividades_Extensao.length; i++) {
+      var dados = Outras_Atividades_Extensao[i];
+
+      if (dados.outrasAtividadesExtensaoSemestre1 != "") {
+        outrasAtividadesExtensaoSemestre1 += parseFloat(dados.chSemanalSemestre1);
+      } else {
+        outrasAtividadesExtensaoSemestre1 = 0;
+      }
+
+    }
+
+    for (let i = 0; i < Outras_Atividades_Extensao.length; i++) {
+      var dados = Outras_Atividades_Extensao[i];
+
+      if (dados.chSemanalSemestre2 != "") {
+        outrasAtividadesExtensaoSemestre2 += parseFloat(dados.chSemanalSemestre2);
+      } else {
+        outrasAtividadesExtensaoSemestre2 = 0;
+      }
+
+    }
+  }
+
+  useEffect(() => {
+    const updatedLocalStorageData = {
+      ...localStorageData,
+      ExtensaoChOutrasAtividades: {
+        "1Semestre": outrasAtividadesExtensaoSemestre1,
+        "2Semestre": outrasAtividadesExtensaoSemestre2,
+      }
+    };
+  
+    localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
+  });
+
+  const guardaJSON = () => {
+    window.location.reload();
+  };
+
+
+
+
+
+
+
+
   const theme = extendTheme({
     styles: {
       global: {
@@ -63,7 +133,7 @@ const OutrasAtividadesDeExtensao = () => {
         <div className={classes.buttons} id={classes.buttonProjetosDeExtensao}>
           <div>
             <a href="#">
-              <button>Salvar</button>
+              <button onClick={guardaJSON}>Salvar</button>
             </a>
           </div>
         </div>

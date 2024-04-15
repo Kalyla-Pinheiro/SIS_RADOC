@@ -33,7 +33,9 @@ const ChSemanalAulas = () => {
   const localStorageKey = `${ano}`;
   let localStorageData = localStorage.getItem(localStorageKey);
   localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+
   const disciplinas_ministradas = localStorageData.disciplinas_ministradas;
+
   localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
 
 
@@ -49,75 +51,64 @@ const ChSemanalAulas = () => {
     for (let i = 0; i < disciplinas_ministradas.length; i++) {
       var disciplina = disciplinas_ministradas[i];
 
-      if (
-        disciplina.semestre === "1º SEMESTRE" &&
-        disciplina.nivel === "GRADUAÇÃO"
-      ) {
+      if ( disciplina.semestre === "1º SEMESTRE") {
 
-        if (typeof disciplinas_ministradas[i].chDocenteEnvolvido === 'string' && disciplinas_ministradas[i].chDocenteEnvolvido.includes(',')) {
-          const numeros = disciplinas_ministradas[i].chDocenteEnvolvido.split(',').map(Number); // Converter os valores para números
-          const soma2ch = numeros.reduce((a, b) => a + b, 0); // Somar os valores
-          list_Graduacao_Semestre1 += parseInt(soma2ch);
-          
-        } else {
-          list_Graduacao_Semestre1 += parseInt(
-            disciplinas_ministradas[i].chDocenteEnvolvido
-          );
+        if (disciplina.nivel === "GRADUAÇÃO") {
+          if (typeof disciplinas_ministradas[i].chDocenteEnvolvido === 'string' && disciplinas_ministradas[i].chDocenteEnvolvido.includes(',')) {
+            const numeros = disciplinas_ministradas[i].chDocenteEnvolvido.split(',').map(Number); // Converter os valores para números
+            const soma2ch = numeros.reduce((a, b) => a + b, 0); // Somar os valores
+            list_Graduacao_Semestre1 += parseInt(soma2ch);
+            
+          } else {
+            list_Graduacao_Semestre1 += parseInt(
+              disciplinas_ministradas[i].chDocenteEnvolvido
+            );
+          }
         }
 
-        console.log(list_Graduacao_Semestre1)
+        if (disciplina.nivel === "PÓS-GRADUAÇÃO") {
+          if (typeof disciplinas_ministradas[i].chDocenteEnvolvido === 'string' && disciplinas_ministradas[i].chDocenteEnvolvido.includes(',')) {
+            const numeros = disciplinas_ministradas[i].chDocenteEnvolvido.split(',').map(Number); // Converter os valores para números
+            const soma2ch = numeros.reduce((a, b) => a + b, 0); // Somar os valores
+            list_PosGraduacao_Semestre1 += parseInt(soma2ch);
+            
+          } else {
+            list_PosGraduacao_Semestre1 += parseInt(
+              disciplinas_ministradas[i].chDocenteEnvolvido
+            );
+          }
+        }
 
         
       }
 
-      if (
-        disciplina.semestre === "1º SEMESTRE" &&
-        disciplina.nivel === "PÓS-GRADUAÇÃO"
-      ) {
+      if ( disciplina.semestre === "2º SEMESTRE") {
 
+        if (disciplina.nivel === "GRADUAÇÃO") {
+          alert("2s")
+          if (typeof disciplinas_ministradas[i].chDocenteEnvolvido === 'string' && disciplinas_ministradas[i].chDocenteEnvolvido.includes(',')) {
+            const numeros = disciplinas_ministradas[i].chDocenteEnvolvido.split(',').map(Number); // Converter os valores para números
+            const soma2ch = numeros.reduce((a, b) => a + b, 0); // Somar os valores
+            list_Graduacao_Semestre2 += parseInt(soma2ch);
+            
+          } else {
 
-        if (typeof disciplinas_ministradas[i].chDocenteEnvolvido === 'string' && disciplinas_ministradas[i].chDocenteEnvolvido.includes(',')) {
-          const numeros = disciplinas_ministradas[i].chDocenteEnvolvido.split(',').map(Number); // Converter os valores para números
-          const soma2ch = numeros.reduce((a, b) => a + b, 0); // Somar os valores
-          list_PosGraduacao_Semestre1 += parseInt(soma2ch);
-          
-        } else {
-        list_PosGraduacao_Semestre1 += parseInt(
-          disciplinas_ministradas[i].chDocenteEnvolvido
-        );}
-      }
+          list_Graduacao_Semestre2 += parseInt(
+            disciplinas_ministradas[i].chDocenteEnvolvido 
+          );}
+        }
 
-      if (
-        disciplina.semestre === "2º SEMESTRE" &&
-        disciplina.nivel === "GRADUAÇÃO"
-      ) {
-
-        if (typeof disciplinas_ministradas[i].chDocenteEnvolvido === 'string' && disciplinas_ministradas[i].chDocenteEnvolvido.includes(',')) {
-          const numeros = disciplinas_ministradas[i].chDocenteEnvolvido.split(',').map(Number); // Converter os valores para números
-          const soma2ch = numeros.reduce((a, b) => a + b, 0); // Somar os valores
-          list_Graduacao_Semestre2 += parseInt(soma2ch);
-          
-        } else {
-
-        list_Graduacao_Semestre2 += parseInt(
-          disciplinas_ministradas[i].chDocenteEnvolvido
-        );}
-      }
-
-      if (
-        disciplina.semestre === "2º SEMESTRE" &&
-        disciplina.nivel === "PÓS-GRADUAÇÃO"
-      ) {
-
-        if (typeof disciplinas_ministradas[i].chDocenteEnvolvido === 'string' && disciplinas_ministradas[i].chDocenteEnvolvido.includes(',')) {
-          const numeros = disciplinas_ministradas[i].chDocenteEnvolvido.split(',').map(Number); // Converter os valores para números
-          const soma2ch = numeros.reduce((a, b) => a + b, 0); // Somar os valores
-          list_PosGraduacao_Semestre2 += parseInt(soma2ch);
-          
-        } else {
-        list_PosGraduacao_Semestre2 += parseInt(
-          disciplinas_ministradas[i].chDocenteEnvolvido
-        );}
+        if (disciplina.nivel === "PÓS-GRADUAÇÃO") {
+          if (typeof disciplinas_ministradas[i].chDocenteEnvolvido === 'string' && disciplinas_ministradas[i].chDocenteEnvolvido.includes(',')) {
+            const numeros = disciplinas_ministradas[i].chDocenteEnvolvido.split(',').map(Number); // Converter os valores para números
+            const soma2ch = numeros.reduce((a, b) => a + b, 0); // Somar os valores
+            list_PosGraduacao_Semestre2 += parseInt(soma2ch);
+            
+          } else {
+            list_PosGraduacao_Semestre2 += parseInt(
+            disciplinas_ministradas[i].chDocenteEnvolvido
+          );}
+        }
       }
     }
   } else {
@@ -150,7 +141,7 @@ const ChSemanalAulas = () => {
     }
       
 
-  const chDocenteEnvolvido2 = parseInt(disciplina.chDocenteEnvolvido);
+  const chDocenteEnvolvido2 = parseInt(list_PosGraduacao_Semestre1);
 
     if (!isNaN(chDocenteEnvolvido2)) {
       if (chDocenteEnvolvido2 % 15 == 0) {
@@ -166,7 +157,7 @@ const ChSemanalAulas = () => {
       console.log(totalChDocenteEnvolvidoGraduacaoSemestre2);
     }
 
-  const chDocenteEnvolvido3 = parseInt(disciplina.chDocenteEnvolvido);
+  const chDocenteEnvolvido3 = parseInt(list_Graduacao_Semestre2);
 
     if (!isNaN(chDocenteEnvolvido3)) {
       if (chDocenteEnvolvido3 % 15 == 0) {
@@ -177,7 +168,7 @@ const ChSemanalAulas = () => {
       console.log(totalChDocenteEnvolvidoPosGraduacaoSemestre1);
     }
 
-  const chDocenteEnvolvido4 = parseInt(disciplina.chDocenteEnvolvido);
+  const chDocenteEnvolvido4 = parseInt(list_PosGraduacao_Semestre2);
 
     if (!isNaN(chDocenteEnvolvido4)) {
       if (chDocenteEnvolvido4 % 15 == 0) {
@@ -265,7 +256,9 @@ const ChSemanalAulas = () => {
   var itensExistentes = JSON.parse(localStorage.getItem(localStorageKey));
   console.log(itensExistentes)
 
-
+  const guardaJSON = () => {
+    window.location.reload();
+  };
 
 
   const theme = extendTheme({

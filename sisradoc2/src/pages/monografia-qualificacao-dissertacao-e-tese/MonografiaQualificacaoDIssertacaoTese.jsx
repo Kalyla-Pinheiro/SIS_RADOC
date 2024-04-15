@@ -66,14 +66,11 @@ const MonografiaQualificacaoDIssertacaoTese = () => {
   const [totalMonografiaSemestre1, setTotalMonografiaSemestre1] = useState(list_MonografiaQualificacao_Semestre1);
   const [totalMonografiaSemestre2, setTotalMonografiaSemestre2] = useState(list_MonografiaQualificacao_Semestre2);
 
+  const guardaJSON = () => {
+    window.location.reload();
+  };
 
   useEffect(() => {
-    setTotalMonografiaSemestre1(list_MonografiaQualificacao_Semestre1);
-    setTotalMonografiaSemestre2(list_MonografiaQualificacao_Semestre2);
-
-
-
-
     const updatedLocalStorageData = {
       ...localStorageData,
       ChTotalMonografia: {
@@ -83,14 +80,7 @@ const MonografiaQualificacaoDIssertacaoTese = () => {
     };
   
     localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
-
-
-  }, [
-    list_MonografiaQualificacao_Semestre1,
-    list_MonografiaQualificacao_Semestre1,
-  ]);
-
-
+  }, []);
 
   const theme = extendTheme({
     styles: {
@@ -221,7 +211,7 @@ const MonografiaQualificacaoDIssertacaoTese = () => {
 
         <div className={classes.buttonOA}>
           <a href="#">
-            <button>Salvar</button>
+            <button onClick={guardaJSON}>Salvar</button>
           </a>
         </div>
       </div>

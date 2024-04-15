@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import classes from "../../../css-modules/Extensao.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
@@ -6,7 +6,72 @@ import { ChakraProvider, Box } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import TabelasAtividadeDeEnsinoNaoFormal from "../../../formularios/extensao/atividade-de-ensino-nao-formal/TabelasAtividadeDeEnsinoNaoFormal";
 
+import { AnoContext } from "../../../utils/AnoContext";
+
 const AtividadeDeEnsinoNaoFormal = () => {
+
+  const { ano } = useContext(AnoContext);
+
+  const localStorageKey = `${ano}`;
+  let localStorageData = localStorage.getItem(localStorageKey);
+  localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+
+  const Atividades_naoFormais = localStorageData.atividades_de_ensino_nao_formais;
+
+
+  localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+
+  let atividadesNaoFormaisSemestre1 = 0;
+  let atividadesNaoFormaisSemestre2 = 0;
+
+  if (
+    Array.isArray(Atividades_naoFormais) &&
+    Atividades_naoFormais.length > 0
+  ) {
+
+    for (let i = 0; i < Atividades_naoFormais.length; i++) {
+      var dados = Atividades_naoFormais[i];
+
+      if (dados.chSemanalSemestre1 != "") {
+        atividadesNaoFormaisSemestre1 += parseFloat(dados.chSemanalSemestre1);
+      } else {
+        atividadesNaoFormaisSemestre1 = 0;
+      }
+
+    }
+
+    for (let i = 0; i < Atividades_naoFormais.length; i++) {
+      var dados = Atividades_naoFormais[i];
+
+      if (dados.chSemanalSemestre2 != "") {
+        atividadesNaoFormaisSemestre2 += parseFloat(dados.chSemanalSemestre2);
+      } else {
+        atividadesNaoFormaisSemestre2 = 0;
+      }
+
+    }
+  }
+
+  useEffect(() => {
+    const updatedLocalStorageData = {
+      ...localStorageData,
+      ExtensaoChAtividadesnaoFormais: {
+        "1Semestre": atividadesNaoFormaisSemestre1,
+        "2Semestre": atividadesNaoFormaisSemestre2,
+      }
+    };
+  
+    localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
+  });
+
+  const guardaJSON = () => {
+    window.location.reload();
+  };
+
+
+
+
   const theme = extendTheme({
     styles: {
       global: {
@@ -63,7 +128,7 @@ const AtividadeDeEnsinoNaoFormal = () => {
         <div className={classes.buttons} id={classes.buttonProjetosDeExtensao}>
           <div>
             <a href="#">
-              <button>Salvar</button>
+              <button onClick={guardaJSON}>Salvar</button>
             </a>
           </div>
         </div>

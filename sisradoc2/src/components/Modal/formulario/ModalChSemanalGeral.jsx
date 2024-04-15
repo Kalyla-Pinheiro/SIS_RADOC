@@ -153,7 +153,44 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
 
 
 
+  const Extensao_AtividadesNaoFormais = localStorageData.ExtensaoChAtividadesnaoFormais;
+  const Extensao_EstagioExtensao = localStorageData.ExtensaoChEstagioExtensao;
+  const Extensao_OutrasAtividades = localStorageData.ExtensaoChOutrasAtividades;
+  
 
+    let TodoSemestre1Extensao = 0;
+    let TodoSemestre2Extensao = 0;
+
+    if (Extensao_AtividadesNaoFormais) {
+      TodoSemestre1Extensao += Extensao_AtividadesNaoFormais["1Semestre"];
+      TodoSemestre2Extensao += Extensao_AtividadesNaoFormais["2Semestre"];
+    }
+
+    if (Extensao_EstagioExtensao) {
+      TodoSemestre1Extensao += Extensao_EstagioExtensao["ChTotal"]/2;
+      TodoSemestre2Extensao += Extensao_EstagioExtensao["ChTotal"]/2;
+    }
+
+    if (Extensao_OutrasAtividades) {
+      TodoSemestre1Extensao += Extensao_OutrasAtividades["1Semestre"];
+      TodoSemestre2Extensao += Extensao_OutrasAtividades["2Semestre"];
+    }
+
+
+
+
+  const Ch_Gestao_Representacao = localStorageData.GestãoChTotal;
+  
+  
+    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+    let TodoSemestre1Gestao = 0;
+    let TodoSemestre2Gestao = 0;
+
+    if (Ch_Gestao_Representacao) {
+      TodoSemestre1Gestao += Ch_Gestao_Representacao["1Semestre"];
+      TodoSemestre2Gestao += Ch_Gestao_Representacao["2Semestre"];
+    }
 
 
 
@@ -225,9 +262,9 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
                   marginBottom={4}
                   type="text"
                   placeholder="CH"
-                  value={Extensao1}
+                  value={TodoSemestre1Extensao}
                 />
-                <Input type="text" placeholder="CH" value={Extensao2} />
+                <Input type="text" placeholder="CH" value={TodoSemestre2Extensao} />
               </Box>
               <Box>
                 <FormLabel textAlign="center" gap={10}>
@@ -238,9 +275,9 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
                   marginBottom={4}
                   type="text"
                   placeholder="CH"
-                  value={Gestao1}
+                  value={TodoSemestre1Gestao}
                 />
-                <Input type="text" placeholder="CH" value={Gestao2} />
+                <Input type="text" placeholder="CH" value={TodoSemestre2Gestao} />
               </Box>
               <Box>
                 <FormLabel textAlign="center" gap={10}>
