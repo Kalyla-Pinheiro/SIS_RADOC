@@ -6,7 +6,6 @@ import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
 import { AnoContext } from "../../utils/AnoContext";
 
 const Formulario = () => {
-
   // IDEIA DE GERACÃO DE ITENS NA TELA DE RELATÓRIOS (PARTE 1)
   // -> quando clicarmos no botão "gerar radoc" será criado relatorios: {} no localStorage
   // -> esse json de relatorios irá conter todos os itens presentes na tela de relatórios
