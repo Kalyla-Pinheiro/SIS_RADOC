@@ -21,11 +21,10 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react"; 
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const Relatorios = () => {
-
   // IDEIA DE GERACÃO DE ITENS NA TELA DE RELATÓRIOS (PARTE 2)
   // -> basicamente a tela de relatórios terá de gerar divs correspondentes aos itens presentes no json do localStorage
   // -> no UseEffect eu vou ter que pegar os itens do json e gerar a div de cada um deles
@@ -102,16 +101,14 @@ const Relatorios = () => {
 
         <div className={classes.texto}>
           <h3>
-            Nesta página, estão disponíveis os RADOC’s gerados a partir das informações preenchidas nos formulários das atividades.
+            Nesta página, estão disponíveis os RADOC’s gerados a partir das
+            informações preenchidas nos formulários das atividades.
           </h3>
         </div>
 
         <div className={classes.areaVisualizacao}>
-          <div className={classes.campoRelatorios} id="relatorios">
-            
-          </div>
+          <div className={classes.campoRelatorios} id="relatorios"></div>
         </div>
-        
       </div>
 
       <ChakraProvider theme={theme} resetCSS={false}>

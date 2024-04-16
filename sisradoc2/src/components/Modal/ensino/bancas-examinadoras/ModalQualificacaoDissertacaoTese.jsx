@@ -10,6 +10,7 @@ import {
     FormControl,
     FormLabel,
     Input,
+    Select,
     Box,
   } from "@chakra-ui/react";
   import { useState, useContext } from "react";
@@ -60,6 +61,24 @@ import {
   
       onClose();
     };  
+
+
+
+    const handleSelectChange = (e) => {
+      const selectedTipo = e.target.value;
+      setTipo(selectedTipo);
+      
+      // Definindo os valores máximos dos inputs com base no tipo selecionado
+      if (selectedTipo === "TCC" || selectedTipo === "Monografia") {
+        setChSemanalSemestre1("1");
+        setChSemanalSemestre2("0.5");
+      } else {
+        setChSemanalSemestre1("");
+        setChSemanalSemestre2("");
+      }
+    };
+
+    
   
     return (
       <>
@@ -80,26 +99,46 @@ import {
                 </Box>
                 <Box>
                   <FormLabel>Tipo</FormLabel>
-                  <Input
+                  {/* <Input
                     type="text"
                     value={tipo}
                     onChange={(e) => setTipo(e.target.value)}
-                  />
+                  /> */}
+
+                  <Select
+                    name="Nivel"
+                    placeholder="Selecione o nível"
+                    value={tipo}
+                    onChange={(e) => setTipo(e.target.value)}
+                  >
+                    <option>DISSERTAÇÃO</option>
+                    <option>TESE</option>
+                    <option>TCC</option>
+                    <option>MONOGRAFIA</option>
+                  </Select>
                 </Box>
                 <Box>
                   <FormLabel>CH Semanal (1º Semestre)</FormLabel>
                   <Input
-                    type="text"
+                    type="number"
                     value={chSemanalSemestre1}
                     onChange={(e) => setChSemanalSemestre1(e.target.value)}
+                    min={0}
+                    // max={tipo === "TCC" || tipo === "MONOGRAFIA" ? "1" : "0.5"}
+                    placeholder={tipo === "TCC" || tipo === "MONOGRAFIA" ? "Máximo 1" : tipo === "DISSERTAÇÃO" || tipo === "TESE" ? "Máximo 0.5" : ""}
+
                   />
                 </Box>
                 <Box>
                   <FormLabel>CH Semanal (2º Semestre)</FormLabel>
                   <Input
-                    type="text"
+                    type="number"
                     value={chSemanalSemestre2}
                     onChange={(e) => setChSemanalSemestre2(e.target.value)}
+                    min={0}
+                    // max={tipo === "TCC" || tipo === "MONOGRAFIA" ? "1" : "0.5"}
+                    placeholder={tipo === "TCC" || tipo === "MONOGRAFIA" ? "Máximo 1" : tipo === "DISSERTAÇÃO" || tipo === "TESE" ? "Máximo 0.5" : ""}
+
                   />
                 </Box>
               </FormControl>

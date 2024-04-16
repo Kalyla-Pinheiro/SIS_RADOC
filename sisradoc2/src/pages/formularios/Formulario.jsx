@@ -9,7 +9,6 @@ import { ToastContainer } from "react-toastify";
 import { ToastifyMessages } from "../../utils/ToastifyMessages";
 
 const Formulario = () => {
-
   // IDEIA DE GERACÃO DE ITENS NA TELA DE RELATÓRIOS (PARTE 1)
   // -> quando clicarmos no botão "gerar radoc" será criado relatorios: {} no localStorage
   // -> esse json de relatorios irá conter todos os itens presentes na tela de relatórios

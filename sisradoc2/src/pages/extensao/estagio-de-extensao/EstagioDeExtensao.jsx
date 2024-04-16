@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import classes from "../../../css-modules/Extensao.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
@@ -6,7 +6,62 @@ import { ChakraProvider, Box } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import TabelasEstagioDeExtensao from "../../../formularios/extensao/estagio-de-extensao/TabelasEstagioDeExtensao";
 
+import { AnoContext } from "../../../utils/AnoContext";
+
 const EstagioDeExtensao = () => {
+
+
+  const { ano } = useContext(AnoContext);
+
+  const localStorageKey = `${ano}`;
+  let localStorageData = localStorage.getItem(localStorageKey);
+  localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+
+  const Estagio_Extensao = localStorageData.estagio_de_extensao;
+
+
+  localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+
+  let EstagioExtensaoCH = 0;
+
+
+  if (
+    Array.isArray(Estagio_Extensao) &&
+    Estagio_Extensao.length > 0
+  ) {
+
+    for (let i = 0; i < Estagio_Extensao.length; i++) {
+      var dados = Estagio_Extensao[i];
+
+      if (dados.chSemanal != "") {
+        EstagioExtensaoCH += parseFloat(dados.chSemanal);
+      } else {
+        EstagioExtensaoCH = 0;
+      }
+
+    }
+  }
+
+
+  useEffect(() => {
+    const updatedLocalStorageData = {
+      ...localStorageData,
+      ExtensaoChEstagioExtensao: {
+        "ChTotal": EstagioExtensaoCH,
+      }
+    };
+  
+    localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
+
+
+  });
+
+  const guardaJSON = () => {
+    window.location.reload();
+  };
+
+
   const theme = extendTheme({
     styles: {
       global: {
@@ -63,7 +118,7 @@ const EstagioDeExtensao = () => {
         <div className={classes.buttons} id={classes.buttonProjetosDeExtensao}>
           <div>
             <a href="#">
-              <button>Salvar</button>
+              <button onClick={guardaJSON}>Salvar</button>
             </a>
           </div>
         </div>
