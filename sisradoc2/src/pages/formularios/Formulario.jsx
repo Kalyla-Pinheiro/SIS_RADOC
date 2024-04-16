@@ -3,16 +3,33 @@ import { Link } from "react-router-dom"; // Importe o Link do React Router
 import classes from "../../css-modules/Formulario.module.css";
 import ModalChSemanalGeral from "../../components/Modal/formulario/ModalChSemanalGeral";
 import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
-import { ItemRelatorioContext } from "../../utils/ItemRelatorioContext";
+import { AnoContext } from "../../utils/AnoContext";
 
 const Formulario = () => {
+  // IDEIA DE GERACÃO DE ITENS NA TELA DE RELATÓRIOS (PARTE 1)
+  // -> quando clicarmos no botão "gerar radoc" será criado relatorios: {} no localStorage
+  // -> esse json de relatorios irá conter todos os itens presentes na tela de relatórios
+  // -> dessa forma, ele irá armazenar 2025: {}
+
+  const { ano } = useContext(AnoContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { itemRelatorio, setItemRelatorioValue } =
-    useContext(ItemRelatorioContext);
-
   const handleGerarRadocClick = () => {
-    setItemRelatorioValue("Ativo");
+    const localStorageKey = "itens_relatorio";
+    const jsonData = {};
+    let localStorageData = localStorage.getItem(localStorageKey);
+
+    if (!localStorageData) {
+      localStorage.setItem(localStorageKey, JSON.stringify(jsonData));
+      localStorageData = {};
+      localStorageData[ano] = {};
+      localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+    } else {
+      localStorageData = JSON.parse(localStorageData);
+      localStorageData[ano] = {};
+      localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+    }
   };
 
   const theme = extendTheme({
