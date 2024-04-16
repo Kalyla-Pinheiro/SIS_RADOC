@@ -151,6 +151,16 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
   }
 
 
+  const Ch_Pesquisa = localStorageData.ChTotalPesquisa;
+
+    let TodoSemestre1Pesquisa = 0;
+    let TodoSemestre2Pesquisa = 0;
+
+    if (Ch_Pesquisa) {
+      TodoSemestre1Pesquisa += Ch_Pesquisa["1Semestre"];
+      TodoSemestre2Pesquisa += Ch_Pesquisa["2Semestre"];
+    }
+
 
 
   const Extensao_AtividadesNaoFormais = localStorageData.ExtensaoChAtividadesnaoFormais;
@@ -180,9 +190,6 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
 
 
   const Ch_Gestao_Representacao = localStorageData.GestãoChTotal;
-  
-  
-    localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
 
     let TodoSemestre1Gestao = 0;
     let TodoSemestre2Gestao = 0;
@@ -191,6 +198,24 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
       TodoSemestre1Gestao += Ch_Gestao_Representacao["1Semestre"];
       TodoSemestre2Gestao += Ch_Gestao_Representacao["2Semestre"];
     }
+
+
+
+    const Ch_Outros = localStorageData.ChTotalOutros;
+
+    let TodoSemestre1Outros = 0;
+    let TodoSemestre2Outros = 0;
+
+    if (Ch_Pesquisa) {
+      TodoSemestre1Outros += Ch_Outros["1Semestre"];
+      TodoSemestre2Outros += Ch_Outros["2Semestre"];
+    }
+
+
+
+    let totalChGeralSemestre1 = Semestre1Ensino + TodoSemestre1Pesquisa + TodoSemestre1Extensao + TodoSemestre1Gestao + TodoSemestre1Outros;
+    let totalChGeralSemestre2 = Semestre2Ensino + TodoSemestre2Pesquisa + TodoSemestre2Extensao + TodoSemestre2Gestao + TodoSemestre2Outros;
+
 
 
 
@@ -249,9 +274,9 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
                   marginBottom={4}
                   type="text"
                   placeholder="CH"
-                  value={Pesquisa1}
+                  value={TodoSemestre1Pesquisa}
                 />
-                <Input type="text" placeholder="CH" value={Pesquisa2} />
+                <Input type="text" placeholder="CH" value={TodoSemestre2Pesquisa} />
               </Box>
               <Box>
                 <FormLabel textAlign="center" gap={10}>
@@ -282,15 +307,28 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
               <Box>
                 <FormLabel textAlign="center" gap={10}>
                   {" "}
+                  Outros
+                </FormLabel>
+                <Input
+                  marginBottom={4}
+                  type="text"
+                  placeholder="CH"
+                  value={TodoSemestre1Outros}
+                />
+                <Input type="text" placeholder="CH" value={TodoSemestre2Outros} />
+              </Box>
+              <Box>
+                <FormLabel textAlign="center" gap={10}>
+                  {" "}
                   Total
                 </FormLabel>
                 <Input
                   marginBottom={4}
                   type="text"
                   placeholder="CH"
-                  value={Total1}
+                  value={totalChGeralSemestre1}
                 />
-                <Input type="text" placeholder="CH" value={Total2} />
+                <Input type="text" placeholder="CH" value={totalChGeralSemestre2} />
               </Box>
             </FormControl>
           </ModalBody>
