@@ -2,8 +2,11 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom"; // Importe o Link do React Router
 import classes from "../../css-modules/Formulario.module.css";
 import ModalChSemanalGeral from "../../components/Modal/formulario/ModalChSemanalGeral";
-import { ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme, typography, useDisclosure } from "@chakra-ui/react";
 import { AnoContext } from "../../utils/AnoContext";
+import apiUrls from "../../apis/apiUrls";
+import { ToastContainer } from "react-toastify";
+import { ToastifyMessages } from "../../utils/ToastifyMessages";
 
 const Formulario = () => {
 
@@ -16,7 +19,7 @@ const Formulario = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleGerarRadocClick = () => {
+  const handleGerarRadocClick = async () => {
     const localStorageKey = "itens_relatorio";
     const jsonData = {};
     let localStorageData = localStorage.getItem(localStorageKey);
@@ -30,6 +33,34 @@ const Formulario = () => {
       localStorageData = JSON.parse(localStorageData);
       localStorageData[ano] = {};
       localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+    }
+
+    try {
+      const dadosDoRADOC = { ano: localStorage.getItem(ano) || '' };
+
+      const response = await fetch(apiUrls.gerar_radoc, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ dadosDoRADOC }),
+      });
+
+      if (response.ok) {
+        ToastifyMessages.success("Geração de PDF concluída");
+
+        setTimeout(() => {
+          onOpen();
+        }, 2000);
+        
+      } else {
+        const errorMessage = await response.text();
+        const erro = JSON.parse(errorMessage);
+        ToastifyMessages.error(`${erro.erro}`);
+      }
+    } catch (error) {
+      console.log(error);
+      ToastifyMessages.error(`${error.message}`);
     }
   };
 
@@ -96,6 +127,8 @@ const Formulario = () => {
           <ModalChSemanalGeral isOpen={isOpen} onClose={onClose} />
         </ChakraProvider>
       </div>
+
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };
