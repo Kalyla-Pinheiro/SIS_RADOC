@@ -173,13 +173,6 @@ body {
   margin-top: 10px;
 }
 
-@media (max-width: 576px) {
-  .inputBox .inputField {
-    width: 100%;
-    margin: 10px 0;
-  }
-}
-
 /*Classe e Referência*/
 .selectClasseReferencia {
   width: 100%;
@@ -277,4 +270,27 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
+}
+
+@media (max-height: 700px) {
+  .wrapperCadastro {
+    padding: 10px 25px 25px;
+  }
+  .wrapperCadastro h1 {
+    margin-bottom: 0px;
+  }
+}
+
+@media (max-width: 760px) {
+  .wrapperCadastro {
+    width: 440px;
+    padding: 10px 20px 25px;
+  }
+  .inputBox .inputField {
+    margin: 10px 0px 10px;
+  }
+  .checkboxWrapper {
+    font-size: 12px;
+    padding: 5px 0px 20px 5px;
+  }
 }
