@@ -1,122 +1,125 @@
 .relatoriosContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* margin-top: 40px; */
-    min-width: 85rem;
-    max-width: 175rem;
-    min-height: 781px;
-  
-    background: #fff;
-    border: 2px solid #7c5942;
-    border-radius: 0.375rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(50px);
-  }
-  
-  .titulo {
-    margin-top: 50px;
-    color: #7c5942;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-top: 40px; */
+  min-width: 85rem;
+  max-width: 175rem;
+  min-height: 781px;
 
-  .texto {
-    margin-top: 30px;
-    max-width: 900px;
-    min-width: 900px;
-  }
+  background: #fff;
+  border: 2px solid #7c5942;
+  border-radius: 0.375rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(50px);
+}
 
-  .texto h3 {
-    color: #7c5942;
-    text-align: center;
-  }
+.titulo {
+  margin-top: 50px;
+  color: #7c5942;
+}
 
+.texto {
+  margin-top: 30px;
+  max-width: 900px;
+  min-width: 900px;
+}
 
-  .areaVisualizacao {
-    margin-top: 20px;
-  }
-  
-  .campoRelatorios {
-    border-radius: 0.375rem;
-    border: 2px solid #7c5942;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    overflow-y: auto;
-    overflow-x: auto;
-    width: 68.75rem;
-    height: 480px;
-    padding: 20px;
-    padding-top: 30px;
-  }
+.texto h3 {
+  color: #7c5942;
+  text-align: center;
+}
 
-  ::-webkit-scrollbar {
-    width: 10px; /* largura da barra de rolagem */
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #7c5942; /* cor do 'thumb' */
-    border-radius: 5px; /* borda arredondada */
-  }
+.areaVisualizacao {
+  margin-top: 20px;
+}
 
-  /*
+.campoRelatorios {
+  border-radius: 0.375rem;
+  border: 2px solid #7c5942;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: auto;
+  width: 68.75rem;
+  height: 480px;
+  padding: 20px;
+  padding-top: 30px;
+}
+
+::-webkit-scrollbar {
+  width: 10px; /* largura da barra de rolagem */
+}
+::-webkit-scrollbar-thumb {
+  background-color: #7c5942; /* cor do 'thumb' */
+  border-radius: 5px; /* borda arredondada */
+}
+
+/*
   #relatorios {
     width: 68.75rem;
     height: 480px;
   }
   */
 
-  
-  .buttons {
-    margin-top: 60px;
-    margin-bottom: 43px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .buttons button {
-    width: 200px;
-    height: 60px;
-    background: #00a27b;
-    color: #fff;
-    border: none;
-    border-radius: 0.375rem;
-    font-size: 19px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.8s;
-  }
-  
-  .buttons button:active {
-    transform: scale(0.9);
-  }
-  
-  .itemRelatorio {
-    display: grid;
-    grid-template-columns: 6fr 1fr 1fr;
-    border: 1px solid #7c5942;
-    padding: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-radius: 25px;
-    color: #7c5942;
-    /* text-align: center;
+.buttons {
+  margin-top: 60px;
+  margin-bottom: 43px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons button {
+  width: 200px;
+  height: 60px;
+  background: #00a27b;
+  color: #fff;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 19px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.8s;
+}
+
+.buttons button:active {
+  transform: scale(0.9);
+}
+
+.itemRelatorio {
+  display: grid;
+  grid-template-columns: 6fr 1fr 1fr;
+  border: 1px solid #7c5942;
+  padding: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  color: #7c5942;
+  /* text-align: center;
     justify-content: center; */
-    transition: all 0.3s;
-  }
+  transition: all 0.3s;
+}
 
-  .itemRelatorio h2 {
-    margin-left: 40px;
-  }
+.itemRelatorio:hover {
+  border: 1px solid #fff;
+  background: #7c5942;
+  color: #fff;
+  transition: all 0.3s;
+}
 
-  .itemRelatorio button {
-    background: #00a27b;
-    color: #fff;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 100px;
-    justify-self: end;
-    margin-right: 40px;
-  }
+.itemRelatorio h2 {
+  margin-left: 40px;
+}
 
-  
+.itemRelatorio button {
+  background: #00a27b;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100px;
+  justify-self: end;
+  margin-right: 40px;
+}
