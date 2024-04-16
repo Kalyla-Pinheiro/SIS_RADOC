@@ -85,7 +85,6 @@ const ChSemanalAulas = () => {
       if ( disciplina.semestre === "2º SEMESTRE") {
 
         if (disciplina.nivel === "GRADUAÇÃO") {
-          alert("2s")
           if (typeof disciplinas_ministradas[i].chDocenteEnvolvido === 'string' && disciplinas_ministradas[i].chDocenteEnvolvido.includes(',')) {
             const numeros = disciplinas_ministradas[i].chDocenteEnvolvido.split(',').map(Number); // Converter os valores para números
             const soma2ch = numeros.reduce((a, b) => a + b, 0); // Somar os valores
@@ -141,7 +140,7 @@ const ChSemanalAulas = () => {
     }
       
 
-  const chDocenteEnvolvido2 = parseInt(list_PosGraduacao_Semestre1);
+  const chDocenteEnvolvido2 = parseInt(list_Graduacao_Semestre2);
 
     if (!isNaN(chDocenteEnvolvido2)) {
       if (chDocenteEnvolvido2 % 15 == 0) {
@@ -157,7 +156,7 @@ const ChSemanalAulas = () => {
       console.log(totalChDocenteEnvolvidoGraduacaoSemestre2);
     }
 
-  const chDocenteEnvolvido3 = parseInt(list_Graduacao_Semestre2);
+  const chDocenteEnvolvido3 = parseInt(list_PosGraduacao_Semestre1);
 
     if (!isNaN(chDocenteEnvolvido3)) {
       if (chDocenteEnvolvido3 % 15 == 0) {
