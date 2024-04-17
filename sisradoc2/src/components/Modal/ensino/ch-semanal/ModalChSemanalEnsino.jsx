@@ -24,9 +24,9 @@ const ModalChSemanalEnsino = ({ isOpen, onClose }) => {
   localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
 
   const ChAulasLetivas = localStorageData.ChTotalAulasLetivas;
-  const ChPedagogicasComplementares = localStorageData.ChTotalPedagogicasComplementares || {};
-  const ChOrientacaoCoorientacao = localStorageData.ChTotalOrientacaoSupervisao || {};
-  const ChMonografiaQualificacao = localStorageData.ChTotalMonografia || {};
+  const ChPedagogicasComplementares = localStorageData.ChTotalPedagogicasComplementares;
+  const ChOrientacaoCoorientacao = localStorageData.ChTotalOrientacaoSupervisao;
+  const ChMonografiaQualificacao = localStorageData.ChTotalMonografia;
 
   localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
 
@@ -104,7 +104,7 @@ const ModalChSemanalEnsino = ({ isOpen, onClose }) => {
     if (TodoSemestre2 > 40) {
       toast.error("o CH do Semestre 2 está muito alto!");
     }
-}, [isOpen]);
+  }, [isOpen]);
 
   return (
       <>

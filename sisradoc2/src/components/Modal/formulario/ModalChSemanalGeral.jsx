@@ -82,9 +82,9 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
   localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
 
   const ChAulasLetivas = localStorageData.ChTotalAulasLetivas;
-  const ChPedagogicasComplementares = localStorageData.ChTotalPedagogicasComplementares || {};
-  const ChOrientacaoCoorientacao = localStorageData.ChTotalOrientacaoSupervisao || {};
-  const ChMonografiaQualificacao = localStorageData.ChTotalMonografia || {};
+  const ChPedagogicasComplementares = localStorageData.ChTotalPedagogicasComplementares;
+  const ChOrientacaoCoorientacao = localStorageData.ChTotalOrientacaoSupervisao;
+  const ChMonografiaQualificacao = localStorageData.ChTotalMonografia;
 
 
   localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
@@ -100,6 +100,8 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
   }
 
   if (ChPedagogicasComplementares && ChOrientacaoCoorientacao) {
+
+    alert("t")
 
     if(ChPedagogicasComplementares["1Semestre"] + ChOrientacaoCoorientacao["1Semestre"] > 24) {
       Semestre1Ensino += 24;
@@ -327,8 +329,9 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
                   type="text"
                   placeholder="CH"
                   value={totalChGeralSemestre1}
+                  style={{ color: totalChGeralSemestre1 > 40 ? 'red' : 'inherit' }}
                 />
-                <Input type="text" placeholder="CH" value={totalChGeralSemestre2} />
+                <Input type="text" placeholder="CH" value={totalChGeralSemestre2} style={{ color: totalChGeralSemestre2 > 40 ? 'red' : 'inherit' }}/>
               </Box>
             </FormControl>
           </ModalBody>
