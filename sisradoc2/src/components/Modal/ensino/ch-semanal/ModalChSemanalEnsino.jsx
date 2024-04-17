@@ -137,6 +137,10 @@ const ModalChSemanalEnsino = ({ isOpen, onClose }) => {
                           </Box>
                       </FormControl>
                   </ModalBody>
+                  <ModalFooter justifyContent="center">
+                    {" "}
+                    <Button colorScheme="green">Salvar</Button>{" "}
+                  </ModalFooter>
               </ModalContent>
           </Modal>
           <ToastContainer position="bottom-left" />
