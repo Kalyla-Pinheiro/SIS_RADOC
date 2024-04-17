@@ -20,7 +20,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { ToastifyMessages } from "../../utils/ToastifyMessages";
 import apiurls from "../../apis/apiUrls";
 import TokenFunctions from "../../utils/Token";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
 
 const Cadastro = () => {
@@ -28,15 +28,15 @@ const Cadastro = () => {
     password: "",
     showPassword: false,
   });
-  
+
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
-  
+
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  
+
   const handlePasswordChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -71,7 +71,7 @@ const Cadastro = () => {
         ...prevFormData,
         nome: name,
         email: email,
-        nomeUsuario: given_name
+        nomeUsuario: given_name,
       }));
     }
   }, []);
@@ -80,7 +80,7 @@ const Cadastro = () => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -100,8 +100,8 @@ const Cadastro = () => {
       senha: formData.senha,
       verificado: false,
       token_email: formData.token_email,
-      campus_id: Number(formData.campus_id)
-    }
+      campus_id: Number(formData.campus_id),
+    };
 
     if (formData.senha !== formData.confirmarSenha) {
       ToastifyMessages.warning("Senhas não coincidem!");
@@ -183,7 +183,7 @@ const Cadastro = () => {
                   />
                 </div>
                 <div className={classes.inputField}>
-                  <HiOutlineLibrary className={''} />
+                  <HiOutlineLibrary className={""} />
                   <div className={classes.inputFieldCampus}>
                     <select
                       className={classes.selectCampus}
@@ -195,14 +195,15 @@ const Cadastro = () => {
                       required
                     >
                       <option value="">Selecione o Instituto/Campus</option>
-                      <option value="1">ICA</option>
-                      <option value="2">ICIBE</option>
-                      <option value="3">ISARH</option>
-                      <option value="4">CAPANEMA</option>
-                      <option value="5">CAPITÃO-POÇO</option>
-                      <option value="6">PARAGOMINAS</option>
-                      <option value="7">PARAUAPEBAS</option>
-                      <option value="8">TOMÉ-AÇU</option>
+                      <option value="1">ICA/BELÉM</option>
+                      <option value="2">ICIBE/BELÉM</option>
+                      <option value="3">ISARH/BELÉM</option>
+                      <option value="4">ISPA/BELÉM</option>
+                      <option value="5">CAPANEMA</option>
+                      <option value="6">CAPITÃO-POÇO</option>
+                      <option value="7">PARAGOMINAS</option>
+                      <option value="8">PARAUAPEBAS</option>
+                      <option value="9">TOMÉ-AÇU</option>
                     </select>
                   </div>
                 </div>
@@ -210,58 +211,58 @@ const Cadastro = () => {
 
               <div className={classes.inputBox}>
                 <div className={classes.inputField}>
-                  <HiOutlineIdentification className={''} />
+                  <HiOutlineIdentification className={""} />
                   <div className={classes.inputFieldClasseReferencia}>
-                    <select 
-                      className={classes.selectClasseReferencia}  
+                    <select
+                      className={classes.selectClasseReferencia}
                       value={formData.classe}
                       onChange={handleChange}
-                      id="classe" 
-                      name="classe" 
-                      placeholder="Classe e Referencia" 
+                      id="classe"
+                      name="classe"
+                      placeholder="Classe e Referencia"
                       required
-                      >
-                        <option value="">Selecione a Classe</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                        <option value="E">E</option>
-                      </select>
-                    </div>
+                    >
+                      <option value="">Selecione a Classe</option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                      <option value="E">E</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className={classes.inputField}>
-                  <HiOutlineLink className={''} />
+                  <HiOutlineLink className={""} />
                   {/*<input type="text" placeholder="Vinculo" required />*/}
                   <div className={classes.inputFieldVinculo}>
-                    <select 
-                      className={classes.selectVinculo}  
+                    <select
+                      className={classes.selectVinculo}
                       value={formData.vinculo}
                       onChange={handleChange}
-                      id="vinculo" 
-                      name="vinculo" 
-                      placeholder="Vinculo" 
+                      id="vinculo"
+                      name="vinculo"
+                      placeholder="Vinculo"
                       required
-                      >
-                        <option value="">Selecione o Vinculo</option>
-                        <option value="Estatuario">Estatutário</option>
-                      </select>
+                    >
+                      <option value="">Selecione o Vinculo</option>
+                      <option value="Estatuario">Estatutário</option>
+                    </select>
                   </div>
                 </div>
               </div>
 
               <div className={classes.inputBox}>
                 <div className={classes.inputField}>
-                  <HiBriefcase className={''} />
-                  <select 
-                  className={classes.selectRegimeTrabalho}
-                  value={formData.regimeTrabalho}
-                  onChange={handleChange}
-                  id = "regimeTrabalho"
-                  name = "regimeTrabalho"
-                  placeholder = "Regime de Trabalho"
-                  required
+                  <HiBriefcase className={""} />
+                  <select
+                    className={classes.selectRegimeTrabalho}
+                    value={formData.regimeTrabalho}
+                    onChange={handleChange}
+                    id="regimeTrabalho"
+                    name="regimeTrabalho"
+                    placeholder="Regime de Trabalho"
+                    required
                   >
                     <option value="">Selecione o Regime de Trabalho</option>
                     <option value="DE">DE</option>
@@ -270,24 +271,24 @@ const Cadastro = () => {
                   </select>
                 </div>
 
-              <div className={classes.inputField}>
-                <HiAcademicCap className={''} />
-                <div className={classes.inputFieldTitulacao}>
-                  <select 
-                  className={classes.selectTitulacao}
-                  value={formData.titulacao}
-                  onChange={handleChange}
-                  id = "titulacao"
-                  name = "titulacao"
-                  placeholder = "Titulação"
-                  required
-                  >
-                    <option value="">Selecione a Titulação</option>
-                    <option value="Graduacao">Gradução</option>
-                    <option value="Especializacao">Especialização</option>
-                    <option value="Mestre">Mestre</option>
-                    <option value="Doutor">Doutor</option>
-                  </select>
+                <div className={classes.inputField}>
+                  <HiAcademicCap className={""} />
+                  <div className={classes.inputFieldTitulacao}>
+                    <select
+                      className={classes.selectTitulacao}
+                      value={formData.titulacao}
+                      onChange={handleChange}
+                      id="titulacao"
+                      name="titulacao"
+                      placeholder="Titulação"
+                      required
+                    >
+                      <option value="">Selecione a Titulação</option>
+                      <option value="Graduacao">Gradução</option>
+                      <option value="Especializacao">Especialização</option>
+                      <option value="Mestre">Mestre</option>
+                      <option value="Doutor">Doutor</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -348,7 +349,11 @@ const Cadastro = () => {
               </div>
 
               <div className={classes.botoesFormulario}>
-                <button onClick={backClick} className={classes.button} id="voltar">
+                <button
+                  onClick={backClick}
+                  className={classes.button}
+                  id="voltar"
+                >
                   Voltar
                 </button>
 

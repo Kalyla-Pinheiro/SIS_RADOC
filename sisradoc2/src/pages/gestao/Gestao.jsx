@@ -25,7 +25,7 @@ const Gestao = () => {
   });
 
   return (
-    <div>
+    <div className={classes.ajuste}>
       <Navegacao />
 
       <div className={classes.gestaoContainer}>
