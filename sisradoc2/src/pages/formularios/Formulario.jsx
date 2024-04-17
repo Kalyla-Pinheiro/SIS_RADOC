@@ -35,58 +35,27 @@ const Formulario = () => {
     }
 
     try {
-      const dadosDoRADOC = { 
-        ano: localStorage.getItem(ano) || '',
-        campus: 'campus_exemplo',
-        nome: 'nome_exemplo',
-        siape: 'siape_exemplo',
-        x_a: '',
-        x_b: '',
-        x_c: '',
-        x_d: '',
-        x_e: '',
-        x_estatutario: '',
-        x_de: '',
-        x_40: '',
-        x_20: '',
-        x_graduacao: '',
-        x_especializacao: '',
-        x_mestre: '',
-        x_doutor: '',
-        atvEnsino_1s_codigo_nome: '',
-        atvEnsino_1s_curso: '',
-        atvEnsino_1s_nivel: '',
-        atvEnsino_1s_ch_total: '',
-        atvEnsino_1s_num_turmas_T: '',
-        atvEnsino_1s_num_turmas_P: '', 
-        atvEnsino_1s_ch_turmas_T: '',
-        atvEnsino_1s_ch_turmas_P: '', 
-        atvEnsino_1s_nome_docente_envolvido: '',
-        atvEnsino_1s_ch_docente_envolvido: '', 
-        atvEnsino_2s_codigo_nome: '',
-        atvEnsino_2s_curso: '',
-        atvEnsino_2s_nível: '',
-        atvEnsino_2s_ch_total: '',
-        atvEnsino_2s_num_turmas_T: '',
-        atvEnsino_2s_num_turmas_P: '',
-        atvEnsino_2s_ch_turmas_T: '',
-        atvEnsino_2s_ch_turmas_P: '',
-        atvEnsino_2s_nome_docente_envolvido: '',
-        atvEnsino_2s_ch_docente_envolvido: '',
-        calcChSemanal_1s_graduacao: '',
-        calcChSemanal_1s_pos_graducao: '', 
-        calcChSemanal_1s_total: '',
-        calcChSemanal_2s_graduacao: '',
-        calcChSemanal_2s__pos_graducao: '',
-        calcChSemanal_2s_total: '',
+
+      const dadosDoRADOC = {
+        atvEnsino_ch_1s: [],
+        atvEnsino_ch_2s: [],
+
+        calculoChSemanal_1s_graduacao: '',
+        calculoChSemanal_1s_pos_graduacao: '',
+        calculoChSemanal_1s_total: '',
+        calculoChSemanal_2s_graduacao: '',
+        calculoChSemanal_2s_pos_graduacao: '',
+        calculoChSemanal_2s_total: '',
+
         atvPedagogica_1s_graduacao: '',
         atvPedagogica_1s_pos_graduacao: '',
         atvPedagogica_1s_total: '',
         atvPedagogica_2s_graduacao: '',
         atvPedagogica_2s_pos_graduacao: '',
         atvPedagogica_2s_total: '',
-        atvOrientacao_1s_orientacao : '',
-        atvOrientacao_1s_coOrientacao: '', 
+
+        atvOrientacao_1s_orientacao: '',
+        atvOrientacao_1s_coOrientacao: '',
         atvOrientacao_1s_supervisao: '',
         atvOrientacao_1s_preceptoria: '',
         atvOrientacao_1s_total: '',
@@ -95,100 +64,222 @@ const Formulario = () => {
         atvOrientacao_2s_supervisao: '',
         atvOrientacao_2s_preceptoria: '',
         atvOrientacao_2s_total: '',
-        descricao_docNum: '',
-        descricao_nomeDiscente: '',
-        descricao_curso: '',
-        descricao_tipo: '',
-        descricao_nivel: '',
-        descricao_1s_chSemanal: '',
-        descricao_2s_chSemanal: '',
-        supervisao_docNum: '',
-        supervisao_nomeDiscente: '',
-        supervisao_curso: '',
-        supervisao_tipo: '',
-        supervisao_nivel: '',
-        supervisao_1s_chSemanal: '',
-        supervisao_2s_chSemanal: '',
-        preceptoria_docNum: '',
-        preceptoria_nomeDiscente: '',
-        preceptorial_nivel: '',
-        preceptoria_1s_chSemanal: '',
-        preceptoria_2s_chSemanal: '',
-        bancaExaminadora_docNum: '',
-        bancaExaminadora_nomeCandidato: '',
-        bancaExaminadora_tipo: '',
-        bancaExaminadora_1s_chSemanal: '',
-        bancaExaminadora_2s_chSemanal: '',
+
+        orientacao_coOrientacao_academica_doc_a_doc: [],
+
+        supervisao_academica_doc_a_doc: [],
+
+        preceptoria_e_ou_tutoria_de_residencia: [],
+
+        monografia_qualificacao_dissertacao_tese: [],
+
         totalChSemanalAtvEnsino_1s: '',
         totalChSemanalAtvEnsino_2s: '',
-        avaliacaoDiscente_1s_docNum: '',
-        avaliacaoDiscente_1s: '',
-        avaliacaoDiscente_2s_docNum: '',
-        avaliacaoDiscente_2s: '', 
-        pesquisa_docNum: '',
-        pesquisa_titulo: '',
-        x_t_pesquisa_coordenador: '',
-        x_t_pesquisa_colaborador: '',
-        pesquisa_t_cadastroProped: '',
-        pesquisa_t_situacaoAtual: '',
-        trabalhosCompletos_docNum: '',
-        trabalhosCompletos: '',
-        livrosVerbetes_docNum: '', 
-        livrosVerbetes: '',
-        trabalhosCompletos_docNum: '',
-        trabalhoCompletos: '',
-        outrasAtividades_docNum: '',
-        outrasAtividades: '',
+
+        avaliacao_discente_doc_a_doc: [],
+
+        pesquisa_projetos_doc_a_doc: [],
+
+        pesquisa_trabalhosBoletinsTecnicos_doc_a_doc: [],
+
+        pesquisa_livrosVerbetesPublicados_doc_a_doc: [],
+
+        pesquisa_resumosPublicados_doc_a_doc: [],
+
+        pesquisa_outrasAtividadesPesquisa_doc_a_doc: [],
+
         totalChSemanalAtvPesquisa_1s: '',
         totalChSemanalAtvPesquisa_2s: '',
-        extensao_docNum: '',
-        extensao_titulo: '', 
-        x_coordenador_projetos_extensao: '',
-        x_colaborador_projetos_extensao: '',
-        extensao_proex: '',
-        extensao_situacaoAtual: '',
-        estagioExtensao_docNum: '',
-        estagioExtensao_areaConhecimento: '',
-        estagioExtensao_InstituicaoLocal: '',
-        estagioExtensao_periodo: '',
-        estagioExtensao_chSemanal: '',
-        atvEnsinoNaoFormal_docNum: '', 
-        atvEnsinoNaoFormal_atividades: '',
-        atvEnsinoNaoFormal_1s: '',
-        atvEnsinoNaoFormal_2s: '',
-        outrasAtvExtensao_docNum: '',
-        outrasAtvExtensao_Atividades: '',
-        outrasAtvExtensao_1s: '',
-        outrasAtvExtensao_2s: '',
+
+        extensao_projetos_doc_a_doc: [],
+
+        extensao_estagios_doc_a_doc: [],
+
+        extensao_atividadeDeEnsinoNaoFormal_doc_a_doc: [],
+
+        extensao_outrasAtividadesExtensao_doc_a_doc: [],
+
         totalChSemanalAtvExtensao_1s: '',
-        totalChSemanalExtensao2s: '',
-        atvGestaoRepresentacao_docNum: '',
-        atvGestaoRepresentacao_cargoFuncao: '',
-        atvGestaoRepresentacao_semana: '',
-        atvGestaoRepresentacao_chSemanal: '',
-        atvGestaoRepresentacao_atoDesignacao: '',
-        atvGestaoRepresentacao_periodo: '',
-        qualificacaoDocente_docNum: '',
-        qualificacaoDocente_atividades: '',
-        qualificacaoDocente_portariaRealizacao: '',
-        distribuicaoChSemanal_1s_atvDidatica: '',
-        distribuicaoChSemanal_1s_administracao: '',
-        distribuicaoChSemanal_1s_pesquisa: '',
-        distribuicaoChSemanal_1s_extensao: '',
-        distribuicaoChSemanal_1s_total: '',
-        distribuicaoChSemanal_2s_atvDidatica: '',
-        distribuicaoChSemanal_2s_administracao: '',
-        distribuicaoChSemanal_2s_pesquisa: '',
-        distribuicaoChSemanal_2s_extensao: '',
-        distribuicaoChSemanal_2s_total: '',
-        x_pp_sim: '',
-        x_pp_nao: '',
-        outrasInfos_docNum: '',
-        outrasInfos: '',
-        afastamento_docNum: '',
-        afastamento_motivo: '',
-        afastamento_portaria: '',
+        totalChSemanalAtvExtensao_2s: '',
+
+        gestao_atividadesDeGestaoERepresentacao_doc_a_doc: [],
+
+        outros_qualificacaoDocente_doc_a_doc: [],
       };
+
+
+      const localStorageKey2 = "dadosDoRadoc";
+      const jsonData2 = {};
+
+      let localStorageData2 = localStorage.getItem(localStorageKey2);
+
+      if (!localStorageData2) {
+        localStorage.setItem(localStorageKey2, JSON.stringify(jsonData2));
+        localStorageData2 = localStorage.getItem(localStorageKey2);
+        localStorageData2 = JSON.parse(localStorageData2);
+      } else {
+        localStorageData2 = JSON.parse(localStorageData2);
+      }
+
+      // PEGANDO OS DADOS DO RADOC ATUAL
+      let localStorageDataRadocAtual = localStorage.getItem(ano);
+      let localStorageDataRadocAtualObj = JSON.parse(localStorageDataRadocAtual);
+
+      // OBTENDO OS ITENS DE DISCIPLINAS
+      const disciplinasMinistradas = localStorageDataRadocAtualObj.disciplinas_ministradas;
+
+      if (Array.isArray(disciplinasMinistradas)) {
+        for (let i = 0; i < disciplinasMinistradas.length; i++) {
+          const semestre = disciplinasMinistradas[i].semestre;
+          if (semestre && semestre.includes("1º SEMESTRE")) {
+            dadosDoRADOC.atvEnsino_ch_1s.push(disciplinasMinistradas[i]);
+          } else {
+            dadosDoRADOC.atvEnsino_ch_2s.push(disciplinasMinistradas[i]);
+          }
+        }
+      } else {
+        console.log("A variável disciplinasMinistradas não é um array.");
+      }
+
+      // OBTENDO OS CHS DE AULAS LETIVAS
+      const chAulasLetivas = localStorageDataRadocAtualObj.ChTotalAulasLetivas;      
+      dadosDoRADOC.calculoChSemanal_1s_graduacao = chAulasLetivas["1SemestreGraduacao"];
+      dadosDoRADOC.calculoChSemanal_1s_pos_graduacao = chAulasLetivas["1SemestrePosGraduacao"];
+      dadosDoRADOC.calculoChSemanal_1s_total = chAulasLetivas["1Semestre"];
+      dadosDoRADOC.calculoChSemanal_2s_graduacao = chAulasLetivas["2SemestreGraduacao"];
+      dadosDoRADOC.calculoChSemanal_2s_pos_graduacao = chAulasLetivas["2SemestrePosGraduacao"];
+      dadosDoRADOC.calculoChSemanal_2s_total = chAulasLetivas["2Semestre"];
+
+      // OBTENDO OS CHS DE PEDAGÓGICAS COMPLEMENTARES
+      const chPedagogicasComplementares = localStorageDataRadocAtualObj.ChTotalPedagogicasComplementares;
+      dadosDoRADOC.atvPedagogica_1s_graduacao = chPedagogicasComplementares["1SemestreGraduacao"];
+      dadosDoRADOC.atvPedagogica_1s_pos_graduacao = chPedagogicasComplementares["1SemestrePosGraduacao"];
+      dadosDoRADOC.atvPedagogica_1s_total = chPedagogicasComplementares["1Semestre"];
+      dadosDoRADOC.atvPedagogica_2s_graduacao = chPedagogicasComplementares["2SemestreGraduacao"];
+      dadosDoRADOC.atvPedagogica_2s_pos_graduacao = chPedagogicasComplementares["2SemestrePosGraduacao"];
+      dadosDoRADOC.atvPedagogica_2s_total = chPedagogicasComplementares["2Semestre"];
+
+      // OBTENDO OS CHS DE ORIENTACÃO, SUPERVISÃO E OUTROS
+
+      // atvOrientacao_1s_orientacao: '',
+      // atvOrientacao_1s_coOrientacao: '',
+      // atvOrientacao_1s_supervisao: '',
+      // atvOrientacao_1s_preceptoria: '',
+
+      // atvOrientacao_1s_total: '',
+      const chTotalOrientacaoSupervisaoOutros = localStorageDataRadocAtualObj.ChTotalOrientacaoSupervisao;
+      dadosDoRADOC.atvOrientacao_1s_total = chTotalOrientacaoSupervisaoOutros["1Semestre"];
+      dadosDoRADOC.atvOrientacao_2s_total = chTotalOrientacaoSupervisaoOutros["2Semestre"];
+
+      // OBTENDO OS DADOS DE ORIENTACÃO E COORIENTACÃO ACADEMICA DOC A DOC
+      const orientacaoCoorientacaoAcademica = localStorageDataRadocAtualObj.orientacao_coorientacao_academica;
+      if (Array.isArray(orientacaoCoorientacaoAcademica)) {
+        for (let i = 0; i < orientacaoCoorientacaoAcademica.length; i++) {
+          dadosDoRADOC.orientacao_coOrientacao_academica_doc_a_doc.push(orientacaoCoorientacaoAcademica[i]);
+        }
+      } else {
+        console.log("A variável orientacaoCoorientacaoAcademica não é um array.");
+      }
+
+      // OBTENDO DADOS DE SUPERVISAO ACADEMICA DOC A DOC
+      const supervisaoAcademica = localStorageDataRadocAtualObj.supervisao_academica;
+      if (Array.isArray(supervisaoAcademica)) {
+        for (let i = 0; i < supervisaoAcademica.length; i++) {
+          dadosDoRADOC.supervisao_academica_doc_a_doc.push(supervisaoAcademica[i]);
+        }
+      } else {
+        console.log("A variável supervisaoAcademica não é um array.");
+      }
+
+      // OBTENDO OS DADOS DE PRECEPTORIA OU TUTORIA DE RESIDÊNCIA
+      const preceptoriaTutoriaDeResidencia = localStorageDataRadocAtualObj.preceptoria_e_ou_tutoria_de_residencia;
+      if (Array.isArray(preceptoriaTutoriaDeResidencia)) {
+        for (let i = 0; i < preceptoriaTutoriaDeResidencia.length; i++) {
+          dadosDoRADOC.preceptoria_e_ou_tutoria_de_residencia.push(preceptoriaTutoriaDeResidencia[i]);
+        }
+      } else {
+        console.log("A variável preceptoriaTutoriaDeResidencia não é um array.");
+      }
+
+      // OBTENDO DADOS DE MONOGRAFIA, QUALIFICACÃO, DISSERTACÃO E TESE
+      const monografiaQualificacaoDissertacaoTese = localStorageDataRadocAtualObj.monografia_qualificacao_dissertacao_tese;
+      if (Array.isArray(monografiaQualificacaoDissertacaoTese)) {
+        for (let i = 0; i < monografiaQualificacaoDissertacaoTese.length; i++) {
+          dadosDoRADOC.monografia_qualificacao_dissertacao_tese.push(monografiaQualificacaoDissertacaoTese[i]);
+        }
+      } else {
+        console.log("A variável monografiaQualificacaoDissertacaoTese não é um array.");
+      }
+
+      // OBTENDO OS DADOS DE AVALIAÇÃO DISCENTE
+      const avaliacaoDiscente = localStorageDataRadocAtualObj.avaliacao_discente;
+      if (Array.isArray(avaliacaoDiscente)) {
+        for (let i = 0; i < avaliacaoDiscente.length; i++) {
+          dadosDoRADOC.avaliacao_discente_doc_a_doc.push(avaliacaoDiscente[i]);
+        }
+      } else {
+        console.log("A variável avaliacaoDiscente não é um array.");
+      }
+
+      // OBTENDO OS DADOS DE PROJETOS DE PESQUISA
+      const pesquisaProjetos = localStorageDataRadocAtualObj.projetos;
+      if (Array.isArray(pesquisaProjetos)) {
+        for (let i = 0; i < pesquisaProjetos.length; i++) {
+          dadosDoRADOC.pesquisa_projetos_doc_a_doc.push(pesquisaProjetos[i]);
+        }
+      } else {
+        console.log("A variável pesquisaProjetos não é um array.");
+      }
+
+      console.log("dadosDoRADOC PORJETOS:", dadosDoRADOC.pesquisa_projetos_doc_a_doc);
+
+      // OBTENDO DADOS DE TRABALHOS 
+      const trabalhosBoletinsTecnicosOutros = localStorageDataRadocAtualObj.trabalhos_boletins_e_outros;
+      if (Array.isArray(trabalhosBoletinsTecnicosOutros)) {
+        for (let i = 0; i < trabalhosBoletinsTecnicosOutros.length; i++) {
+          dadosDoRADOC.pesquisa_trabalhosBoletinsTecnicos_doc_a_doc.push(trabalhosBoletinsTecnicosOutros[i]);
+        }
+      } else {
+        console.log("A variável trabalhosBoletinsTecnicosOutros não é um array.");
+      }
+      console.log("dadosDoRADOC TRABALHOS:", dadosDoRADOC.pesquisa_trabalhosBoletinsTecnicos_doc_a_doc);
+
+      // OBETENDO DADOS DE LIVROS VERBETES PUBLICADOS
+      const livrosVerbetesPublicados = localStorageDataRadocAtualObj.livros_verbetes_publicados;
+      if (Array.isArray(livrosVerbetesPublicados)) {
+        for (let i = 0; i < livrosVerbetesPublicados.length; i++) {
+          dadosDoRADOC.pesquisa_livrosVerbetesPublicados_doc_a_doc.push(livrosVerbetesPublicados[i]);
+        }
+      } else {
+        console.log("A variável livrosVerbetesPublicados não é um array.");
+      }
+      console.log("dadosDoRADOC LVROS:", dadosDoRADOC.pesquisa_livrosVerbetesPublicados_doc_a_doc);
+
+      // OBTENDO DADOS DOS RESUMOS PUBLICADOS
+      const resumosPublicados = localStorageDataRadocAtualObj.trabalhos_resumos_publicados_apresentados;
+      if (Array.isArray(resumosPublicados)) {
+        for (let i = 0; i < resumosPublicados.length; i++) {
+          dadosDoRADOC.pesquisa_resumosPublicados_doc_a_doc.push(resumosPublicados[i]);
+        }
+      } else {
+        console.log("A variável resumosPublicados não é um array.");
+      }
+      console.log("dadosDoRADOC RESUMOS:", dadosDoRADOC.pesquisa_resumosPublicados_doc_a_doc);
+
+      // OBTENDO DADOS DE OUTRAS ATIVIDADES DE PESQUISA
+      const outrasAtividadesDePesquisa = localStorageDataRadocAtualObj.outras_atividades_de_pesquisa_e_producao_intelectual;
+      if (Array.isArray(outrasAtividadesDePesquisa)) {
+        for (let i = 0; i < outrasAtividadesDePesquisa.length; i++) {
+          dadosDoRADOC.pesquisa_outrasAtividadesPesquisa_doc_a_doc.push(outrasAtividadesDePesquisa[i]);
+        }
+      } else {
+        console.log("A variável outrasAtividadesDePesquisa não é um array.");
+      }
+      console.log("dadosDoRADOC OUTRAS ATIVIDADES:", dadosDoRADOC.pesquisa_outrasAtividadesPesquisa_doc_a_doc);
+
+
+
+
 
       const response = await fetch(apiUrls.gerar_radoc, {
         method: 'POST',
