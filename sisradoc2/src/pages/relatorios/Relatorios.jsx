@@ -93,7 +93,7 @@ const Relatorios = () => {
   });
 
   return (
-    <div>
+    <div className={classes.ajuste}>
       <div className={classes.relatoriosContainer}>
         <div className={classes.titulo}>
           <h1>Relatórios (RADOC)</h1>
