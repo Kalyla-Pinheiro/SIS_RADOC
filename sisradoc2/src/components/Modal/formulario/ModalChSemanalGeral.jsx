@@ -93,15 +93,11 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
   let Semestre2Ensino = 0;
 
   if (ChAulasLetivas) {
-
     Semestre1Ensino += ChAulasLetivas["1Semestre"];
     Semestre2Ensino += ChAulasLetivas["2Semestre"];
-
   }
 
   if (ChPedagogicasComplementares && ChOrientacaoCoorientacao) {
-
-    alert("t")
 
     if(ChPedagogicasComplementares["1Semestre"] + ChOrientacaoCoorientacao["1Semestre"] > 24) {
       Semestre1Ensino += 24;
@@ -208,7 +204,7 @@ const ModalChSemanalGeral = ({ isOpen, onClose }) => {
     let TodoSemestre1Outros = 0;
     let TodoSemestre2Outros = 0;
 
-    if (Ch_Pesquisa) {
+    if (Ch_Outros) {
       TodoSemestre1Outros += Ch_Outros["1Semestre"];
       TodoSemestre2Outros += Ch_Outros["2Semestre"];
     }

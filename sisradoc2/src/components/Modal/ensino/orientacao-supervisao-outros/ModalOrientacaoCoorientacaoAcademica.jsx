@@ -78,8 +78,8 @@ const ModalOrientacaoCoorientacaoAcademica = ({
 
   const pedagogicas_complementares = localStorageData.ChTotalPedagogicasComplementares;
 
-  const PDsemestre1 = 0;
-  const PDsemestre2 = 0;
+  var PDsemestre1 = 0;
+  var PDsemestre2 = 0;
 
   if (pedagogicas_complementares) {
     PDsemestre1 += pedagogicas_complementares["1Semestre"];
