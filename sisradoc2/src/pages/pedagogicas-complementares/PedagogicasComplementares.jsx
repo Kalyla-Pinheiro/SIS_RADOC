@@ -122,6 +122,9 @@ const PedagogicasComplementares = () => {
     setSomaSemestre2(parseInt(valorinputSemestre2Graduação) + parseInt(valorinputSemestre2PosGraduação));
   };
   
+  const guardaJSON = () => {
+    window.location.reload();
+  };
 
 
 
@@ -317,7 +320,7 @@ const PedagogicasComplementares = () => {
         </div>
 
         <div className={classes.buttonSalvarPC}>
-          <button>Salvar</button>
+          <button onClick={guardaJSON}>Salvar</button>
         </div>
       </div>
     </div>

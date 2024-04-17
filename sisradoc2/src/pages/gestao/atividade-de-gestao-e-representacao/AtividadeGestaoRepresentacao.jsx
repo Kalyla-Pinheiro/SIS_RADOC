@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import classes from "../../../css-modules/Gestao.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
@@ -6,7 +6,78 @@ import { ChakraProvider, Box } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import TabelasAtividadeGestaoRepresentacao from "../../../formularios/gestao/atividade-de-gestao-e-representacao/TabelasAtividadeGestaoRepresentacao";
 
+import { AnoContext } from "../../../utils/AnoContext";
+
 const AtividadeGestaoRepresentacao = () => {
+
+
+  const { ano } = useContext(AnoContext);
+
+  const localStorageKey = `${ano}`;
+  let localStorageData = localStorage.getItem(localStorageKey);
+  localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+
+  const Gestao_Representaçao = localStorageData.atividades_de_gestao_e_representacao;
+
+
+  localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+
+
+  let CHGestãoRepresentaçãoSemestre1 = 0;
+  let CHGestãoRepresentaçãoSemestre2 = 0;
+
+
+  if (
+    Array.isArray(Gestao_Representaçao) &&
+    Gestao_Representaçao.length > 0
+  ) {
+
+    for (let i = 0; i < Gestao_Representaçao.length; i++) {
+      var dados = Gestao_Representaçao[i];
+
+      if (dados.chSemanal != "") {
+        if(dados.semestre == "1º SEMESTRE") {
+          CHGestãoRepresentaçãoSemestre1 += parseFloat(dados.chSemanal);
+        }  else {
+          CHGestãoRepresentaçãoSemestre1 += 0;
+        }
+        if(dados.semestre == "2º SEMESTRE") {
+          CHGestãoRepresentaçãoSemestre2 += parseFloat(dados.chSemanal);
+        }  else {
+          CHGestãoRepresentaçãoSemestre2 += 0;
+        }
+        
+      } else {
+        CHGestãoRepresentaçãoSemestre1 = 0;
+        CHGestãoRepresentaçãoSemestre1 = 0;
+      }
+
+    }
+  }
+
+
+  useEffect(() => {
+    const updatedLocalStorageData = {
+      ...localStorageData,
+      GestãoChTotal: {
+        "1Semestre": CHGestãoRepresentaçãoSemestre1,
+        "2Semestre": CHGestãoRepresentaçãoSemestre2,
+      }
+    };
+  
+    localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
+  });
+
+  const guardaJSON = () => {
+    window.location.reload();
+  };
+
+
+
+
+
+
+
   const theme = extendTheme({
     styles: {
       global: {
@@ -66,7 +137,7 @@ const AtividadeGestaoRepresentacao = () => {
         >
           <div>
             <a href="#">
-              <button>Salvar</button>
+              <button onClick={guardaJSON}>Salvar</button>
             </a>
           </div>
         </div>

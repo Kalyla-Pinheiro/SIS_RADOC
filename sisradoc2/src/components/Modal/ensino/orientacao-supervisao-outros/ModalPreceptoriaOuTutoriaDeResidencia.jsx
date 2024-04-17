@@ -63,6 +63,22 @@ const ModalPreceptoriaOuTutoriaDeResidencia = ({
     onClose();
   };
 
+
+
+
+  const localStorageKey = `${ano}`;
+  let localStorageData = localStorage.getItem(localStorageKey);
+  localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+
+  const pedagogicas_complementares = localStorageData.ChTotalPedagogicasComplementares;
+
+  const PDsemestre1 = pedagogicas_complementares["1Semestre"];
+
+  const PDsemestre2 = pedagogicas_complementares["2Semestre"];
+
+
+
+
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -99,6 +115,8 @@ const ModalPreceptoriaOuTutoriaDeResidencia = ({
                   type="text"
                   value={chSemanalSemestre1}
                   onChange={(e) => setChSemanalSemestre1(e.target.value)}
+                  readOnly={PDsemestre1 > 24}
+                  placeholder={PDsemestre1 > 24 ? "Limite excedido ( > 24)" : ""}
                 />
               </Box>
               <Box>
@@ -107,6 +125,8 @@ const ModalPreceptoriaOuTutoriaDeResidencia = ({
                   type="text"
                   value={chSemanalSemestre2}
                   onChange={(e) => setChSemanalSemestre2(e.target.value)}
+                  readOnly={PDsemestre2 > 24}
+                  placeholder={PDsemestre2 > 24 ? "Limite excedido ( > 24)" : ""}
                 />
               </Box>
             </FormControl>

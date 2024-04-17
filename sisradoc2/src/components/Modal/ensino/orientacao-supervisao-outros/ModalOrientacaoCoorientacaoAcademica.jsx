@@ -72,6 +72,20 @@ const ModalOrientacaoCoorientacaoAcademica = ({
     window.location.reload();
   };
 
+  const localStorageKey = `${ano}`;
+  let localStorageData = localStorage.getItem(localStorageKey);
+  localStorageData = localStorageData ? JSON.parse(localStorageData) : {};
+
+  const pedagogicas_complementares = localStorageData.ChTotalPedagogicasComplementares;
+
+  const PDsemestre1 = 0;
+  const PDsemestre2 = 0;
+
+  if (pedagogicas_complementares) {
+    PDsemestre1 += pedagogicas_complementares["1Semestre"];
+    PDsemestre2 += pedagogicas_complementares["2Semestre"];
+  } 
+
   var orientacaoAcademicaData = "";
   try {
     orientacaoAcademicaData = TokenFunctions.get_orientacao_academica();
@@ -184,6 +198,8 @@ const ModalOrientacaoCoorientacaoAcademica = ({
                   name="CH_Semanal_Semestre_1"
                   value={chSemanalSemestre1}
                   onChange={handleChange}
+                  readOnly={PDsemestre1 > 24}
+                  placeholder={PDsemestre1 > 24 ? "Limite excedido ( > 24)" : ""}
                 />
               </Box>
               <Box>
@@ -193,6 +209,8 @@ const ModalOrientacaoCoorientacaoAcademica = ({
                   name="CH_Semanal_Semestre_2"
                   value={chSemanalSemestre2}
                   onChange={handleChange}
+                  readOnly={PDsemestre2 > 24}
+                  placeholder={PDsemestre2 > 24 ? "Limite excedido ( > 24)" : ""}
                 />
               </Box>
             </FormControl>
