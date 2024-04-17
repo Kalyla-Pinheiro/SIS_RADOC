@@ -51,7 +51,7 @@ const ChSemanalOrientacao = () => {
       if (dados.chSemanalSemestre1 != "" && dados.participacao === "ORIENTAÇÃO") {
         list_Orientacao_Semestre1 += parseInt(dados.chSemanalSemestre1);
       } else {
-        list_Orientacao_Semestre1 = 0;
+        list_Orientacao_Semestre1 += 0;
       }
 
     }
@@ -62,7 +62,7 @@ const ChSemanalOrientacao = () => {
       if (dados.chSemanalSemestre2 != "" && dados.participacao === "ORIENTAÇÃO") {
         list_Orientacao_Semestre2 += parseInt(dados.chSemanalSemestre2);
       } else {
-        list_Orientacao_Semestre2 = 0;
+        list_Orientacao_Semestre2 += 0;
       }
 
     }
@@ -75,7 +75,7 @@ const ChSemanalOrientacao = () => {
       if (dados.chSemanalSemestre1 != "" && dados.participacao === "CO-ORIENTAÇÃO") {
         list_Coorientacao_Semestre1 += parseInt(dados.chSemanalSemestre1);
       } else{
-        list_Coorientacao_Semestre1 = 0;
+        list_Coorientacao_Semestre1 += 0;
       }
 
     }
@@ -86,7 +86,7 @@ const ChSemanalOrientacao = () => {
       if (dados.chSemanalSemestre2 != "" && dados.participacao === "CO-ORIENTAÇÃO") {
         list_Coorientacao_Semestre2 += parseInt(dados.chSemanalSemestre2);
       } else {
-        list_Coorientacao_Semestre2 = 0;
+        list_Coorientacao_Semestre2 += 0;
       }
 
     }
@@ -209,7 +209,15 @@ const ChSemanalOrientacao = () => {
       ...localStorageData,
       ChTotalOrientacaoSupervisao: {
         "1Semestre": totalSemestre1,
+        "1SemestreOrientacao": list_Orientacao_Semestre1,
+        "1SemestreCoOrientacao": list_Coorientacao_Semestre1,
+        "1SemestreSupervisao": list_Supervisao_Semestre1,
+        "1SemestrePreceptoria": list_Preceptoria_Semestre1,
         "2Semestre": totalSemestre2,
+        "2SemestreOrientacao": list_Orientacao_Semestre2,
+        "2SemestreCoOrientacao": list_Coorientacao_Semestre2,
+        "2SemestreSupervisao": list_Supervisao_Semestre2,
+        "2SemestrePreceptoria": list_Preceptoria_Semestre2,
       }
     };
   

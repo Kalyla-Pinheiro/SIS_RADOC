@@ -51,6 +51,21 @@ import {
       TodoSemestre1Extensao += Extensao_OutrasAtividades["1Semestre"];
       TodoSemestre2Extensao += Extensao_OutrasAtividades["2Semestre"];
     }
+
+
+
+
+    const gerarJSON = () => {
+      const updatedLocalStorageData = {
+        ...localStorageData,
+        EXTENSAO_CH_SEMANAL: {
+          "1Semestre": TodoSemestre1Extensao,
+          "2Semestre": TodoSemestre2Extensao,
+        }
+      };
+    
+      localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
+    };
   
     return (
       <>
@@ -82,7 +97,7 @@ import {
             </ModalBody>
             <ModalFooter justifyContent="center">
             {" "}
-            <Button colorScheme="green">Salvar</Button>{" "}
+            <Button colorScheme="green" onClick={gerarJSON()}>Salvar</Button>{" "}
           </ModalFooter>
           </ModalContent>
         </Modal>

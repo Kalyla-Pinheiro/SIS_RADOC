@@ -106,6 +106,21 @@ const ModalChSemanalEnsino = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
+
+
+
+  const gerarJSON = () => {
+    const updatedLocalStorageData = {
+      ...localStorageData,
+      ENSINO_CH_SEMANAL: {
+        "1Semestre": TodoSemestre1,
+        "2Semestre": TodoSemestre2,
+      }
+    };
+  
+    localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
+  };
+
   return (
       <>
           <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -139,7 +154,7 @@ const ModalChSemanalEnsino = ({ isOpen, onClose }) => {
                   </ModalBody>
                   <ModalFooter justifyContent="center">
                     {" "}
-                    <Button colorScheme="green">Salvar</Button>{" "}
+                    <Button colorScheme="green" onClick={gerarJSON()}>Salvar</Button>{" "}
                   </ModalFooter>
               </ModalContent>
           </Modal>

@@ -42,6 +42,20 @@ import {
       TodoSemestre2Gestao += Ch_Gestao_Representacao["2Semestre"];
     }
 
+
+
+    const gerarJSON = () => {
+      const updatedLocalStorageData = {
+        ...localStorageData,
+        GESTAO_CH_SEMANAL: {
+          "1Semestre": TodoSemestre1Gestao,
+          "2Semestre": TodoSemestre2Gestao,
+        }
+      };
+    
+      localStorage.setItem(localStorageKey, JSON.stringify(updatedLocalStorageData));
+    };
+
   
     return (
       <>
@@ -73,7 +87,7 @@ import {
             </ModalBody>
             <ModalFooter justifyContent="center">
               {" "}
-              <Button colorScheme="green">Salvar</Button>{" "}
+              <Button colorScheme="green" onClick={gerarJSON()}>Salvar</Button>{" "}
             </ModalFooter>
           </ModalContent>
         </Modal>
