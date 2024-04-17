@@ -1,25 +1,25 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./Documento.css";
 import Tesseract from "tesseract.js";
 
 const Documento = () => {
   const [image, setImage] = useState(null);
-    const [text, setText] = useState('');
+  const [text, setText] = useState("");
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setImage(URL.createObjectURL(file));
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(URL.createObjectURL(file));
 
-        Tesseract.recognize(
-            file,
-            'eng', // idioma (neste caso, inglês)
-            { logger: m => console.log(m) } // opcional - para acompanhar o progresso no console
-        ).then(({ data: { text } }) => {
-            setText(text);
-        });
-      }
+    Tesseract.recognize(
+      file,
+      "eng", // idioma (neste caso, inglês)
+      { logger: (m) => console.log(m) } // opcional - para acompanhar o progresso no console
+    ).then(({ data: { text } }) => {
+      setText(text);
+    });
+  };
 
-    /*
+  /*
       <h2>OCR (Reconhecimento Óptico de Caracteres) com Tesseract.js em React</h2>
 
       <input type="file" accept="image/*" onChange={handleImageChange} />
@@ -29,12 +29,13 @@ const Documento = () => {
                 <p>{text}</p>
             </div>}
     */
-      
+
   return (
-    <div className="documento-container">
-      <div className="wrapper-documento">
-        <h1>Tela de Documentos</h1>
-            
+    <div className="ajuste">
+      <div className="documento-container">
+        <div className="wrapper-documento">
+          <h1>Tela de Documentos</h1>
+        </div>
       </div>
     </div>
   );
