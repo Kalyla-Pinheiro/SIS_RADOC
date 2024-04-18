@@ -3,15 +3,38 @@ import classes from "../../css-modules/Ensino.module.css";
 import Navegacao from "../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import classesPesquisa from "../../css-modules/Pesquisa.module.css";
-import { ChakraProvider, Box } from "@chakra-ui/react";
+import { ChakraProvider, Box, useDisclosure } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import TabelasQualificacaoDissertacaoTese from "../../formularios/ensino/bancas-examinadoras/TabelasQualificaoDissertacaoTese";
+import { ToastifyMessages } from "../../utils/ToastifyMessages";
+import { ToastContainer } from "react-toastify";
 
 import { AnoContext } from "../../utils/AnoContext";
 
 const MonografiaQualificacaoDIssertacaoTese = () => {
 
   const { ano } = useContext(AnoContext);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [pdfMonografiaQualificacaoDIssertacaoTese, setPdfMonografiaQualificacaoDIssertacaoTese] = useState(null);
+
+  const handlepdfMonografiaQualificacaoDIssertacaoTeseChange = (event) => {
+    setPdfMonografiaQualificacaoDIssertacaoTese(event.target.files[0]);
+  };
+
+  const handleMonografiaQualificacaoDIssertacaoTese = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("file", pdfMonografiaQualificacaoDIssertacaoTese);
+    
+    if (pdfMonografiaQualificacaoDIssertacaoTese === null) {
+      ToastifyMessages.warning(
+        "Campo vazio, por favor selecione um PDF para submeter!"
+      );
+    }
+    
+  }
 
   const localStorageKey = `${ano}`;
   let localStorageData = localStorage.getItem(localStorageKey);
@@ -112,14 +135,15 @@ const MonografiaQualificacaoDIssertacaoTese = () => {
           action=""
           method="post"
           encType="multipart/form-data"
+          onSubmit={handleMonografiaQualificacaoDIssertacaoTese}
         >
           <div className={classesPesquisa.anexarPdfs}>
             <div className={classesPesquisa.inputsPdfs}>
-              <input type="file" accept=".pdf" />
+              <input type="file" accept=".pdf" onChange={handlepdfMonografiaQualificacaoDIssertacaoTeseChange}/>
               <p>Campo de submissão (PDF)</p>
             </div>
             <div className={classesPesquisa.buttonSubmeterPDF}>
-              <button type="submit">Submeter PDF</button>
+              <button type="submit" onClick={handleMonografiaQualificacaoDIssertacaoTese}>Submeter PDF</button>
             </div>
           </div>
         </form>
@@ -215,6 +239,7 @@ const MonografiaQualificacaoDIssertacaoTese = () => {
           </a>
         </div>
       </div>
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };
