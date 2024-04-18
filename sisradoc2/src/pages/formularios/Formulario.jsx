@@ -394,6 +394,10 @@ const Formulario = () => {
       dadosDoRADOC.distribuicaoChSemanal_2s_extensao = chTotalAtvExtensao2S;
       dadosDoRADOC.distribuicaoChSemanal_2s_total = chTotalAtvDidatica2S + chTotalAtvPesquisa2S + chTotalAtvExtensao2S;
 
+      // OBTENDO DADOS REFERENTES A PROGRESSÃO
+      const progressao = localStorageDataRadocAtualObj.progressao;
+      dadosDoRADOC.progressao = progressao;
+
       // OBTENDO DADOS REFERENTES A OUTRAS INFORMACÕES
       const outrasInformacoes = localStorageDataRadocAtualObj.outras_informacoes;
       if (Array.isArray(outrasInformacoes)) {
@@ -413,8 +417,6 @@ const Formulario = () => {
       } else {
         console.log("A variável afastamentos não é um array.");
       }
-
-
 
 
       const response = await fetch(apiUrls.gerar_radoc, {
