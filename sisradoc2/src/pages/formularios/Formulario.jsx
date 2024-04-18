@@ -105,6 +105,23 @@ const Formulario = () => {
         gestao_atividadesDeGestaoERepresentacao_doc_a_doc: [],
 
         outros_qualificacaoDocente_doc_a_doc: [],
+
+        distribuicaoChSemanal_1s_atvDidatica: '',
+        distribuicaoChSemanal_1s_administracao: '',
+        distribuicaoChSemanal_1s_pesquisa: '',
+        distribuicaoChSemanal_1s_extensao: '',
+        distribuicaoChSemanal_1s_total: '',
+        distribuicaoChSemanal_2s_atvDidatica: '',
+        distribuicaoChSemanal_2s_administracao: '',
+        distribuicaoChSemanal_2s_pesquisa: '',
+        distribuicaoChSemanal_2s_extensao: '',
+        distribuicaoChSemanal_2s_total: '',
+
+        progressao: '',
+
+        outros_outrasInformacoes_doc_a_doc: [],
+        
+        outros_afastamentos: []
       };
 
 
@@ -159,16 +176,26 @@ const Formulario = () => {
       dadosDoRADOC.atvPedagogica_2s_pos_graduacao = chPedagogicasComplementares["2SemestrePosGraduacao"];
       dadosDoRADOC.atvPedagogica_2s_total = chPedagogicasComplementares["2Semestre"];
 
-      // OBTENDO OS CHS DE ORIENTACÃO, SUPERVISÃO E OUTROS
-
-      // atvOrientacao_1s_orientacao: '',
-      // atvOrientacao_1s_coOrientacao: '',
-      // atvOrientacao_1s_supervisao: '',
-      // atvOrientacao_1s_preceptoria: '',
-
-      // atvOrientacao_1s_total: '',
+      // OBTENDO OS CHS DE ORIENTACÃO, SUPERVISÃO E OUTROS 1SemestreSupervisao
+      const chOrientacao1S = localStorageDataRadocAtualObj.ChTotalOrientacaoSupervisao["1SemestreOrientacao"];
+      const chOrientacao2S = localStorageDataRadocAtualObj.ChTotalOrientacaoSupervisao["2SemestreOrientacao"];
+      const chCoorientacao1S = localStorageDataRadocAtualObj.ChTotalOrientacaoSupervisao["1SemestreCoOrientacao"];
+      const chCoorientacao2S = localStorageDataRadocAtualObj.ChTotalOrientacaoSupervisao["2SemestreCoOrientacao"];
+      const chSupervisao1S = localStorageDataRadocAtualObj.ChTotalOrientacaoSupervisao["1SemestreSupervisao"];
+      const chSupervisao2S = localStorageDataRadocAtualObj.ChTotalOrientacaoSupervisao["2SemestreSupervisao"];
+      const chPreceptoria1S = localStorageDataRadocAtualObj.ChTotalOrientacaoSupervisao["1SemestrePreceptoria"];
+      const chPreceptoria2S = localStorageDataRadocAtualObj.ChTotalOrientacaoSupervisao["2SemestrePreceptoria"];
       const chTotalOrientacaoSupervisaoOutros = localStorageDataRadocAtualObj.ChTotalOrientacaoSupervisao;
+
+      dadosDoRADOC.atvOrientacao_1s_orientacao = chOrientacao1S;
+      dadosDoRADOC.atvOrientacao_1s_coOrientacao = chCoorientacao1S;
+      dadosDoRADOC.atvOrientacao_1s_supervisao = chSupervisao1S;
+      dadosDoRADOC.atvOrientacao_1s_preceptoria = chPreceptoria1S;
       dadosDoRADOC.atvOrientacao_1s_total = chTotalOrientacaoSupervisaoOutros["1Semestre"];
+      dadosDoRADOC.atvOrientacao_2s_orientacao = chOrientacao2S;
+      dadosDoRADOC.atvOrientacao_2s_coOrientacao = chCoorientacao2S;
+      dadosDoRADOC.atvOrientacao_2s_supervisao = chSupervisao2S;
+      dadosDoRADOC.atvOrientacao_2s_preceptoria = chPreceptoria2S;
       dadosDoRADOC.atvOrientacao_2s_total = chTotalOrientacaoSupervisaoOutros["2Semestre"];
 
       // OBTENDO OS DADOS DE ORIENTACÃO E COORIENTACÃO ACADEMICA DOC A DOC
@@ -211,6 +238,13 @@ const Formulario = () => {
         console.log("A variável monografiaQualificacaoDissertacaoTese não é um array.");
       }
 
+      // OBTENDO DADOS REFERENTES AO CH TOTAL DAS ATIVIDADES DE ENSINO totalChSemanalAtvEnsino_1s
+      const chTotalEnsino1S = localStorageDataRadocAtualObj.ENSINO_CH_SEMANAL["1Semestre"];
+      const chTotalEnsino2S = localStorageDataRadocAtualObj.ENSINO_CH_SEMANAL["2Semestre"];
+
+      dadosDoRADOC.totalChSemanalAtvEnsino_1s = chTotalEnsino1S;
+      dadosDoRADOC.totalChSemanalAtvEnsino_2s = chTotalEnsino2S;
+
       // OBTENDO OS DADOS DE AVALIAÇÃO DISCENTE
       const avaliacaoDiscente = localStorageDataRadocAtualObj.avaliacao_discente;
       if (Array.isArray(avaliacaoDiscente)) {
@@ -231,8 +265,6 @@ const Formulario = () => {
         console.log("A variável pesquisaProjetos não é um array.");
       }
 
-      console.log("dadosDoRADOC PORJETOS:", dadosDoRADOC.pesquisa_projetos_doc_a_doc);
-
       // OBTENDO DADOS DE TRABALHOS 
       const trabalhosBoletinsTecnicosOutros = localStorageDataRadocAtualObj.trabalhos_boletins_e_outros;
       if (Array.isArray(trabalhosBoletinsTecnicosOutros)) {
@@ -242,7 +274,6 @@ const Formulario = () => {
       } else {
         console.log("A variável trabalhosBoletinsTecnicosOutros não é um array.");
       }
-      console.log("dadosDoRADOC TRABALHOS:", dadosDoRADOC.pesquisa_trabalhosBoletinsTecnicos_doc_a_doc);
 
       // OBETENDO DADOS DE LIVROS VERBETES PUBLICADOS
       const livrosVerbetesPublicados = localStorageDataRadocAtualObj.livros_verbetes_publicados;
@@ -253,7 +284,6 @@ const Formulario = () => {
       } else {
         console.log("A variável livrosVerbetesPublicados não é um array.");
       }
-      console.log("dadosDoRADOC LVROS:", dadosDoRADOC.pesquisa_livrosVerbetesPublicados_doc_a_doc);
 
       // OBTENDO DADOS DOS RESUMOS PUBLICADOS
       const resumosPublicados = localStorageDataRadocAtualObj.trabalhos_resumos_publicados_apresentados;
@@ -264,7 +294,6 @@ const Formulario = () => {
       } else {
         console.log("A variável resumosPublicados não é um array.");
       }
-      console.log("dadosDoRADOC RESUMOS:", dadosDoRADOC.pesquisa_resumosPublicados_doc_a_doc);
 
       // OBTENDO DADOS DE OUTRAS ATIVIDADES DE PESQUISA
       const outrasAtividadesDePesquisa = localStorageDataRadocAtualObj.outras_atividades_de_pesquisa_e_producao_intelectual;
@@ -275,8 +304,115 @@ const Formulario = () => {
       } else {
         console.log("A variável outrasAtividadesDePesquisa não é um array.");
       }
-      console.log("dadosDoRADOC OUTRAS ATIVIDADES:", dadosDoRADOC.pesquisa_outrasAtividadesPesquisa_doc_a_doc);
 
+      // OBTENDO DADOS DO CH TOTAL DE PESQUISA totalChSemanalAtvPesquisa_1s
+      const chTotalPesquisa = localStorageDataRadocAtualObj.ChTotalPesquisa;
+      dadosDoRADOC.totalChSemanalAtvPesquisa_1s = chTotalPesquisa["1Semestre"];
+      dadosDoRADOC.totalChSemanalAtvPesquisa_2s = chTotalPesquisa["2Semestre"];
+
+      // OBTENDO DADOS DE PROJETOS DE EXTENSÃO
+      const projetosDeExtensao = localStorageDataRadocAtualObj.projetos_de_extensao;
+      if (Array.isArray(projetosDeExtensao)) {
+        for (let i = 0; i < projetosDeExtensao.length; i++) {
+          dadosDoRADOC.extensao_projetos_doc_a_doc.push(projetosDeExtensao[i]);
+        }
+      } else {
+        console.log("A variável projetosDeExtensao não é um array.");
+      }
+
+      // OBTENDO DADOS DE ESTÁGIOS DE EXTENSÃO estagio_de_extensao
+      const estagiosDeExtensao = localStorageDataRadocAtualObj.estagio_de_extensao;
+      if (Array.isArray(estagiosDeExtensao)) {
+        for (let i = 0; i < estagiosDeExtensao.length; i++) {
+          dadosDoRADOC.extensao_estagios_doc_a_doc.push(estagiosDeExtensao[i]);
+        }
+      } else {
+        console.log("A variável estagiosDeExtensao não é um array.");
+      }
+
+      // OBTENDO OS DADOS DE ATIVIDADES DE ENSINO NÃO FORMAL
+      const atividadesDeEnsinoNaoFormal = localStorageDataRadocAtualObj.atividades_de_ensino_nao_formais;
+      if (Array.isArray(atividadesDeEnsinoNaoFormal)) {
+        for (let i = 0; i < atividadesDeEnsinoNaoFormal.length; i++) {
+          dadosDoRADOC.extensao_atividadeDeEnsinoNaoFormal_doc_a_doc.push(atividadesDeEnsinoNaoFormal[i]);
+        }
+      } else {
+        console.log("A variável atividadesDeEnsinoNaoFormal não é um array.");
+      }
+
+      // OBTENDO DADOS DE OUTRAS ATIVIDADES DE EXTENSÃO
+      const outrasAtividadesDeExtensao = localStorageDataRadocAtualObj.outras_atividades_de_extensao;
+      if (Array.isArray(outrasAtividadesDeExtensao)) {
+        for (let i = 0; i < outrasAtividadesDeExtensao.length; i++) {
+          dadosDoRADOC.extensao_outrasAtividadesExtensao_doc_a_doc.push(outrasAtividadesDeExtensao[i]);
+        }
+      } else {
+        console.log("A variável outrasAtividadesDeExtensao não é um array.");
+      }
+
+      // OBTENDO DADOS CH TOTAL DE EXTENSAO 
+      const chTotalExtensao = localStorageDataRadocAtualObj.EXTENSAO_CH_SEMANAL;
+      dadosDoRADOC.totalChSemanalAtvExtensao_1s = chTotalExtensao["1Semestre"];
+      dadosDoRADOC.totalChSemanalAtvExtensao_2s = chTotalExtensao["2Semestre"];
+
+      // OBTENDO DADOS ATIVIDADES DE GESTÃO E REPRESENTACÃO 
+      const atividadesDeGestaoRepresentacao = localStorageDataRadocAtualObj.atividades_de_gestao_e_representacao;
+      if (Array.isArray(atividadesDeGestaoRepresentacao)) {
+        for (let i = 0; i < atividadesDeGestaoRepresentacao.length; i++) {
+          dadosDoRADOC.gestao_atividadesDeGestaoERepresentacao_doc_a_doc.push(atividadesDeGestaoRepresentacao[i]);
+        }
+      } else {
+        console.log("A variável atividadesDeGestaoRepresentacao não é um array.");
+      }
+
+      // OBTENDO DADOS DE QUALIFICACÃO DOCENTE
+      const qualificacaoDocente = localStorageDataRadocAtualObj.qualificacao_docente;
+      if (Array.isArray(qualificacaoDocente)) {
+        for (let i = 0; i < qualificacaoDocente.length; i++) {
+          dadosDoRADOC.outros_qualificacaoDocente_doc_a_doc.push(qualificacaoDocente[i]);
+        }
+      } else {
+        console.log("A variável qualificacaoDocente não é um array.");
+      }
+
+      // OBTENDO DADOS REFERENTES A DISTRIBUICÃO DE CARGA HORÁRIA SEMANAL
+      const chTotalAtvDidatica1S = localStorageDataRadocAtualObj.ENSINO_CH_SEMANAL["1Semestre"];
+      const chTotalAtvDidatica2S = localStorageDataRadocAtualObj.ENSINO_CH_SEMANAL["2Semestre"];
+      const chTotalAtvPesquisa1S = localStorageDataRadocAtualObj.ChTotalPesquisa["1Semestre"];
+      const chTotalAtvPesquisa2S = localStorageDataRadocAtualObj.ChTotalPesquisa["2Semestre"];
+      const chTotalAtvExtensao1S = localStorageDataRadocAtualObj.EXTENSAO_CH_SEMANAL["1Semestre"];
+      const chTotalAtvExtensao2S = localStorageDataRadocAtualObj.EXTENSAO_CH_SEMANAL["2Semestre"];
+
+      dadosDoRADOC.distribuicaoChSemanal_1s_atvDidatica = chTotalAtvDidatica1S;
+      dadosDoRADOC.distribuicaoChSemanal_1s_administracao = '';
+      dadosDoRADOC.distribuicaoChSemanal_1s_pesquisa = chTotalAtvPesquisa1S;
+      dadosDoRADOC.distribuicaoChSemanal_1s_extensao = chTotalAtvExtensao1S;
+      dadosDoRADOC.distribuicaoChSemanal_1s_total = chTotalAtvDidatica1S + chTotalAtvPesquisa1S + chTotalAtvExtensao1S;
+      dadosDoRADOC.distribuicaoChSemanal_2s_atvDidatica = chTotalAtvDidatica2S;
+      dadosDoRADOC.distribuicaoChSemanal_2s_administracao = '';
+      dadosDoRADOC.distribuicaoChSemanal_2s_pesquisa = chTotalAtvPesquisa2S;
+      dadosDoRADOC.distribuicaoChSemanal_2s_extensao = chTotalAtvExtensao2S;
+      dadosDoRADOC.distribuicaoChSemanal_2s_total = chTotalAtvDidatica2S + chTotalAtvPesquisa2S + chTotalAtvExtensao2S;
+
+      // OBTENDO DADOS REFERENTES A OUTRAS INFORMACÕES
+      const outrasInformacoes = localStorageDataRadocAtualObj.outras_informacoes;
+      if (Array.isArray(outrasInformacoes)) {
+        for (let i = 0; i < outrasInformacoes.length; i++) {
+          dadosDoRADOC.outros_outrasInformacoes_doc_a_doc.push(outrasInformacoes[i]);
+        }
+      } else {
+        console.log("A variável outrasInformacoes não é um array.");
+      }
+
+      // OBTENDO DADOS REFERENTES AOS AFASTAMENTOS
+      const afastamentos = localStorageDataRadocAtualObj.afastamento;
+      if (Array.isArray(afastamentos)) {
+        for (let i = 0; i < afastamentos.length; i++) {
+          dadosDoRADOC.outros_afastamentos.push(afastamentos[i]);
+        }
+      } else {
+        console.log("A variável afastamentos não é um array.");
+      }
 
 
 
