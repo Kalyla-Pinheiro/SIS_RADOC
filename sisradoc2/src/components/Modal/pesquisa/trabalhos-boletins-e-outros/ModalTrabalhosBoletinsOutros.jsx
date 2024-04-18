@@ -59,7 +59,7 @@ const ModalTrabalhosBoletinsOutros = ({
 
   useEffect(() => {
     if (trabalhosBoletinsData) {
-      setDescricao(trabalhosBoletinsData.trabalhosBoletins[0]);
+      setDescricao(trabalhosBoletinsData.trabalhosBoletins.artigos_completos_publicados_em_periódicos);
     }
   }, []);
 

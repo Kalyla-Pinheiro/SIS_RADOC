@@ -96,6 +96,9 @@ const ModalDisciplinasMinistradas = ({
           "-" +
           aulasLetivasData.diario_turma.Disciplina[0]
       );
+      setChTotal(
+        aulasLetivasData.diario_turma["Carga Horária"]
+      )
         // Verifica se docentes_envolvidos tem mais de um elemento
         if (aulasLetivasData.docentes_envolvidos.length > 1) {
           setNomeDocenteEnvolvido(aulasLetivasData.docentes_envolvidos[0] + ', ' + aulasLetivasData.docentes_envolvidos[1]);
