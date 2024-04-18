@@ -72,10 +72,13 @@ const DisciplinasMinistradas = () => {
 
     formData.append("file", pdfDisciplinas);
 
-    try {
-      ToastifyMessages.loading(
-        "Aguarde um momento, estamos processando o PDF..."
+    if (pdfDisciplinas === null) {
+      ToastifyMessages.warning(
+        "Campo vazio, por favor selecione um PDF para submeter!"
       );
+    }
+
+    try {
 
       const response = await fetch(apiUrls.disc_ministradas, {
         method: "POST",
