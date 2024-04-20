@@ -9,18 +9,6 @@ import { ToastifyMessages } from "../../../utils/ToastifyMessages";
 import { ToastContainer } from "react-toastify";
 
 const LivrosVerbetesPublicados = () => {
-<<<<<<< HEAD
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const handleSubmeterPDF = () => {
-
-    ToastifyMessages.success('PDF submetido com sucesso!');
-
-    setTimeout(() => {
-      onOpen();
-    }, 2000);
-  }
-=======
 
   // mensagens RADOC
 
@@ -45,7 +33,6 @@ const LivrosVerbetesPublicados = () => {
     
   }
 
->>>>>>> 443cddbc5ba23fc4744d4f953213b59c1eb44408
   const theme = extendTheme({
     styles: {
       global: {
@@ -84,11 +71,7 @@ const LivrosVerbetesPublicados = () => {
               <p>Documentos Comprobatórios (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
-<<<<<<< HEAD
-              <button type="button" onClick = {handleSubmeterPDF}>Submeter PDF</button>
-=======
               <button type="button" onClick={handleLivrosVerbetesPublicados}>Submeter PDF</button>
->>>>>>> 443cddbc5ba23fc4744d4f953213b59c1eb44408
             </div>
           </div>
         </form>
@@ -184,11 +167,7 @@ const LivrosVerbetesPublicados = () => {
         </div>
       </div>
       <ToastContainer position="bottom-left" />
-<<<<<<< HEAD
-    </div>
-=======
     </div> 
->>>>>>> 443cddbc5ba23fc4744d4f953213b59c1eb44408
   );
 };
 
