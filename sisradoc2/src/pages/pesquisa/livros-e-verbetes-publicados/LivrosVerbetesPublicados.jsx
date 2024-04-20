@@ -3,10 +3,22 @@ import classes from "../../../css-modules/Pesquisa.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { ChakraProvider, Box } from "@chakra-ui/react";
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, useDisclosure } from "@chakra-ui/react";
 import TabelasLivrosVerbetesPublicados from "../../../formularios/pesquisa/livros-verbetes-publicados/TabelasLivrosVerbetesPublicados";
+import { ToastifyMessages } from "../../../utils/ToastifyMessages";
+import { ToastContainer } from "react-toastify";
 
 const LivrosVerbetesPublicados = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleSubmeterPDF = () => {
+
+    ToastifyMessages.success('PDF submetido com sucesso!');
+
+    setTimeout(() => {
+      onOpen();
+    }, 2000);
+  }
   const theme = extendTheme({
     styles: {
       global: {
@@ -35,7 +47,7 @@ const LivrosVerbetesPublicados = () => {
         <form
           className={classes.campoSubmissaoPDF}
           action=""
-          method="post"
+          method=""
           encType="multipart/form-data"
         >
           <div className={classes.anexarPdfs}>
@@ -44,7 +56,7 @@ const LivrosVerbetesPublicados = () => {
               <p>Documentos Comprobatórios (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
-              <button type="submit">Submeter PDF</button>
+              <button type="button" onClick = {handleSubmeterPDF}>Submeter PDF</button>
             </div>
           </div>
         </form>
@@ -139,6 +151,7 @@ const LivrosVerbetesPublicados = () => {
           </a>
         </div>
       </div>
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };

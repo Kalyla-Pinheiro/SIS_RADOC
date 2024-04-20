@@ -16,6 +16,7 @@ const apiUrls = {
   orientacao_academica: `${baseUrl}/pdf/orientacao_academica`,
   trabalhos_boletins: `${baseUrl}/pdf/trabalhos_boletins`,
   gerar_radoc: `${baseUrl}/gerar_radoc`,
+  salvar_pdf: `${baseUrl}/upload`
 };
 
 export default apiUrls;
