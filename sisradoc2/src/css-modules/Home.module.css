@@ -98,3 +98,7 @@
 .buttons button:active {
   transform: scale(0.9);
 }
+
+#btnEditeRadoc {
+  margin-left: 20px;
+}

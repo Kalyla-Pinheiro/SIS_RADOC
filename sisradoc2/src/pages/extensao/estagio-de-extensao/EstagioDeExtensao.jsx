@@ -2,16 +2,38 @@ import React, { useState, useContext, useEffect } from "react";
 import classes from "../../../css-modules/Extensao.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
-import { ChakraProvider, Box } from "@chakra-ui/react";
+import { ChakraProvider, Box, useDisclosure } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import TabelasEstagioDeExtensao from "../../../formularios/extensao/estagio-de-extensao/TabelasEstagioDeExtensao";
-
 import { AnoContext } from "../../../utils/AnoContext";
+import { ToastifyMessages } from "../../../utils/ToastifyMessages";
+import { ToastContainer } from "react-toastify";
 
 const EstagioDeExtensao = () => {
 
 
   const { ano } = useContext(AnoContext);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [pdfEstagioDeExtensao, setPdfEstagioDeExtensao] = useState(null);
+
+  const handlepdfEstagioDeExtensaoChange = (event) => {
+    setPdfEstagioDeExtensao(event.target.files[0]);
+  };
+
+  const handleEstagioDeExtensao = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("file", pdfEstagioDeExtensao);
+    
+    if (pdfEstagioDeExtensao === null) {
+      ToastifyMessages.warning(
+        "Campo vazio, por favor selecione um PDF para submeter!"
+      );
+    }
+    
+  }
 
   const localStorageKey = `${ano}`;
   let localStorageData = localStorage.getItem(localStorageKey);
@@ -90,16 +112,17 @@ const EstagioDeExtensao = () => {
         <form
           className={classes.campoSubmissaoPDF}
           action=""
-          method="post"
+          method=""
           encType="multipart/form-data"
+          onSubmit={handleEstagioDeExtensao}
         >
           <div className={classes.anexarPdfs}>
             <div className={classes.inputsPdfs}>
-              <input type="file" accept=".pdf" />
+              <input type="file" accept=".pdf" onChange={handlepdfEstagioDeExtensaoChange}/>
               <p>Campo de submissão (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
-              <button type="submit">Submeter PDF</button>
+              <button type="submit" onClick={handleEstagioDeExtensao}>Submeter PDF</button>
             </div>
           </div>
         </form>
@@ -123,6 +146,7 @@ const EstagioDeExtensao = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };

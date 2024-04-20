@@ -44,7 +44,8 @@
 
 .opcoesExtensao {
   margin: 27px 50px 50px 50px;
-  width: 700px;
+  width: 90%;
+  max-width: 700px;
 }
 
 .opcaoExtensao {

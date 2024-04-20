@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "../../../css-modules/Pesquisa.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
-import { ChakraProvider, Box } from "@chakra-ui/react";
+import { ChakraProvider, Box, useDisclosure } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import TabelasTrabalhosResumosPublicadosApresentados from "../../../formularios/pesquisa/trabalhos-resumos-publicados-apresentados/TabelasTrabalhosResumosPublicadosApresentados";
+import { ToastifyMessages } from "../../../utils/ToastifyMessages";
+import { ToastContainer } from "react-toastify";
 
 const TrabalhosResumosPublicadosApresentados = () => {
+
+  const [pdfTrabalhosResumosPublicadosApresentados, setPdfTrabalhosResumosPublicadosApresentados] = useState(null);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handlepdfTrabalhosResumosPublicadosApresentadosChange = (event) => {
+    setPdfTrabalhosResumosPublicadosApresentados(event.target.files[0]);
+  };
+
+  const handleTrabalhosResumosPublicadosApresentados = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("file", pdfTrabalhosResumosPublicadosApresentados);
+    
+    if (pdfTrabalhosResumosPublicadosApresentados === null) {
+      ToastifyMessages.warning(
+        "Campo vazio, por favor selecione um PDF para submeter!"
+      );
+    }
+    
+  }
+
   const theme = extendTheme({
     styles: {
       global: {
@@ -35,16 +59,17 @@ const TrabalhosResumosPublicadosApresentados = () => {
         <form
           className={classes.campoSubmissaoPDF}
           action=""
-          method="post"
+          method=""
           encType="multipart/form-data"
+          onSubmit={handleTrabalhosResumosPublicadosApresentados}
         >
           <div className={classes.anexarPdfs}>
             <div className={classes.inputsPdfs}>
-              <input type="file" accept=".pdf" />
+              <input type="file" accept=".pdf" onChange={handlepdfTrabalhosResumosPublicadosApresentadosChange}/>
               <p>Documento Comprobatório (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
-              <button type="submit">Submeter PDF</button>
+              <button type="submit" onClick={handleTrabalhosResumosPublicadosApresentados}>Submeter PDF</button>
             </div>
           </div>
         </form>
@@ -156,6 +181,7 @@ const TrabalhosResumosPublicadosApresentados = () => {
           </a>
         </div>
       </div>
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };

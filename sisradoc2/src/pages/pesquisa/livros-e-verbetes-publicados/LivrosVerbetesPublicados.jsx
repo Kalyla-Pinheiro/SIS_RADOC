@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import classes from "../../../css-modules/Pesquisa.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
@@ -9,6 +9,7 @@ import { ToastifyMessages } from "../../../utils/ToastifyMessages";
 import { ToastContainer } from "react-toastify";
 
 const LivrosVerbetesPublicados = () => {
+<<<<<<< HEAD
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleSubmeterPDF = () => {
@@ -19,6 +20,32 @@ const LivrosVerbetesPublicados = () => {
       onOpen();
     }, 2000);
   }
+=======
+
+  // mensagens RADOC
+
+  const [pdfLivrosVerbetesPublicados, setPdfLivrosVerbetesPublicados] = useState(null);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handlepdfLivrosVerbetesPublicadosChange = (event) => {
+    setPdfLivrosVerbetesPublicados(event.target.files[0]);
+  };
+
+  const handleLivrosVerbetesPublicados = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("file", pdfLivrosVerbetesPublicados);
+    
+    if (pdfLivrosVerbetesPublicados === null) {
+      ToastifyMessages.warning(
+        "Campo vazio, por favor selecione um PDF para submeter!"
+      );
+    }
+    
+  }
+
+>>>>>>> 443cddbc5ba23fc4744d4f953213b59c1eb44408
   const theme = extendTheme({
     styles: {
       global: {
@@ -49,14 +76,19 @@ const LivrosVerbetesPublicados = () => {
           action=""
           method=""
           encType="multipart/form-data"
+          onSubmit={handleLivrosVerbetesPublicados}
         >
           <div className={classes.anexarPdfs}>
             <div className={classes.inputsPdfs}>
-              <input type="file" accept=".pdf" />
+              <input type="file" accept=".pdf" onChange={handlepdfLivrosVerbetesPublicadosChange}/>
               <p>Documentos Comprobatórios (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
+<<<<<<< HEAD
               <button type="button" onClick = {handleSubmeterPDF}>Submeter PDF</button>
+=======
+              <button type="button" onClick={handleLivrosVerbetesPublicados}>Submeter PDF</button>
+>>>>>>> 443cddbc5ba23fc4744d4f953213b59c1eb44408
             </div>
           </div>
         </form>
@@ -152,7 +184,11 @@ const LivrosVerbetesPublicados = () => {
         </div>
       </div>
       <ToastContainer position="bottom-left" />
+<<<<<<< HEAD
     </div>
+=======
+    </div> 
+>>>>>>> 443cddbc5ba23fc4744d4f953213b59c1eb44408
   );
 };
 

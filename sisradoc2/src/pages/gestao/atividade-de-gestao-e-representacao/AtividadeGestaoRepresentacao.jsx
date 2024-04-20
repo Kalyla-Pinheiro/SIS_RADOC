@@ -2,16 +2,37 @@ import React, { useState, useContext, useEffect } from "react";
 import classes from "../../../css-modules/Gestao.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
-import { ChakraProvider, Box } from "@chakra-ui/react";
+import { ChakraProvider, Box, useDisclosure } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import TabelasAtividadeGestaoRepresentacao from "../../../formularios/gestao/atividade-de-gestao-e-representacao/TabelasAtividadeGestaoRepresentacao";
-
+import { ToastifyMessages } from "../../../utils/ToastifyMessages";
+import { ToastContainer } from "react-toastify";
 import { AnoContext } from "../../../utils/AnoContext";
 
 const AtividadeGestaoRepresentacao = () => {
 
-
   const { ano } = useContext(AnoContext);
+
+  const [pdfAtividadeGestaoRepresentacao, setPdfAtividadeGestaoRepresentacao] = useState(null);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handlepdfAtividadeGestaoRepresentacaoChange = (event) => {
+    setPdfAtividadeGestaoRepresentacao(event.target.files[0]);
+  };
+
+  const handleAtividadeGestaoRepresentacao = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("file", pdfAtividadeGestaoRepresentacao);
+    
+    if (pdfAtividadeGestaoRepresentacao === null) {
+      ToastifyMessages.warning(
+        "Campo vazio, por favor selecione um PDF para submeter!"
+      );
+    }
+    
+  }
 
   const localStorageKey = `${ano}`;
   let localStorageData = localStorage.getItem(localStorageKey);
@@ -108,14 +129,15 @@ const AtividadeGestaoRepresentacao = () => {
           action=""
           method="post"
           encType="multipart/form-data"
+          onSubmit={handleAtividadeGestaoRepresentacao}
         >
           <div className={classes.anexarPdfs}>
             <div className={classes.inputsPdfs}>
-              <input type="file" accept=".pdf" />
+              <input type="file" accept=".pdf" onChange={handlepdfAtividadeGestaoRepresentacaoChange}/>
               <p>Campo de submissão (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
-              <button type="submit">Submeter PDF</button>
+              <button type="submit" onClick={handleAtividadeGestaoRepresentacao}>Submeter PDF</button>
             </div>
           </div>
         </form>
@@ -142,6 +164,7 @@ const AtividadeGestaoRepresentacao = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };

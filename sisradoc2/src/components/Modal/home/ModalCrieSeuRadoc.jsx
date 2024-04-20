@@ -28,6 +28,7 @@ const ModalCrieSeuRadoc = ({ isOpen, onClose }) => {
     setAnoValue(inputAno);
     console.log("O Valor do ano é: ", ano);
     const jsonData = {};
+    jsonData.progressao = pergunta;
     localStorage.setItem(inputAno, JSON.stringify(jsonData));
     navigate("/formularios");
   };

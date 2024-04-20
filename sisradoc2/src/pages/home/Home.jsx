@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "../../css-modules/Home.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { ToastifyMessages } from "../../utils/ToastifyMessages";
 import TokenFunctions from "../../utils/Token";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   Box,
   Flex,
@@ -18,11 +18,15 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import ModalCrieSeuRadoc from "../../components/Modal/home/ModalCrieSeuRadoc";
+import ModalEditeUmRadoc from "../../components/Modal/home/ModalEditeUmRadoc";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import paisagem3 from "../imagens/paisagem3.png";
 
 const Home = () => {
+  const [modalType, setModalType] = useState(null);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
 
   const theme = extendTheme({
     styles: {
@@ -39,6 +43,15 @@ const Home = () => {
       },
     },
   });
+
+  const openModal = (type) => {
+    setModalType(type);
+    if (type === "crieSeuRadoc") {
+      onOpen();
+    } else if (type === "editeUmRadoc") {
+      onOpen2();
+    }
+  };
 
   return (
     <div className={classes.ajuste}>
@@ -105,11 +118,17 @@ const Home = () => {
           </div>
 
           <div className={classes.buttons}>
-            <button onClick={onOpen}>Crie seu Radoc</button>
+            <button onClick={() => openModal("crieSeuRadoc")}>Crie seu Radoc</button>
+            <button onClick={() => openModal("editeUmRadoc")} id={classes.btnEditeRadoc}>Edite um Radoc</button>
           </div>
 
           <ChakraProvider theme={theme} resetCSS={false}>
-            <ModalCrieSeuRadoc isOpen={isOpen} onClose={onClose} />
+            {modalType === "crieSeuRadoc" && (
+              <ModalCrieSeuRadoc isOpen={isOpen} onClose={onClose} />
+            )}
+            {modalType === "editeUmRadoc" && (
+              <ModalEditeUmRadoc isOpen={isOpen2} onClose={onClose2} />
+            )}
           </ChakraProvider>
         </div>
         <ToastContainer position="bottom-left" />

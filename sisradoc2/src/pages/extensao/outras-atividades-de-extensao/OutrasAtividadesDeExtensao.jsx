@@ -2,15 +2,37 @@ import React, { useState, useContext, useEffect } from "react";
 import classes from "../../../css-modules/Extensao.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
-import { ChakraProvider, Box } from "@chakra-ui/react";
+import { ChakraProvider, Box, useDisclosure } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import TabelasOutrasAtividadesDeExtensao from "../../../formularios/extensao/outras-atividades-de-extensao/TabelasOutrasAtividadesDeExtensao";
-
+import { ToastifyMessages } from "../../../utils/ToastifyMessages";
+import { ToastContainer } from "react-toastify";
 import { AnoContext } from "../../../utils/AnoContext";
 
 const OutrasAtividadesDeExtensao = () => {
 
   const { ano } = useContext(AnoContext);
+
+  const [pdfOutrasAtividadesDeExtensao, setPdfOutrasAtividadesDeExtensao] = useState(null);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handlepdfOutrasAtividadesDeExtensaoChange = (event) => {
+    setPdfOutrasAtividadesDeExtensao(event.target.files[0]);
+  };
+
+  const handleOutrasAtividadesDeExtensao = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("file", pdfOutrasAtividadesDeExtensao);
+    
+    if (pdfOutrasAtividadesDeExtensao === null) {
+      ToastifyMessages.warning(
+        "Campo vazio, por favor selecione um PDF para submeter!"
+      );
+    }
+    
+  }
 
   const localStorageKey = `${ano}`;
   let localStorageData = localStorage.getItem(localStorageKey);
@@ -70,13 +92,6 @@ const OutrasAtividadesDeExtensao = () => {
     window.location.reload();
   };
 
-
-
-
-
-
-
-
   const theme = extendTheme({
     styles: {
       global: {
@@ -105,16 +120,17 @@ const OutrasAtividadesDeExtensao = () => {
         <form
           className={classes.campoSubmissaoPDF}
           action=""
-          method="post"
+          method=""
           encType="multipart/form-data"
+          onSubmit={handleOutrasAtividadesDeExtensao}
         >
           <div className={classes.anexarPdfs}>
             <div className={classes.inputsPdfs}>
-              <input type="file" accept=".pdf" />
+              <input type="file" accept=".pdf" onChange={handlepdfOutrasAtividadesDeExtensaoChange}/>
               <p>Campo de submissão (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
-              <button type="submit">Submeter PDF</button>
+              <button type="submit" onClick={handleOutrasAtividadesDeExtensao}>Submeter PDF</button>
             </div>
           </div>
         </form>
@@ -138,6 +154,7 @@ const OutrasAtividadesDeExtensao = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="bottom-left" />
     </div>
   );
 };
