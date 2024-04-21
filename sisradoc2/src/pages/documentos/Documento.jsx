@@ -1,40 +1,44 @@
-import React, { useState } from "react";
+// frontend code
+import React, { useState, useEffect } from "react";
 import "./Documento.css";
-import Tesseract from "tesseract.js";
+import apiUrls from "../../apis/apiUrls";
 
 const Documento = () => {
-  const [image, setImage] = useState(null);
-  const [text, setText] = useState("");
+  const [pdfs, setPdfs] = useState([]);
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(URL.createObjectURL(file));
+  useEffect(() => {
+    const fetchPdfs = async () => {
+      try {
+        const response = await fetch(apiUrls.listar_pdf);
+        if (response.ok) {
+          const data = await response.json();
+          setPdfs(data.files);
+        } else {
+          console.error('Erro ao buscar os PDFs:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Erro ao buscar os PDFs:', error);
+      }
+    };
 
-    Tesseract.recognize(
-      file,
-      "eng", // idioma (neste caso, inglês)
-      { logger: (m) => console.log(m) } // opcional - para acompanhar o progresso no console
-    ).then(({ data: { text } }) => {
-      setText(text);
-    });
-  };
-
-  /*
-      <h2>OCR (Reconhecimento Óptico de Caracteres) com Tesseract.js em React</h2>
-
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-            {image && <img src={image} alt="Imagem de entrada" style={{ maxWidth: '100%' }} />}
-            {text && <div>
-                <h3>Texto Reconhecido:</h3>
-                <p>{text}</p>
-            </div>}
-    */
+    fetchPdfs();
+  }, []);
 
   return (
     <div className="ajuste">
       <div className="documento-container">
         <div className="wrapper-documento">
           <h1>Tela de Documentos</h1>
+          <div className="miniaturas-container">
+            {pdfs.map((pdf, index) => (
+              <div key={index} className="miniatura-pdf">
+                <a href={`http://localhost:5000/uploads/${pdf}`} target="_blank" rel="noopener noreferrer">
+                  <img src="/caminho/para/seu/icone-de-pdf.png" alt={`Miniatura do PDF ${pdf}`} />
+                  <p>Miniatura do PDF {pdf}</p>
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -42,17 +46,3 @@ const Documento = () => {
 };
 
 export default Documento;
-/*import React from "react";
-import "./Documento.css";
-
-const Documento = () => {
-  return (
-    <div className="documento-container">
-      <div className="wrapper-documento">
-        <h1>Tela de Documentos</h1>
-      </div>
-    </div>
-  );
-};
-
-export default Documento;*/
