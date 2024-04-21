@@ -1,4 +1,3 @@
-// frontend code
 import React, { useState, useEffect } from "react";
 import "./Documento.css";
 import apiUrls from "../../apis/apiUrls";
@@ -14,10 +13,10 @@ const Documento = () => {
           const data = await response.json();
           setPdfs(data.files);
         } else {
-          console.error('Erro ao buscar os PDFs:', response.statusText);
+          console.error("Erro ao buscar os PDFs:", response.statusText);
         }
       } catch (error) {
-        console.error('Erro ao buscar os PDFs:', error);
+        console.error("Erro ao buscar os PDFs:", error);
       }
     };
 
@@ -31,12 +30,16 @@ const Documento = () => {
           <h1>Tela de Documentos</h1>
           <div className="miniaturas-container">
             {pdfs.map((pdf, index) => (
-              <div key={index} className="miniatura-pdf">
-                <a href={`http://localhost:5000/uploads/${pdf}`} target="_blank" rel="noopener noreferrer">
-                  <img src="/caminho/para/seu/icone-de-pdf.png" alt={`Miniatura do PDF ${pdf}`} />
-                  <p>Miniatura do PDF {pdf}</p>
-                </a>
-              </div>
+              <a
+                href={`http://localhost:5000/uploads/${pdf}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div key={index} className="miniatura-pdf">
+                  <p>{pdf}</p>
+                </div>
+                {/* <img src="../../../public/pdf-img.png" alt="icone-pdf" /> */}
+              </a>
             ))}
           </div>
         </div>
