@@ -66,10 +66,9 @@ const DisciplinasMinistradas = () => {
   };
 
   const handleDisciplinasMinistradas = async (event) => {
+    
     event.preventDefault();
-
     const formData = new FormData();
-
     formData.append("file", pdfDisciplinas);
 
     if (pdfDisciplinas === null) {
