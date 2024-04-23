@@ -7,14 +7,10 @@ import { extendTheme, useDisclosure } from "@chakra-ui/react";
 import TabelasLivrosVerbetesPublicados from "../../../formularios/pesquisa/livros-verbetes-publicados/TabelasLivrosVerbetesPublicados";
 import { ToastifyMessages } from "../../../utils/ToastifyMessages";
 import { ToastContainer } from "react-toastify";
+import apiUrls from "../../../apis/apiUrls";
 
 const LivrosVerbetesPublicados = () => {
-
-  // mensagens RADOC
-
   const [pdfLivrosVerbetesPublicados, setPdfLivrosVerbetesPublicados] = useState(null);
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handlepdfLivrosVerbetesPublicadosChange = (event) => {
     setPdfLivrosVerbetesPublicados(event.target.files[0]);
@@ -22,16 +18,35 @@ const LivrosVerbetesPublicados = () => {
 
   const handleLivrosVerbetesPublicados = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("file", pdfLivrosVerbetesPublicados);
     
-    if (pdfLivrosVerbetesPublicados === null) {
+    if (!pdfLivrosVerbetesPublicados) {
       ToastifyMessages.warning(
         "Campo vazio, por favor selecione um PDF para submeter!"
       );
+      return;
     }
-    
-  }
+
+    const formData = new FormData();
+    formData.append("pdf", pdfLivrosVerbetesPublicados);
+
+    try {
+      const response = await fetch(apiUrls.salvar_pdf, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        // Atualizar o estado local para exibir o PDF
+        setPdfLivrosVerbetesPublicados(null);
+        ToastifyMessages.success('PDF submetido com sucesso!');
+      } else {
+        ToastifyMessages.error('Erro ao submeter PDF');
+      }
+    } catch (error) {
+      console.error('Erro ao submeter PDF:', error);
+      ToastifyMessages.error('Erro ao submeter PDF');
+    }
+  };
 
   const theme = extendTheme({
     styles: {
@@ -49,6 +64,7 @@ const LivrosVerbetesPublicados = () => {
     },
   });
 
+
   return (
     <div>
       <Navegacao />
@@ -60,9 +76,6 @@ const LivrosVerbetesPublicados = () => {
 
         <form
           className={classes.campoSubmissaoPDF}
-          action=""
-          method=""
-          encType="multipart/form-data"
           onSubmit={handleLivrosVerbetesPublicados}
         >
           <div className={classes.anexarPdfs}>
@@ -71,7 +84,7 @@ const LivrosVerbetesPublicados = () => {
               <p>Documentos Comprobatórios (PDF)</p>
             </div>
             <div className={classes.buttonSubmeterPDF}>
-              <button type="button" onClick={handleLivrosVerbetesPublicados}>Submeter PDF</button>
+              <button type="submit">Submeter PDF</button>
             </div>
           </div>
         </form>
