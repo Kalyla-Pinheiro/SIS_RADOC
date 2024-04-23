@@ -20,7 +20,6 @@ const Formulario = () => {
 
   const token = TokenFunctions.getToken();
   const nomeUsuario = TokenFunctions.getName(token);
-  const emailUsuario = TokenFunctions.getEmail(token);
   const siapeUsuario = TokenFunctions.getSiape(token);
   const titulacaoUsuario = TokenFunctions.getTitulacao(token);
   const campusUsuario = TokenFunctions.getCampus(token);
@@ -52,8 +51,8 @@ const Formulario = () => {
 
         ano: ano,
         nome: nomeUsuario,
-        classe_referencia: emailUsuario,
-        estatutario: siapeUsuario,
+        classe_referencia: '',
+        estatutario: "Estatuário",
         regime_trabalho: regimeUsuario,
         campus: campusUsuario,
         titulacao: titulacaoUsuario,
