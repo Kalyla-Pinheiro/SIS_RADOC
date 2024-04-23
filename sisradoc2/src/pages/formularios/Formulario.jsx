@@ -445,6 +445,28 @@ const Formulario = () => {
     }
   };
 
+  const handleDownloadRadoc = async () => {
+    try {
+      const response = await fetch(apiUrls.gerar_radoc);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'nome_do_arquivo.docx'; // Nome do arquivo que será baixado
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Erro ao fazer o download:', error);
+    }
+  };
+
+  const clickGerarRadoc = async () => {
+    handleGerarRadocClick();
+    handleDownloadRadoc();
+
+  };
+
   const theme = extendTheme({
     styles: {
       global: {
@@ -501,7 +523,7 @@ const Formulario = () => {
           <button onClick={onOpen}>CH Semanal</button>
 
           <Link to="/relatorios">
-            <button onClick={handleGerarRadocClick}>Gerar Radoc</button>
+            <button onClick={clickGerarRadoc}>Gerar Radoc</button>
           </Link>
         </div>
         <ChakraProvider theme={theme} resetCSS={false}>
