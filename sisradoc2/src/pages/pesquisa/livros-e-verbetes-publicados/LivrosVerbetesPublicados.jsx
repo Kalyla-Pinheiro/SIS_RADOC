@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 import classes from "../../../css-modules/Pesquisa.module.css";
 import Navegacao from "../../../components/Navegação/Navegacao";
 import { BsQuestionCircleFill } from "react-icons/bs";
@@ -8,8 +8,12 @@ import TabelasLivrosVerbetesPublicados from "../../../formularios/pesquisa/livro
 import { ToastifyMessages } from "../../../utils/ToastifyMessages";
 import { ToastContainer } from "react-toastify";
 import apiUrls from "../../../apis/apiUrls";
+import { AnoContext } from "../../../utils/AnoContext";
 
 const LivrosVerbetesPublicados = () => {
+
+  const { ano } = useContext(AnoContext);
+
   const [pdfLivrosVerbetesPublicados, setPdfLivrosVerbetesPublicados] = useState(null);
 
   const handlepdfLivrosVerbetesPublicadosChange = (event) => {
@@ -45,6 +49,58 @@ const LivrosVerbetesPublicados = () => {
     } catch (error) {
       console.error('Erro ao submeter PDF:', error);
       ToastifyMessages.error('Erro ao submeter PDF');
+    }
+
+    try {
+      const chaveDocumentoComprobatorio = ano + " - Livros_Verbetes_Publicados";
+  
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        try {
+          // Converte o PDF em uma string base64 para armazenamento
+          const pdfBase64 = e.target.result.split(",")[1]; // Remover o prefixo 'data:application/pdf;base64,'
+  
+          // Verifica se a string base64 é válida
+          if (!isValidBase64(pdfBase64)) {
+            ToastifyMessages.error("Erro ao processar o PDF. A string base64 é inválida.");
+            return;
+          }
+  
+          // Obtém os dados existentes do localStorage
+          const localStorageKey = "itens_documentos";
+          let localStorageData = localStorage.getItem(localStorageKey);
+          if (!localStorageData) {
+            localStorageData = {};
+          } else {
+            localStorageData = JSON.parse(localStorageData);
+          }
+  
+          // Adiciona o novo PDF ao objeto localStorageData
+          localStorageData[chaveDocumentoComprobatorio] = pdfBase64;
+  
+          // Armazena o objeto atualizado de volta no localStorage
+          localStorage.setItem(localStorageKey, JSON.stringify(localStorageData));
+  
+          ToastifyMessages.success("PDF submetido com sucesso!");
+        } catch (error) {
+          console.error("Erro ao processar o PDF:", error);
+          ToastifyMessages.error("Erro ao processar o PDF!");
+        }
+      };
+  
+      // Lê o arquivo PDF como uma URL de dados
+      reader.readAsDataURL(pdfLivrosVerbetesPublicados);
+    } catch (error) {
+      console.error("Erro ao processar o PDF:", error);
+      ToastifyMessages.error("Erro ao processar o PDF!");
+    }
+  };
+
+  const isValidBase64 = (str) => {
+    try {
+      return btoa(atob(str)) === str;
+    } catch (error) {
+      return false;
     }
   };
 
