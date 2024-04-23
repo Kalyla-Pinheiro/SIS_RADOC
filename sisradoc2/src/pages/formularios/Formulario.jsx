@@ -7,6 +7,7 @@ import { AnoContext } from "../../utils/AnoContext";
 import apiUrls from "../../apis/apiUrls";
 import { ToastContainer } from "react-toastify";
 import { ToastifyMessages } from "../../utils/ToastifyMessages";
+import TokenFunctions from "../../utils/Token";
 
 const Formulario = () => {
   // IDEIA DE GERACÃO DE ITENS NA TELA DE RELATÓRIOS (PARTE 1)
@@ -15,6 +16,15 @@ const Formulario = () => {
   // -> dessa forma, ele irá armazenar 2025: {}
 
   const { ano } = useContext(AnoContext);
+
+
+  const token = TokenFunctions.getToken();
+  const nomeUsuario = TokenFunctions.getName(token);
+  const emailUsuario = TokenFunctions.getEmail(token);
+  const siapeUsuario = TokenFunctions.getSiape(token);
+  const titulacaoUsuario = TokenFunctions.getTitulacao(token);
+  const campusUsuario = TokenFunctions.getCampus(token);
+  const regimeUsuario = TokenFunctions.getRegime(token);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -39,6 +49,15 @@ const Formulario = () => {
       const dadosDoRADOC = {
         atvEnsino_ch_1s: [],
         atvEnsino_ch_2s: [],
+
+        ano: ano,
+        nome: nomeUsuario,
+        classe_referencia: emailUsuario,
+        estatutario: siapeUsuario,
+        regime_trabalho: regimeUsuario,
+        campus: campusUsuario,
+        titulacao: titulacaoUsuario,
+        siape: siapeUsuario,
 
         calculoChSemanal_1s_graduacao: '',
         calculoChSemanal_1s_pos_graduacao: '',
@@ -84,7 +103,7 @@ const Formulario = () => {
 
         pesquisa_livrosVerbetesPublicados_doc_a_doc: [],
 
-        pesquisa_resumosPublicados_doc_a_doc: [],
+        trabalhos_publicados: [],
 
         pesquisa_outrasAtividadesPesquisa_doc_a_doc: [],
 
@@ -289,7 +308,7 @@ const Formulario = () => {
       const resumosPublicados = localStorageDataRadocAtualObj.trabalhos_resumos_publicados_apresentados;
       if (Array.isArray(resumosPublicados)) {
         for (let i = 0; i < resumosPublicados.length; i++) {
-          dadosDoRADOC.pesquisa_resumosPublicados_doc_a_doc.push(resumosPublicados[i]);
+          dadosDoRADOC.trabalhos_publicados.push(resumosPublicados[i]);
         }
       } else {
         console.log("A variável resumosPublicados não é um array.");
@@ -452,7 +471,7 @@ const Formulario = () => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'nome_do_arquivo.docx'; // Nome do arquivo que será baixado
+      a.download = 'seu_radoc.docx'; // Nome do arquivo que será baixado
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
